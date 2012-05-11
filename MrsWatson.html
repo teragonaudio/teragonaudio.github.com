@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MrsWatson</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+    <div id="smallheader">
+      <div class="wrapper">
+        <div id="logo">
+          <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+        </div>
+
+        <!--
+        <div id="right">
+          <form method="get" id="searchform" action="#"> 
+            <fieldset class="search"> 
+              <input type="text" class="box" /> 
+              <button class="btn" title="Search">Search</button> 
+            </fieldset> 
+          </form>
+        </div> 
+        -->
+      </div>
+    </div>
+    <div id="contentpart">
+      <div class="wrapper">
+        <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+          
+        <div id="content">
+          <div id="main" class="news">
+            <!-- Start content -->
+            <h1 id='mrswatson'>MrsWatson</h1>
+
+<p>MrsWatson is a command-line audio plugin host. It takes one or more plugins, sends an audio signal to them for processing, and saves the resulting output. Although the plugins think they are running in realtime, processing is actually done offline (this is not the same as the &#8220;offline&#8221; processing in VST terminology). This makes MrsWatson ideal for developing or debugging plugins, or processing audio on a server.</p>
+
+<h2 id='history'>History</h2>
+
+<p>MrsWatson takes its name from a prior product from <a href='http://www.teragonaudio.com'>Teragon Audio</a> called <em>MissWatson</em> (and the original name there, in case you were wondering, is a bit of a joke on the <a href='http://en.wikipedia.org/wiki/Dr._Watson_(debugger)'>Dr. Watson</a> utility).</p>
+
+<p>In 2009 I sold the exclusive rights to MissWatson to a company interested in using it for server-side audio processing. As per the terms of our agreement, I made one last public release, and removed the code from my website. Since then, I have received numerous emails and inquiries regarding the project, mostly from plugin developers or people interested in VST technology. Though I have no regrets about discontinuing the original MissWatson (particularly since I didn&#8217;t have time to properly maintain it), I felt that it was a useful utility which should be made available and open-sourced.</p>
+
+<p>In 2011, my NDA with the aforementioned company expired, and I started working on a new MissWatson. MrsWatson is the result of this labor.</p>
+
+<p>As I no longer have the source code for MissWatson, MrsWatson is a black-box implementation. They share only the name and concept in common. The two programs are <strong>incompatible</strong> and have <strong>fundamentally different behavior</strong>. They are also written in different languages (the original in C++, MrsWatson in C), and have completely different internal architecture.</p>
+
+<p>If you have built some system which used the original MissWatson, then you will likely have to make some big changes to migrate to MrsWatson. Likewise, if you were using some of the original MissWatson code in your project, you will <em>not</em> be able to replace it with MrsWatson without significant work on your end.</p>
+
+<h2 id='examples'>Examples</h2>
+
+<p>Say you have an audio file which you would like processed through a group of mastering plugins.</p>
+
+<pre><code>mrswatson --input mysong.pcm --output out.pcm --plugin plugin1,plugin2</code></pre>
+
+<p>This will print the following output:</p>
+
+<pre><code>- 000000 Plugin &#39;plugin1&#39; is of type VST2.x
+- 000000 Plugin &#39;plugin2&#39; is of type VST2.x
+- 000000 MrsWatson version 0.1.0 initialized
+- 000000 Opening VST2.x plugin &#39;plugin1&#39;
+- 000029 Opening VST2.x plugin &#39;plugin2&#39;
+- 000144 Processing with samplerate 44100, blocksize 512, 2 channels
+- 000204 Total processing time 60ms, approximate breakdown by component:
+- 000204   plugin1: 38ms
+- 000204   plugin2: 11ms
+- 000204   MrsWatson: 11ms
+- 000204 Read 3528000 frames from mysong.pcm, wrote 3532800 frames to out.pcm
+- 000204 Shutting down
+- 000210 Closing plugin &#39;plugin1&#39;
+- 000212 Closing plugin &#39;plugin2&#39;
+- 000212 Goodbye!</code></pre>
+
+<p>To see more or less logging output, use the <code>--verbose</code> or <code>--quiet</code> options, respectively. To process a MIDI file through an instrument, you&#8217;d do something like this:</p>
+
+<pre><code>mrswatson --midi-file mysong.mid --output out.pcm --plugin piano:soft.fxp</code></pre>
+
+<p>Like the first example, a comma-separated list of plugins can be given here so that the audio generated by the instrument can be processed through any number of effects. Each plugin name can be followed by a colon and the location to a preset file to be loaded before processing.</p>
+
+<p>Complete help for MrsWatson can be found by running the program with no arguments, or with <code>--help</code>.</p>
+
+<h2 id='loading_plugins'>Loading Plugins</h2>
+
+<p>Currently, MrsWatson loads plugins by their short name by searching in the standard installation locations for your platform. It does not (yet) allow for specifying a plugin by absolute path.</p>
+
+<p>While MrsWatson has some understanding of getting and setting plugin parameters, it does not extend this functionality to the end user. Rather than passing a huge list of comma/colon separated parameters/values on the command line, users should instead create a preset for the plugin and load it with the colon-separated syntax as shown above.</p>
+
+<h2 id='limitations'>Limitations</h2>
+
+<p>As MrsWatson is a new codebase, there are lots of missing features, some more important than others. To encourage a quick initial release, the following features are not yet present in MrsWatson, but may be added at some point in the future:</p>
+
+<p>* AudioUnit plugins on Mac OSX * File support for WAV/AIFF/MP3/OGG * Resampling of input source if desired * True realtime mode</p>
+
+<p>I have also tried to identify incomplete areas of the code and log them to the console, which means that we are aware that this feature is missing and will be added soon. If you see some other missing functionality or experience a crash or other bug, please report an issue on our <a href='http://github.com/teragonaudio/MrsWatson'>project page</a>.</p>
+
+<h2 id='please_help'>Please Help!</h2>
+
+<p>As mentioned, MrsWatson is fully functional but needs a lot of polish. If you find areas of the code which are incomplete or not compatible with some plugins, please make a pull request.</p>
+
+<p>Likewise, if you want to help out without programming, the best way to do so is to test and report any problems with given plugins or platforms.</p>
+
+<h2 id='donate'>Donate</h2>
+
+<p>If you are using MrsWatson to do something cool, please send me a link to your project! If you appreciate MrsWatson and would like to donate money, please instead make a donation to a charity on our behalf, and let us know about it. The organizations which have helped us the most are:</p>
+
+<p>* <a href='https://supporters.eff.org/donate'>EFF</a>: Without the EFF, programs like MrsWatson would be significantly harder to create and distribute. * <a href='http://wikimediafoundation.org/wiki/WMFJA085/en'>Wikipedia</a>: Writing MrsWatson involves a lot of research as well as coding, and Wikipedia is an essential part of this.</p>
+
+<h2 id='licensing'>Licensing</h2>
+
+<p>MrsWatson is made available under the BSD license. For more details, see the <code>LICENSE</code> file distributed with the source code. MrsWatson also uses the following third-party libraries, which are licensed under the respective agreements:</p>
+
+<p>* <a href='http://www.steinberg.net/en/company/developer.html'>VST</a>: Licensed under Steinberg&#8217;s VST SDK license agreement, version 2.4. For more information, see Steinberg&#8217;s developer portal. * <a href='http://aifftools.sourceforge.net/libaiff/'>LibAiff</a>: Written by Marco Trillo, made under the BSD license. For more details, see the LICENSE file in the LibAiff source code.</p>
+            <!-- End content -->
+          </div>
+          <div id="sidebar">
+            <ul class="sidemenu">
+              <li><a href="http://static.teragonaudio.com/MrsWatson.zip"><b>Download latest version</b></a></li>
+              <li><a href="https://github.com/teragonaudio/MrsWatson/zipball/master">Download source code</a></li>
+              <li><a href="https://github.com/teragonaudio/MrsWatson">Project page</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Having problems with this software?</b> Send an email to
+            <script>mail2("support", "teragonaudio", 0, "subject=MrsWatson", "support at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

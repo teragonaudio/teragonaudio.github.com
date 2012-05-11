@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Mapping MIDI buttons to control Ableton Live's tempo</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+  <div id="smallheader">
+    <div class="wrapper">
+      <div id="logo">
+        <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+      </div>
+        
+      <!--
+      <div id="right">
+        <form method="get" id="searchform" action="#"> 
+          <fieldset class="search"> 
+            <input type="text" class="box" /> 
+            <button class="btn" title="Search">Search</button> 
+          </fieldset> 
+        </form>
+      </div> 
+      -->
+    </div>
+  </div>
+  <div id="contentpart">
+    <div class="wrapper">
+      <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+
+      <div id="content">						
+        <div class="title">
+          <h1>
+            Mapping MIDI buttons to control Ableton Live's tempo
+          </h1>
+        </div>
+
+        <!-- Start content -->
+        <p>A friend of mine recently tipped me off to a nice trick in Ableton Live. For a long time I&#8217;ve been searching for a nice way to control tempo via a MIDI controller, and have found it amazingly difficult to do this. Fortunately, there is an easy (but non-intuitive) trick you can use to map two MIDI buttons such that pressing each button will increase or decrease the global tempo by a small-ish amount.</p>
+
+<p>In the past, I tried using the following methods to map MIDI tempo, each with its own pitfalls:</p>
+
+<ul>
+<li>Using a keyboard mapping. Doesn&#8217;t work, since Live simply sets the tempo to the maximum/minimum value.</li>
+
+<li>Using a continuous controller. Behaves erratically, difficult to increase tempo in smaller amounts, and too easy to hit the wheel by accident and screw up the whole set.</li>
+
+<li>Using a knob. Very difficult to increase the tempo in small amounts, especially with a large tempo range.</li>
+
+<li>Using a fader. Impractical, since I need my faders for other mappings.</li>
+</ul>
+
+<p>To use buttons, first program your MIDI controller to have the two buttons send out the same MIDI CC message. Then, map one of the buttons to the tempo by entering Live&#8217;s mapping mode, clicking on the tempo box, and then pressing the button. Finally, program your MIDI controller such that the increase button always sends 1 sends as its value, and the decrease button always sends 127. Now, when you press a button, the tempo will increase/decrease by a small amount (usually ~.75 BPM, though it varies on your tempo range).</p>
+
+<p>This may seem a bit counter-intuitive due to the 1/127 values, but at least it&#8217;s documented. See the Ableton manual&#8217;s section on &#8220;Mapping to Relative MIDI Controllers&#8221; for the full scoop. This means, btw, that you can also use the button trick to increase or decrease other controls as well, not just tempo.</p>
+        <!-- End content -->
+      </div>									
+      <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Questions or comments?</b> Send an email to
+            <script>mail2("info", "teragonaudio", 0, "subject=Mapping MIDI buttons to control Ableton Live's tempo", "info at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>								
+    </div>
+  </body>
+</html>

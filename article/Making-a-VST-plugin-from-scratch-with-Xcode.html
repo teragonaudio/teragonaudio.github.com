@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Making a VST plugin from scratch with Xcode</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+  <div id="smallheader">
+    <div class="wrapper">
+      <div id="logo">
+        <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+      </div>
+        
+      <!--
+      <div id="right">
+        <form method="get" id="searchform" action="#"> 
+          <fieldset class="search"> 
+            <input type="text" class="box" /> 
+            <button class="btn" title="Search">Search</button> 
+          </fieldset> 
+        </form>
+      </div> 
+      -->
+    </div>
+  </div>
+  <div id="contentpart">
+    <div class="wrapper">
+      <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+
+      <div id="content">						
+        <div class="title">
+          <h1>
+            Making a VST plugin from scratch with Xcode
+          </h1>
+        </div>
+
+        <!-- Start content -->
+        <h2 id='introduction'>Introduction</h2>
+
+<p>After writing up my Visual Studio VST guide, I figured that the Mac programmers out there might enjoy a simpler tutorial. Fortunately the process of developing VST plugins under OSX is much simpler than under Windows, but nonetheless there are a few &#8220;gotchas&#8221; along the way.</p>
+
+<p>This guide assumes familiarity with Xcode and C++ development, and that you are working with Mac OSX 10.5/10.6 and have a relatively recent version of Xcode (4.2 or better). This guide only covers building VST 2.x plugins, as the 3.x SDK is not widely supported yet.</p>
+
+<p>Also, before you start, you will obviously need the VST SDK, which can be acquired <a href='http://www.steinberg.net/en/company/3rd_party_developer.html'>from Steinberg&#8217;s Development Portal</a>.</p>
+
+<h2 id='creating_your_project'>Creating your project</h2>
+
+<p>First, create a new empty Xcode project. Now add a new target to the project, which should use the &#8220;Bundle&#8221; template under the &#8220;Framework &amp; Library&#8221; group (for Mac OS X, of course). Set the product name, bundle identifier, and choose to link it against the Cocoa Framework.</p>
+
+<h2 id='adding_resource_files'>Adding resource files</h2>
+
+<p>Create a new empty file in your project named &#8220;PkgInfo&#8221; with the contents &#8220;BNDL????&#8221; (no quotes, and no newline either). You can verify that this file will be copied to the VST bundle by clicking on your project&#8217;s target in the file browser, and then expanding the &#8220;Copy Bundle Resources&#8221; section underneath &#8220;Build Phases&#8221;.</p>
+
+<p>When you created the project, Xcode should also have created a property list (plist) file for you. Open the plist file for editing, and right click anywhere in document body to change the view type to &#8220;Show Raw Keys/Values&#8221;. Now, set the following properties, adding new keys if necessary:</p>
+
+<ul>
+<li>CFBundleDevelopmentRegion: English</li>
+
+<li>CFBundleExecutable: vst</li>
+
+<li>CFBundleGetInfoString: vst</li>
+
+<li>CFBundleIconFile: (empty)</li>
+
+<li>CFBundleIdentifier: com.yourcompany.pluginname</li>
+
+<li>CFBundleInfoDictionaryVersion: 6.0</li>
+
+<li>CFBundlePackageType: BNDL</li>
+
+<li>CFBundleSignature: (A unique 4-character identifier of your choosing)</li>
+
+<li>CFBundleVersion: 1.0</li>
+
+<li>CSResourcesFileMapped: (empty)</li>
+</ul>
+
+<h2 id='adding_the_vst_sdk_files'>Adding the VST SDK files</h2>
+
+<p>Create a new group for the VST source files, and drag them from the Finder into your project. Do not drag the entire vstsdk2.4 folder into your project. Make sure that the subfolders for &#8220;pluginterfaces&#8221; and &#8220;public.sdk&#8221; (excluding the samples) are in the project.</p>
+
+<p>Now, in the project&#8217;s properties, go to the &#8220;Search Paths&#8221; section and add the vstsdk2.4 directory to the &#8220;Header Search Paths&#8221; setting. Make it recursive.</p>
+
+<h2 id='project_build_settings'>Project build settings</h2>
+
+<p>Unless you have very specific requirements, I highly recommend building your plugin as a standard 32-bit Intel binary. My reasoning for this is as follows:</p>
+
+<ul>
+<li>Although 64-bit Macs are widespread, there are not so many 64-bit compatible plugin hosts.</li>
+
+<li>Likewise, building 64-bit VST&#8217;s is sometimes a bit difficult, as Apple is deprecating Carbon, which is 32-bit only.</li>
+
+<li>The number of PPC users out there is not so many anymore, so building a 32-bit Universal Binary is probably overkill.</li>
+</ul>
+
+<p>You can set the build type in the &#8220;Architectures&#8221; section, and again I recommend setting this to &#8220;32-bit Intel&#8221;. If anyone can get VST2.4 plugins building as 32/64 bit UB&#8217;s, please let me know so I can adapt this documentation to include how to do this.</p>
+
+<p>Next, set the Base SDK to &#8220;Current Mac OS&#8221;. This will make it much less painful when opening the project in future versions of Xcode. In the &#8220;Deployment&#8221; section, set &#8220;Mac OS X Deployment Target&#8221; to the <em>oldest version of Mac OS X you plan to support</em>. Setting it to &#8220;Compiler Default&#8221; is likely to get you into trouble.</p>
+
+<p>Under &#8220;Packaging&#8221;, make sure that both &#8220;Executable Extension&#8221; and &#8220;Executable Prefix&#8221; are empty. Set &#8220;Wrapper Extension&#8221; to be &#8220;vst&#8221;.</p>
+
+<h2 id='frameworks'>Frameworks</h2>
+
+<p>Again, in your target&#8217;s settings, go to the &#8220;Build Phases&#8221; tab and expand the &#8220;Link Binary With Libraries&#8221; section. Add the following libraries to your project:</p>
+
+<ul>
+<li>QuickTime</li>
+
+<li>Carbon</li>
+
+<li>ApplicationServices</li>
+</ul>
+
+<h2 id='your_source_code'>Your source code</h2>
+
+<p>Now you are ready to add or create files for your plugin&#8217;s source code.</p>
+        <!-- End content -->
+      </div>									
+      <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Questions or comments?</b> Send an email to
+            <script>mail2("info", "teragonaudio", 0, "subject=Making a VST plugin from scratch with Xcode", "info at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>								
+    </div>
+  </body>
+</html>
