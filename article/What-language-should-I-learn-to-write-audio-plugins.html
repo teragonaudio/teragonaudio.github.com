@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>What language should I learn to write audio plugins</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+  <div id="smallheader">
+    <div class="wrapper">
+      <div id="logo">
+        <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+      </div>
+        
+      <!--
+      <div id="right">
+        <form method="get" id="searchform" action="#"> 
+          <fieldset class="search"> 
+            <input type="text" class="box" /> 
+            <button class="btn" title="Search">Search</button> 
+          </fieldset> 
+        </form>
+      </div> 
+      -->
+    </div>
+  </div>
+  <div id="contentpart">
+    <div class="wrapper">
+      <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+
+      <div id="content">						
+        <div class="title">
+          <h1>
+            What language should I learn to write audio plugins
+          </h1>
+        </div>
+
+        <!-- Start content -->
+        <p>So perhaps you&#8217;ve grown tired with all your synths and want to dive in and make your own. Or you&#8217;ve got a killer idea for a new slicer plugin with extra coolness. Or maybe you just want to kick the tires a bit and see how VST&#8217;s work from the inside. What should you learn?</p>
+
+<h2 id='going_nonnative'>Going non-native</h2>
+
+<p>Before talking about different programming languages, I&#8217;d like to mention that <em>programming is hard</em>. If you don&#8217;t have any previous experience writing code, then any inspiration you might have is likely to get burned away during hours of frustrating debugging. If your goal is to make a cool plugin, it&#8217;s important to realize that you don&#8217;t necessarily need to write code to do it. There are, in fact, numerous frameworks which will help you to create a plugin by using visual drag-and-drop techniques, including:</p>
+
+<ul>
+<li><a href='http://cycling74.com/products/max/'>Max (formerly called Max/MSP)</a></li>
+
+<li><a href='http://www.synthedit.com/'>SynthEdit</a></li>
+
+<li><a href='http://sonicbirth.sourceforge.net/'>SonicBirth</a></li>
+
+<li><a href='http://www.native-instruments.com/#/en/products/producer/reaktor-55/'>Reaktor</a></li>
+</ul>
+
+<p>These frameworks allow one to design a plugin within a graphical environment and then export it as a plugin which can be used in your favorite sequencer. Each of the above programs differs a bit in their cost, supported platforms, and support plugin formats. But if you are just looking to have a specific type of plugin for your own music or experiment with synthesizer construction, this is probably the best starting point.</p>
+
+<p>It&#8217;s important to note that lots of serious software has been programmed or prototyped in frameworks like these. Many beginner plugin coders scoff off non-native frameworks because they are not commercially viable option. However, it&#8217;s important to remember that <em>software development takes a lot of time</em>, and using a higher-level tool can be a great tool to test out your ideas. For example, <a href='http://www.musicradar.com/tuition/tech/a-brief-history-of-ableton-live-357837/2'>most of the devices in Ableton Live were prototyped in Max</a> (though not Live itself, as the story is sometimes retold).</p>
+
+<h2 id='enter_the_code'>Enter the code</h2>
+
+<p>So perhaps a non-native framework isn&#8217;t best for your project. Maybe you can&#8217;t find one that suits your needs or you have a programming itch you need to scratch. If you have previous experience with Java or C# (or conversely, don&#8217;t have any previous experience with C/C++), then you should check out these frameworks:</p>
+
+<ul>
+<li><a href='http://jvstwrapper.sourceforge.net/'>jVSTwRapper</a></li>
+
+<li><a href='http://vstnet.codeplex.com/'>VST.NET</a></li>
+
+<li><a href='http://code.google.com/p/noisevst/'>noisevst</a></li>
+</ul>
+
+<p>Although again, each of these frameworks has limitations for platforms or performance, they should be enough to get you up and running. Developing software in higher-level languages is significantly faster than lower-level languages like C/C++, the importance of which should not be underestimated if your time is limited.</p>
+
+<h2 id='down_to_the_next_level'>Down to the next level</h2>
+
+<p>The next logical step down the abstraction layer is C++. If you don&#8217;t already know C++, I would advise at least <strong>trying</strong> some of the above frameworks and other languages first. Really. C++ is quite a frustrating language to deal with sometimes, and the complexity and primitive tools mean many hours of hard work just to get stuff working. This goes double (maybe even triple or quadruple) if you insist on having a GUI window for your plugin.</p>
+
+<p>But enough beating around the bush, C++ is what it is. One strong advantage of C and C++ is that they are <em>fast</em>. Compiled C code is generally considered to be one of the fastest executing languages out there, thanks to the fact that modern compilers can optimize for all sorts of chips and under conditions which mere mortals could spend years learning themselves. That said, the speed tradeoff is not often necessary for most plugins.</p>
+
+<p>Generally speaking, it&#8217;s better to develop software in higher-level languages and then gradually move to lower ones as the speed is needed. How will you know if the speed is needed? Well, start your development in a high-level language and go down as necessary. The algorithms which you develop in order to shape a plugin&#8217;s sound are much harder to develop than the actual code, and thus translating that code to lower languages is not as difficult as the initial cost of development.</p>
+
+<p>Though I realize that this article may come across as a giant anti-C++ rant, I promise you that this is not my opinion. It&#8217;s just that most newcomers tend to underestimate the difficulty and time required to write good software in C++, and they jump in too eagerly and get burned out. So rather than bashing the language itself, I simply want to caution the reader not to underestimate the amount of time and energy required to write audio software in C++.</p>
+
+<p>That said, many great plugin frameworks also exist for C++. My favorite of them is <a href='http://www.rawmaterialsoftware.com/juce.php'>Juce</a>. You might be wondering why a framework might be necessary if you are already doing C++, and the answer is that with Juce, a lot of stuff comes &#8220;for free&#8221;, including cross-platform support, GUI generator, etc. The Juce framework is incredibly sophisticated and mature, and it handles a lot of the plugin implementation details for you. Speaking as someone who has also developed plugin cross-platform frameworks, this is not a trivial task and one which will save you countless hours of busywork and let you focus on the fun parts of plugin development.</p>
+
+<p>Juce is GPL&#8217;d, which means that if you want to use it in a commercial context you will need to pay for a license to do so. However, if your plugin is open-source, Juce is free for you to use, assuming that your plugin is also open-sourced. If you consider this to be a big disadvantage, read on.</p>
+
+<h2 id='considering_framework_costs'>Considering framework costs</h2>
+
+<p>In this article, I have linked to several plugin frameworks and toolkits, some free and some paid. It seems that many beginning developers are scared off by paid frameworks and tools, but they shouldn&#8217;t be. If you really need the functionality provided by a framework or tool, do the math to see if it&#8217;ll pay off.</p>
+
+<p>Consider your hourly rate. What&#8217;s your hourly rate? Well, consider how much you make per month/year, and figure out what that is in hours. If you don&#8217;t have a 9-5 job, then just consider what you&#8217;d like to get paid for an 8-hour contracting gig. The number doesn&#8217;t need to be exact; you only need a ballpark figure here. Now consider the price of the software divided by your hourly rate. Can you write the same functionality yourself in roughly the same amount of time? If not, you should consider the fact that being cheap now will cost you <em>serious money later</em>. Yes, 800$ (for example) may seem like a lot, but you could just as easily burn 4x that amount of money in your time spent with the end result being a much worse product.</p>
+
+<p>It used to be that programming was about being clever and smart with algorithms and such. Modern programming is more about leveraging the tools and frameworks out there and bringing them together to make a great product.</p>
+
+<p>However, it is understandable that not everyone has the cash upfront to invest in those types of tools. If that&#8217;s the case, then start out open-source until you&#8217;ve built up a bit of a war chest, and then invest in good tools. Everybody&#8217;s gotta start somewhere!</p>
+
+<h2 id='no_juce_for_me_thanks'>No Juce for me, thanks</h2>
+
+<p>But back to the original topic at hand. If you decide that you want to go it alone, there are certainly ample resources for doing this as well. The VST and AU frameworks are not impossible to code with by hand, but definitely require a bit more patience. So take the next step and get your tools set up, and start programming!</p>
+
+<ul>
+<li><a href='http://teragonaudio.com/article/How-to-make-VST-plugins-in-Visual-Studio.html'>How to make a VST plugin with Visual Studio</a></li>
+
+<li><a href='http://teragonaudio.com/article/Making-a-VST-plugin-from-scratch-with-Xcode.html'>How to make a VST plugin with Xcode</a></li>
+</ul>
+        <!-- End content -->
+      </div>									
+      <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Questions or comments?</b> Send an email to
+            <script>mail2("info", "teragonaudio", 0, "subject=What language should I learn to write audio plugins", "info at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>								
+    </div>
+  </body>
+</html>

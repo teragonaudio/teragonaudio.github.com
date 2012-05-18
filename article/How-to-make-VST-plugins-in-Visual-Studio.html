@@ -74,7 +74,7 @@
 <ol>
 <li><a href='http://www.steinberg.net/en/company/3rd_party_developer.html'>Steinberg&#8217;s VST SDK</a>, which requires you to make a free <a href='http://www.steinberg.net/en/company/3rd_party_developer/sdk_download_portal/create_3rd_party_developer_account.html'>Steinberg Developer account</a>.</li>
 
-<li><a href='http://msdn.microsoft.com/vstudio/express/visualc/'>Microsoft&#8217;s Visual C++</a>. This guide uses the 2008 Express version 9, as was the latest at time of writing.</li>
+<li><a href='http://msdn.microsoft.com/vstudio/express/visualc/'>Microsoft&#8217;s Visual C++</a>. This guide uses the 2010 Express edition, as it was the latest version at time of writing.</li>
 
 <li><a href='http://msdn.microsoft.com/windows/bb980924.aspx'>Microsoft&#8217;s Platform SDK</a></li>
 
@@ -85,13 +85,13 @@
 
 <p>If you already have a working installation of VC++, you can skip this step. Otherwise, download VC++ and install it. The standard installation should be OK, but you can choose to perform a custom installation if you don&#8217;t want documentation or other stuff installed with it. Before installing VC++, you must remove any other versions of VC++ on your computer.</p>
 
-<p>Next, download and install the Platform SDK, which will provide you with the standard header files and libraries you&#8217;ll need to build software. You may choose to install VC++ anywhere on your hard drive, but the default location is <code>C:\Program Files\Microsoft Visual Studio 9</code>.</p>
+<p>Next, download and install the Platform SDK, which will provide you with the standard header files and libraries you&#8217;ll need to build software. You may choose to install VC++ anywhere on your hard drive, but the default location is <code>C:\Program Files\Microsoft Visual Studio 10.0</code>.</p>
 
 <h2 id='creating_your_project'>Creating your project</h2>
 
 <p>Create a new project of type &#8220;Class Library&#8221;, which we&#8217;ll call YourProjectName. In the rest of this tutorial, whenever you see YourProjectName, replace that text with the actual name of your project.</p>
 
-<p>In Visual Studio 9, you&#8217;d make a new project with the wizard found at File -&gt; New -&gt; Project. Select Visual C++ -&gt;→Win32 Console Application, and choose a directory for your project. When the wizard opens, press &#8220;Next&#8221; and select DLL as the Application Type. Also check the &#8220;Empty Project&#8221; box.</p>
+<p>In Visual Studio 9, you&#8217;d make a new project with the wizard found at File -&gt; New -&gt; Project. Select Visual C++ -&gt; Win32 Console Application, and choose a directory for your project. When the wizard opens, press &#8220;Next&#8221; and select DLL as the Application Type. Also check the &#8220;Empty Project&#8221; box.</p>
 
 <p>If you prefer not to start with an empty project, then you can remove all of the files that VC++ creates for you, but keep the <code>resource.h</code> and <code>YourProjectName.rc</code> files, and remove any references to these files (such as <code>YourProjectName.ico</code> being listed in the resource file).</p>
 
@@ -109,7 +109,7 @@
 <li>YourProjectName.rc (Only needed if building a plugin GUI)</li>
 </ul>
 
-<p>You will also need to add the files from the VST SDK, which includes everything under the <code>vstsdk2.4/public.sdk/source/vst2.x</code> and <code>vstsdk2.4/pluginterfaces/vst2.x</code> directories.</p>
+<p>You will also need to add the files from the VST SDK, which includes everything under the <code>vstsdk2.4/public.sdk/source/vst2.x</code> and <code>vstsdk2.4/pluginterfaces/vst2.x</code> directories. I usually prefer to manually make groups for these directories and drag the files to the groups from Explorer, as dragging the entire &#8220;vstsdk2.4&#8221; directory to VS can cause it to choke when it tries to add a bunch of unused files to the project.</p>
 
 <p>To start out with, the plugin&#8217;s entry point header file (YourProjectName.h) should look something like this:</p>
 <div class='highlight'><pre><code class='cpp'><span class='cp'>#include &quot;audioeffectx.h&quot;</span>
@@ -145,6 +145,8 @@
 <span class='p'>}</span>
 </code></pre>
 </div>
+<p>Note that your project won&#8217;t compile just yet, but be patient!</p>
+
 <p>The above code samples are simply blank entry points which don&#8217;t do anything exciting. The VST SDK offers lots of methods which you can override in order to do things like setting parameters, receiving MIDI messages, and so on. These things are beyond the scope of this tutorial; if you don&#8217;t know what code to put inside of processReplacing, try checking out the &#8220;again&#8221; example distributed within the VST SDK in the <code>public.sdk/samples/vst2.x/again</code> folder.</p>
 
 <p>You must also create a module definition file for your project, named YourProjectName.def. Usually this file is placed in the same directory as the VC++ project file, but you may place it somewhere else so long as this definition matches the Module Definition File settings in the Linker section of the project preferences. This is just a plain-text file which should contain the following text:</p>
@@ -251,7 +253,7 @@ main=VSTPluginMain
 </ul>
 <h2 id='adding_support_for_vstgui_optional'>Adding support for VSTGUI (optional)</h2>
 
-<p>nclude VSTGUI support in your plugin, simply add the VSTGUI files into your project in addition to your own editor class. At a very minimum, these are:</p>
+<p>Include VSTGUI support in your plugin, simply add the VSTGUI files into your project in addition to your own editor class. At a very minimum, these are:</p>
 
 <ul>
 <li>aeffguieditor.cpp</li>
@@ -267,12 +269,12 @@ main=VSTPluginMain
 
 <p>When you open the project up, VC++ will run you through the project conversion wizard. Convert the project, and change the &#8220;Runtime Library&#8221; settings in both libpng and zlib to be Multi-Threaded, as described above. Unless this step is performed, the dependency on the CLR will be present in your project. Next, choose the LIB ASM Release or LIB Release build style and build the project; if you build the libraries as DLL&#8217;s, you will be unable to statically link them into your plugin. The project should build ok, but throw a few errors when attempting to run the pngtest files. You can ignore these problems, as the libraries will still be correctly compiled and can now be linked to your project.</p>
 
-<p>Visual Studio doesn&#8217;t need to have the libraries within your actual project. Instead, place the libraries in a directory of your choosing and be sure to add this path to the list of &#8220;Additional Library Directories&#8221; in the Linker preferences for your project. You may choose to place the libraries in the same directory as the Microsoft Platform SDK stuff, but I personally prefer to keep them in a separate directory checked into CVS. Also be sure to add references to <code>libpng.lib</code> and <code>zlib.lib</code> for your project in the &#8220;Additional Dependencies&#8221; section of your Linker preferences for the project.</p>
+<p>Visual Studio doesn&#8217;t need to have the libraries within your actual project. Instead, place the libraries in a directory of your choosing and be sure to add this path to the list of &#8220;Additional Library Directories&#8221; in the Linker preferences for your project. You may choose to place the libraries in the same directory as the Microsoft Platform SDK stuff, but I personally prefer to keep them in a separate directory checked into version control. Also be sure to add references to <code>libpng.lib</code> and <code>zlib.lib</code> for your project in the &#8220;Additional Dependencies&#8221; section of your Linker preferences for the project.</p>
 <div class='highlight'><pre><code class='text'>IDB_BITMAP1 PNG DISCARDABLE &quot;../resources/bmp10001.png&quot;
 IDB_BITMAP2 PNG DISCARDABLE &quot;../resources/bmp10002.png&quot;
 </code></pre>
 </div>
-<p>The path must be relative to the location of the project file. Then, in <code>resource.h</code>, add the following proprocessor definitions:</p>
+<p>The path must be relative to the location of the project file. Then, in <code>resource.h</code>, add the following preprocessor definitions:</p>
 <div class='highlight'><pre><code class='cpp'><span class='cp'>#define IDB_BITMAP1 1</span>
 <span class='cp'>#define IDB_BITMAP2 2</span>
 </code></pre>
@@ -308,7 +310,7 @@ audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
 
 <h2 id='linking_errors_with_symbols_defined_multiple_times'>Linking errors with symbols defined multiple times</h2>
 
-<p>This is undoubtably one of the most frustrating problems which can occur when building a VST in VC++. If you are seeing error messages like this, then it most likely means there is some problem with your library configuration:</p>
+<p>This is undoubtedly one of the most frustrating problems which can occur when building a VST in VC++. If you are seeing error messages like this, then it most likely means there is some problem with your library configuration:</p>
 <div class='highlight'><pre><code class='text'>msvcrtd.lib(ti_inst.obj) : error LNK2005: &quot;private: __thiscall
 type_info::type_info(class type_info const &amp;)&quot; (??0type_info@@AAE@ABV0@@Z)
 already defined in libcmt.lib(typinfo.obj) 
