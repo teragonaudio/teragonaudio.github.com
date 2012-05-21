@@ -158,7 +158,7 @@ main=VSTPluginMain
 </div>
 <h2 id='configure_build_settings'>Configure build settings</h2>
 
-<p>Go to the project settings either by double clicking on the project name in the Property Manager or in the menu under Project -&gt; YourProjectName Properties. Make the following changes to the project for all build configurations:</p>
+<p>Go to the project settings either by right clicking on the project in the solution explorer and then selecting &#8220;Properties&#8221;. Make the following changes to the project for all build configurations:</p>
 <ul>
 <li>General<ul>
   <li>Character Set: Not Set</li>
@@ -197,15 +197,10 @@ main=VSTPluginMain
       complicates deployment and distribution.</li>
   </ul></li>
   <li>Precompiled Headers:<ul>
-    <li>Create/Use Precompiled Header: Not Using Precompiled Headers. Yeah,
-      this makes rebuilding a bit slower, but will avoid a bunch of weird
-      errors as you are getting your project set up.</li>
-  </ul></li>
-  <li>Browse Information:<ul>
-    <li>Enable Browse Information: None</li>
-  </ul></li>
-  <li>Advanced:<ul>
-    <li>Compile As: Default</li>
+    <li>Precompiled Header: Not Using Precompiled Headers. Yeah, this makes
+      rebuilding a bit slower, but will avoid a bunch of weird errors as you
+      are getting your project set up. Once you get the project building you
+      can revisit this step.</li>
   </ul></li>
 </ul></li>
 <li>Linker<ul>
@@ -235,14 +230,14 @@ main=VSTPluginMain
       <li>zlib.lib (only if you are building with a GUI)</li>
       <li>libpng.lib (only if you are building with a GUI)</li>
     </ul></li>
-    <li>Ignore Specific Library (for <b>Release</b> builds):<ul>
+    <li>Ignore Specific Default Library (for <b>Release</b> builds):<ul>
       <li>msvcrt.lib</li>
       <li>libc.lib</li>
       <li>msvcrtd.lib</li>
       <li>libcd.lib</li>
       <li>libcmtd.lib</li>
     </ul></li>
-    <li>Ignore Specific Library (for <b>Debug</b> builds):<ul>
+    <li>Ignore Specific Default Library (for <b>Debug</b> builds):<ul>
       <li>libcmt.lib</li>
       <li>libcmtd.lib</li>
       <li>msvcrt.lib</li>
@@ -283,9 +278,9 @@ IDB_BITMAP2 PNG DISCARDABLE &quot;../resources/bmp10002.png&quot;
 
 <h2 id='final_considerations'>Final considerations</h2>
 
-<p>VC++ ships with an optimizing compiler, but sometimes the compiler will choke on certain files and optimization must be disabled. In particular, I have experienced this with Laurent de Soras&#8217; FFTReal libraries, since they are written as template classes. In general, however, optimization is a good idea, as is Eliminating Unreferenced Data (in the linker settings). The &#8220;Whole Program Optimization&#8221; setting appears tempting, but usually results in dozens of build errors and problems, so it&#8217;s best to avoid this. Also, be sure to use the optimization features of this compiler and linker, as they can greatly boost runtime performance.</p>
+<p>VC++ ships with an optimizing compiler, but sometimes the compiler will choke on certain files and optimization must be disabled. In particular, I have experienced this with Laurent de Soras&#8217; FFTReal libraries, since they are written as template classes. In general, however, optimization is a good idea, as is &#8220;Eliminating Unreferenced Data&#8221; (in the linker settings). The &#8220;Whole Program Optimization&#8221; setting appears tempting, but usually results in dozens of build errors and problems, so it&#8217;s best to avoid this. Also, be sure to use the optimization features of this compiler and linker, as they can greatly boost runtime performance.</p>
 
-<p>If you are developing on a multi-core machine, then you should disable parallel builds by setting the number of parallel builds to 1 under Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build and Run. VS does not always link your projects in the order which you would expect it to, and this causes errors during linking with missing symbols. This behavior may be fixed in more recent builds of VC++, but as of this writing, I was still having experiencing this problem.</p>
+<p>If you are developing on a multi-core machine, then you might need to disable parallel builds by setting the number of parallel builds to 1 under Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build and Run. In past verisons of VS, I noticed that the compiler does not always link projects in the order one would expect, which caused odd errors during linking about missing symbols. However, VS2010 users probably shouldn&#8217;t need worry about this setting.</p>
 
 <h1 id='troubleshooting_common_problems'>Troubleshooting Common Problems</h1>
 
