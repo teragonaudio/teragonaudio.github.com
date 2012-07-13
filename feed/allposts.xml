@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Teragon Audio</title>
+  <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
+  <link href="http://teragonaudio.com"/>
+  <updated>2012-07-13T16:04:01+02:00</updated>
+  <id>http://teragonaudio.com/</id>
+  <author>
+    <name>Teragon Audio</name>
+    <email>info@teragonaudio.com</email>
+  </author>
+
+  
+  <entry>
+    <title>DJing with Traktor and Ableton Live together</title>
+    <link href="http://teragonaudio.com/article/DJing-with-Traktor-and-Ableton-Live-together.html"/>
+    <updated>2012-06-20T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/DJing-with-Traktor-and-Ableton-Live-together</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;I write a lot about Ableton Live, and looking through my performance-related posts, I guess I sound a bit like a Live fanboy. But in truth, there as many things which bug me about Live as things which I love. Top among these complaints is that DJ&amp;#8217;ing with Live is very time-consuming, especially when it comes to preparation. Also, &lt;a href='http://teragonaudio.com/article/Using-iTunes-as-Ableton-Lives-file-browser.html'&gt;Live&amp;#8217;s file browser is rather terrible&lt;/a&gt;, making it difficult to hunt for the perfect track to play next.&lt;/p&gt;
+
+&lt;p&gt;I have recently started playing a bit more with Traktor, mostly because several other DJ&amp;#8217;s I collaborate with use it. If we want to play together, well, I&amp;#8217;d need to meet them halfway. But I wasn&amp;#8217;t really ready to give up on Live altogether, and there are several things about DJ&amp;#8217;ing with Live which I missed right away. So instead of making the full switch from Live to Traktor, I figured I&amp;#8217;d rather have my cake and eat it, too. Now I run both Traktor and Live side-by-side, and I get (mostly) the best of both worlds.&lt;/p&gt;
+
+&lt;h2 id='why_both'&gt;Why both?&lt;/h2&gt;
+
+&lt;p&gt;So, why not just pick a platform and go with it? Why go through all the extra trouble of running two rather heavy apps at the same time? Well, running Live with Traktor has a number of advantages which are hard to do with either one alone:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Traktor&amp;#8217;s browser can be completely controlled via MIDI, making your performance more handsfree.&lt;/li&gt;
+
+&lt;li&gt;Preparing tracks for playback in Traktor is a bit easier than in Live, which saves many hours of work.&lt;/li&gt;
+
+&lt;li&gt;Live is much more flexible when it comes to filters and effects, opening up possibilities far beyond the standard 3-band EQ and out-of-the-box effects Traktor offers.&lt;/li&gt;
+
+&lt;li&gt;Live supports audio plugins, and Traktor obviously does not. Again, more possibilities.&lt;/li&gt;
+
+&lt;li&gt;Traktor&amp;#8217;s remix decks (introduced in 2.5) are quite limited compared to looping in Live.&lt;/li&gt;
+
+&lt;li&gt;Within Live you can build drum machines, samplers, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, using Traktor and Live together still allows one to play warped tracks within Live, or to use the 3-band EQ within Traktor (for example). Using both together combines the strengths of each platform, but with very few disadvantages. One disadvantage is that this setup is a bit complex, so bear with me as we get down to the details&amp;#8230;&lt;/p&gt;
+
+&lt;h2 id='overview_of_the_setup'&gt;Overview of the setup&lt;/h2&gt;
+
+&lt;p&gt;To combine Traktor with Live, we will be using an external mixer within Traktor and routing the audio to Live for post-processing. Live will in turn be responsible for cueing audio both from itself and Traktor.&lt;/p&gt;
+
+&lt;p&gt;Tempo syncing Live and Traktor is optional and may or may not be needed, depending on your setup. It is a bit tricky to do, and is only necessary if you want to do any of the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Play warped tracks or loops from Live&lt;/li&gt;
+
+&lt;li&gt;Have time sync&amp;#8217;d effects in Live&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Otherwise, it&amp;#8217;s probably easier to use Live just for processing audio and skip the MIDI sync entirely.&lt;/p&gt;
+
+&lt;h2 id='transporting_audio'&gt;Transporting audio&lt;/h2&gt;
+
+&lt;p&gt;The first and most important step is getting audio from Traktor to Live for processing. This can be done either virtually or in hardware, though if you have a soundcard which has enough I/O ports, I find that it works much better in hardware.&lt;/p&gt;
+
+&lt;p&gt;First, set up Traktor to use an external mixer, and route each deck to a separate output channel, as pictured below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' alt='Traktor External Output Routing' /&gt;&lt;/p&gt;
+
+&lt;p&gt;Even if you use an external mixer, you will still be able to use Traktor&amp;#8217;s own filters and effects.&lt;/p&gt;
+
+&lt;p&gt;In this example, we are routing audio via the &lt;a href='http://cycling74.com/products/soundflower/'&gt;Soundflower&lt;/a&gt; virtual interface. On Windows, there is no free Soundflower-like software (at least not that I could find), but &lt;a href='http://software.muzychenko.net/eng/vac.htm'&gt;Virtual Audio Cable&lt;/a&gt; seems to do the same thing and is rather cheap.&lt;/p&gt;
+
+&lt;p&gt;Then, set up Live to record from the same channels:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' alt='Ableton Live Input Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, create audio tracks in Live to route the audio from Traktor:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' alt='Ableton Live Track Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Assuming that you have a multi-channel soundcard, you can now cue and route these output tracks as you would other tracks within Live.&lt;/p&gt;
+
+&lt;h2 id='syncing_midi'&gt;Syncing MIDI&lt;/h2&gt;
+
+&lt;p&gt;There are two ways to do MIDI sync: the totally unreliable way with MIDI clock, or the more tedious old-school manual way. MIDI clock is only recommended if you are not playing any tracks from Live and only using it for tempo sync&amp;#8217;d effects. If you are playing any loops or musical material from Live, you will find MIDI clock to be vastly disappointing. Due to the nature of the MIDI protocol, there is a very noticeable amount of jitter and achieving perfect sync is impossible. Sorry!&lt;/p&gt;
+
+&lt;p&gt;If you plan on playing loops or other material from Live, you&amp;#8217;ll need a separate MIDI controller with a few buttons, and your beatmatching skills. Assuming that you have both of those, manually syncing the two isn&amp;#8217;t hard once you get the hang of it.&lt;/p&gt;
+
+&lt;h2 id='sync_via_midi_clock'&gt;Sync via MIDI clock&lt;/h2&gt;
+
+&lt;p&gt;MIDI clock is the sync mechanism described in most &lt;a href='http://www.youtube.com/watch?v=4xzldehIsCE&amp;amp;feature=youtube_gdata'&gt;other blogs and tutorials&lt;/a&gt;, and assuming that you don&amp;#8217;t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor&amp;#8217;s preferences and enable sending MIDI clock:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' alt='Traktor Enable MIDI Clock' /&gt;&lt;/p&gt;
+
+&lt;p&gt;For some reason, this isn&amp;#8217;t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the &amp;#8220;Controller Manager&amp;#8221; section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' alt='Traktor Controller Manager' /&gt; &lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' alt='Traktor Controller Manager' /&gt;&lt;/p&gt;
+
+&lt;p&gt;Just creating the device is enough; you don&amp;#8217;t need to make any mappings. You should now see MIDI clock messages in a utility like &lt;a href='http://www.snoize.com/MIDIMonitor/'&gt;MIDI Monitor&lt;/a&gt; or &lt;a href='http://www.midiox.com/'&gt;MIDI-OX&lt;/a&gt;. Now within Live, go to the MIDI preference pane and sync Live to Traktor&amp;#8217;s virtual MIDI output:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' alt='Ableton Live MIDI clock sync' /&gt;&lt;/p&gt;
+
+&lt;p&gt;You will also need to enable the &amp;#8220;EXT&amp;#8221; button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor&amp;#8217;s.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' alt='Ableton Live External Sync' /&gt;&lt;/p&gt;
+
+&lt;p&gt;The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the &amp;#8220;Extended&amp;#8221; layout and enabling the &amp;#8220;TICK&amp;#8221; button. You will also need to cue at least one deck (doesn&amp;#8217;t matter which one) to hear the tick within Live.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' alt='Traktor metronome' /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live&amp;#8217;s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.&lt;/p&gt;
+
+&lt;p&gt;If the sync starts to drift (and it will!), you can realign the sync by pressing the &amp;#8220;SYNC&amp;#8221; button in Traktor. In my experience, this will cause Live to jump rather dramatically, and sometimes drop audio. Not really perfect, but again, this is part of the downside of MIDI sync. If you need something more exact, you&amp;#8217;ll need to take matters in your own hands&amp;#8230;&lt;/p&gt;
+
+&lt;h2 id='syncing_midi_manually'&gt;Syncing MIDI Manually&lt;/h2&gt;
+
+&lt;p&gt;If you don&amp;#8217;t know how to beatmatch records, then you should probably stop reading here and &lt;a href='http://www.beginnerdj.com/how-to-beat-match'&gt;first learn how to do that&lt;/a&gt;, otherwise this method will be very difficult for you.&lt;/p&gt;
+
+&lt;p&gt;You will need to have a MIDI controller with buttons; the keyboard is not going to work very well as you will need to flip back to Live in order to fine-adjust the sync, and small adjustments will be needed throughout the mix, just like mixing records.&lt;/p&gt;
+
+&lt;p&gt;First, set up MIDI mappings in Live for the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Metronome on/off (the metronome is definitely needed for sync, but it will get annoying after awhile).&lt;/li&gt;
+
+&lt;li&gt;Tap BPM&lt;/li&gt;
+
+&lt;li&gt;Nudge tempo forwards&lt;/li&gt;
+
+&lt;li&gt;Nudge tempo backwards&lt;/li&gt;
+
+&lt;li&gt;The play button in the transport section&lt;/li&gt;
+
+&lt;li&gt;Optionally, the nudge tempo controls in Traktor as well&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, for the fun stuff. Say you are starting in Traktor and want to play some loops in Live. Start by turning &lt;em&gt;off&lt;/em&gt; the metronome and tapping the BPM for awhile. Then turn the metronome on. Live&amp;#8217;s tap BPM function starts making tempo adjustments on the first press (why, I have no idea), so it can be very confusing and hard to start tapping BPM with the metronome on.&lt;/p&gt;
+
+&lt;p&gt;At this point, the two should be roughly in sync. However, you may find that they start to drift or the first downbeat doesn&amp;#8217;t match up. To fix this, wait until your song in Traktor hits the first beat, and then hit the play button in Live.&lt;/p&gt;
+
+&lt;p&gt;The secret behind the play button is that if you restart Live&amp;#8217;s transport (ie, by pressing stop/start or the spacebar), Live has a tendency to briefly drop audio. But if you press the play button during playback, Live will simply start playback again without dropping audio. Neat!&lt;/p&gt;
+
+&lt;p&gt;However, this is a bit impractical if you are planning on playing a warped track within Live, but in that case you can at least start the track out on the right tempo.&lt;/p&gt;
+
+&lt;p&gt;As you start mixing between the two, the two tracks will start to drift. You can use the nudge function to push Live (or Traktor, as desired) a bit forward or backwards, just like a record. Also, you can cheat a bit by looking at the tempo of the master deck in Traktor and manually entering it into Live instead of tapping BPM, but this approach involves a bit more fiddling around with the keyboard. Once you get used to syncing in this manner, it&amp;#8217;s actually quite comfortable.&lt;/p&gt;
+
+&lt;p&gt;So say you now want to mix from looped material in Live back to Traktor. The reverse mixing process is a bit different but fundamentally the same idea. Check out the tempo in Live and then adjust your song in Traktor to be the same. Disable sync for that deck in Traktor just to avoid any potential problems (you can always enable it once you get playback started). Now, fine-adjust the two tracks using the nudge feature, preferably from Traktor as not to disrupt Live&amp;#8217;s tempo.&lt;/p&gt;
+
+&lt;p&gt;I find that it helps here to turn on the metronome again, but that may not be needed. Also, I generally prefer to nudge the less dominant of the two tracks, meaning that as you are &lt;em&gt;mixing in&lt;/em&gt; a new track, that is the one to be nudged until it is louder than the other one. Likewise, when &lt;em&gt;mixing out&lt;/em&gt; a track, that one should be nudged when it starts to become quieter than the one you&amp;#8217;ve just mixed in.&lt;/p&gt;
+
+&lt;h2 id='performance_considerations'&gt;Performance considerations&lt;/h2&gt;
+
+&lt;p&gt;I have managed to get the above setup working on a somewhat old Macbook Pro (a 2x2.66Ghz Core 2 Duo with 8Gb RAM) and a MOTU Ultralite MK3 using a buffer size of 256 samples at a sample rate of 44.1kHz). CPU usage is a constant ~40% per core, and I get no audio dropouts at all:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' alt='Screenshot of Traktor + Live' /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I&amp;#8217;m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.&lt;/p&gt;
+
+&lt;p&gt;However, I had problems with Soundflower dropping audio after some hours of playback. &lt;a href='https://code.google.com/p/soundflower/issues/detail?id=24'&gt;Apparently this is a rather common problem&lt;/a&gt; and I&amp;#8217;m not sure if there is a good solution here. Likewise, I&amp;#8217;ve not tried this in Windows with Virtual Audio Cable, so I can&amp;#8217;t speak to the performance there. But if you have a soundcard which has enough inputs and outputs to do the routing there, that approach might work better for you. In my case, I literally patched 4 outputs of my soundcard back into the inputs and recorded them directly from Live. Again, this seems a bit impractical but it is actually quite stable, and as noted, even on my aging laptop this works with quite low latency.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Update&lt;/em&gt;: After it seems that &lt;a href='http://jackosx.com/'&gt;Jack for Mac OSX&lt;/a&gt; is also capable of routing sound in the same way as Soundflower, so if you are having problems with Soundflower then give Jack a try.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>What language should I learn to write audio plugins</title>
+    <link href="http://teragonaudio.com/article/What-language-should-I-learn-to-write-audio-plugins.html"/>
+    <updated>2012-05-16T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/What-language-should-I-learn-to-write-audio-plugins</id>
+    <content type="html">&lt;p&gt;So perhaps you&amp;#8217;ve grown tired with all your synths and want to dive in and make your own. Or you&amp;#8217;ve got a killer idea for a new slicer plugin with extra coolness. Or maybe you just want to kick the tires a bit and see how VST&amp;#8217;s work from the inside. What should you learn?&lt;/p&gt;
+
+&lt;h2 id='going_nonnative'&gt;Going non-native&lt;/h2&gt;
+
+&lt;p&gt;Before talking about different programming languages, I&amp;#8217;d like to mention that &lt;em&gt;programming is hard&lt;/em&gt;. If you don&amp;#8217;t have any previous experience writing code, then any inspiration you might have is likely to get burned away during hours of frustrating debugging. If your goal is to make a cool plugin, it&amp;#8217;s important to realize that you don&amp;#8217;t necessarily need to write code to do it. There are, in fact, numerous frameworks which will help you to create a plugin by using visual drag-and-drop techniques, including:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://cycling74.com/products/max/'&gt;Max (formerly called Max/MSP)&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.synthedit.com/'&gt;SynthEdit&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://sonicbirth.sourceforge.net/'&gt;SonicBirth&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.native-instruments.com/#/en/products/producer/reaktor-55/'&gt;Reaktor&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These frameworks allow one to design a plugin within a graphical environment and then export it as a plugin which can be used in your favorite sequencer. Each of the above programs differs a bit in their cost, supported platforms, and support plugin formats. But if you are just looking to have a specific type of plugin for your own music or experiment with synthesizer construction, this is probably the best starting point.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#8217;s important to note that lots of serious software has been programmed or prototyped in frameworks like these. Many beginner plugin coders scoff off non-native frameworks because they are not commercially viable option. However, it&amp;#8217;s important to remember that &lt;em&gt;software development takes a lot of time&lt;/em&gt;, and using a higher-level tool can be a great tool to test out your ideas. For example, &lt;a href='http://www.musicradar.com/tuition/tech/a-brief-history-of-ableton-live-357837/2'&gt;most of the devices in Ableton Live were prototyped in Max&lt;/a&gt; (though not Live itself, as the story is sometimes retold).&lt;/p&gt;
+
+&lt;h2 id='enter_the_code'&gt;Enter the code&lt;/h2&gt;
+
+&lt;p&gt;So perhaps a non-native framework isn&amp;#8217;t best for your project. Maybe you can&amp;#8217;t find one that suits your needs or you have a programming itch you need to scratch. If you have previous experience with Java or C# (or conversely, don&amp;#8217;t have any previous experience with C/C++), then you should check out these frameworks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://jvstwrapper.sourceforge.net/'&gt;jVSTwRapper&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://vstnet.codeplex.com/'&gt;VST.NET&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://code.google.com/p/noisevst/'&gt;noisevst&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Although again, each of these frameworks has limitations for platforms or performance, they should be enough to get you up and running. Developing software in higher-level languages is significantly faster than lower-level languages like C/C++, the importance of which should not be underestimated if your time is limited.&lt;/p&gt;
+
+&lt;h2 id='down_to_the_next_level'&gt;Down to the next level&lt;/h2&gt;
+
+&lt;p&gt;The next logical step down the abstraction layer is C++. If you don&amp;#8217;t already know C++, I would advise at least &lt;strong&gt;trying&lt;/strong&gt; some of the above frameworks and other languages first. Really. C++ is quite a frustrating language to deal with sometimes, and the complexity and primitive tools mean many hours of hard work just to get stuff working. This goes double (maybe even triple or quadruple) if you insist on having a GUI window for your plugin.&lt;/p&gt;
+
+&lt;p&gt;But enough beating around the bush, C++ is what it is. One strong advantage of C and C++ is that they are &lt;em&gt;fast&lt;/em&gt;. Compiled C code is generally considered to be one of the fastest executing languages out there, thanks to the fact that modern compilers can optimize for all sorts of chips and under conditions which mere mortals could spend years learning themselves. That said, the speed tradeoff is not often necessary for most plugins.&lt;/p&gt;
+
+&lt;p&gt;Generally speaking, it&amp;#8217;s better to develop software in higher-level languages and then gradually move to lower ones as the speed is needed. How will you know if the speed is needed? Well, start your development in a high-level language and go down as necessary. The algorithms which you develop in order to shape a plugin&amp;#8217;s sound are much harder to develop than the actual code, and thus translating that code to lower languages is not as difficult as the initial cost of development.&lt;/p&gt;
+
+&lt;p&gt;Though I realize that this article may come across as a giant anti-C++ rant, I promise you that this is not my opinion. It&amp;#8217;s just that most newcomers tend to underestimate the difficulty and time required to write good software in C++, and they jump in too eagerly and get burned out. So rather than bashing the language itself, I simply want to caution the reader not to underestimate the amount of time and energy required to write audio software in C++.&lt;/p&gt;
+
+&lt;p&gt;That said, many great plugin frameworks also exist for C++. My favorite of them is &lt;a href='http://www.rawmaterialsoftware.com/juce.php'&gt;Juce&lt;/a&gt;. You might be wondering why a framework might be necessary if you are already doing C++, and the answer is that with Juce, a lot of stuff comes &amp;#8220;for free&amp;#8221;, including cross-platform support, GUI generator, etc. The Juce framework is incredibly sophisticated and mature, and it handles a lot of the plugin implementation details for you. Speaking as someone who has also developed plugin cross-platform frameworks, this is not a trivial task and one which will save you countless hours of busywork and let you focus on the fun parts of plugin development.&lt;/p&gt;
+
+&lt;p&gt;Juce is GPL&amp;#8217;d, which means that if you want to use it in a commercial context you will need to pay for a license to do so. However, if your plugin is open-source, Juce is free for you to use, assuming that your plugin is also open-sourced. If you consider this to be a big disadvantage, read on.&lt;/p&gt;
+
+&lt;h2 id='considering_framework_costs'&gt;Considering framework costs&lt;/h2&gt;
+
+&lt;p&gt;In this article, I have linked to several plugin frameworks and toolkits, some free and some paid. It seems that many beginning developers are scared off by paid frameworks and tools, but they shouldn&amp;#8217;t be. If you really need the functionality provided by a framework or tool, do the math to see if it&amp;#8217;ll pay off.&lt;/p&gt;
+
+&lt;p&gt;Consider your hourly rate. What&amp;#8217;s your hourly rate? Well, consider how much you make per month/year, and figure out what that is in hours. If you don&amp;#8217;t have a 9-5 job, then just consider what you&amp;#8217;d like to get paid for an 8-hour contracting gig. The number doesn&amp;#8217;t need to be exact; you only need a ballpark figure here. Now consider the price of the software divided by your hourly rate. Can you write the same functionality yourself in roughly the same amount of time? If not, you should consider the fact that being cheap now will cost you &lt;em&gt;serious money later&lt;/em&gt;. Yes, 800$ (for example) may seem like a lot, but you could just as easily burn 4x that amount of money in your time spent with the end result being a much worse product.&lt;/p&gt;
+
+&lt;p&gt;It used to be that programming was about being clever and smart with algorithms and such. Modern programming is more about leveraging the tools and frameworks out there and bringing them together to make a great product.&lt;/p&gt;
+
+&lt;p&gt;However, it is understandable that not everyone has the cash upfront to invest in those types of tools. If that&amp;#8217;s the case, then start out open-source until you&amp;#8217;ve built up a bit of a war chest, and then invest in good tools. Everybody&amp;#8217;s gotta start somewhere!&lt;/p&gt;
+
+&lt;h2 id='no_juce_for_me_thanks'&gt;No Juce for me, thanks&lt;/h2&gt;
+
+&lt;p&gt;But back to the original topic at hand. If you decide that you want to go it alone, there are certainly ample resources for doing this as well. The VST and AU frameworks are not impossible to code with by hand, but definitely require a bit more patience. So take the next step and get your tools set up, and start programming!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://teragonaudio.com/article/How-to-make-VST-plugins-in-Visual-Studio.html'&gt;How to make a VST plugin with Visual Studio&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://teragonaudio.com/article/Making-a-VST-plugin-from-scratch-with-Xcode.html'&gt;How to make a VST plugin with Xcode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Stopping spills before they start</title>
+    <link href="http://teragonaudio.com/article/Stopping-spills-before-they-start.html"/>
+    <updated>2012-05-15T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Stopping-spills-before-they-start</id>
+    <content type="html">&lt;p&gt;Spills, particularly involving beer, are an ever-present environmental hazard for the performing DJ. One thing I&amp;#8217;ve learned over the years is that you cannot prevent spills by preventing drinks in the DJ booth. It&amp;#8217;s easy to sit in the peaceful comfort of one&amp;#8217;s home and simply advise one not to allow drinks in the both, or drunken people. However, in the chaos of a good party, drunken people &lt;em&gt;will&lt;/em&gt; enter the booth and bring beer with them. Odds are, some of the people you are playing with will be doing the same. Banning beer from the DJ booth is uptight and unfeasible in most circumstances.&lt;/p&gt;
+
+&lt;p&gt;Instead, like the weather, it&amp;#8217;s better to assume that it might rain and to dress yourself accordingly.&lt;/p&gt;
+
+&lt;h2 id='dress_your_laptop_up'&gt;Dress your laptop up&lt;/h2&gt;
+
+&lt;p&gt;MacBooks, which have become a very popular machine to DJ with, are unfortunately quite vulnerable to environmental hazards. A unibody aluminum case doesn&amp;#8217;t do much good when liquids can filter straight through the upper casing. If you aren&amp;#8217;t married to the Mac platform, you might want to consider a ThinkPad or something similar which can &lt;a href='http://www.youtube.com/watch?v=d7cvi00OZDM'&gt;filter liquids straight through the casing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, the plastic Apple logo on the back of the screen is an Achilles&amp;#8217; Heel for the MacBook Pro. Get a plastic cover for your Mac which can protect both the underside and the back of the screen. Apple has a big enough advertising budget, they don&amp;#8217;t need you to advertise for them at the expense of your laptop. :) I&amp;#8217;ve had very good luck with the &lt;a href='http://goincase.com/'&gt;Incase&lt;/a&gt; solid shells myself.&lt;/p&gt;
+
+&lt;p&gt;A keyboard cover is also essential for a MacBook, as this will also keep out dust and dirt which is often found in club settings. I&amp;#8217;ve got a simple plastic cover by &lt;a href='http://marware.com'&gt;Marware&lt;/a&gt;, but &lt;a href='http://www.magma-bags.de/produkte/keyboard-cover-serato-2-e.php3'&gt;Magma also makes ones with Traktor cheat-sheets&lt;/a&gt;, which can be kind of nice if you&amp;#8217;re into that sort of thing.&lt;/p&gt;
+
+&lt;h2 id='keep_your_laptop_up'&gt;Keep your laptop up&lt;/h2&gt;
+
+&lt;p&gt;Another bit of advice I once heard and pass down myself is to build a &lt;a href='http://www.thomann.de/gb/19_inch_racks.html'&gt;portable rackmount kit&lt;/a&gt;. You can easily find casings for 2U/3U/4U rackmount gear which easily snap up. This makes transporting gear to and from shows quite easy, and also offers the extra advantage of having a single I/O port for your gear (ie, one power plug + one audio out to the mixer). Being able to manage your own power cables in a case saves a bunch of time when setting/packing up your stuff.&lt;/p&gt;
+
+&lt;p&gt;However, the biggest advantage of the portable rack is that it provides you a stand for your laptop so you don&amp;#8217;t need to hunch over the table when you play. A 15&amp;#8221; laptop fits nicely on a 19&amp;#8221; rack, with basically no spare room to place a beer glass. This has probably prevented more lethal spills from hitting my laptop than anything else.&lt;/p&gt;
+
+&lt;p&gt;Furthermore, most of your more expensive electronics can be kept inside the case and protected from spills more effectively.&lt;/p&gt;
+
+&lt;h2 id='hug_the_table'&gt;Hug the table&lt;/h2&gt;
+
+&lt;p&gt;You might not be able to prevent intoxicated clubgoers (or DJ&amp;#8217;s) from invading the booth, but you can at least keep them out of your space. Before and after your set, keep by your stuff and politely move beers a few inches back from your gear when they are set down on the table. Don&amp;#8217;t be a jerk about it; it&amp;#8217;s not worth getting upset before a spill even happens.&lt;/p&gt;
+
+&lt;h2 id='when_the_rain_comes'&gt;When the rain comes&lt;/h2&gt;
+
+&lt;p&gt;Yeah, spills are still going to happen even if you can&amp;#8217;t prevent them. If it happens, be calm and don&amp;#8217;t freak out. Power off any effected gear as quickly as you can &amp;#8211; usually just yank the cable out. If your laptop took a full pint down the keyboard, well, it might do the powering off part for you.&lt;/p&gt;
+
+&lt;p&gt;If a USB controller took the hit, then shake it vigorously (like you were trying to fan out a fire) to get out any liquid which may have entered the casing. Go to the club&amp;#8217;s bar or bathrooms to get some wet paper towels and dry ones, then give it a quick wash and dry.&lt;/p&gt;
+
+&lt;p&gt;If only a little liquid entered the controller, it&amp;#8217;ll probably be ok. My Launchpad has taken two beer spills just like this, and in both cases I was able to recover from it in the aforementioned manner and continue playing (yes, seriously). However, if a lot of liquid entered the controller, you should probably not power it back on again for the rest of the evening, as this may cause it to permanently short-circuit. Take it home, take it apart, and give it a good clean down. You&amp;#8217;ll be surprised how resilient most cheap controllers can be.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Old-school syncing Ableton Live to other software</title>
+    <link href="http://teragonaudio.com/article/Old-school-syncing-Ableton-Live-to-other-software.html"/>
+    <updated>2012-05-14T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Old-school-syncing-Ableton-Live-to-other-software</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;There are lots of blog posts, forum arguments, and YouTube videos that will explain to you how to use MIDI sync to synchronize Ableton Live with other music software. This is not one of those posts; instead, I will try to convince you why you should &lt;em&gt;not&lt;/em&gt; try to do this, and recommend a better, albeit tougher alternative.&lt;/p&gt;
+
+&lt;h2 id='why_midi_sync'&gt;Why MIDI Sync?&lt;/h2&gt;
+
+&lt;p&gt;There are lots of reasons why you&amp;#8217;d want to sync Ableton Live against another piece of music software. Maybe you&amp;#8217;re using Live to add a few loops or time-sync&amp;#8217;d effects to your DJ set, but you want to DJ with Traktor instead of Live. Maybe you&amp;#8217;ve got multiple laptops and multiple performers and you want to use the same MIDI clock to make sure that Live is on time. And so forth.&lt;/p&gt;
+
+&lt;p&gt;Normally, the conventional wisdom is that you&amp;#8217;d set up MIDI synchronization and slave Live to some other external MIDI sync source. On Mac OSX, the Network MIDI interface provides a convenient way to create an ad-hoc sync between two Macs. Throw a PC into the mix, and things get a bit tougher, so usually the solution is to send MIDI between two soundcards. If both apps are running on the same computer (ie, syncing between Traktor and Live), then sometimes a loopback device can be used. In the case of Traktor, it provides a loopback device capable of sending MIDI clock.&lt;/p&gt;
+
+&lt;h2 id='sounds_great_why_shouldnt_i'&gt;Sounds great, why shouldn&amp;#8217;t I?&lt;/h2&gt;
+
+&lt;p&gt;In a nutshell, MIDI is too unreliable for tight synchronization. MIDI is a very slow protocol, and it simply was not designed to transport large amounts of streaming data which is required here. Among the problems which you will encounter here are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Drift, which occurs when the two hosts are no longer in tight sync. Programs like Traktor can force a re-sync, but this usually causes Live to drop audio and jitter for a split second while it re-syncs. Not good.&lt;/li&gt;
+
+&lt;li&gt;Packet loss, which occurs when the MIDI sync stream is broken. In this case, the only way to re-establish sync is to stop the master host and restart playback. Also not good.&lt;/li&gt;
+
+&lt;li&gt;Slow follow, which occurs when (God forbid) you want to change the tempo of the master host. The slave will eventually catch up to the tempo changes, but there is a noticeable lag, and sync will probably be totally off by the time the tempo stabilizes.&lt;/li&gt;
+
+&lt;li&gt;Networking and complexity. Murphy&amp;#8217;s law states that if something can go wrong, &lt;em&gt;it will&lt;/em&gt;. If something is tedious and hard to set up in the safety of your studio, you can pretty much guarantee that it&amp;#8217;s going to go completely pear-shaped when you try to take it on stage.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='so_what_to_do'&gt;So what to do?&lt;/h2&gt;
+
+&lt;p&gt;Over the years (since Live 4, specifically), I have experimented with MIDI sync of multiple laptops or multiple hosts on the same machine. For the reasons mentioned above, it just doesn&amp;#8217;t work that well. At least, not nearly well enough that I would trust to go onstage with such a setup.&lt;/p&gt;
+
+&lt;p&gt;So, in my experience it is better to assume that sync is not a viable option, and instead I prefer to run it old-school. First, start the master host, and then type the tempo into Live. If you don&amp;#8217;t know the tempo, then tap it in. It really helps to assign a MIDI button to tap BPM, as well as &lt;a href='http://teragonaudio.com/article/Mapping-MIDI-buttons-to-control-Ableton-Live-tempo.html'&gt;assign buttons to increase/decrease the tempo&lt;/a&gt;. If you can peek at the screen on the other laptop, then you are pretty much guaranteed to get an exact tempo, which is far easier than regular beat-matching.&lt;/p&gt;
+
+&lt;p&gt;Next, turn on the metronome and get ready to start Live. Wait until the &amp;#8220;1&amp;#8221; downbeat and start Live&amp;#8217;s playback &lt;em&gt;slightly before&lt;/em&gt; the 1 is hit. Use the &amp;#8220;nudge&amp;#8221; buttons to fine-tune the sync. Again, it makes sense to map the nudge buttons to MIDI. I also usually map the &amp;#8220;m&amp;#8221; key or a MIDI button to the metronome, as it can get annoying after sync is established.&lt;/p&gt;
+
+&lt;p&gt;If there are tempo changes you will need to use the MIDI keys to change Live&amp;#8217;s tempo, but you will find that this actually works much better than MIDI sync would. However, if you are doing some ultra-crazy breakdown with the tempo, then usually it makes sense to break sync and mute Live until thing settle down.&lt;/p&gt;
+
+&lt;h2 id='final_thoughts'&gt;Final thoughts&lt;/h2&gt;
+
+&lt;p&gt;If you are using a setup with multiple laptops, then think of Live like a big turntable, not a magic host. I&amp;#8217;ve heard that some hosts, namely BitWig (not yet released at time of writing) will support their own high-bandwidth sync protocol. I, for one, greatly welcome this feature.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>A brief comparison of Android audio frameworks</title>
+    <link href="http://teragonaudio.com/article/Android-audio-framework-comparison.html"/>
+    <updated>2012-05-05T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Android-audio-framework-comparison</id>
+    <content type="html">&lt;p&gt;I wanted to offer a quick bit of advice regarding playing sounds in Android. First, most developers will find that the MediaPlayer and SoundPool widgets are equally frustrating to work with. MediaPlayer is too high-level, and SoundPool isn&amp;#8217;t low enough.&lt;/p&gt;
+
+&lt;p&gt;Anyways, my experience in audio is such that as an app increases in complexity, one rapidly descends the ladder of audio frameworks to arrive at the lowest one. So just get used to working with both MediaPlayer and SoundPool, as you&amp;#8217;ll probably need to use both for separate purposes.&lt;/p&gt;
+
+&lt;p&gt;One big disadvantage of SoundPool is that it is not capable of keeping large samples in memory as it decodes them to raw PCM. Even so, an activity that is graphically rich with sound tends to hit the memory limit pretty quickly. Be sure to release() and null references to either SoundPool or MediaPlayer objects after you are finished with them (and preferably before the activity finishes).&lt;/p&gt;
+
+&lt;p&gt;Also, with both MediaPlayer and SoundPool, one should be ultra-paranoid about failed initialization and NullPointerExceptions. This is especially true if you need the sound player in the Activity as a member field. If this is the case, you will almost certainly need to override onPause() and onResume() to re-initialize the sound resources if necessary.&lt;/p&gt;
+
+&lt;p&gt;Audio performance varies widely between Android vendors, so you run a high risk of &amp;#8220;works for me&amp;#8221; unless you aggressively try/catch most audio operations, as you&amp;#8217;ll find that many phones will return null references when trying to create new references.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>How to do realtime recording with effect processing on iOS</title>
+    <link href="http://teragonaudio.com/article/How-to-do-realtime-recording-with-effect-processing-on-iOS.html"/>
+    <updated>2012-05-04T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/How-to-do-realtime-recording-with-effect-processing-on-iOS</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;A few years ago, I helped to develop an iPhone app which did some basic DSP processing on the iPhone&amp;#8217;s microphone signal. Since then, I have seen a barrage of questions on StackOverflow with people who want to this and are having trouble doing so. The biggest barrier seems to be not the actual DSP processing, but all of the associated framework stuff to get the iPhone to send you a raw PCM data stream.&lt;/p&gt;
+
+&lt;p&gt;Apple has some documentation on both subjects, but not really enough to figure out how to put all the pieces together. So without further ado, let&amp;#8217;s get started.&lt;/p&gt;
+
+&lt;h2 id='how_ios_buffers_audio'&gt;How iOS buffers audio&lt;/h2&gt;
+
+&lt;p&gt;One of the most difficult tripping blocks for people wanting to program audio for iOS is how it deals with audio buffering. Unlike in the VST world where your code is simply delivered a nice array of floats, you need to tell the iPhone exactly how to pack up the data blocks and send them to you. If you do not tell it this properly, you will get a not helpful error code and be stuck scratching your head.&lt;/p&gt;
+
+&lt;p&gt;First, one needs to understand a bit of terminology. A sample is a single point of audio data, sometimes called a sample frame. A group of samples comes together to make a channel, just like the left &amp;amp; right channels of a stereo signal. Finally, a packet contains one or more channels.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ios-buffers.png' alt='Visual representation of iOS buffers' /&gt;&lt;/p&gt;
+
+&lt;p&gt;You might be wondering why each channel only contains one frame. I don&amp;#8217;t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.&lt;/p&gt;
+
+&lt;h2 id='audiounits_on_ios'&gt;AudioUnits on iOS&lt;/h2&gt;
+
+&lt;p&gt;If you are used to developing AudioUnits on Mac OSX, you might think that AudioUnit development on iOS is going to be basically the same thing. And it is, depending on how you define the word &amp;#8220;basically&amp;#8221;. The architecture is fundamentally the same, but rather than loading plugins from bundles, you basically do your processing directly in the graph. So if you are trying to port an AU from the Mac to iOS, it&amp;#8217;s going to take more work than just hitting recompile.&lt;/p&gt;
+
+&lt;p&gt;If you are trying to port a VST/AU algorithm to iOS, hopefully the process() function is well abstracted and written in very vanilla C. If so, then you can easily drop this code into an iOS AudioUnit for processing.&lt;/p&gt;
+
+&lt;h2 id='initializing_the_audio_subsystem'&gt;Initializing the audio subsystem&lt;/h2&gt;
+
+&lt;p&gt;When you are ready to start processing audio, you need to create your AudioUnit and get the system ready to start delivering you sound. That routine looks something like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='c1'&gt;// Yeah, global variables suck, but it&amp;#39;s kind of a necessary evil here&lt;/span&gt;
+&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;initAudioSession&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt;&lt;span class='p'&gt;));&lt;/span&gt;
+
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionInitialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetActive&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;sessionCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioSessionCategory_PlayAndRecord&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_AudioCategory&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;sessionCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;Float32&lt;/span&gt; &lt;span class='n'&gt;bufferSizeInSec&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mf'&gt;0.02f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_PreferredHardwareIOBufferDuration&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;Float32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;bufferSizeInSec&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;overrideCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_OverrideCategoryDefaultToSpeaker&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;overrideCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// There are many properties you might want to provide callback functions for:&lt;/span&gt;
+  &lt;span class='c1'&gt;// kAudioSessionProperty_AudioRouteChange&lt;/span&gt;
+  &lt;span class='c1'&gt;// kAudioSessionProperty_OverrideCategoryEnableBluetoothInput&lt;/span&gt;
+  &lt;span class='c1'&gt;// etc.&lt;/span&gt;
+
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Unlike audio on the desktop, you don&amp;#8217;t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you&amp;#8217;ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn&amp;#8217;t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.&lt;/p&gt;
+
+&lt;p&gt;If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn&amp;#8217;t need to worry about this.&lt;/p&gt;
+
+&lt;h2 id='setting_up_your_streams'&gt;Setting up your streams&lt;/h2&gt;
+
+&lt;p&gt;Before you can call AudioUnitInitialize(), you need to tell the system what type of streams you expect to have. That code will look something like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;initAudioStreams&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;audioCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioSessionCategory_PlayAndRecord&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_AudioCategory&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;audioCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+  
+  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;overrideCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_OverrideCategoryDefaultToSpeaker&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;overrideCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='c1'&gt;// Less serious error, but you may want to handle it and bail here&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+  
+  &lt;span class='n'&gt;AudioComponentDescription&lt;/span&gt; &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentType&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitType_Output&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentSubType&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitSubType_RemoteIO&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentManufacturer&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitManufacturer_Apple&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentFlags&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentFlagsMask&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;AudioComponent&lt;/span&gt; &lt;span class='n'&gt;component&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;AudioComponentFindNext&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioComponentInstanceNew&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;component&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;enable&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioOutputUnitProperty_EnableIO&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='n'&gt;kAudioUnitScope_Input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;enable&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;AURenderCallbackStruct&lt;/span&gt; &lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;inputProc&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;renderCallback&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='c1'&gt;// Render function&lt;/span&gt;
+  &lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;inputProcRefCon&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitProperty_SetRenderCallback&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='n'&gt;kAudioUnitScope_Input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AURenderCallbackStruct&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;AudioStreamBasicDescription&lt;/span&gt; &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// You might want to replace this with a different value, but keep in mind that the&lt;/span&gt;
+  &lt;span class='c1'&gt;// iPhone does not support all sample rates. 8kHz, 22kHz, and 44.1kHz should all work.&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mSampleRate&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;44100&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// Yes, I know you probably want floating point samples, but the iPhone isn&amp;#39;t going&lt;/span&gt;
+  &lt;span class='c1'&gt;// to give you floating point data. You&amp;#39;ll need to make the conversion by hand from&lt;/span&gt;
+  &lt;span class='c1'&gt;// linear PCM &amp;lt;-&amp;gt; float.&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mFormatID&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioFormatLinearPCM&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// This part is important!&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mFormatFlags&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioFormatFlagIsSignedInteger&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;
+    &lt;span class='n'&gt;kAudioFormatFlagsNativeEndian&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;
+    &lt;span class='n'&gt;kAudioFormatFlagIsPacked&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// Not sure if the iPhone supports recording &amp;gt;16-bit audio, but I doubt it.&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBitsPerChannel&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;16&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// 1 sample per frame, will always be 2 as long as 16-bit samples are being used&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBytesPerFrame&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// Record in mono. Use 2 for stereo, though I don&amp;#39;t think the iPhone does true stereo recording&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mChannelsPerFrame&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBytesPerPacket&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBytesPerFrame&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;
+    &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mChannelsPerFrame&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// Always should be set to 1&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mFramesPerPacket&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='c1'&gt;// Always set to 0, just to be sure&lt;/span&gt;
+  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mReserved&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Set up input stream with above properties&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitProperty_StreamFormat&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='n'&gt;kAudioUnitScope_Input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Ditto for the output stream, which we will be sending the processed audio to&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitProperty_StreamFormat&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+     &lt;span class='n'&gt;kAudioUnitScope_Output&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the &amp;#8220;gotchas&amp;#8221; that trips up many developers.&lt;/p&gt;
+
+&lt;h2 id='starting_audio_processing'&gt;Starting audio processing&lt;/h2&gt;
+
+&lt;p&gt;At this point, everything is ready to go and we can tell the OS to start recording and sending us data.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;startAudioUnit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitInitialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioOutputUnitStart&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='processing_data_in_the_callback'&gt;Processing data in the callback&lt;/h2&gt;
+
+&lt;p&gt;At this point, the system will now call your rendering function whenever it wants audio. Generally speaking, you will want to convert the linear PCM data to floating point, which is much easier to work with. However, in some cases (like an echo plugin), you may not necessarily need to manipulate the samples and can keep the data in linear PCM. The below example demonstrates floating point data conversion, but if you can do everything with integer math, it will of course be more efficient.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;OSStatus&lt;/span&gt; &lt;span class='n'&gt;renderCallback&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;userData&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;AudioUnitRenderActionFlags&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;actionFlags&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+                        &lt;span class='k'&gt;const&lt;/span&gt; &lt;span class='n'&gt;AudioTimeStamp&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioTimeStamp&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;busNumber&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+                        &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;AudioBufferList&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;buffers&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;OSStatus&lt;/span&gt; &lt;span class='n'&gt;status&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;AudioUnitRender&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;actionFlags&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;audioTimeStamp&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;buffers&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;status&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;status&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='c1'&gt;// Lazy initialization of this buffer is necessary because we don&amp;#39;t&lt;/span&gt;
+    &lt;span class='c1'&gt;// know the frame count until the first callback&lt;/span&gt;
+    &lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;SInt16&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;inputFrames&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;SInt16&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;buffers&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;mBuffers&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;mData&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// If your DSP code can use integers, then don&amp;#39;t bother converting to&lt;/span&gt;
+  &lt;span class='c1'&gt;// floats here, as it just wastes CPU. However, most DSP algorithms rely&lt;/span&gt;
+  &lt;span class='c1'&gt;// on floating point, and this is especially true if you are porting a&lt;/span&gt;
+  &lt;span class='c1'&gt;// VST/AU to iOS.&lt;/span&gt;
+  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;inputFrames&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;/&lt;/span&gt; &lt;span class='mf'&gt;32768f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Now we have floating point sample data from the render callback! We&lt;/span&gt;
+  &lt;span class='c1'&gt;// can send it along for further processing, for example:&lt;/span&gt;
+  &lt;span class='c1'&gt;// plugin-&amp;gt;processReplacing(convertedSampleBuffer, NULL, sampleFrames);&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Assuming that you have processed in place, we can now write the&lt;/span&gt;
+  &lt;span class='c1'&gt;// floating point data back to the input buffer.&lt;/span&gt;
+  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='c1'&gt;// Note that we multiply by 32767 here, NOT 32768. This is to avoid&lt;/span&gt;
+    &lt;span class='c1'&gt;// overflow errors (and thus clipping).&lt;/span&gt;
+    &lt;span class='n'&gt;inputFrames&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;SInt16&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='mf'&gt;32767f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Keep in mind that this code will be called several times &lt;em&gt;per second&lt;/em&gt;. Best development practices tend to advocate lazy initialization and runtime checks to keep readability. This is not necessarily a best practice when it comes to audio development, however. The name of the game here is to move anything you can out of render and into the initialize function. This includes things like allocating blocks of memory and calling system functions. In the best case, your render function will just loop over the input buffer and perform simple mathematical operations on the samples. Even a single malloc call (or even worse, an Obj-C &lt;code&gt;[[[ClassName alloc] init] autorelease]&lt;/code&gt; allocation) in the render call is likely to grind your code to a halt or leak memory like crazy.&lt;/p&gt;
+
+&lt;p&gt;Same goes with &lt;code&gt;NSLog()&lt;/code&gt; or &lt;code&gt;printf()&lt;/code&gt;. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I&amp;#8217;ve noticed that many iOS developers tend to use &lt;code&gt;NSLog()&lt;/code&gt; for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call &amp;#8220;quantum debugging&amp;#8221; where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don&amp;#8217;t occur in a &amp;#8220;clean&amp;#8221; environment.&lt;/p&gt;
+
+&lt;h2 id='shutting_down'&gt;Shutting down&lt;/h2&gt;
+
+&lt;p&gt;When you are finished processing audio, you need to tell the OS to stop processing and free the AudioUnit&amp;#8217;s resources.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;stopProcessingAudio&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioOutputUnitStop&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitUninitialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='other_considerations'&gt;Other considerations&lt;/h2&gt;
+
+&lt;p&gt;As the point of this tutorial was to demonstrate audio buffer construction and realtime audio processing, I glossed over a lot of details. But these are things which you will probably need to take into consideration when developing an application. Before you start processing audio, you should probably:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make sure that the device can record audio (this is not possible for the iPod Touch without the headset, for instance).&lt;/li&gt;
+
+&lt;li&gt;Check for possible feedback loops, usually caused when the system&amp;#8217;s default input and output are the external mic and speakers. Since the render callback imposes a few milliseconds of latency and the mic and external speaker sit very near to each other on the iPhone, there is a very real possibility of harsh feedback on the device. If you detect a possible feedback loop, you may want to avoid recording or playback (or both, depending on your app&amp;#8217;s requirements).&lt;/li&gt;
+
+&lt;li&gt;Install a callback function which will be called when the audio route changes (ie, the user plugs in or disconnects the headset).&lt;/li&gt;
+
+&lt;li&gt;Handle application pausing and switching. If processing is interrupted and you don&amp;#8217;t clear the buffers by zeroing them out, you will get nasty noise (aka the &amp;#8220;satan saw&amp;#8221;).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='a_word_on_developing_audio_on_ios'&gt;A word on developing audio on iOS&lt;/h2&gt;
+
+&lt;p&gt;Unlike Android, iOS development can be mostly done on the desktop without any external hardware. Many developers do their entire application development with the iOS Simulator, which is definitely fine for most day-to-day development tasks. However, if you are writing audio processing apps for iOS, you will most definitely need to develop and deploy them to hardware, and &lt;em&gt;not just during your final testing before submitting them to the app store&lt;/em&gt;. I can&amp;#8217;t stress that last part enough.&lt;/p&gt;
+
+&lt;p&gt;The iOS Simulator uses your Mac&amp;#8217;s soundcard and CoreAudio, which is much different than an iPhone or an iPad. Many developers are surprised that simple audio code which works &amp;#8220;perfectly fine&amp;#8221; in the iOS Simulator will mysteriously fail with the dreaded error -50 on iPhone hardware. Likewise, some things work fine on the hardware but not the simulator. The bottom line is, when you are developing the DSP part of your app, it needs to be done on hardware and preferably tested on every iOS device you intend to support.&lt;/p&gt;
+
+&lt;p&gt;That said, iOS is not a very efficient platform for developing DSP algorithms, so you might find it much faster to whip up a quick C++ plugin wrapper using &lt;a href='http://rawmaterialsoftware.com/juce.php'&gt;Juce&lt;/a&gt; and get it sounding right on a desktop sequencer. Once you are happy with the DSP algorithms, you can take the code (preferably written in very vanilla C) and drop it into the iOS AudioUnit as described above.&lt;/p&gt;
+
+&lt;p&gt;Happy coding!&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Making a VST plugin from scratch with Xcode</title>
+    <link href="http://teragonaudio.com/article/Making-a-VST-plugin-from-scratch-with-Xcode.html"/>
+    <updated>2011-05-03T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Making-a-VST-plugin-from-scratch-with-Xcode</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;After writing up my Visual Studio VST guide, I figured that the Mac programmers out there might enjoy a simpler tutorial. Fortunately the process of developing VST plugins under OSX is much simpler than under Windows, but nonetheless there are a few &amp;#8220;gotchas&amp;#8221; along the way.&lt;/p&gt;
+
+&lt;p&gt;This guide assumes familiarity with Xcode and C++ development, and that you are working with Mac OSX 10.5/10.6 and have a relatively recent version of Xcode (4.2 or better). This guide only covers building VST 2.x plugins, as the 3.x SDK is not widely supported yet.&lt;/p&gt;
+
+&lt;p&gt;Also, before you start, you will obviously need the VST SDK, which can be acquired &lt;a href='http://www.steinberg.net/en/company/3rd_party_developer.html'&gt;from Steinberg&amp;#8217;s Development Portal&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id='creating_your_project'&gt;Creating your project&lt;/h2&gt;
+
+&lt;p&gt;First, create a new empty Xcode project. Now add a new target to the project, which should use the &amp;#8220;Bundle&amp;#8221; template under the &amp;#8220;Framework &amp;amp; Library&amp;#8221; group (for Mac OS X, of course). Set the product name, bundle identifier, and choose to link it against the Cocoa Framework.&lt;/p&gt;
+
+&lt;h2 id='adding_resource_files'&gt;Adding resource files&lt;/h2&gt;
+
+&lt;p&gt;Create a new empty file in your project named &amp;#8220;PkgInfo&amp;#8221; with the contents &amp;#8220;BNDL????&amp;#8221; (no quotes, and no newline either). You can verify that this file will be copied to the VST bundle by clicking on your project&amp;#8217;s target in the file browser, and then expanding the &amp;#8220;Copy Bundle Resources&amp;#8221; section underneath &amp;#8220;Build Phases&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;When you created the project, Xcode should also have created a property list (plist) file for you. Open the plist file for editing, and right click anywhere in document body to change the view type to &amp;#8220;Show Raw Keys/Values&amp;#8221;. Now, set the following properties, adding new keys if necessary:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CFBundleDevelopmentRegion: English&lt;/li&gt;
+
+&lt;li&gt;CFBundleExecutable: vst&lt;/li&gt;
+
+&lt;li&gt;CFBundleGetInfoString: vst&lt;/li&gt;
+
+&lt;li&gt;CFBundleIconFile: (empty)&lt;/li&gt;
+
+&lt;li&gt;CFBundleIdentifier: com.yourcompany.pluginname&lt;/li&gt;
+
+&lt;li&gt;CFBundleInfoDictionaryVersion: 6.0&lt;/li&gt;
+
+&lt;li&gt;CFBundlePackageType: BNDL&lt;/li&gt;
+
+&lt;li&gt;CFBundleSignature: (A unique 4-character identifier of your choosing)&lt;/li&gt;
+
+&lt;li&gt;CFBundleVersion: 1.0&lt;/li&gt;
+
+&lt;li&gt;CSResourcesFileMapped: (empty)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='adding_the_vst_sdk_files'&gt;Adding the VST SDK files&lt;/h2&gt;
+
+&lt;p&gt;Create a new group for the VST source files, and drag them from the Finder into your project. Do not drag the entire vstsdk2.4 folder into your project. Make sure that the subfolders for &amp;#8220;pluginterfaces&amp;#8221; and &amp;#8220;public.sdk&amp;#8221; (excluding the samples) are in the project.&lt;/p&gt;
+
+&lt;p&gt;Now, in the project&amp;#8217;s properties, go to the &amp;#8220;Search Paths&amp;#8221; section and add the vstsdk2.4 directory to the &amp;#8220;Header Search Paths&amp;#8221; setting. Make it recursive.&lt;/p&gt;
+
+&lt;h2 id='project_build_settings'&gt;Project build settings&lt;/h2&gt;
+
+&lt;p&gt;Unless you have very specific requirements, I highly recommend building your plugin as a standard 32-bit Intel binary. My reasoning for this is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Although 64-bit Macs are widespread, there are not so many 64-bit compatible plugin hosts.&lt;/li&gt;
+
+&lt;li&gt;Likewise, building 64-bit VST&amp;#8217;s is sometimes a bit difficult, as Apple is deprecating Carbon, which is 32-bit only.&lt;/li&gt;
+
+&lt;li&gt;The number of PPC users out there is not so many anymore, so building a 32-bit Universal Binary is probably overkill.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can set the build type in the &amp;#8220;Architectures&amp;#8221; section, and again I recommend setting this to &amp;#8220;32-bit Intel&amp;#8221;. If anyone can get VST2.4 plugins building as 32/64 bit UB&amp;#8217;s, please let me know so I can adapt this documentation to include how to do this.&lt;/p&gt;
+
+&lt;p&gt;Next, set the Base SDK to &amp;#8220;Current Mac OS&amp;#8221;. This will make it much less painful when opening the project in future versions of Xcode. In the &amp;#8220;Deployment&amp;#8221; section, set &amp;#8220;Mac OS X Deployment Target&amp;#8221; to the &lt;em&gt;oldest version of Mac OS X you plan to support&lt;/em&gt;. Setting it to &amp;#8220;Compiler Default&amp;#8221; is likely to get you into trouble.&lt;/p&gt;
+
+&lt;p&gt;Under &amp;#8220;Packaging&amp;#8221;, make sure that both &amp;#8220;Executable Extension&amp;#8221; and &amp;#8220;Executable Prefix&amp;#8221; are empty. Set &amp;#8220;Wrapper Extension&amp;#8221; to be &amp;#8220;vst&amp;#8221;.&lt;/p&gt;
+
+&lt;h2 id='frameworks'&gt;Frameworks&lt;/h2&gt;
+
+&lt;p&gt;Again, in your target&amp;#8217;s settings, go to the &amp;#8220;Build Phases&amp;#8221; tab and expand the &amp;#8220;Link Binary With Libraries&amp;#8221; section. Add the following libraries to your project:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;QuickTime&lt;/li&gt;
+
+&lt;li&gt;Carbon&lt;/li&gt;
+
+&lt;li&gt;ApplicationServices&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='your_source_code'&gt;Your source code&lt;/h2&gt;
+
+&lt;p&gt;Now you are ready to add or create files for your plugin&amp;#8217;s source code.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>How to use iTunes as Ableton Live's file browser</title>
+    <link href="http://teragonaudio.com/article/Using-iTunes-as-Ableton-Lives-file-browser.html"/>
+    <updated>2011-02-06T00:00:00+01:00</updated>
+    <id>http://teragonaudio.com/article/Using-iTunes-as-Ableton-Lives-file-browser</id>
+    <content type="html">&lt;p&gt;One of my biggest complaints with Ableton Live is the primitive and horrid file browser. The lack of information shown and the inability to map keys/MIDI messages to its functions make finding music a frustrating experience. Although not many people are using Live exclusively for DJ&amp;#8217;ing, it is certainly a powerful tool for doing so, except for the fact that searching for music is so difficult.&lt;/p&gt;
+
+&lt;p&gt;The other day I started considering using iTunes as the file browser within Live. Fortunately, Live already supports dragging-and-dropping tracks directly from iTunes into the session view, and iTunes has a few lesser-known features which also would make it ideal for browsing while DJ&amp;#8217;ing. Here I will detail the steps which can be used to turn iTunes into a functional music browser in Live, as well as the benefits and drawbacks of doing so. This guide is written with the Mac in mind, and although it is probably possible to accomplish this in Windows as well, I&amp;#8217;m not sure if some of the steps would work exactly the same for that platform.&lt;/p&gt;
+
+&lt;p&gt;The steps involved in setting up iTunes as a file browser are very easy and non-committal. It is easy to go back to Live&amp;#8217;s file browser, particularly for loops and samples which one may not want to store in iTunes. For loop and sample management, tools like Snapper and Audio Finder are much better than using iTunes or Live&amp;#8217;s built in browser. Although Live&amp;#8217;s file browser searches ID3 metadata, it is not capable of displaying this metadata, or allowing one to sort the browser by a metadata field (such as, say, the artist name).&lt;/p&gt;
+
+&lt;p&gt;If you are using iTunes for your own music libraries, you may not necessarily want to import all of your DJ tracks into it, particularly if you already have organized them to your liking. If this is the case, first disable &amp;#8220;Keep iTunes Media folder organized&amp;#8221; and &amp;#8220;Copy files to iTunes Media folder when adding to library&amp;#8221;. This will prevent iTunes from mangling your music or renaming tracks which already have an associated ASD file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' alt='iTunes Preferences as they (mostly) should appear' /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, quit iTunes and restart it while holding down the &amp;#8220;alt/option&amp;#8221; key when you re-open the program. iTunes will now prompt you to either create a new library or to select an existing library. You will want to create a new library somewhere on your hard drive. Now, take your existing music library and move it to the folder you just created underneath iTunes Media/Music. Drag all of these folders into iTunes to import them into the new library. After importing, simply quit iTunes and re-open with the alt/option key to switch back to your main iTunes library.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_choose_library.png' alt='Choose iTunes Library dialog' /&gt;&lt;/p&gt;
+
+&lt;p&gt;From this point, you may choose to take advantage of a special folder inside of the iTunes library named &amp;#8220;Automatically add to iTunes&amp;#8221;. Any tracks here are, as the name suggests, automatically added to the iTunes library when dropped in. However, they will be sorted under iTunes Media/Music/Artist Name/Album Name, which may clash with any existing organizational scheme in place. If you are planning on using this feature along with Live, add the files first before warping them, or else iTunes will copy only the music file and move the associated ASD file behind in a directory named &amp;#8220;Not Moved&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;Software such as &lt;a href='http://cadenceapp.com/'&gt;Cadence&lt;/a&gt; and &lt;a href='http://www.potionfactory.com/tangerine/'&gt;Tangerine!&lt;/a&gt; are available to read your iTunes library and analyze the BPM of your tracks. Other software such as &lt;a href='http://www.beatunes.com/'&gt;beaTunes&lt;/a&gt; (my personal favorite) are also capable of writing the key to the track as well, which can be very useful in making cohesive mixes. In both cases, these add-ons scan an iTunes library, thus making it practical to keep multiple libraries.&lt;/p&gt;
+
+&lt;p&gt;Another little-known (or accidentally discovered) feature of iTunes is that if you double-click on a playlist&amp;#8217;s icon, it will appear in a new window, allowing you to customize the size of this window to better fit alongside Live. &lt;a href='http://static.nikreiman.com/ableton_live_itunes.png'&gt;Here&amp;#8217;s a screenshot of how I am currently using Live and iTunes together&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Advantages of using iTunes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ability to view and sort music by fields like artist name, BPM, album, etc.&lt;/li&gt;
+
+&lt;li&gt;One can create playlists for mixes, genres&lt;/li&gt;
+
+&lt;li&gt;Album art and cover-flow are very nice for visually-oriented searching&lt;/li&gt;
+
+&lt;li&gt;Smart playlists for recently added music, top-rated, etc.&lt;/li&gt;
+
+&lt;li&gt;Can cue through separate sound interface&lt;/li&gt;
+
+&lt;li&gt;Control of cue volume independent of Live&amp;#8217;s cue volume&lt;/li&gt;
+
+&lt;li&gt;Third-party software allows for analyzing BPM and/or song key&lt;/li&gt;
+
+&lt;li&gt;Non-binding &amp;#8211; one can still use Live without iTunes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Disadvantages of using iTunes: * Cueing songs will not be at same tempo as current track (though Live also does not keep the tempos sync&amp;#8217;d if you skip ahead in the song) * Command+tabbing back and forth between iTunes &amp;amp; Live unless you have configured MIDI controls for everything you need to do&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;iTunes is a well-known memory hog&lt;/li&gt;
+
+&lt;li&gt;Less screen space for Live, as iTunes windows have a limit on how small they can be resized&lt;/li&gt;
+
+&lt;li&gt;Recut tracks saved as livesets or liveclips still must be dragged these into the session from Live&amp;#8217;s file browser&lt;/li&gt;
+
+&lt;li&gt;Fields such as &amp;#8220;Last Played&amp;#8221; will not save the date if you only cue part of the song and don&amp;#8217;t listen to it until the end. This is a bit of a bummer, since otherwise one could make smart playlists with recently played (or unplayed) tracks.&lt;/li&gt;
+
+&lt;li&gt;iTunes automatically re-organizes new incoming tracks under its own file structure&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Why you can't just remove vocals or make an A Capella of an audio file</title>
+    <link href="http://teragonaudio.com/article/Why-you-cant-remove-vocals-from-an-audio-file.html"/>
+    <updated>2010-12-06T00:00:00+01:00</updated>
+    <id>http://teragonaudio.com/article/Why-you-cant-remove-vocals-from-an-audio-file</id>
+    <content type="html">&lt;p&gt;In a similar vein to my previous rant about why you can&amp;#8217;t convert between MIDI and audio data, I thought I&amp;#8217;d address another question I see a lot. This question comes in two forms, but it&amp;#8217;s basically the same thing:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Can I make an A Capella version an MP3 so I can remix the vocals with a different beat?&lt;/li&gt;
+
+&lt;li&gt;Can I remove the vocals from an MP3 so I can make a karaoke version of a song?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The answer to both questions is &amp;#8220;no&amp;#8221;. More precisely, it&amp;#8217;s &amp;#8220;technically yes, but not really, and if you are asking this question, then you don&amp;#8217;t have access to the data which would give you what you wanted or else you wouldn&amp;#8217;t be asking&amp;#8221;. Hopefully this guide will explain why.&lt;/p&gt;
+
+&lt;p&gt;The reason that both of the above questions are fundamentally the same thing because they involve two opposite processes that are used when working with audio data: mixing and filtering.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Mixing&lt;/em&gt; is the process of taking two or more audio streams and combining them to make a single stream. So when a band goes to the studio to make an album, all of the instruments are recorded separately and then mixed down to make a single track. This is done so that each instrument can be processed with effects to improve the sound, and then its volume is adjusted accordingly so that it sounds nice with the other instruments (note: this is a vast simplification of the entire process).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Filtering&lt;/em&gt; is the process of removing or boosting particular frequencies of an audio signal. There are lots of different types of filters each designed to do something different. Since we are talking about vocals today, it&amp;#8217;s worth noting that the &lt;a href='http://en.wikipedia.org/wiki/Vocal_range'&gt;average human voice has a frequency range of 80 Hz - 1100 Hz&lt;/a&gt;. (The range of human hearing is approximately 50 Hz - 20,000 Hz). When most people think about removing vocals (or the other instruments) from a song, they think that they can filter them out. Unfortunately, it&amp;#8217;s not that easy.&lt;/p&gt;
+
+&lt;p&gt;Why not? So the band went to the studio, recorded a song, and mixed it down. Why can you &amp;#8220;unmix&amp;#8221; it? Well, since the tracks are already mixed together, you would need to remove just the frequencies of the song which contain the singer&amp;#8217;s voice (or the other instruments, if you want to make an A Capella version). The problem is, a &lt;a href='http://en.wikipedia.org/wiki/Piano_key_frequencies'&gt;piano has a frequency range of 27.5 Hz - 4186 Hz&lt;/a&gt;. The guitar has a frequency range of 80 Hz - 5000 Hz. &lt;a href='http://terrydownsmusic.com/technotes/Frequencies/FREQ.HTM'&gt;And so on&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So basically, you can remove the vocals from a song by filtering them out, but not without removing parts from a bunch of other instruments as well. And precisely because you&amp;#8217;d be removing only parts of the other instruments, the resulting song would sound very weird and not at all like the original. So not very much fun to remix or to sing along to. Likewise, if you want to remove all of the other instruments to make the A Capella version, you&amp;#8217;ll find that there will always be some traces of the other instruments along with the voice, so it wouldn&amp;#8217;t sound very &amp;#8220;clean&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;This is simply because a lot of the musical instruments we use occupy the same frequencies as the human voice.&lt;/p&gt;
+
+&lt;p&gt;But maybe it&amp;#8217;s possible to construct a filter which just takes out the exact frequency of the particular note being sung at a given moment and not the entire vocal range? Unfortunately, no, this is not possible. Doing this by hand would take ages. And machines simply do not hear audio in the same way as humans do. It is not possible to tell a computer to recognize and separate the human voice apart from all the other instruments, just like &lt;a href='http://people.cs.ubc.ca/~brehmer/proj/543.pdf'&gt;most people probably couldn&amp;#8217;t correctly put the labels on a full box of crayons&lt;/a&gt;. And especially if they had to identify which ones were used in a particular drawing.&lt;/p&gt;
+
+&lt;p&gt;But, even if you could get a computer to recognize the particular frequency fingerprint of a singer, it still wouldn&amp;#8217;t work because once again, parts of the sound from the other instruments will bleed into the singer&amp;#8217;s frequency range. And the resulting output, whether you are considering the karaoke version or the A Capella version, would sound weird.&lt;/p&gt;
+
+&lt;p&gt;What about all that shareware software which claims to extract vocals from MP3&amp;#8217;s or make A Capella versions from your favorite songs? Simply put, it will not work. Save your money and your time, because this software applies a simple filter to the audio data, and &lt;strong&gt;you will be disappointed when you hear the result&lt;/strong&gt;. Trust me on this one. The people that make these things are dishonest, and sometimes simply repackage open-source audio editing software and re-label it as their own.&lt;/p&gt;
+
+&lt;p&gt;So I said that the long answer to this question is, &amp;#8220;technically yes, but not really, and if you are asking this question, then you don&amp;#8217;t have access to the data which would give you what you wanted or else you wouldn&amp;#8217;t be asking.&amp;#8221; Why is that? Well, the &amp;#8220;not really&amp;#8221; part is what I have just explained above.&lt;/p&gt;
+
+&lt;p&gt;But let&amp;#8217;s think back to the mixdown. Say you recorded a band, and you still had the original recordings of each instrument which was used to make the final version of a song. Then you could easily take just the vocal tracks and save them to a separate file to make the A Capella version. Or you could mute the vocals and mix the track with all of the other instruments to make the karaoke version. But either way, if you already had access to the original recording session, then you&amp;#8217;d realize that you could make an A Capella or karaoke version if you wanted to, and in that case, you wouldn&amp;#8217;t be asking. :)&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Why you can't convert between MIDI and audio files</title>
+    <link href="http://teragonaudio.com/article/You-cant-convert-between-MIDI-and-audio-files.html"/>
+    <updated>2010-12-05T00:00:00+01:00</updated>
+    <id>http://teragonaudio.com/article/You-cant-convert-between-MIDI-and-audio-files</id>
+    <content type="html">&lt;p&gt;This is a little rant that has been brewing inside of me for some while now. From time to time I get asked or see questions asked as to how one goes about converting MIDI to audio, and vice-versa. If you search on StackOverflow, you can &lt;a href='http://stackoverflow.com/questions/2321881/need-a-library-that-generates-wave-from-midi'&gt;find&lt;/a&gt; &lt;a href='http://stackoverflow.com/questions/2307932/generate-mp3-from-midi'&gt;literally&lt;/a&gt; &lt;a href='http://stackoverflow.com/questions/4354963/python-midi-to-audio-stream'&gt;dozens&lt;/a&gt; &lt;a href='http://stackoverflow.com/questions/1185392/how-to-convert-midi-to-wav-mp3-in-c'&gt;of&lt;/a&gt; &lt;a href='http://stackoverflow.com/questions/3890459/converting-midi-byte-array-to-mp3-byte-array'&gt;questions&lt;/a&gt; &lt;a href='http://stackoverflow.com/questions/3279946/how-to-convert-sound-wave-to-midi-in-c'&gt;asking&lt;/a&gt; &lt;a href='http://stackoverflow.com/questions/2237574/play-midi-file-on-the-iphone'&gt;this&lt;/a&gt; for practically every programming language out there. And it&amp;#8217;s easy to see why. Lots of people want to make some type of music-based software thing, and they need to generate or save some content, and the easiest way to do that is with MIDI files.&lt;/p&gt;
+
+&lt;p&gt;There are also &lt;a href='http://www.hamienet.com/midi2mp3'&gt;tons&lt;/a&gt; &lt;a href='http://www.pistonsoft.com/omvandla-midi-till-mp3.html'&gt;of&lt;/a&gt; &lt;a href='http://download.cnet.com/Direct-MIDI-to-MP3-Converter/3000-2170_4-10388970.html'&gt;half&lt;/a&gt;-&lt;a href='http://midconverter.com/'&gt;baked&lt;/a&gt; &lt;a href='http://midi-to-mp3.com/'&gt;shareware&lt;/a&gt; &lt;a href='http://www.widisoft.com/'&gt;utilities&lt;/a&gt; which attempt to do this task (&lt;em&gt;note&lt;/em&gt;: at the time of writing, all of these links work, but as most of these products are scams or otherwise dodgy, those links may be broken by the time you read this). Executive summary for the impatient: those programs don&amp;#8217;t work, so don&amp;#8217;t waste your money on them.&lt;/p&gt;
+
+&lt;p&gt;But my point is: &lt;strong&gt;you don&amp;#8217;t convert MIDI to audio&lt;/strong&gt;. I&amp;#8217;m going to explain why, and what to do instead if you need to do this task. If you already know why, then please kindly bookmark this blog entry and send it to your boss/best friend/grandma the next time you get asked this question.&lt;/p&gt;
+
+&lt;p&gt;First of all, let&amp;#8217;s start out with some definitions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MIDI&lt;/strong&gt; is a protocol. The &lt;a href='http://home.roadrunner.com/~jgglatt/'&gt;MIDI protocol&lt;/a&gt; defines how music hardware or software, such as computers, synthesizers, controllers, keyboards, drum machines, etc., can talk to each other. MIDI data, when streamed to such a device, allows it to play the notes that make music (among other things). So when people talk about &amp;#8220;converting&amp;#8221; MIDI to audio, they actually mean converting MIDI files to audio files. MIDI files are simply a way of saving a stream of MIDI data to disk so it can be played back later.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Audio files&lt;/strong&gt;, such as WAV, MP3, OGG, etc., contain sampled audio data, which is basically a series of digital values which make up the waveform of a sound signal. This raw data is commonly referred to as PCM (pulse code modulation), which is the stuff that makes up WAV and AIFF files. This data can be compressed to MP3 or OGG or some other format via a codec, but that&amp;#8217;s a discussion for another day. The point is, everybody knows what an MP3 file is, but it&amp;#8217;s not the same thing as MIDI data.&lt;/p&gt;
+
+&lt;p&gt;So why do people think that they can convert MIDI data to audio, and vice-versa? Well, that&amp;#8217;s simple. You have a MIDI file on your computer, and you can double-click it, and you hear some sounds come out of your speaker. Audio files make sounds, too, and you can easily covert between MP3, WAV, OGG, FLAC, or whatever. So since MIDI files also make sounds, why can&amp;#8217;t they just be converted to MP3?&lt;/p&gt;
+
+&lt;p&gt;And therein lies the rub. MIDI files are not sounds, they contain protocol data. When you &amp;#8220;play&amp;#8221; MIDI files back, you are actually synthesizing this protocol data to an audio stream (hence the term &amp;#8220;synthesizer&amp;#8221;). So you can synthesize MIDI data to audio, and capture the resulting audio, but it&amp;#8217;s not the same thing as converting it. Just to make that point blazingly clear: it&amp;#8217;s synthesizing, not converting. Converting is to take the same data and save it in a different format, but synthesizing is to take a set of instructions and to create new output data based on them.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#8217;s a not-so-distant analogy which should make sense: text-to-speech engines. Writing is kind of similar to speaking; both are ways of expressing thoughts through the vehicle of language. A written sentence is like MIDI data, because a single sentence will sound different when spoken by a dozen people. Each person has a different voice, accent, pace, intonation, etc.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#8217;s not terribly hard to write a text-to-speech engine, though certainly not trivial either. They&amp;#8217;ve been around for years, and everybody recognizes them from the robotic sound. Recently, the technology has improved a bit to make them more lifelike, which proves that this is not an impossible problem. However, converting speech-to-text is much harder in comparison. There is a lot of good software out there for dictation and voice commands, but it&amp;#8217;s not 100% reliable which is why we&amp;#8217;re all still typing to each other.&lt;/p&gt;
+
+&lt;p&gt;Which brings me to my main point. How does one get audio data from a MIDI file, or MIDI data from an audio file? Well, because you cannot convert between the two formats, these processes are very different, and as in the above example, one of them is very easy and the other is very hard.&lt;/p&gt;
+
+&lt;p&gt;First, let&amp;#8217;s talk about the easier one: MIDI to audio. To do this, you need a synthesizer, which is a special program that synthesizes MIDI data to an audio stream as the name would suggest. There are lots of great, free synthesizers out there, but most of them run as plugins within a larger audio environment called a sequencer. Some of them run as standalone applications, but most don&amp;#8217;t. You can also use a hardware synthesizer, but that&amp;#8217;s overkill for this task.&lt;/p&gt;
+
+&lt;p&gt;Basically, to get an audio file from MIDI data, you open up a sequencer, load the MIDI file, drop in a synthesizer, and then bounce the audio to disk. That&amp;#8217;s it. Actually, that&amp;#8217;s a vast simplification of the process&amp;#8230; there are a ton of extra steps in there, mostly in how you set configure the synthesizer.&lt;/p&gt;
+
+&lt;p&gt;If you are a Mac OSX user, you should try using Apple&amp;#8217;s own GarageBand program. If you&amp;#8217;re on Windows, try using &lt;a href='http://reaper.fm'&gt;Reaper&lt;/a&gt; (which also runs on Mac). There&amp;#8217;s a bit of a learning curve here, so be patient. If you need some free synthesizers, check out the &lt;a href='http://www.kvraudio.com/get.php'&gt;plugin database at KVR audio&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you have 10,000 MIDI files to batch-convert to MP3&amp;#8217;s, I am sorry to say that there is no easy solution for you. All of the shareware you&amp;#8217;ll when Googling for &amp;#8220;convert MIDI to MP3&amp;#8221; is terrible. If these programs can even manage to bounce a MIDI file to audio (and many of them can&amp;#8217;t even do this), it will sound absolutely horrid, because the synthesizers built into such software are generally very low-quality. Imagine what you would hear in a karaoke bar in Thailand somewhere, except much worse. You could perhaps set up a shell script and use &lt;a href='https://teragonaudio.github.com/MrsWatson'&gt;MrsWatson&lt;/a&gt; to convert them, but you&amp;#8217;ll still need a good synth to do it.&lt;/p&gt;
+
+&lt;p&gt;Now, let&amp;#8217;s talk about getting audio data from MIDI. In the analogy above, this would be like converting speech to written text. It&amp;#8217;s a hard problem to solve, but it&amp;#8217;s not impossible and some people have written tools which can do it, though they are error-prone and by no means perfect. By far, the most advanced technology around to do this is a piece of software called &lt;a href='http://www.celemony.com/cms/'&gt;Melodyne&lt;/a&gt; by Celemony.&lt;/p&gt;
+
+&lt;p&gt;Before I discuss Melodyne further, I should shed a little more light on what makes this such a hard problem. In the world of synthesis, a musical arrangement is either monophonic or polyphonic. A monophonic arrangement is one in which only one note is playing at a time, whereas a polyphonic arrangement can contain multiple notes playing at once (ie, chords). A monophonic arrangement is a bit boring, but is much easier to process from a signal processing perspective. So if your only goal is to make MIDI files from MP3&amp;#8217;s of yourself playing &amp;#8220;Jingle Bells&amp;#8221; on the piano with one finger, it will be very easy to detect the individual notes which can be subsequently used to construct MIDI protocol data.&lt;/p&gt;
+
+&lt;p&gt;However, most music is significantly more complex, because it contains chords and often multiple instruments. It&amp;#8217;s very difficult to find the exact notes which compose a single chord only by looking at the raw audio data. To make another cheap analogy, it&amp;#8217;s like having four people read aloud four different sentences at the same time. It&amp;#8217;s very easy to write down the sentences and then read them aloud, but it&amp;#8217;s much more difficult for a listener to separate them and then write down each one correctly.&lt;/p&gt;
+
+&lt;p&gt;Melodyne has come a long way in the last few years, and it can handle both monophonic and polyphonic data. Go ahead, download the demo and give it a shot. However, you&amp;#8217;ll find that it&amp;#8217;s not 100% perfect, so don&amp;#8217;t be disappointed. More precisely, you&amp;#8217;ll find that it does a great job with your one-finger &amp;#8220;Jingle Bells&amp;#8221; piece, a bit worse with a ten-finger &amp;#8220;Jingle Bells&amp;#8221; piece, and significantly worse with your &amp;#8220;Jingle Bells&amp;#8221; arrangement where you and grandma sing along, your brother plays the drums, and your sister is accompanying on the tuba.&lt;/p&gt;
+
+&lt;p&gt;Most people who want to &amp;#8220;convert&amp;#8221; MP3 to MIDI data are those that have a whole bunch of MP3&amp;#8217;s, and want to find a tool which will whip through a whole folder and generate MIDI files which they can use for some other purpose. I hope that I&amp;#8217;ve explained in enough detail here why that simply isn&amp;#8217;t going to happen, at least not with the current level of technology. Maybe one day in the future, but even then the output will still need to be hand-checked by a human.&lt;/p&gt;
+
+&lt;p&gt;So what about tools for getting MIDI data from an audio file? Well, as I have already mentioned, Melodyne is basically the only serious contender, and yes, it&amp;#8217;s a bit expensive. But that&amp;#8217;s because it (mostly) works. Any piece of shareware out there which costs 20$ and claims to convert audio to MIDI will not work. Don&amp;#8217;t waste your money, and moreover, don&amp;#8217;t give these guys your money. They are dishonestly marketing software to uninformed people who simply don&amp;#8217;t know any better.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ve made it this far, then hopefully you have a better understanding of MIDI and audio data, and you are probably still serious about wanting to accomplish whatever task you need to do that involves the two of them. Great. So what now?&lt;/p&gt;
+
+&lt;p&gt;Go out, find a good synthesizer, play around with some plugins, and wire something up that works for you. Don&amp;#8217;t expect that it will be easy to automate all of this, nor should you expect the result to sound like the original song. But in either case, best of luck!&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Mapping MIDI buttons to control Ableton Live's tempo</title>
+    <link href="http://teragonaudio.com/article/Mapping-MIDI-buttons-to-control-Ableton-Live-tempo.html"/>
+    <updated>2010-09-27T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Mapping-MIDI-buttons-to-control-Ableton-Live-tempo</id>
+    <content type="html">&lt;p&gt;A friend of mine recently tipped me off to a nice trick in Ableton Live. For a long time I&amp;#8217;ve been searching for a nice way to control tempo via a MIDI controller, and have found it amazingly difficult to do this. Fortunately, there is an easy (but non-intuitive) trick you can use to map two MIDI buttons such that pressing each button will increase or decrease the global tempo by a small-ish amount.&lt;/p&gt;
+
+&lt;p&gt;In the past, I tried using the following methods to map MIDI tempo, each with its own pitfalls:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Using a keyboard mapping. Doesn&amp;#8217;t work, since Live simply sets the tempo to the maximum/minimum value.&lt;/li&gt;
+
+&lt;li&gt;Using a continuous controller. Behaves erratically, difficult to increase tempo in smaller amounts, and too easy to hit the wheel by accident and screw up the whole set.&lt;/li&gt;
+
+&lt;li&gt;Using a knob. Very difficult to increase the tempo in small amounts, especially with a large tempo range.&lt;/li&gt;
+
+&lt;li&gt;Using a fader. Impractical, since I need my faders for other mappings.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To use buttons, first program your MIDI controller to have the two buttons send out the same MIDI CC message. Then, map one of the buttons to the tempo by entering Live&amp;#8217;s mapping mode, clicking on the tempo box, and then pressing the button. Finally, program your MIDI controller such that the increase button always sends 1 sends as its value, and the decrease button always sends 127. Now, when you press a button, the tempo will increase/decrease by a small amount (usually ~.75 BPM, though it varies on your tempo range).&lt;/p&gt;
+
+&lt;p&gt;This may seem a bit counter-intuitive due to the 1/127 values, but at least it&amp;#8217;s documented. See the Ableton manual&amp;#8217;s section on &amp;#8220;Mapping to Relative MIDI Controllers&amp;#8221; for the full scoop. This means, btw, that you can also use the button trick to increase or decrease other controls as well, not just tempo.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>How to properly write raw PCM data asynchronously on iOS</title>
+    <link href="http://teragonaudio.com/article/How-to-properly-write-raw-PCM-data-asynchronously-on-iOS.html"/>
+    <updated>2010-07-29T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/How-to-properly-write-raw-PCM-data-asynchronously-on-iOS</id>
+    <content type="html">&lt;p&gt;My colleagues just fixed a huge show-stopper bug having to do with writing PCM data on the iPhone. We had an application which needed to write raw audio samples to disk from the microphone input, and it was causing audio playback to stutter approximately once every 30 seconds.&lt;/p&gt;
+
+&lt;p&gt;The problem: our app performs DSP algorithms on the iPhone&amp;#8217;s microphone signal, which we achieved by passing the incoming signal to an AudioUnit and then converting the raw samples from 16-bit integer to floating-point, which allowed us to directly adapt code from our VST plugins to the iPhone. Note that although the iPhone documentation allows you to create an AudioStreamBasicDescription with the kAudioFormatFlagIsFloat flag, this doesn&amp;#8217;t actually work on the iPhone, probably because it lacks a native FPU. So you need to use the kAudioFormatFlagIsSignedInteger flag instead and convert the samples by hand.&lt;/p&gt;
+
+&lt;p&gt;After processing the samples, we wanted to write them to a CAF file using the AudioFileWritePackets() call, which is part of the &lt;a href='http://developer.apple.com/iphone/library/documentation/musicaudio/Reference/AudioFileConvertRef/Reference/reference.html'&gt;Audio File Services API&lt;/a&gt;. This code worked fine on the iPhone Simulator, but on the actual hardware caused stuttering during playback. Our app is simultaneously playing and recording audio, and one would hear a bit of static caused by audio dropouts in the output stream. The first dropout occurred within the first 10 seconds of playback, and each subsequent dropout occurred almost exactly every 30 seconds thereafter. The dropouts occurred every 30 seconds on an iPhone 3G, where they were also most severe, but on the iPhone 3GS and iPhone 4, the dropouts were small (but nonetheless noticeable) and occurring in 30 second multiples but not necessarily every 30 seconds.&lt;/p&gt;
+
+&lt;p&gt;Naturally we thought the problem was due to the iPhone&amp;#8217;s limited I/O capabilities, and started using Instruments and other performance testing tools to try to diagnose the problem. However, it soon became clear that disk I/O was not causing the dropouts, since we ran a test where the output signal was synthesized using a basic sawtooth signal, which didn&amp;#8217;t touch the disk at all. And yet, the dropouts still occurred.&lt;/p&gt;
+
+&lt;p&gt;Although the AudioFileWritePackets() call has a flag to cache the audio, this has no effect on performance. Instead, the solution is to ditch the Audio File Services API and instead use the &lt;a href='http://developer.apple.com/iphone/library/documentation/MusicAudio/Reference/ExtendedAudioFileServicesReference/Reference/reference.html'&gt;Extended Audio File Services API&lt;/a&gt;. This API contains a function called &lt;a href='http://developer.apple.com/iphone/library/documentation/MusicAudio/Reference/ExtendedAudioFileServicesReference/Reference/reference.html#//apple_ref/c/func/ExtAudioFileWriteAsync'&gt;ExtAudioFileWriteAsync()&lt;/a&gt;, which as the name suggests, writes data to the given file asynchronously. This function allows for simultaneous audio playback and dumping PCM data without dropouts or other audio glitches, even on the iPhone 3G! Also, it spares the programmer the headache of having to make their program multi-threaded in order to have a low-priority thread to dump audio.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>How to make your own VST host</title>
+    <link href="http://teragonaudio.com/article/How-to-make-your-own-VST-host.html"/>
+    <updated>2010-03-15T00:00:00+01:00</updated>
+    <id>http://teragonaudio.com/article/How-to-make-your-own-VST-host</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Writing VST plugins is a lot of fun, but it&amp;#8217;s even more fun to write your own host which uses the wide variety of plugins already out there to do something original and new. Making your own VST host is not a trivial task, but the trickiest part is figuring out how to load the plugins and connect them to your code&amp;#8217;s callback functions. As the VST documentation is a bit sparse on the subject of hosting, this guide will assist you in setting up your own host.&lt;/p&gt;
+
+&lt;p&gt;This guide only covers loading the plugin and basic communication, and the language of choice here is C++. C# programmers should consider using the &lt;a href='http://www.codeplex.com/vstnet'&gt;VST.NET framework&lt;/a&gt;, and I&amp;#8217;m not sure what frameworks exist for other languages.&lt;/p&gt;
+
+&lt;p&gt;Also, it&amp;#8217;s worth noting that Teragon Audio has developed an &lt;a href='http://teragonaudio.github.com/MrsWatson'&gt;open-source VST host, MrsWatson&lt;/a&gt;. Feel free to look at the code and fork it for your own project! If you find yourself using a substantial portion of the MrsWatson source in your own code, please let me know so I can add a link to your project from the MrsWatson page.&lt;/p&gt;
+
+&lt;h2 id='code_conventions'&gt;Code conventions&lt;/h2&gt;
+
+&lt;p&gt;In the course of your development, you will probably require logging, error handling, etc. To simplify the code in this tutorial, I have simply written &amp;#8220;return -1&amp;#8221; or &amp;#8220;return NULL&amp;#8221; statements, but you should consider expanding this to log some info or handle the error.&lt;/p&gt;
+
+&lt;p&gt;Also, this tutorial is written for both Windows and Mac OSX developers. As such, there is a lot of platform-specific code, which you will probably need to box with #ifdef/#endif statements in the preprocessor.&lt;/p&gt;
+
+&lt;h2 id='setting_up_your_build_environment'&gt;Setting up your build environment&lt;/h2&gt;
+
+&lt;p&gt;You&amp;#8217;ll need to first download and install the following tools:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href='http://www.steinberg.net/en/company/3rd_party_developer.html'&gt;Steinberg&amp;#8217;s VST SDK&lt;/a&gt;, which requires you to make a &lt;a href='http://www.steinberg.net/en/company/3rd_party_developer/sdk_download_portal/create_3rd_party_developer_account.html'&gt;free Steinberg Developer account&lt;/a&gt;. This tutorial assumes you are working with the VST 2.4 SDK.&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://msdn.microsoft.com/vstudio/express/visualc/'&gt;Microsoft&amp;#8217;s Visual C++ 2010 Express&lt;/a&gt;, if you wish to support Windows.&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.microsoft.com/downloads/details.aspx?FamilyId=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB&amp;amp;displaylang=en'&gt;Microsoft&amp;#8217;s Platform SDK&lt;/a&gt;, again if you are developing on Windows.&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://developer.apple.com/programs/mac/'&gt;Xcode 4.x&lt;/a&gt;, if you are developing on Mac OS X.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id='project_configuration'&gt;Project configuration&lt;/h2&gt;
+
+&lt;p&gt;Aside from your project files, you need only to add the VST SDK headers into your project&amp;#8217;s include path. This includes the following files, which are located under the vstsdk2.4/pluginterfaces/vst2.x directory:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;aeffect.h&lt;/li&gt;
+
+&lt;li&gt;aeffectx.h&lt;/li&gt;
+
+&lt;li&gt;vsfxstore.h&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On both Windows and Mac OSX, you should probably configure your program to build as a 32-bit binary, simply because most VST plugins are not 64-bit compatible yet. On the Mac, this gets to be a bit hairy because Apple is working to deprecate Carbon, which is a 32-bit framework. If anyone out there has example code in C (not objective-C) to load a plugin from bundle without using Carbon, please let me know so I can update this article.&lt;/p&gt;
+
+&lt;h2 id='loading_the_vst_plugin'&gt;Loading the VST plugin&lt;/h2&gt;
+
+&lt;p&gt;After your host performs its own internal initialization routines, it is time to load the VST plugin from source. This procedure varies a bit depending on the platform, but the algorithm is fundamentally the same: find the plugin, load the dynamic library into memory, acquire the plugin&amp;#8217;s main address, and create a VST callback connection. These callbacks are defined function pointers which you should define in one of your project&amp;#8217;s header files, and are as follows:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;aeffectx.h&amp;quot;&lt;/span&gt;
+
+&lt;span class='c1'&gt;// C callbacks&lt;/span&gt;
+&lt;span class='k'&gt;extern&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='c1'&gt;// Main host callback&lt;/span&gt;
+  &lt;span class='n'&gt;VstIntPtr&lt;/span&gt; &lt;span class='n'&gt;VSTCALLBACK&lt;/span&gt; &lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;ptr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;opt&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='c1'&gt;// Plugin&amp;#39;s entry point&lt;/span&gt;
+&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;host&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='c1'&gt;// Plugin&amp;#39;s dispatcher function&lt;/span&gt;
+&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='n'&gt;VstIntPtr&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;dispatcherFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;opCode&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;ptr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;opt&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='c1'&gt;// Plugin&amp;#39;s getParameter() method&lt;/span&gt;
+&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;getParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='c1'&gt;// Plugin&amp;#39;s setParameter() method&lt;/span&gt;
+&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;setParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='c1'&gt;// Plugin&amp;#39;s processEvents() method&lt;/span&gt;
+&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;processEventsFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;VstEvents&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='c1'&gt;// Plugin&amp;#39;s process() method&lt;/span&gt;
+&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;processFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;On Windows, VST plugins are simply dynamically linked libraries (DLL&amp;#8217;s). The code for opening a DLL library in Windows is fairly simple:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;loadPlugin&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;vstPath&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;c:&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;wherever&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;the&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;plugin&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;is&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;located.vst&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+  &lt;span class='n'&gt;modulePtr&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;LoadLibrary&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPath&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;modulePtr&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Failed trying to load VST from &amp;#39;%s&amp;#39;, error %d&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+      &lt;span class='n'&gt;vstPath&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;GetLastError&lt;/span&gt;&lt;span class='p'&gt;());&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt;
+    &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;GetProcAddress&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;modulePtr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;VSTPluginMain&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='c1'&gt;// Instantiate the plugin&lt;/span&gt;
+  &lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;On Mac OSX, VST plugins are also dynamic libraries, but they are packaged as bundles. Your host can open these bundles through the Carbon API. On Mac OS9, VST plugins were packaged as CFM files, which has long since been deprecated, and it is highly unlikely that any modern VST host should need to support this format.&lt;/p&gt;
+
+&lt;p&gt;The procedure for opening a plugin under OSX is a bit more complex, but the code should be fairly straightforward. Keep in mind that although a VST plugin can be loaded from any location on disk, they are usually stored in either &lt;code&gt;/Library/Audio/Plug-Ins/VST&lt;/code&gt; or &lt;code&gt;$HOME/Library/Audio/Plug-Ins/VST&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anyways, to load the VST plugin on Mac OSX, that will look something like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;loadPlugin&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;hostCallbackFuncPtr&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;pluginPath&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;/wherever/the/plugin/is/located.vst&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Create a path to the bundle&lt;/span&gt;
+  &lt;span class='n'&gt;CFStringRef&lt;/span&gt; &lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;CFStringCreateWithCString&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='n'&gt;pluginPath&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kCFStringEncodingASCII&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='n'&gt;CFURLRef&lt;/span&gt; &lt;span class='n'&gt;bundleUrl&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;CFURLCreateWithFileSystemPath&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kCFAllocatorDefault&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kCFURLPOSIXPathStyle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundleUrl&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Couldn&amp;#39;t make URL reference for plugin&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Open the bundle&lt;/span&gt;
+  &lt;span class='n'&gt;CFBundleRef&lt;/span&gt; &lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;bundle&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;CFBundleCreate&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kCFAllocatorDefault&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;bundleUrl&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Couldn&amp;#39;t create bundle reference&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundleUrl&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;CFBundleGetFunctionPointerForName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+    &lt;span class='n'&gt;CFSTR&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;VSTPluginMain&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;));&lt;/span&gt;
+  &lt;span class='c1'&gt;// VST plugins previous to the 2.4 SDK used main_macho for the entry point name&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;CFBundleGetFunctionPointerForName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+      &lt;span class='n'&gt;CFSTR&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;main_macho&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;));&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Couldn&amp;#39;t get a pointer to plugin&amp;#39;s main()&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;CFBundleUnloadExecutable&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Plugin&amp;#39;s main() returns null&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;CFBundleUnloadExecutable&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Clean up&lt;/span&gt;
+  &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundleUrl&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You need to keep the bundle pointer around until the host is ready to unload the plugin. At this point, you call &lt;code&gt;CFBundleUnloadExecutable&lt;/code&gt; and then &lt;code&gt;CFRelease&lt;/code&gt; on the bundle&amp;#8217;s reference.&lt;/p&gt;
+
+&lt;h2 id='setting_up_plugin_callbacks'&gt;Setting up plugin callbacks&lt;/h2&gt;
+
+&lt;p&gt;At this point, you should now have successfully loaded the plugin into memory, and you can now establish the plugin dispatcher callbacks:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;initPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='c1'&gt;// Check plugin&amp;#39;s magic number&lt;/span&gt;
+  &lt;span class='c1'&gt;// If incorrect, then the file either was not loaded properly, is not a&lt;/span&gt;
+  &lt;span class='c1'&gt;// real VST plugin, or is otherwise corrupt.&lt;/span&gt;
+  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;magic&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;kEffectMagic&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Plugin&amp;#39;s magic number is bad&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Create dispatcher handle&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcherFuncPtr&lt;/span&gt; &lt;span class='n'&gt;dispatcher&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dispatcherFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Set up plugin callback functions&lt;/span&gt;
+  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;getParameter&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;getParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;getParameter&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;processFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;setParameter&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;setParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;setParameter&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='plugin_initialization'&gt;Plugin initialization&lt;/h2&gt;
+
+&lt;p&gt;At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;initPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effOpen&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='c1'&gt;// Set some default properties&lt;/span&gt;
+  &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;sampleRate&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mf'&gt;44100.0f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effSetSampleRate&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;sampleRate&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;blocksize&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;512&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effSetBlockSize&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;blocksize&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='n'&gt;resume&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='suspending_and_resuming'&gt;Suspending and resuming&lt;/h2&gt;
+
+&lt;p&gt;Calling the plugin&amp;#8217;s suspend and resume methods are a bit counter-intuitive, and are done like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;resumePlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effMainsChanged&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;suspendPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effMainsChanged&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='plugin_capabilities'&gt;Plugin capabilities&lt;/h2&gt;
+
+&lt;p&gt;The VST protocol uses &amp;#8220;canDo&amp;#8221; strings to define plugin capabilities, the most common of which are defined in audioeffectx.cpp in the PlugCanDos namespace near the top of the file. To ask a plugin if it supports one of these capabilities, make the following dispatcher call:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;bool&lt;/span&gt; &lt;span class='n'&gt;canPluginDo&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;canDoString&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effCanDo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;void&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;canDoString&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;&amp;gt;&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='host_capabilities'&gt;Host capabilities&lt;/h2&gt;
+
+&lt;p&gt;The plugin can also ask the host if it supports a given capability, which is done through the hostCallback() function defined above. The implementation of this file looks something like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='k'&gt;extern&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;VstIntPtr&lt;/span&gt; &lt;span class='n'&gt;VSTCALLBACK&lt;/span&gt; &lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;ptr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;opt&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;switch&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='nl'&gt;audioMasterVersion:&lt;/span&gt;
+      &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;2400&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='nl'&gt;audioMasterIdle:&lt;/span&gt;
+      &lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effEditIdle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='c1'&gt;// Handle other opcodes here... there will be lots of them&lt;/span&gt;
+    &lt;span class='k'&gt;default&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;
+      &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Plugin requested value of opcode %d&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+      &lt;span class='k'&gt;break&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The full list of opcodes is defined in aeffect.h (for the VST 1.x protocol) and aeffectx.h (for VST 2.x protocol). There are a lot of opcodes, and your application doesn&amp;#8217;t need to support them all, but you will soon figure out which ones are the most important through trial and error. Depending on the nature of the opcall, you will either be required to return a given integer value, call a method in the plugin&amp;#8217;s dispatcher, or fill the &lt;code&gt;*ptr&lt;/code&gt; pointer with some type of data. The VST SDK header files have fairly good documentation specifying what you need to do depending on the opcode.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href='http://teragonaudio.github.com/MrsWatson'&gt;MrsWatson source code&lt;/a&gt; also contains an example implementation of this function with the most common opcode cases.&lt;/p&gt;
+
+&lt;h2 id='processing_audio'&gt;Processing audio&lt;/h2&gt;
+
+&lt;p&gt;In the VST SDK 2.4, &lt;code&gt;processReplacing()&lt;/code&gt; became the new standard call. You may have to add in support to your host for the old style of &lt;code&gt;process()&lt;/code&gt; plugins, though there aren&amp;#8217;t so many plugins out there which still do this. To have the plugin process some audio:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processAudio&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+  &lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='c1'&gt;// Note: If you are processing an instrument, you should probably zero&lt;/span&gt;
+  &lt;span class='c1'&gt;// out the input channels first to avoid any accidental noise. If you&lt;/span&gt;
+  &lt;span class='c1'&gt;// are processing an effect, you should probably zero the values in the&lt;/span&gt;
+  &lt;span class='c1'&gt;// output channels. See the silenceChannel() function below.&lt;/span&gt;
+  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;silenceChannel&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;channelData&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;channel&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;channels&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='n'&gt;channel&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;frame&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;frame&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='n'&gt;frame&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='n'&gt;channelData&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;channel&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;frame&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.&lt;/p&gt;
+
+&lt;h2 id='sending_midi_messages'&gt;Sending MIDI messages&lt;/h2&gt;
+
+&lt;p&gt;Processing MIDI events is very similar to processing audio:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processMidi&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstEvents&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effProcessEvents&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The above events array should be allocated and properly initialized by the host to contain the MIDI events which the plugin will receive. The &lt;code&gt;VstEvent&lt;/code&gt; structure is defined in aeffectx.h, and there you will also find the respective &lt;code&gt;VstEvent&lt;/code&gt; types, all of which are deprecated except for &lt;code&gt;kVstMidiType&lt;/code&gt; and &lt;code&gt;kVstSysExType&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note that the plugin must support the &lt;code&gt;receiveVstMidiEvent&lt;/code&gt; canDo in order to process MIDI.&lt;/p&gt;
+
+&lt;h2 id='final_notes'&gt;Final Notes&lt;/h2&gt;
+
+&lt;p&gt;At this point, you should have a basic working host capable of loading and communicating with a VST plugin. As you continue your development, take care to thoroughly read the VST SDK header files and other associated documentation, as they will provide you with further hints as to the correct implementation. Also, you should take time to create good logging facilities in your host, particularly in the &lt;code&gt;hostCallback()&lt;/code&gt; method, as most plugin incompatibilities are usually triggered from some error there.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>How to make VST plugins in Visual Studio</title>
+    <link href="http://teragonaudio.com/article/How-to-make-VST-plugins-in-Visual-Studio.html"/>
+    <updated>2010-02-17T00:00:00+01:00</updated>
+    <id>http://teragonaudio.com/article/How-to-make-VST-plugins-in-Visual-Studio</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Microsoft announced that it would offer Visual Studio Express free of charge forever. Though the Express version of Visual C++ (hereafter referred to as VC++) has some limitations, it&amp;#8217;s still a great tool and it&amp;#8217;s nice to see Microsoft taking some steps to support the developers writing software for their platform. This document will describe how to get VC++ installed and building VST plugins. It assumes that you have prior experience developing VST plugins, and are familiar with the structure and layout of the VST SDK.&lt;/p&gt;
+
+&lt;p&gt;If you are trying to write VST&amp;#8217;s in a language other than C++, than this guide is not for you. There are lots of other frameworks out there for developing VST plugins in other languages (such as &lt;a href='http://vstnet.codeplex.com/'&gt;C#&lt;/a&gt;, &lt;a href='http://jvstwrapper.sourceforge.net/'&gt;Java&lt;/a&gt;, &lt;a href='https://github.com/thbar/opaz-plugdk'&gt;Ruby&lt;/a&gt; and &lt;a href='https://code.launchpad.net/pyvst'&gt;Python&lt;/a&gt;, just to name a few).&lt;/p&gt;
+
+&lt;p&gt;This tutorial will walk you through the process of installing and configuring the tools you&amp;#8217;ll need to build your own VST plugins with Visual Studio, and creating a simple VST plugin with optional support for a VSTGUI frontend. This guide only covers building VST 2.x plugins, as the 3.x SDK is not very widely supported yet.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: This guide was written for Visual Studio 2008, but I&amp;#8217;m in the process of updating it for VS2010. Note that some things may be slightly different.&lt;/p&gt;
+
+&lt;h2 id='download_required_packages'&gt;Download required packages&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href='http://www.steinberg.net/en/company/3rd_party_developer.html'&gt;Steinberg&amp;#8217;s VST SDK&lt;/a&gt;, which requires you to make a free &lt;a href='http://www.steinberg.net/en/company/3rd_party_developer/sdk_download_portal/create_3rd_party_developer_account.html'&gt;Steinberg Developer account&lt;/a&gt;.&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://msdn.microsoft.com/vstudio/express/visualc/'&gt;Microsoft&amp;#8217;s Visual C++&lt;/a&gt;. This guide uses the 2010 Express edition, as it was the latest version at time of writing.&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://msdn.microsoft.com/windows/bb980924.aspx'&gt;Microsoft&amp;#8217;s Platform SDK&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.libpng.org/pub/png/libpng.html'&gt;Libpng&lt;/a&gt; and &lt;a href='http://www.zlib.net/'&gt;zlib&lt;/a&gt; (optional)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id='install_visual_c'&gt;Install Visual C++&lt;/h2&gt;
+
+&lt;p&gt;If you already have a working installation of VC++, you can skip this step. Otherwise, download VC++ and install it. The standard installation should be OK, but you can choose to perform a custom installation if you don&amp;#8217;t want documentation or other stuff installed with it. Before installing VC++, you must remove any other versions of VC++ on your computer.&lt;/p&gt;
+
+&lt;p&gt;Next, download and install the Platform SDK, which will provide you with the standard header files and libraries you&amp;#8217;ll need to build software. You may choose to install VC++ anywhere on your hard drive, but the default location is &lt;code&gt;C:\Program Files\Microsoft Visual Studio 10.0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id='creating_your_project'&gt;Creating your project&lt;/h2&gt;
+
+&lt;p&gt;Create a new project of type &amp;#8220;Class Library&amp;#8221;, which we&amp;#8217;ll call YourProjectName. In the rest of this tutorial, whenever you see YourProjectName, replace that text with the actual name of your project.&lt;/p&gt;
+
+&lt;p&gt;In Visual Studio 9, you&amp;#8217;d make a new project with the wizard found at File -&amp;gt; New -&amp;gt; Project. Select Visual C++ -&amp;gt; Win32 Console Application, and choose a directory for your project. When the wizard opens, press &amp;#8220;Next&amp;#8221; and select DLL as the Application Type. Also check the &amp;#8220;Empty Project&amp;#8221; box.&lt;/p&gt;
+
+&lt;p&gt;If you prefer not to start with an empty project, then you can remove all of the files that VC++ creates for you, but keep the &lt;code&gt;resource.h&lt;/code&gt; and &lt;code&gt;YourProjectName.rc&lt;/code&gt; files, and remove any references to these files (such as &lt;code&gt;YourProjectName.ico&lt;/code&gt; being listed in the resource file).&lt;/p&gt;
+
+&lt;h2 id='add_source_code_to_the_project'&gt;Add Source Code to the Project&lt;/h2&gt;
+
+&lt;p&gt;If you already have source code for your plugin, simply add it to the project. Otherwise, you need to create the following files:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;YourProjectName.cpp&lt;/li&gt;
+
+&lt;li&gt;YourProjectName.h&lt;/li&gt;
+
+&lt;li&gt;resource.h (Only needed if building a plugin GUI)&lt;/li&gt;
+
+&lt;li&gt;YourProjectName.rc (Only needed if building a plugin GUI)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You will also need to add the files from the VST SDK, which includes everything under the &lt;code&gt;vstsdk2.4/public.sdk/source/vst2.x&lt;/code&gt; and &lt;code&gt;vstsdk2.4/pluginterfaces/vst2.x&lt;/code&gt; directories. I usually prefer to manually make groups for these directories and drag the files to the groups from Explorer, as dragging the entire &amp;#8220;vstsdk2.4&amp;#8221; directory to VS can cause it to choke when it tries to add a bunch of unused files to the project.&lt;/p&gt;
+
+&lt;p&gt;To start out with, the plugin&amp;#8217;s entry point header file (YourProjectName.h) should look something like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;audioeffectx.h&amp;quot;&lt;/span&gt;
+
+&lt;span class='cp'&gt;#define NUM_PARAMS 0&lt;/span&gt;
+
+&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;YourProjectName&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;public&lt;/span&gt; &lt;span class='n'&gt;AudioEffectX&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='k'&gt;public&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;
+  &lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='o'&gt;~&lt;/span&gt;&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+
+  &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The accompanying class definition (YourProjectName.cpp) should look something like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;YourProjectName.h&amp;quot;&lt;/span&gt;
+
+&lt;span class='n'&gt;AudioEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;createEffectInstance&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt;
+&lt;span class='n'&gt;AudioEffectX&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;NUM_PARAMS&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='o'&gt;::~&lt;/span&gt;&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+&lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='c1'&gt;// Real processing goes here&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Note that your project won&amp;#8217;t compile just yet, but be patient!&lt;/p&gt;
+
+&lt;p&gt;The above code samples are simply blank entry points which don&amp;#8217;t do anything exciting. The VST SDK offers lots of methods which you can override in order to do things like setting parameters, receiving MIDI messages, and so on. These things are beyond the scope of this tutorial; if you don&amp;#8217;t know what code to put inside of processReplacing, try checking out the &amp;#8220;again&amp;#8221; example distributed within the VST SDK in the &lt;code&gt;public.sdk/samples/vst2.x/again&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;You must also create a module definition file for your project, named YourProjectName.def. Usually this file is placed in the same directory as the VC++ project file, but you may place it somewhere else so long as this definition matches the Module Definition File settings in the Linker section of the project preferences. This is just a plain-text file which should contain the following text:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;LIBRARY YOURPROJECTNAME
+EXPORTS
+VSTPluginMain 
+main=VSTPluginMain
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='configure_build_settings'&gt;Configure build settings&lt;/h2&gt;
+
+&lt;p&gt;Go to the project settings either by right clicking on the project in the solution explorer and then selecting &amp;#8220;Properties&amp;#8221;. Make the following changes to the project for all build configurations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;General&lt;ul&gt;
+  &lt;li&gt;Character Set: Not Set&lt;/li&gt;
+  &lt;li&gt;Common Language Runtime Support: No Common Language Runtime Support&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;C/C++&lt;ul&gt;
+  &lt;li&gt;General:&lt;ul&gt;
+    &lt;li&gt;Additional Include Directories:&lt;ol&gt;
+      &lt;li&gt;&lt;pre&gt;&quot;$(ProjectDir)\vstsdk2.4&quot;&lt;/pre&gt; (or wherever you put the VST SDK)&lt;/li&gt;
+      &lt;li&gt;&lt;pre&gt;&quot;$(ProjectDir)\vstsdk2.4\public.sdk\source\vst2.x&quot;&lt;/pre&gt;&lt;/li&gt;
+      &lt;li&gt;Your source code directory&lt;/li&gt;
+      &lt;li&gt;Any other directories which you may have header files stored in
+        Global SDK directories, such as
+        &lt;pre&gt;C:\Program Files\Microsoft Platform SDK\Include\mfc&lt;/pre&gt;&lt;/li&gt;
+    &lt;/ol&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Preprocessor:&lt;ul&gt;
+    &lt;li&gt;Preprocessor Definitions:
+      &lt;pre&gt;WINDOWS;_WINDOWS;WIN32;_USRDLL;_USE_MATH_DEFINES&lt;/pre&gt;
+    &lt;/li&gt;
+    &lt;li&gt;For &lt;b&gt;Debug&lt;/b&gt; builds you may also wish to add
+      &lt;pre&gt;DEBUG=1;_DEBUG=1&lt;/pre&gt;&lt;/li&gt;
+    &lt;li&gt;If you wish to use PNG graphics for a VSTGUI frontend, add
+      &lt;pre&gt;USE_LIBPNG=1&lt;/pre&gt;&lt;/li&gt;
+    &lt;li&gt;To avoid lots of compiler nags and warnings, define
+      &lt;pre&gt;_CRT_SECURE_NO_DEPRECATE&lt;/pre&gt;&lt;/li&gt;
+    &lt;li&gt;In some cases, you may also need to define
+      &lt;pre&gt;VST_FORCE_DEPRECATED=0&lt;/pre&gt;&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Code Generation:&lt;ul&gt;
+    &lt;li&gt;Runtime Library: Multi-threaded. Multi-threaded debug may be used for
+      debug builds. This will build the VC++ common runtime library
+      statically into your plugin, increasing its size by approximately
+      200Kb. If you choose to use the CRL as a dynamic library, then you
+      must also distribute a copy of the CRL with your application, which
+      complicates deployment and distribution.&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Precompiled Headers:&lt;ul&gt;
+    &lt;li&gt;Precompiled Header: Not Using Precompiled Headers. Yeah, this makes
+      rebuilding a bit slower, but will avoid a bunch of weird errors as you
+      are getting your project set up. Once you get the project building you
+      can revisit this step.&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Linker&lt;ul&gt;
+  &lt;li&gt;General:&lt;ul&gt;
+    &lt;li&gt;Additional Library Directories: Add any other library directories
+      which your project depends on.&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;Input:&lt;ul&gt;
+    &lt;li&gt;Additional Dependencies (for &lt;b&gt;Release&lt;/b&gt; builds):&lt;ul&gt;
+      &lt;li&gt;libcmt.lib&lt;/li&gt;
+      &lt;li&gt;uuid.lib&lt;/li&gt;
+      &lt;li&gt;shell32.lib&lt;/li&gt;
+      &lt;li&gt;ole32.lib&lt;/li&gt;
+      &lt;li&gt;gdi32.lib&lt;/li&gt;
+      &lt;li&gt;User32.lib&lt;/li&gt;
+      &lt;li&gt;advapi32.lib&lt;/li&gt;
+      &lt;li&gt;zlib.lib (only if you are building with a GUI)&lt;/li&gt;
+      &lt;li&gt;libpng.lib (only if you are building with a GUI)&lt;/li&gt;
+    &lt;/ul&gt;&lt;/li&gt;
+    &lt;li&gt;Additional Dependencies (for &lt;b&gt;Debug&lt;/b&gt; builds):&lt;ul&gt;
+      &lt;li&gt;shell32.lib&lt;/li&gt;
+      &lt;li&gt;msvcrtd.lib&lt;/li&gt;
+      &lt;li&gt;ole32.lib&lt;/li&gt;
+      &lt;li&gt;gdi32.lib&lt;/li&gt;
+      &lt;li&gt;User32.lib&lt;/li&gt;
+      &lt;li&gt;advapi32.lib&lt;/li&gt;
+      &lt;li&gt;zlib.lib (only if you are building with a GUI)&lt;/li&gt;
+      &lt;li&gt;libpng.lib (only if you are building with a GUI)&lt;/li&gt;
+    &lt;/ul&gt;&lt;/li&gt;
+    &lt;li&gt;Ignore Specific Default Library (for &lt;b&gt;Release&lt;/b&gt; builds):&lt;ul&gt;
+      &lt;li&gt;msvcrt.lib&lt;/li&gt;
+      &lt;li&gt;libc.lib&lt;/li&gt;
+      &lt;li&gt;msvcrtd.lib&lt;/li&gt;
+      &lt;li&gt;libcd.lib&lt;/li&gt;
+      &lt;li&gt;libcmtd.lib&lt;/li&gt;
+    &lt;/ul&gt;&lt;/li&gt;
+    &lt;li&gt;Ignore Specific Default Library (for &lt;b&gt;Debug&lt;/b&gt; builds):&lt;ul&gt;
+      &lt;li&gt;libcmt.lib&lt;/li&gt;
+      &lt;li&gt;libcmtd.lib&lt;/li&gt;
+      &lt;li&gt;msvcrt.lib&lt;/li&gt;
+    &lt;/ul&gt;&lt;/li&gt;
+    &lt;li&gt;Module Definition File: YourProjectName.def&lt;/li&gt;
+  &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id='adding_support_for_vstgui_optional'&gt;Adding support for VSTGUI (optional)&lt;/h2&gt;
+
+&lt;p&gt;Include VSTGUI support in your plugin, simply add the VSTGUI files into your project in addition to your own editor class. At a very minimum, these are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;aeffguieditor.cpp&lt;/li&gt;
+
+&lt;li&gt;vstcontrols.cpp&lt;/li&gt;
+
+&lt;li&gt;vstgui.cpp&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='adding_support_for_png_graphics_optional'&gt;Adding support for PNG graphics (optional)&lt;/h2&gt;
+
+&lt;p&gt;If you would like to use PNG&amp;#8217;s in your plugin instead of BMP graphics, you will need to also build your own version of libpng and zlib. Download the source code for both libraries from the links given in the &amp;#8220;Requirements&amp;#8221; section of the document and place them in the same directory. There is a Visual Studio project for libpng which will also build zlib for you; it is located in the &lt;code&gt;projects\visualc71&lt;/code&gt; directory. In order to get the projects to build correctly, you&amp;#8217;ll need to rename the source code directories to simply &amp;#8220;libpng&amp;#8221; and &amp;#8220;zlib&amp;#8221;, removing the version numbers from the directory name.&lt;/p&gt;
+
+&lt;p&gt;When you open the project up, VC++ will run you through the project conversion wizard. Convert the project, and change the &amp;#8220;Runtime Library&amp;#8221; settings in both libpng and zlib to be Multi-Threaded, as described above. Unless this step is performed, the dependency on the CLR will be present in your project. Next, choose the LIB ASM Release or LIB Release build style and build the project; if you build the libraries as DLL&amp;#8217;s, you will be unable to statically link them into your plugin. The project should build ok, but throw a few errors when attempting to run the pngtest files. You can ignore these problems, as the libraries will still be correctly compiled and can now be linked to your project.&lt;/p&gt;
+
+&lt;p&gt;Visual Studio doesn&amp;#8217;t need to have the libraries within your actual project. Instead, place the libraries in a directory of your choosing and be sure to add this path to the list of &amp;#8220;Additional Library Directories&amp;#8221; in the Linker preferences for your project. You may choose to place the libraries in the same directory as the Microsoft Platform SDK stuff, but I personally prefer to keep them in a separate directory checked into version control. Also be sure to add references to &lt;code&gt;libpng.lib&lt;/code&gt; and &lt;code&gt;zlib.lib&lt;/code&gt; for your project in the &amp;#8220;Additional Dependencies&amp;#8221; section of your Linker preferences for the project.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;IDB_BITMAP1 PNG DISCARDABLE &amp;quot;../resources/bmp10001.png&amp;quot;
+IDB_BITMAP2 PNG DISCARDABLE &amp;quot;../resources/bmp10002.png&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The path must be relative to the location of the project file. Then, in &lt;code&gt;resource.h&lt;/code&gt;, add the following preprocessor definitions:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#define IDB_BITMAP1 1&lt;/span&gt;
+&lt;span class='cp'&gt;#define IDB_BITMAP2 2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you can use &lt;code&gt;IDB_BITMAP1&lt;/code&gt; (or any other name of your choosing) in your code when creating new CBitmap objects.&lt;/p&gt;
+
+&lt;h2 id='final_considerations'&gt;Final considerations&lt;/h2&gt;
+
+&lt;p&gt;VC++ ships with an optimizing compiler, but sometimes the compiler will choke on certain files and optimization must be disabled. In particular, I have experienced this with Laurent de Soras&amp;#8217; FFTReal libraries, since they are written as template classes. In general, however, optimization is a good idea, as is &amp;#8220;Eliminating Unreferenced Data&amp;#8221; (in the linker settings). The &amp;#8220;Whole Program Optimization&amp;#8221; setting appears tempting, but usually results in dozens of build errors and problems, so it&amp;#8217;s best to avoid this. Also, be sure to use the optimization features of this compiler and linker, as they can greatly boost runtime performance.&lt;/p&gt;
+
+&lt;p&gt;If you are developing on a multi-core machine, then you might need to disable parallel builds by setting the number of parallel builds to 1 under Tools -&amp;gt; Options -&amp;gt; Projects and Solutions -&amp;gt; Build and Run. In past verisons of VS, I noticed that the compiler does not always link projects in the order one would expect, which caused odd errors during linking about missing symbols. However, VS2010 users probably shouldn&amp;#8217;t need worry about this setting.&lt;/p&gt;
+
+&lt;h1 id='troubleshooting_common_problems'&gt;Troubleshooting Common Problems&lt;/h1&gt;
+
+&lt;h2 id='unresolved_symbols_when_linking'&gt;Unresolved symbols when linking&lt;/h2&gt;
+
+&lt;p&gt;Sometimes you may see errors like the following:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncat
+audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If you are getting errors in your build about missing symbols, make sure that you double- and triple-check the debug and release configurations for the library configuration above, since some of the libraries which are used in one build style are specifically excluded from the other. Also, when you close and re-open the project&amp;#8217;s build properties, VS always &amp;#8220;forgets&amp;#8221; the last selected build style, so remember to check and set this appropriately.&lt;/p&gt;
+
+&lt;p&gt;Also, you should check to make sure that the Platform SDK was correctly installed on your system and that your project&amp;#8217;s include and library paths are pointing to these directories.&lt;/p&gt;
+
+&lt;h2 id='unresolved_external_symbols'&gt;Unresolved external symbols&lt;/h2&gt;
+
+&lt;p&gt;If you are seeing errors like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;VST1.def : error LNK2001: unresolved external symbol VSTPluginMain
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Then this most likely means that the file which contains the given symbol is not correctly added to the VC++ solution.&lt;/p&gt;
+
+&lt;h2 id='linking_errors_with_symbols_defined_multiple_times'&gt;Linking errors with symbols defined multiple times&lt;/h2&gt;
+
+&lt;p&gt;This is undoubtedly one of the most frustrating problems which can occur when building a VST in VC++. If you are seeing error messages like this, then it most likely means there is some problem with your library configuration:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;msvcrtd.lib(ti_inst.obj) : error LNK2005: &amp;quot;private: __thiscall
+type_info::type_info(class type_info const &amp;amp;)&amp;quot; (??0type_info@@AAE@ABV0@@Z)
+already defined in libcmt.lib(typinfo.obj) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Most likely, the libcmt and msvcrt libraries are being included incorrectly in your build. Double-check the library list above, keeping in mind that the recommended configuration uses libcmt for &lt;strong&gt;release&lt;/strong&gt; builds only, and msvcrtd for &lt;strong&gt;debug&lt;/strong&gt; builds only.&lt;/p&gt;</content>
+  </entry>
+  
+</feed>
