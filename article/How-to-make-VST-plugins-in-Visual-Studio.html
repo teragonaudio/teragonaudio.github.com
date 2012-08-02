@@ -112,50 +112,21 @@
 <p>You will also need to add the files from the VST SDK, which includes everything under the <code>vstsdk2.4/public.sdk/source/vst2.x</code> and <code>vstsdk2.4/pluginterfaces/vst2.x</code> directories. I usually prefer to manually make groups for these directories and drag the files to the groups from Explorer, as dragging the entire &#8220;vstsdk2.4&#8221; directory to VS can cause it to choke when it tries to add a bunch of unused files to the project.</p>
 
 <p>To start out with, the plugin&#8217;s entry point header file (YourProjectName.h) should look something like this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='cp'>#include &quot;audioeffectx.h&quot;</span>
 
-<span class='cp'>#define NUM_PARAMS 0</span>
+<p>Liquid error: No such file or directory - posix_spawnp</p>
 
-<span class='k'>class</span> <span class='nc'>YourProjectName</span> <span class='o'>:</span> <span class='k'>public</span> <span class='n'>AudioEffectX</span> <span class='p'>{</span>
-<span class='k'>public</span><span class='o'>:</span>
-  <span class='n'>YourProjectName</span><span class='p'>(</span><span class='n'>audioMasterCallback</span> <span class='n'>audioMaster</span><span class='p'>);</span>
-  <span class='o'>~</span><span class='n'>YourProjectName</span><span class='p'>();</span>
-
-  <span class='kt'>void</span> <span class='n'>processReplacing</span><span class='p'>(</span><span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>sampleFrames</span><span class='p'>);</span>
-<span class='p'>};</span>
-</code></pre>
-</div>
 <p>The accompanying class definition (YourProjectName.cpp) should look something like this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='cp'>#include &quot;YourProjectName.h&quot;</span>
 
-<span class='n'>AudioEffect</span><span class='o'>*</span> <span class='n'>createEffectInstance</span><span class='p'>(</span><span class='n'>audioMasterCallback</span> <span class='n'>audioMaster</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>return</span> <span class='k'>new</span> <span class='n'>YourProjectName</span><span class='p'>(</span><span class='n'>audioMaster</span><span class='p'>);</span>
-<span class='p'>}</span>
+<p>Liquid error: No such file or directory - posix_spawnp</p>
 
-<span class='n'>YourProjectName</span><span class='o'>::</span><span class='n'>YourProjectName</span><span class='p'>(</span><span class='n'>audioMasterCallback</span> <span class='n'>audioMaster</span><span class='p'>)</span> <span class='o'>:</span>
-<span class='n'>AudioEffectX</span><span class='p'>(</span><span class='n'>audioMaster</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='n'>NUM_PARAMS</span><span class='p'>)</span> <span class='p'>{</span>
-<span class='p'>}</span>
-
-<span class='n'>YourProjectName</span><span class='o'>::~</span><span class='n'>YourProjectName</span><span class='p'>()</span> <span class='p'>{</span>
-<span class='p'>}</span>
-
-<span class='kt'>void</span> <span class='n'>YourProjectName</span><span class='o'>::</span><span class='n'>processReplacing</span><span class='p'>(</span><span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span>
-<span class='n'>VstInt32</span> <span class='n'>sampleFrames</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='c1'>// Real processing goes here</span>
-<span class='p'>}</span>
-</code></pre>
-</div>
 <p>Note that your project won&#8217;t compile just yet, but be patient!</p>
 
 <p>The above code samples are simply blank entry points which don&#8217;t do anything exciting. The VST SDK offers lots of methods which you can override in order to do things like setting parameters, receiving MIDI messages, and so on. These things are beyond the scope of this tutorial; if you don&#8217;t know what code to put inside of processReplacing, try checking out the &#8220;again&#8221; example distributed within the VST SDK in the <code>public.sdk/samples/vst2.x/again</code> folder.</p>
 
 <p>You must also create a module definition file for your project, named YourProjectName.def. Usually this file is placed in the same directory as the VC++ project file, but you may place it somewhere else so long as this definition matches the Module Definition File settings in the Linker section of the project preferences. This is just a plain-text file which should contain the following text:</p>
-<div class='highlight'><pre><code class='text'>LIBRARY YOURPROJECTNAME
-EXPORTS
-VSTPluginMain 
-main=VSTPluginMain
-</code></pre>
-</div>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
 <h2 id='configure_build_settings'>Configure build settings</h2>
 
 <p>Go to the project settings either by right clicking on the project in the solution explorer and then selecting &#8220;Properties&#8221;. Make the following changes to the project for all build configurations:</p>
@@ -265,15 +236,13 @@ main=VSTPluginMain
 <p>When you open the project up, VC++ will run you through the project conversion wizard. Convert the project, and change the &#8220;Runtime Library&#8221; settings in both libpng and zlib to be Multi-Threaded, as described above. Unless this step is performed, the dependency on the CLR will be present in your project. Next, choose the LIB ASM Release or LIB Release build style and build the project; if you build the libraries as DLL&#8217;s, you will be unable to statically link them into your plugin. The project should build ok, but throw a few errors when attempting to run the pngtest files. You can ignore these problems, as the libraries will still be correctly compiled and can now be linked to your project.</p>
 
 <p>Visual Studio doesn&#8217;t need to have the libraries within your actual project. Instead, place the libraries in a directory of your choosing and be sure to add this path to the list of &#8220;Additional Library Directories&#8221; in the Linker preferences for your project. You may choose to place the libraries in the same directory as the Microsoft Platform SDK stuff, but I personally prefer to keep them in a separate directory checked into version control. Also be sure to add references to <code>libpng.lib</code> and <code>zlib.lib</code> for your project in the &#8220;Additional Dependencies&#8221; section of your Linker preferences for the project.</p>
-<div class='highlight'><pre><code class='text'>IDB_BITMAP1 PNG DISCARDABLE &quot;../resources/bmp10001.png&quot;
-IDB_BITMAP2 PNG DISCARDABLE &quot;../resources/bmp10002.png&quot;
-</code></pre>
-</div>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
 <p>The path must be relative to the location of the project file. Then, in <code>resource.h</code>, add the following preprocessor definitions:</p>
-<div class='highlight'><pre><code class='cpp'><span class='cp'>#define IDB_BITMAP1 1</span>
-<span class='cp'>#define IDB_BITMAP2 2</span>
-</code></pre>
-</div>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
 <p>Now you can use <code>IDB_BITMAP1</code> (or any other name of your choosing) in your code when creating new CBitmap objects.</p>
 
 <h2 id='final_considerations'>Final considerations</h2>
@@ -287,10 +256,9 @@ IDB_BITMAP2 PNG DISCARDABLE &quot;../resources/bmp10002.png&quot;
 <h2 id='unresolved_symbols_when_linking'>Unresolved symbols when linking</h2>
 
 <p>Sometimes you may see errors like the following:</p>
-<div class='highlight'><pre><code class='text'>audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncat
-audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
-</code></pre>
-</div>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
 <p>If you are getting errors in your build about missing symbols, make sure that you double- and triple-check the debug and release configurations for the library configuration above, since some of the libraries which are used in one build style are specifically excluded from the other. Also, when you close and re-open the project&#8217;s build properties, VS always &#8220;forgets&#8221; the last selected build style, so remember to check and set this appropriately.</p>
 
 <p>Also, you should check to make sure that the Platform SDK was correctly installed on your system and that your project&#8217;s include and library paths are pointing to these directories.</p>
@@ -298,19 +266,17 @@ audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
 <h2 id='unresolved_external_symbols'>Unresolved external symbols</h2>
 
 <p>If you are seeing errors like this:</p>
-<div class='highlight'><pre><code class='text'>VST1.def : error LNK2001: unresolved external symbol VSTPluginMain
-</code></pre>
-</div>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
 <p>Then this most likely means that the file which contains the given symbol is not correctly added to the VC++ solution.</p>
 
 <h2 id='linking_errors_with_symbols_defined_multiple_times'>Linking errors with symbols defined multiple times</h2>
 
 <p>This is undoubtedly one of the most frustrating problems which can occur when building a VST in VC++. If you are seeing error messages like this, then it most likely means there is some problem with your library configuration:</p>
-<div class='highlight'><pre><code class='text'>msvcrtd.lib(ti_inst.obj) : error LNK2005: &quot;private: __thiscall
-type_info::type_info(class type_info const &amp;)&quot; (??0type_info@@AAE@ABV0@@Z)
-already defined in libcmt.lib(typinfo.obj) 
-</code></pre>
-</div>
+
+<p>Liquid error: No such file or directory - posix_spawnp</p>
+
 <p>Most likely, the libcmt and msvcrt libraries are being included incorrectly in your build. Double-check the library list above, keeping in mind that the recommended configuration uses libcmt for <strong>release</strong> builds only, and msvcrtd for <strong>debug</strong> builds only.</p>
         <!-- End content -->
       </div>									

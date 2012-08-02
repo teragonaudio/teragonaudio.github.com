@@ -3,7 +3,7 @@
   <title>Teragon Audio</title>
   <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
   <link href="http://teragonaudio.com"/>
-  <updated>2012-07-13T16:04:01+02:00</updated>
+  <updated>2012-08-02T14:34:54+02:00</updated>
   <id>http://teragonaudio.com/</id>
   <author>
     <name>Teragon Audio</name>
@@ -62,7 +62,7 @@
 
 &lt;p&gt;First, set up Traktor to use an external mixer, and route each deck to a separate output channel, as pictured below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' alt='Traktor External Output Routing' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Traktor External Output Routing' src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Even if you use an external mixer, you will still be able to use Traktor&amp;#8217;s own filters and effects.&lt;/p&gt;
 
@@ -70,11 +70,11 @@
 
 &lt;p&gt;Then, set up Live to record from the same channels:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' alt='Ableton Live Input Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img alt='Ableton Live Input Routings' src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, create audio tracks in Live to route the audio from Traktor:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' alt='Ableton Live Track Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img alt='Ableton Live Track Routings' src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Assuming that you have a multi-channel soundcard, you can now cue and route these output tracks as you would other tracks within Live.&lt;/p&gt;
 
@@ -88,23 +88,23 @@
 
 &lt;p&gt;MIDI clock is the sync mechanism described in most &lt;a href='http://www.youtube.com/watch?v=4xzldehIsCE&amp;amp;feature=youtube_gdata'&gt;other blogs and tutorials&lt;/a&gt;, and assuming that you don&amp;#8217;t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor&amp;#8217;s preferences and enable sending MIDI clock:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' alt='Traktor Enable MIDI Clock' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Traktor Enable MIDI Clock' src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;For some reason, this isn&amp;#8217;t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the &amp;#8220;Controller Manager&amp;#8221; section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' alt='Traktor Controller Manager' /&gt; &lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' alt='Traktor Controller Manager' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' /&gt; &lt;img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Just creating the device is enough; you don&amp;#8217;t need to make any mappings. You should now see MIDI clock messages in a utility like &lt;a href='http://www.snoize.com/MIDIMonitor/'&gt;MIDI Monitor&lt;/a&gt; or &lt;a href='http://www.midiox.com/'&gt;MIDI-OX&lt;/a&gt;. Now within Live, go to the MIDI preference pane and sync Live to Traktor&amp;#8217;s virtual MIDI output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' alt='Ableton Live MIDI clock sync' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Ableton Live MIDI clock sync' src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You will also need to enable the &amp;#8220;EXT&amp;#8221; button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor&amp;#8217;s.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' alt='Ableton Live External Sync' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Ableton Live External Sync' src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the &amp;#8220;Extended&amp;#8221; layout and enabling the &amp;#8220;TICK&amp;#8221; button. You will also need to cue at least one deck (doesn&amp;#8217;t matter which one) to hear the tick within Live.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' alt='Traktor metronome' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img alt='Traktor metronome' src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live&amp;#8217;s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.&lt;/p&gt;
 
@@ -150,7 +150,7 @@
 
 &lt;p&gt;I have managed to get the above setup working on a somewhat old Macbook Pro (a 2x2.66Ghz Core 2 Duo with 8Gb RAM) and a MOTU Ultralite MK3 using a buffer size of 256 samples at a sample rate of 44.1kHz). CPU usage is a constant ~40% per core, and I get no audio dropouts at all:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' alt='Screenshot of Traktor + Live' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img alt='Screenshot of Traktor + Live' src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I&amp;#8217;m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.&lt;/p&gt;
 
@@ -348,7 +348,7 @@
 
 &lt;p&gt;First, one needs to understand a bit of terminology. A sample is a single point of audio data, sometimes called a sample frame. A group of samples comes together to make a channel, just like the left &amp;amp; right channels of a stereo signal. Finally, a packet contains one or more channels.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ios-buffers.png' alt='Visual representation of iOS buffers' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Visual representation of iOS buffers' src='http://static.teragonaudio.com/ios-buffers.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You might be wondering why each channel only contains one frame. I don&amp;#8217;t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.&lt;/p&gt;
 
@@ -361,48 +361,9 @@
 &lt;h2 id='initializing_the_audio_subsystem'&gt;Initializing the audio subsystem&lt;/h2&gt;
 
 &lt;p&gt;When you are ready to start processing audio, you need to create your AudioUnit and get the system ready to start delivering you sound. That routine looks something like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='c1'&gt;// Yeah, global variables suck, but it&amp;#39;s kind of a necessary evil here&lt;/span&gt;
-&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 
-&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;initAudioSession&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt;&lt;span class='p'&gt;));&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionInitialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetActive&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;sessionCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioSessionCategory_PlayAndRecord&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_AudioCategory&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;sessionCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='n'&gt;Float32&lt;/span&gt; &lt;span class='n'&gt;bufferSizeInSec&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mf'&gt;0.02f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_PreferredHardwareIOBufferDuration&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;Float32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;bufferSizeInSec&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;overrideCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_OverrideCategoryDefaultToSpeaker&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;overrideCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// There are many properties you might want to provide callback functions for:&lt;/span&gt;
-  &lt;span class='c1'&gt;// kAudioSessionProperty_AudioRouteChange&lt;/span&gt;
-  &lt;span class='c1'&gt;// kAudioSessionProperty_OverrideCategoryEnableBluetoothInput&lt;/span&gt;
-  &lt;span class='c1'&gt;// etc.&lt;/span&gt;
-
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;Unlike audio on the desktop, you don&amp;#8217;t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you&amp;#8217;ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn&amp;#8217;t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.&lt;/p&gt;
 
 &lt;p&gt;If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn&amp;#8217;t need to worry about this.&lt;/p&gt;
@@ -410,148 +371,23 @@
 &lt;h2 id='setting_up_your_streams'&gt;Setting up your streams&lt;/h2&gt;
 
 &lt;p&gt;Before you can call AudioUnitInitialize(), you need to tell the system what type of streams you expect to have. That code will look something like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;initAudioStreams&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;audioCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioSessionCategory_PlayAndRecord&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_AudioCategory&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;audioCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-  
-  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;overrideCategory&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioSessionSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kAudioSessionProperty_OverrideCategoryDefaultToSpeaker&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;overrideCategory&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='c1'&gt;// Less serious error, but you may want to handle it and bail here&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-  
-  &lt;span class='n'&gt;AudioComponentDescription&lt;/span&gt; &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentType&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitType_Output&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentSubType&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitSubType_RemoteIO&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentManufacturer&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitManufacturer_Apple&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentFlags&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;componentFlagsMask&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;AudioComponent&lt;/span&gt; &lt;span class='n'&gt;component&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;AudioComponentFindNext&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;componentDescription&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioComponentInstanceNew&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;component&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
 
-  &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;enable&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioOutputUnitProperty_EnableIO&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='n'&gt;kAudioUnitScope_Input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;enable&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;UInt32&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='n'&gt;AURenderCallbackStruct&lt;/span&gt; &lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;inputProc&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;renderCallback&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='c1'&gt;// Render function&lt;/span&gt;
-  &lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;inputProcRefCon&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitProperty_SetRenderCallback&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='n'&gt;kAudioUnitScope_Input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;callbackStruct&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AURenderCallbackStruct&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='n'&gt;AudioStreamBasicDescription&lt;/span&gt; &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// You might want to replace this with a different value, but keep in mind that the&lt;/span&gt;
-  &lt;span class='c1'&gt;// iPhone does not support all sample rates. 8kHz, 22kHz, and 44.1kHz should all work.&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mSampleRate&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;44100&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// Yes, I know you probably want floating point samples, but the iPhone isn&amp;#39;t going&lt;/span&gt;
-  &lt;span class='c1'&gt;// to give you floating point data. You&amp;#39;ll need to make the conversion by hand from&lt;/span&gt;
-  &lt;span class='c1'&gt;// linear PCM &amp;lt;-&amp;gt; float.&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mFormatID&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioFormatLinearPCM&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// This part is important!&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mFormatFlags&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;kAudioFormatFlagIsSignedInteger&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;
-    &lt;span class='n'&gt;kAudioFormatFlagsNativeEndian&lt;/span&gt; &lt;span class='o'&gt;|&lt;/span&gt;
-    &lt;span class='n'&gt;kAudioFormatFlagIsPacked&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// Not sure if the iPhone supports recording &amp;gt;16-bit audio, but I doubt it.&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBitsPerChannel&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;16&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// 1 sample per frame, will always be 2 as long as 16-bit samples are being used&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBytesPerFrame&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// Record in mono. Use 2 for stereo, though I don&amp;#39;t think the iPhone does true stereo recording&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mChannelsPerFrame&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBytesPerPacket&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mBytesPerFrame&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;
-    &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mChannelsPerFrame&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// Always should be set to 1&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mFramesPerPacket&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='c1'&gt;// Always set to 0, just to be sure&lt;/span&gt;
-  &lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;mReserved&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// Set up input stream with above properties&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitProperty_StreamFormat&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='n'&gt;kAudioUnitScope_Input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// Ditto for the output stream, which we will be sending the processed audio to&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitSetProperty&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kAudioUnitProperty_StreamFormat&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-     &lt;span class='n'&gt;kAudioUnitScope_Output&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;streamDescription&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the &amp;#8220;gotchas&amp;#8221; that trips up many developers.&lt;/p&gt;
 
 &lt;h2 id='starting_audio_processing'&gt;Starting audio processing&lt;/h2&gt;
 
 &lt;p&gt;At this point, everything is ready to go and we can tell the OS to start recording and sending us data.&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;startAudioUnit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitInitialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
 
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioOutputUnitStart&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;h2 id='processing_data_in_the_callback'&gt;Processing data in the callback&lt;/h2&gt;
 
 &lt;p&gt;At this point, the system will now call your rendering function whenever it wants audio. Generally speaking, you will want to convert the linear PCM data to floating point, which is much easier to work with. However, in some cases (like an echo plugin), you may not necessarily need to manipulate the samples and can keep the data in linear PCM. The below example demonstrates floating point data conversion, but if you can do everything with integer math, it will of course be more efficient.&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;OSStatus&lt;/span&gt; &lt;span class='n'&gt;renderCallback&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;userData&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;AudioUnitRenderActionFlags&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;actionFlags&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-                        &lt;span class='k'&gt;const&lt;/span&gt; &lt;span class='n'&gt;AudioTimeStamp&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioTimeStamp&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;busNumber&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-                        &lt;span class='n'&gt;UInt32&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;AudioBufferList&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;buffers&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;OSStatus&lt;/span&gt; &lt;span class='n'&gt;status&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;AudioUnitRender&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;actionFlags&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;audioTimeStamp&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-    &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;buffers&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;status&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;status&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
 
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='c1'&gt;// Lazy initialization of this buffer is necessary because we don&amp;#39;t&lt;/span&gt;
-    &lt;span class='c1'&gt;// know the frame count until the first callback&lt;/span&gt;
-    &lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='n'&gt;SInt16&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;inputFrames&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;SInt16&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;buffers&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;mBuffers&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;mData&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// If your DSP code can use integers, then don&amp;#39;t bother converting to&lt;/span&gt;
-  &lt;span class='c1'&gt;// floats here, as it just wastes CPU. However, most DSP algorithms rely&lt;/span&gt;
-  &lt;span class='c1'&gt;// on floating point, and this is especially true if you are porting a&lt;/span&gt;
-  &lt;span class='c1'&gt;// VST/AU to iOS.&lt;/span&gt;
-  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;inputFrames&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;/&lt;/span&gt; &lt;span class='mf'&gt;32768f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// Now we have floating point sample data from the render callback! We&lt;/span&gt;
-  &lt;span class='c1'&gt;// can send it along for further processing, for example:&lt;/span&gt;
-  &lt;span class='c1'&gt;// plugin-&amp;gt;processReplacing(convertedSampleBuffer, NULL, sampleFrames);&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// Assuming that you have processed in place, we can now write the&lt;/span&gt;
-  &lt;span class='c1'&gt;// floating point data back to the input buffer.&lt;/span&gt;
-  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='c1'&gt;// Note that we multiply by 32767 here, NOT 32768. This is to avoid&lt;/span&gt;
-    &lt;span class='c1'&gt;// overflow errors (and thus clipping).&lt;/span&gt;
-    &lt;span class='n'&gt;inputFrames&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;SInt16&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;convertedSampleBuffer&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='mf'&gt;32767f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;Keep in mind that this code will be called several times &lt;em&gt;per second&lt;/em&gt;. Best development practices tend to advocate lazy initialization and runtime checks to keep readability. This is not necessarily a best practice when it comes to audio development, however. The name of the game here is to move anything you can out of render and into the initialize function. This includes things like allocating blocks of memory and calling system functions. In the best case, your render function will just loop over the input buffer and perform simple mathematical operations on the samples. Even a single malloc call (or even worse, an Obj-C &lt;code&gt;[[[ClassName alloc] init] autorelease]&lt;/code&gt; allocation) in the render call is likely to grind your code to a halt or leak memory like crazy.&lt;/p&gt;
 
 &lt;p&gt;Same goes with &lt;code&gt;NSLog()&lt;/code&gt; or &lt;code&gt;printf()&lt;/code&gt;. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I&amp;#8217;ve noticed that many iOS developers tend to use &lt;code&gt;NSLog()&lt;/code&gt; for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call &amp;#8220;quantum debugging&amp;#8221; where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don&amp;#8217;t occur in a &amp;#8220;clean&amp;#8221; environment.&lt;/p&gt;
@@ -559,20 +395,9 @@
 &lt;h2 id='shutting_down'&gt;Shutting down&lt;/h2&gt;
 
 &lt;p&gt;When you are finished processing audio, you need to tell the OS to stop processing and free the AudioUnit&amp;#8217;s resources.&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;stopProcessingAudio&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnit&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioOutputUnitStop&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
 
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AudioUnitUninitialize&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;h2 id='other_considerations'&gt;Other considerations&lt;/h2&gt;
 
 &lt;p&gt;As the point of this tutorial was to demonstrate audio buffer construction and realtime audio processing, I glossed over a lot of details. But these are things which you will probably need to take into consideration when developing an application. Before you start processing audio, you should probably:&lt;/p&gt;
@@ -697,11 +522,11 @@
 
 &lt;p&gt;If you are using iTunes for your own music libraries, you may not necessarily want to import all of your DJ tracks into it, particularly if you already have organized them to your liking. If this is the case, first disable &amp;#8220;Keep iTunes Media folder organized&amp;#8221; and &amp;#8220;Copy files to iTunes Media folder when adding to library&amp;#8221;. This will prevent iTunes from mangling your music or renaming tracks which already have an associated ASD file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' alt='iTunes Preferences as they (mostly) should appear' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='iTunes Preferences as they (mostly) should appear' src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, quit iTunes and restart it while holding down the &amp;#8220;alt/option&amp;#8221; key when you re-open the program. iTunes will now prompt you to either create a new library or to select an existing library. You will want to create a new library somewhere on your hard drive. Now, take your existing music library and move it to the folder you just created underneath iTunes Media/Music. Drag all of these folders into iTunes to import them into the new library. After importing, simply quit iTunes and re-open with the alt/option key to switch back to your main iTunes library.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_choose_library.png' alt='Choose iTunes Library dialog' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Choose iTunes Library dialog' src='http://static.nikreiman.com/ableton_itunes_choose_library.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;From this point, you may choose to take advantage of a special folder inside of the iTunes library named &amp;#8220;Automatically add to iTunes&amp;#8221;. Any tracks here are, as the name suggests, automatically added to the iTunes library when dropped in. However, they will be sorted under iTunes Media/Music/Artist Name/Album Name, which may clash with any existing organizational scheme in place. If you are planning on using this feature along with Live, add the files first before warping them, or else iTunes will copy only the music file and move the associated ASD file behind in a directory named &amp;#8220;Not Moved&amp;#8221;.&lt;/p&gt;
 
@@ -924,195 +749,53 @@
 &lt;h2 id='loading_the_vst_plugin'&gt;Loading the VST plugin&lt;/h2&gt;
 
 &lt;p&gt;After your host performs its own internal initialization routines, it is time to load the VST plugin from source. This procedure varies a bit depending on the platform, but the algorithm is fundamentally the same: find the plugin, load the dynamic library into memory, acquire the plugin&amp;#8217;s main address, and create a VST callback connection. These callbacks are defined function pointers which you should define in one of your project&amp;#8217;s header files, and are as follows:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;aeffectx.h&amp;quot;&lt;/span&gt;
 
-&lt;span class='c1'&gt;// C callbacks&lt;/span&gt;
-&lt;span class='k'&gt;extern&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-&lt;span class='c1'&gt;// Main host callback&lt;/span&gt;
-  &lt;span class='n'&gt;VstIntPtr&lt;/span&gt; &lt;span class='n'&gt;VSTCALLBACK&lt;/span&gt; &lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-    &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;ptr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;opt&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;span class='c1'&gt;// Plugin&amp;#39;s entry point&lt;/span&gt;
-&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;host&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='c1'&gt;// Plugin&amp;#39;s dispatcher function&lt;/span&gt;
-&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='n'&gt;VstIntPtr&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;dispatcherFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;opCode&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-  &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;ptr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;opt&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='c1'&gt;// Plugin&amp;#39;s getParameter() method&lt;/span&gt;
-&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;getParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='c1'&gt;// Plugin&amp;#39;s setParameter() method&lt;/span&gt;
-&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;setParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='c1'&gt;// Plugin&amp;#39;s processEvents() method&lt;/span&gt;
-&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;processEventsFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;VstEvents&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='c1'&gt;// Plugin&amp;#39;s process() method&lt;/span&gt;
-&lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;processFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-  &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;On Windows, VST plugins are simply dynamically linked libraries (DLL&amp;#8217;s). The code for opening a DLL library in Windows is fairly simple:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;loadPlugin&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;vstPath&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;c:&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;wherever&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;the&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;plugin&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;is&lt;/span&gt;&lt;span class='se'&gt;\\&lt;/span&gt;&lt;span class='s'&gt;located.vst&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 
-  &lt;span class='n'&gt;modulePtr&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;LoadLibrary&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPath&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;modulePtr&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Failed trying to load VST from &amp;#39;%s&amp;#39;, error %d&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-      &lt;span class='n'&gt;vstPath&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;GetLastError&lt;/span&gt;&lt;span class='p'&gt;());&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt;
-    &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;GetProcAddress&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;modulePtr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;VSTPluginMain&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='c1'&gt;// Instantiate the plugin&lt;/span&gt;
-  &lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;On Mac OSX, VST plugins are also dynamic libraries, but they are packaged as bundles. Your host can open these bundles through the Carbon API. On Mac OS9, VST plugins were packaged as CFM files, which has long since been deprecated, and it is highly unlikely that any modern VST host should need to support this format.&lt;/p&gt;
 
 &lt;p&gt;The procedure for opening a plugin under OSX is a bit more complex, but the code should be fairly straightforward. Keep in mind that although a VST plugin can be loaded from any location on disk, they are usually stored in either &lt;code&gt;/Library/Audio/Plug-Ins/VST&lt;/code&gt; or &lt;code&gt;$HOME/Library/Audio/Plug-Ins/VST&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Anyways, to load the VST plugin on Mac OSX, that will look something like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;loadPlugin&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;hostCallbackFuncPtr&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;pluginPath&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;/wherever/the/plugin/is/located.vst&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 
-  &lt;span class='c1'&gt;// Create a path to the bundle&lt;/span&gt;
-  &lt;span class='n'&gt;CFStringRef&lt;/span&gt; &lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;CFStringCreateWithCString&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-    &lt;span class='n'&gt;pluginPath&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kCFStringEncodingASCII&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='n'&gt;CFURLRef&lt;/span&gt; &lt;span class='n'&gt;bundleUrl&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;CFURLCreateWithFileSystemPath&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kCFAllocatorDefault&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-    &lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;kCFURLPOSIXPathStyle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kc'&gt;true&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundleUrl&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Couldn&amp;#39;t make URL reference for plugin&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='c1'&gt;// Open the bundle&lt;/span&gt;
-  &lt;span class='n'&gt;CFBundleRef&lt;/span&gt; &lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;bundle&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;CFBundleCreate&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;kCFAllocatorDefault&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;bundleUrl&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Couldn&amp;#39;t create bundle reference&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundleUrl&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;CFBundleGetFunctionPointerForName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-    &lt;span class='n'&gt;CFSTR&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;VSTPluginMain&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;));&lt;/span&gt;
-  &lt;span class='c1'&gt;// VST plugins previous to the 2.4 SDK used main_macho for the entry point name&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;vstPluginFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;CFBundleGetFunctionPointerForName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-      &lt;span class='n'&gt;CFSTR&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;main_macho&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;));&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;mainEntryPoint&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Couldn&amp;#39;t get a pointer to plugin&amp;#39;s main()&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='n'&gt;CFBundleUnloadExecutable&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Plugin&amp;#39;s main() returns null&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='n'&gt;CFBundleUnloadExecutable&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundle&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-
-  &lt;span class='c1'&gt;// Clean up&lt;/span&gt;
-  &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;pluginPathStringRef&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='n'&gt;CFRelease&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;bundleUrl&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;You need to keep the bundle pointer around until the host is ready to unload the plugin. At this point, you call &lt;code&gt;CFBundleUnloadExecutable&lt;/code&gt; and then &lt;code&gt;CFRelease&lt;/code&gt; on the bundle&amp;#8217;s reference.&lt;/p&gt;
 
 &lt;h2 id='setting_up_plugin_callbacks'&gt;Setting up plugin callbacks&lt;/h2&gt;
 
 &lt;p&gt;At this point, you should now have successfully loaded the plugin into memory, and you can now establish the plugin dispatcher callbacks:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;initPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='c1'&gt;// Check plugin&amp;#39;s magic number&lt;/span&gt;
-  &lt;span class='c1'&gt;// If incorrect, then the file either was not loaded properly, is not a&lt;/span&gt;
-  &lt;span class='c1'&gt;// real VST plugin, or is otherwise corrupt.&lt;/span&gt;
-  &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;magic&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='n'&gt;kEffectMagic&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Plugin&amp;#39;s magic number is bad&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
 
-  &lt;span class='c1'&gt;// Create dispatcher handle&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcherFuncPtr&lt;/span&gt; &lt;span class='n'&gt;dispatcher&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dispatcherFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='c1'&gt;// Set up plugin callback functions&lt;/span&gt;
-  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;getParameter&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;getParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;getParameter&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;processFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;setParameter&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;setParameterFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;setParameter&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;h2 id='plugin_initialization'&gt;Plugin initialization&lt;/h2&gt;
 
 &lt;p&gt;At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;initPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effOpen&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 
-  &lt;span class='c1'&gt;// Set some default properties&lt;/span&gt;
-  &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;sampleRate&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mf'&gt;44100.0f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effSetSampleRate&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;sampleRate&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;blocksize&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;512&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effSetBlockSize&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;blocksize&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-  &lt;span class='n'&gt;resume&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;h2 id='suspending_and_resuming'&gt;Suspending and resuming&lt;/h2&gt;
 
 &lt;p&gt;Calling the plugin&amp;#8217;s suspend and resume methods are a bit counter-intuitive, and are done like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;resumePlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effMainsChanged&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
 
-&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;suspendPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effMainsChanged&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;h2 id='plugin_capabilities'&gt;Plugin capabilities&lt;/h2&gt;
 
 &lt;p&gt;The VST protocol uses &amp;#8220;canDo&amp;#8221; strings to define plugin capabilities, the most common of which are defined in audioeffectx.cpp in the PlugCanDos namespace near the top of the file. To ask a plugin if it supports one of these capabilities, make the following dispatcher call:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;bool&lt;/span&gt; &lt;span class='n'&gt;canPluginDo&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;canDoString&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effCanDo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;void&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;canDoString&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;&amp;gt;&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;h2 id='host_capabilities'&gt;Host capabilities&lt;/h2&gt;
 
 &lt;p&gt;The plugin can also ask the host if it supports a given capability, which is done through the hostCallback() function defined above. The implementation of this file looks something like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='k'&gt;extern&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;C&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-&lt;span class='n'&gt;VstIntPtr&lt;/span&gt; &lt;span class='n'&gt;VSTCALLBACK&lt;/span&gt; &lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-  &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;value&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;ptr&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='n'&gt;opt&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='k'&gt;switch&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='nl'&gt;audioMasterVersion:&lt;/span&gt;
-      &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;2400&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-    &lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='nl'&gt;audioMasterIdle:&lt;/span&gt;
-      &lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effEditIdle&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-    &lt;span class='c1'&gt;// Handle other opcodes here... there will be lots of them&lt;/span&gt;
-    &lt;span class='k'&gt;default&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;
-      &lt;span class='n'&gt;printf&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Plugin requested value of opcode %d&lt;/span&gt;&lt;span class='se'&gt;\n&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;opcode&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-      &lt;span class='k'&gt;break&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;The full list of opcodes is defined in aeffect.h (for the VST 1.x protocol) and aeffectx.h (for VST 2.x protocol). There are a lot of opcodes, and your application doesn&amp;#8217;t need to support them all, but you will soon figure out which ones are the most important through trial and error. Depending on the nature of the opcall, you will either be required to return a given integer value, call a method in the plugin&amp;#8217;s dispatcher, or fill the &lt;code&gt;*ptr&lt;/code&gt; pointer with some type of data. The VST SDK header files have fairly good documentation specifying what you need to do depending on the opcode.&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href='http://teragonaudio.github.com/MrsWatson'&gt;MrsWatson source code&lt;/a&gt; also contains an example implementation of this function with the most common opcode cases.&lt;/p&gt;
@@ -1120,34 +803,17 @@
 &lt;h2 id='processing_audio'&gt;Processing audio&lt;/h2&gt;
 
 &lt;p&gt;In the VST SDK 2.4, &lt;code&gt;processReplacing()&lt;/code&gt; became the new standard call. You may have to add in support to your host for the old style of &lt;code&gt;process()&lt;/code&gt; plugins, though there aren&amp;#8217;t so many plugins out there which still do this. To have the plugin process some audio:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processAudio&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-  &lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='c1'&gt;// Note: If you are processing an instrument, you should probably zero&lt;/span&gt;
-  &lt;span class='c1'&gt;// out the input channels first to avoid any accidental noise. If you&lt;/span&gt;
-  &lt;span class='c1'&gt;// are processing an effect, you should probably zero the values in the&lt;/span&gt;
-  &lt;span class='c1'&gt;// output channels. See the silenceChannel() function below.&lt;/span&gt;
-  &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
 
-&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;silenceChannel&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;channelData&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;channel&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;channels&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='n'&gt;channel&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-    &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;frame&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;frame&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='n'&gt;frame&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-      &lt;span class='n'&gt;channelData&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;channel&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;frame&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
-    &lt;span class='p'&gt;}&lt;/span&gt;
-  &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.&lt;/p&gt;
 
 &lt;h2 id='sending_midi_messages'&gt;Sending MIDI messages&lt;/h2&gt;
 
 &lt;p&gt;Processing MIDI events is very similar to processing audio:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processMidi&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstEvents&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effProcessEvents&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;The above events array should be allocated and properly initialized by the host to contain the MIDI events which the plugin will receive. The &lt;code&gt;VstEvent&lt;/code&gt; structure is defined in aeffectx.h, and there you will also find the respective &lt;code&gt;VstEvent&lt;/code&gt; types, all of which are deprecated except for &lt;code&gt;kVstMidiType&lt;/code&gt; and &lt;code&gt;kVstSysExType&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Note that the plugin must support the &lt;code&gt;receiveVstMidiEvent&lt;/code&gt; canDo in order to process MIDI.&lt;/p&gt;
@@ -1215,50 +881,21 @@
 &lt;p&gt;You will also need to add the files from the VST SDK, which includes everything under the &lt;code&gt;vstsdk2.4/public.sdk/source/vst2.x&lt;/code&gt; and &lt;code&gt;vstsdk2.4/pluginterfaces/vst2.x&lt;/code&gt; directories. I usually prefer to manually make groups for these directories and drag the files to the groups from Explorer, as dragging the entire &amp;#8220;vstsdk2.4&amp;#8221; directory to VS can cause it to choke when it tries to add a bunch of unused files to the project.&lt;/p&gt;
 
 &lt;p&gt;To start out with, the plugin&amp;#8217;s entry point header file (YourProjectName.h) should look something like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;audioeffectx.h&amp;quot;&lt;/span&gt;
 
-&lt;span class='cp'&gt;#define NUM_PARAMS 0&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;YourProjectName&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;public&lt;/span&gt; &lt;span class='n'&gt;AudioEffectX&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-&lt;span class='k'&gt;public&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;
-  &lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-  &lt;span class='o'&gt;~&lt;/span&gt;&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
-
-  &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;The accompanying class definition (YourProjectName.cpp) should look something like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;YourProjectName.h&amp;quot;&lt;/span&gt;
 
-&lt;span class='n'&gt;AudioEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;createEffectInstance&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
 
-&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMasterCallback&lt;/span&gt; &lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt;
-&lt;span class='n'&gt;AudioEffectX&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;audioMaster&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;NUM_PARAMS&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-
-&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='o'&gt;::~&lt;/span&gt;&lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-
-&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;YourProjectName&lt;/span&gt;&lt;span class='o'&gt;::&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
-&lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
-  &lt;span class='c1'&gt;// Real processing goes here&lt;/span&gt;
-&lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 &lt;p&gt;Note that your project won&amp;#8217;t compile just yet, but be patient!&lt;/p&gt;
 
 &lt;p&gt;The above code samples are simply blank entry points which don&amp;#8217;t do anything exciting. The VST SDK offers lots of methods which you can override in order to do things like setting parameters, receiving MIDI messages, and so on. These things are beyond the scope of this tutorial; if you don&amp;#8217;t know what code to put inside of processReplacing, try checking out the &amp;#8220;again&amp;#8221; example distributed within the VST SDK in the &lt;code&gt;public.sdk/samples/vst2.x/again&lt;/code&gt; folder.&lt;/p&gt;
 
 &lt;p&gt;You must also create a module definition file for your project, named YourProjectName.def. Usually this file is placed in the same directory as the VC++ project file, but you may place it somewhere else so long as this definition matches the Module Definition File settings in the Linker section of the project preferences. This is just a plain-text file which should contain the following text:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;LIBRARY YOURPROJECTNAME
-EXPORTS
-VSTPluginMain 
-main=VSTPluginMain
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;h2 id='configure_build_settings'&gt;Configure build settings&lt;/h2&gt;
 
 &lt;p&gt;Go to the project settings either by right clicking on the project in the solution explorer and then selecting &amp;#8220;Properties&amp;#8221;. Make the following changes to the project for all build configurations:&lt;/p&gt;
@@ -1368,15 +1005,13 @@ main=VSTPluginMain
 &lt;p&gt;When you open the project up, VC++ will run you through the project conversion wizard. Convert the project, and change the &amp;#8220;Runtime Library&amp;#8221; settings in both libpng and zlib to be Multi-Threaded, as described above. Unless this step is performed, the dependency on the CLR will be present in your project. Next, choose the LIB ASM Release or LIB Release build style and build the project; if you build the libraries as DLL&amp;#8217;s, you will be unable to statically link them into your plugin. The project should build ok, but throw a few errors when attempting to run the pngtest files. You can ignore these problems, as the libraries will still be correctly compiled and can now be linked to your project.&lt;/p&gt;
 
 &lt;p&gt;Visual Studio doesn&amp;#8217;t need to have the libraries within your actual project. Instead, place the libraries in a directory of your choosing and be sure to add this path to the list of &amp;#8220;Additional Library Directories&amp;#8221; in the Linker preferences for your project. You may choose to place the libraries in the same directory as the Microsoft Platform SDK stuff, but I personally prefer to keep them in a separate directory checked into version control. Also be sure to add references to &lt;code&gt;libpng.lib&lt;/code&gt; and &lt;code&gt;zlib.lib&lt;/code&gt; for your project in the &amp;#8220;Additional Dependencies&amp;#8221; section of your Linker preferences for the project.&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;IDB_BITMAP1 PNG DISCARDABLE &amp;quot;../resources/bmp10001.png&amp;quot;
-IDB_BITMAP2 PNG DISCARDABLE &amp;quot;../resources/bmp10002.png&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;The path must be relative to the location of the project file. Then, in &lt;code&gt;resource.h&lt;/code&gt;, add the following preprocessor definitions:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#define IDB_BITMAP1 1&lt;/span&gt;
-&lt;span class='cp'&gt;#define IDB_BITMAP2 2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;Now you can use &lt;code&gt;IDB_BITMAP1&lt;/code&gt; (or any other name of your choosing) in your code when creating new CBitmap objects.&lt;/p&gt;
 
 &lt;h2 id='final_considerations'&gt;Final considerations&lt;/h2&gt;
@@ -1390,10 +1025,9 @@ IDB_BITMAP2 PNG DISCARDABLE &amp;quot;../resources/bmp10002.png&amp;quot;
 &lt;h2 id='unresolved_symbols_when_linking'&gt;Unresolved symbols when linking&lt;/h2&gt;
 
 &lt;p&gt;Sometimes you may see errors like the following:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncat
-audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;If you are getting errors in your build about missing symbols, make sure that you double- and triple-check the debug and release configurations for the library configuration above, since some of the libraries which are used in one build style are specifically excluded from the other. Also, when you close and re-open the project&amp;#8217;s build properties, VS always &amp;#8220;forgets&amp;#8221; the last selected build style, so remember to check and set this appropriately.&lt;/p&gt;
 
 &lt;p&gt;Also, you should check to make sure that the Platform SDK was correctly installed on your system and that your project&amp;#8217;s include and library paths are pointing to these directories.&lt;/p&gt;
@@ -1401,19 +1035,17 @@ audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
 &lt;h2 id='unresolved_external_symbols'&gt;Unresolved external symbols&lt;/h2&gt;
 
 &lt;p&gt;If you are seeing errors like this:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;VST1.def : error LNK2001: unresolved external symbol VSTPluginMain
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;Then this most likely means that the file which contains the given symbol is not correctly added to the VC++ solution.&lt;/p&gt;
 
 &lt;h2 id='linking_errors_with_symbols_defined_multiple_times'&gt;Linking errors with symbols defined multiple times&lt;/h2&gt;
 
 &lt;p&gt;This is undoubtedly one of the most frustrating problems which can occur when building a VST in VC++. If you are seeing error messages like this, then it most likely means there is some problem with your library configuration:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;msvcrtd.lib(ti_inst.obj) : error LNK2005: &amp;quot;private: __thiscall
-type_info::type_info(class type_info const &amp;amp;)&amp;quot; (??0type_info@@AAE@ABV0@@Z)
-already defined in libcmt.lib(typinfo.obj) 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;p&gt;Liquid error: No such file or directory - posix_spawnp&lt;/p&gt;
+
 &lt;p&gt;Most likely, the libcmt and msvcrt libraries are being included incorrectly in your build. Double-check the library list above, keeping in mind that the recommended configuration uses libcmt for &lt;strong&gt;release&lt;/strong&gt; builds only, and msvcrtd for &lt;strong&gt;debug&lt;/strong&gt; builds only.&lt;/p&gt;</content>
   </entry>
   
