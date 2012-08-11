@@ -84,9 +84,48 @@
 <h2 id='initializing_the_audio_subsystem'>Initializing the audio subsystem</h2>
 
 <p>When you are ready to start processing audio, you need to create your AudioUnit and get the system ready to start delivering you sound. That routine looks something like this:</p>
+<div class='highlight'><pre><code class='cpp'><span class='c1'>// Yeah, global variables suck, but it&#39;s kind of a necessary evil here</span>
+<span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
+<span class='kt'>float</span> <span class='o'>*</span><span class='n'>convertedSampleBuffer</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+<span class='kt'>int</span> <span class='n'>initAudioSession</span><span class='p'>()</span> <span class='p'>{</span>
+  <span class='n'>audioUnit</span> <span class='o'>=</span> <span class='p'>(</span><span class='n'>AudioUnit</span><span class='o'>*</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='n'>AudioUnit</span><span class='p'>));</span>
 
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionInitialize</span><span class='p'>(</span><span class='nb'>NULL</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetActive</span><span class='p'>(</span><span class='kc'>true</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='n'>UInt32</span> <span class='n'>sessionCategory</span> <span class='o'>=</span> <span class='n'>kAudioSessionCategory_PlayAndRecord</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetProperty</span><span class='p'>(</span><span class='n'>kAudioSessionProperty_AudioCategory</span><span class='p'>,</span>
+     <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>UInt32</span><span class='p'>),</span> <span class='o'>&amp;</span><span class='n'>sessionCategory</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='n'>Float32</span> <span class='n'>bufferSizeInSec</span> <span class='o'>=</span> <span class='mf'>0.02f</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetProperty</span><span class='p'>(</span><span class='n'>kAudioSessionProperty_PreferredHardwareIOBufferDuration</span><span class='p'>,</span>
+     <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>Float32</span><span class='p'>),</span> <span class='o'>&amp;</span><span class='n'>bufferSizeInSec</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='n'>UInt32</span> <span class='n'>overrideCategory</span> <span class='o'>=</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetProperty</span><span class='p'>(</span><span class='n'>kAudioSessionProperty_OverrideCategoryDefaultToSpeaker</span><span class='p'>,</span>
+     <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>UInt32</span><span class='p'>),</span> <span class='o'>&amp;</span><span class='n'>overrideCategory</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='c1'>// There are many properties you might want to provide callback functions for:</span>
+  <span class='c1'>// kAudioSessionProperty_AudioRouteChange</span>
+  <span class='c1'>// kAudioSessionProperty_OverrideCategoryEnableBluetoothInput</span>
+  <span class='c1'>// etc.</span>
+
+  <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
 <p>Unlike audio on the desktop, you don&#8217;t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you&#8217;ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn&#8217;t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.</p>
 
 <p>If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn&#8217;t need to worry about this.</p>
@@ -94,23 +133,148 @@
 <h2 id='setting_up_your_streams'>Setting up your streams</h2>
 
 <p>Before you can call AudioUnitInitialize(), you need to tell the system what type of streams you expect to have. That code will look something like this:</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>initAudioStreams</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='n'>UInt32</span> <span class='n'>audioCategory</span> <span class='o'>=</span> <span class='n'>kAudioSessionCategory_PlayAndRecord</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetProperty</span><span class='p'>(</span><span class='n'>kAudioSessionProperty_AudioCategory</span><span class='p'>,</span>
+     <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>UInt32</span><span class='p'>),</span> <span class='o'>&amp;</span><span class='n'>audioCategory</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+  
+  <span class='n'>UInt32</span> <span class='n'>overrideCategory</span> <span class='o'>=</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetProperty</span><span class='p'>(</span><span class='n'>kAudioSessionProperty_OverrideCategoryDefaultToSpeaker</span><span class='p'>,</span>
+     <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>UInt32</span><span class='p'>),</span> <span class='o'>&amp;</span><span class='n'>overrideCategory</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='c1'>// Less serious error, but you may want to handle it and bail here</span>
+  <span class='p'>}</span>
+  
+  <span class='n'>AudioComponentDescription</span> <span class='n'>componentDescription</span><span class='p'>;</span>
+  <span class='n'>componentDescription</span><span class='p'>.</span><span class='n'>componentType</span> <span class='o'>=</span> <span class='n'>kAudioUnitType_Output</span><span class='p'>;</span>
+  <span class='n'>componentDescription</span><span class='p'>.</span><span class='n'>componentSubType</span> <span class='o'>=</span> <span class='n'>kAudioUnitSubType_RemoteIO</span><span class='p'>;</span>
+  <span class='n'>componentDescription</span><span class='p'>.</span><span class='n'>componentManufacturer</span> <span class='o'>=</span> <span class='n'>kAudioUnitManufacturer_Apple</span><span class='p'>;</span>
+  <span class='n'>componentDescription</span><span class='p'>.</span><span class='n'>componentFlags</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span>
+  <span class='n'>componentDescription</span><span class='p'>.</span><span class='n'>componentFlagsMask</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span>
+  <span class='n'>AudioComponent</span> <span class='n'>component</span> <span class='o'>=</span> <span class='n'>AudioComponentFindNext</span><span class='p'>(</span><span class='nb'>NULL</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>componentDescription</span><span class='p'>);</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioComponentInstanceNew</span><span class='p'>(</span><span class='n'>component</span><span class='p'>,</span> <span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+  <span class='n'>UInt32</span> <span class='n'>enable</span> <span class='o'>=</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitSetProperty</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>,</span> <span class='n'>kAudioOutputUnitProperty_EnableIO</span><span class='p'>,</span>
+     <span class='n'>kAudioUnitScope_Input</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>enable</span><span class='p'>,</span> <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>UInt32</span><span class='p'>))</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
+  <span class='n'>AURenderCallbackStruct</span> <span class='n'>callbackStruct</span><span class='p'>;</span>
+  <span class='n'>callbackStruct</span><span class='p'>.</span><span class='n'>inputProc</span> <span class='o'>=</span> <span class='n'>renderCallback</span><span class='p'>;</span> <span class='c1'>// Render function</span>
+  <span class='n'>callbackStruct</span><span class='p'>.</span><span class='n'>inputProcRefCon</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitSetProperty</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>,</span> <span class='n'>kAudioUnitProperty_SetRenderCallback</span><span class='p'>,</span>
+     <span class='n'>kAudioUnitScope_Input</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>callbackStruct</span><span class='p'>,</span>
+     <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>AURenderCallbackStruct</span><span class='p'>))</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='n'>AudioStreamBasicDescription</span> <span class='n'>streamDescription</span><span class='p'>;</span>
+  <span class='c1'>// You might want to replace this with a different value, but keep in mind that the</span>
+  <span class='c1'>// iPhone does not support all sample rates. 8kHz, 22kHz, and 44.1kHz should all work.</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mSampleRate</span> <span class='o'>=</span> <span class='mi'>44100</span><span class='p'>;</span>
+  <span class='c1'>// Yes, I know you probably want floating point samples, but the iPhone isn&#39;t going</span>
+  <span class='c1'>// to give you floating point data. You&#39;ll need to make the conversion by hand from</span>
+  <span class='c1'>// linear PCM &lt;-&gt; float.</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mFormatID</span> <span class='o'>=</span> <span class='n'>kAudioFormatLinearPCM</span><span class='p'>;</span>
+  <span class='c1'>// This part is important!</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mFormatFlags</span> <span class='o'>=</span> <span class='n'>kAudioFormatFlagIsSignedInteger</span> <span class='o'>|</span>
+    <span class='n'>kAudioFormatFlagsNativeEndian</span> <span class='o'>|</span>
+    <span class='n'>kAudioFormatFlagIsPacked</span><span class='p'>;</span>
+  <span class='c1'>// Not sure if the iPhone supports recording &gt;16-bit audio, but I doubt it.</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mBitsPerChannel</span> <span class='o'>=</span> <span class='mi'>16</span><span class='p'>;</span>
+  <span class='c1'>// 1 sample per frame, will always be 2 as long as 16-bit samples are being used</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mBytesPerFrame</span> <span class='o'>=</span> <span class='mi'>2</span><span class='p'>;</span>
+  <span class='c1'>// Record in mono. Use 2 for stereo, though I don&#39;t think the iPhone does true stereo recording</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mChannelsPerFrame</span> <span class='o'>=</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mBytesPerPacket</span> <span class='o'>=</span> <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mBytesPerFrame</span> <span class='o'>*</span>
+    <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mChannelsPerFrame</span><span class='p'>;</span>
+  <span class='c1'>// Always should be set to 1</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mFramesPerPacket</span> <span class='o'>=</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='c1'>// Always set to 0, just to be sure</span>
+  <span class='n'>streamDescription</span><span class='p'>.</span><span class='n'>mReserved</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span>
+
+  <span class='c1'>// Set up input stream with above properties</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitSetProperty</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>,</span> <span class='n'>kAudioUnitProperty_StreamFormat</span><span class='p'>,</span>
+     <span class='n'>kAudioUnitScope_Input</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>streamDescription</span><span class='p'>,</span> <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>streamDescription</span><span class='p'>))</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='c1'>// Ditto for the output stream, which we will be sending the processed audio to</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitSetProperty</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>,</span> <span class='n'>kAudioUnitProperty_StreamFormat</span><span class='p'>,</span>
+     <span class='n'>kAudioUnitScope_Output</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='o'>&amp;</span><span class='n'>streamDescription</span><span class='p'>,</span> <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>streamDescription</span><span class='p'>))</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
 <p>It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the &#8220;gotchas&#8221; that trips up many developers.</p>
 
 <h2 id='starting_audio_processing'>Starting audio processing</h2>
 
 <p>At this point, everything is ready to go and we can tell the OS to start recording and sending us data.</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>startAudioUnit</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitInitialize</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioOutputUnitStart</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
+  <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
 <h2 id='processing_data_in_the_callback'>Processing data in the callback</h2>
 
 <p>At this point, the system will now call your rendering function whenever it wants audio. Generally speaking, you will want to convert the linear PCM data to floating point, which is much easier to work with. However, in some cases (like an echo plugin), you may not necessarily need to manipulate the samples and can keep the data in linear PCM. The below example demonstrates floating point data conversion, but if you can do everything with integer math, it will of course be more efficient.</p>
+<div class='highlight'><pre><code class='cpp'><span class='n'>OSStatus</span> <span class='n'>renderCallback</span><span class='p'>(</span><span class='kt'>void</span> <span class='o'>*</span><span class='n'>userData</span><span class='p'>,</span> <span class='n'>AudioUnitRenderActionFlags</span> <span class='o'>*</span><span class='n'>actionFlags</span><span class='p'>,</span>
+                        <span class='k'>const</span> <span class='n'>AudioTimeStamp</span> <span class='o'>*</span><span class='n'>audioTimeStamp</span><span class='p'>,</span> <span class='n'>UInt32</span> <span class='n'>busNumber</span><span class='p'>,</span>
+                        <span class='n'>UInt32</span> <span class='n'>numFrames</span><span class='p'>,</span> <span class='n'>AudioBufferList</span> <span class='o'>*</span><span class='n'>buffers</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='n'>OSStatus</span> <span class='n'>status</span> <span class='o'>=</span> <span class='n'>AudioUnitRender</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>,</span> <span class='n'>actionFlags</span><span class='p'>,</span> <span class='n'>audioTimeStamp</span><span class='p'>,</span>
+    <span class='mi'>1</span><span class='p'>,</span> <span class='n'>numFrames</span><span class='p'>,</span> <span class='n'>buffers</span><span class='p'>);</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>status</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='n'>status</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>convertedSampleBuffer</span> <span class='o'>==</span> <span class='nb'>NULL</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='c1'>// Lazy initialization of this buffer is necessary because we don&#39;t</span>
+    <span class='c1'>// know the frame count until the first callback</span>
+    <span class='n'>convertedSampleBuffer</span> <span class='o'>=</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>*</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='kt'>float</span><span class='p'>)</span> <span class='o'>*</span> <span class='n'>numFrames</span><span class='p'>);</span>
+  <span class='p'>}</span>
 
+  <span class='n'>SInt16</span> <span class='o'>*</span><span class='n'>inputFrames</span> <span class='o'>=</span> <span class='p'>(</span><span class='n'>SInt16</span><span class='o'>*</span><span class='p'>)(</span><span class='n'>buffers</span><span class='o'>-&gt;</span><span class='n'>mBuffers</span><span class='o'>-&gt;</span><span class='n'>mData</span><span class='p'>);</span>
+
+  <span class='c1'>// If your DSP code can use integers, then don&#39;t bother converting to</span>
+  <span class='c1'>// floats here, as it just wastes CPU. However, most DSP algorithms rely</span>
+  <span class='c1'>// on floating point, and this is especially true if you are porting a</span>
+  <span class='c1'>// VST/AU to iOS.</span>
+  <span class='k'>for</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>i</span> <span class='o'>&lt;</span> <span class='n'>numFrames</span><span class='p'>;</span> <span class='n'>i</span><span class='o'>++</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='n'>convertedSampleBuffer</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>(</span><span class='kt'>float</span><span class='p'>)</span><span class='n'>inputFrames</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>/</span> <span class='mf'>32768f</span><span class='p'>;</span>
+  <span class='p'>}</span>
+
+  <span class='c1'>// Now we have floating point sample data from the render callback! We</span>
+  <span class='c1'>// can send it along for further processing, for example:</span>
+  <span class='c1'>// plugin-&gt;processReplacing(convertedSampleBuffer, NULL, sampleFrames);</span>
+
+  <span class='c1'>// Assuming that you have processed in place, we can now write the</span>
+  <span class='c1'>// floating point data back to the input buffer.</span>
+  <span class='k'>for</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>i</span> <span class='o'>&lt;</span> <span class='n'>numFrames</span><span class='p'>;</span> <span class='n'>i</span><span class='o'>++</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='c1'>// Note that we multiply by 32767 here, NOT 32768. This is to avoid</span>
+    <span class='c1'>// overflow errors (and thus clipping).</span>
+    <span class='n'>inputFrames</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>(</span><span class='n'>SInt16</span><span class='p'>)(</span><span class='n'>convertedSampleBuffer</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>*</span> <span class='mf'>32767f</span><span class='p'>);</span>
+  <span class='p'>}</span>
+
+  <span class='k'>return</span> <span class='n'>noErr</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
 <p>Keep in mind that this code will be called several times <em>per second</em>. Best development practices tend to advocate lazy initialization and runtime checks to keep readability. This is not necessarily a best practice when it comes to audio development, however. The name of the game here is to move anything you can out of render and into the initialize function. This includes things like allocating blocks of memory and calling system functions. In the best case, your render function will just loop over the input buffer and perform simple mathematical operations on the samples. Even a single malloc call (or even worse, an Obj-C <code>[[[ClassName alloc] init] autorelease]</code> allocation) in the render call is likely to grind your code to a halt or leak memory like crazy.</p>
 
 <p>Same goes with <code>NSLog()</code> or <code>printf()</code>. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I&#8217;ve noticed that many iOS developers tend to use <code>NSLog()</code> for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call &#8220;quantum debugging&#8221; where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don&#8217;t occur in a &#8220;clean&#8221; environment.</p>
@@ -118,9 +282,20 @@
 <h2 id='shutting_down'>Shutting down</h2>
 
 <p>When you are finished processing audio, you need to tell the OS to stop processing and free the AudioUnit&#8217;s resources.</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>stopProcessingAudio</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioOutputUnitStop</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitUninitialize</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
+  <span class='p'>}</span>
 
+  <span class='o'>*</span><span class='n'>audioUnit</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
+  <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
 <h2 id='other_considerations'>Other considerations</h2>
 
 <p>As the point of this tutorial was to demonstrate audio buffer construction and realtime audio processing, I glossed over a lot of details. But these are things which you will probably need to take into consideration when developing an application. Before you start processing audio, you should probably:</p>
