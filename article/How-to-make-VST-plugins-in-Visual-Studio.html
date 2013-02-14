@@ -65,9 +65,7 @@
 
 <p>If you are trying to write VST&#8217;s in a language other than C++, than this guide is not for you. There are lots of other frameworks out there for developing VST plugins in other languages (such as <a href='http://vstnet.codeplex.com/'>C#</a>, <a href='http://jvstwrapper.sourceforge.net/'>Java</a>, <a href='https://github.com/thbar/opaz-plugdk'>Ruby</a> and <a href='https://code.launchpad.net/pyvst'>Python</a>, just to name a few).</p>
 
-<p>This tutorial will walk you through the process of installing and configuring the tools you&#8217;ll need to build your own VST plugins with Visual Studio, and creating a simple VST plugin with optional support for a VSTGUI frontend. This guide only covers building VST 2.x plugins, as the 3.x SDK is not very widely supported yet.</p>
-
-<p><em>Note</em>: This guide was written for Visual Studio 2008, but I&#8217;m in the process of updating it for VS2010. Note that some things may be slightly different.</p>
+<p>This tutorial will walk you through the process of installing and configuring the tools you&#8217;ll need to build your own VST plugins with Visual Studio, and creating a simple VST plugin with optional support for a VSTGUI frontend. This guide only covers <em>building VST 2.x plugins</em>, as the VST3 SDK is not very widely supported yet. Note that Steinberg&#8217;s website is a bit confusing and it is easy to accidentally download the wrong version of the SDK, so double-check to make sure that you have the 2.4 SDK.</p>
 
 <h2 id='download_required_packages'>Download required packages</h2>
 
@@ -275,6 +273,8 @@ IDB_BITMAP2 PNG DISCARDABLE &quot;../resources/bmp10002.png&quot;
 </code></pre>
 </div>
 <p>Now you can use <code>IDB_BITMAP1</code> (or any other name of your choosing) in your code when creating new CBitmap objects.</p>
+
+<p>I have heard some reports of <code>vstgui.cpp</code> not compiling properly due to the missing symbol <code>png_set_expand_gray_1_2_4_to_8</code>. Changing <code>png_set_gray_1_2_4_to_8</code> to <code>png_set_expand_gray_1_2_4_to_8</code> in <code>vstgui.cpp</code> seems to fix this issue.</p>
 
 <h2 id='final_considerations'>Final considerations</h2>
 

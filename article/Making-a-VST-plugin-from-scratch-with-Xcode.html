@@ -61,11 +61,11 @@
         <!-- Start content -->
         <h2 id='introduction'>Introduction</h2>
 
-<p>After writing up my Visual Studio VST guide, I figured that the Mac programmers out there might enjoy a simpler tutorial. Fortunately the process of developing VST plugins under OSX is much simpler than under Windows, but nonetheless there are a few &#8220;gotchas&#8221; along the way.</p>
+<p>Developing VST plugins under Mac OSX is in many ways simpler than other platforms, but nonetheless there are a few &#8220;gotchas&#8221; along the way.</p>
 
-<p>This guide assumes familiarity with Xcode and C++ development, and that you are working with Mac OSX 10.5/10.6 and have a relatively recent version of Xcode (4.2 or better). This guide only covers building VST 2.x plugins, as the 3.x SDK is not widely supported yet.</p>
+<p>This guide assumes familiarity with Xcode and C++ development, and that you are working with Mac OSX 10.5 or greater and have a relatively recent version of Xcode (4.2 or better). This guide only covers <em>building VST 2.x plugins</em>, as the VST3 SDK is not widely supported yet.</p>
 
-<p>Also, before you start, you will obviously need the VST SDK, which can be acquired <a href='http://www.steinberg.net/en/company/3rd_party_developer.html'>from Steinberg&#8217;s Development Portal</a>.</p>
+<p>Also, before you start, you will obviously need the VST SDK, which can be acquired <a href='http://www.steinberg.net/en/company/3rd_party_developer.html'>from Steinberg&#8217;s Development Portal</a>. Note that Steinberg&#8217;s website is a bit confusing and does not label the downloads clearly, so make sure that you get the right version of the SDK.</p>
 
 <h2 id='creating_your_project'>Creating your project</h2>
 
@@ -110,7 +110,7 @@
 <p>Unless you have very specific requirements, I highly recommend building your plugin as a standard 32-bit Intel binary. My reasoning for this is as follows:</p>
 
 <ul>
-<li>Although 64-bit Macs are widespread, there are not so many 64-bit compatible plugin hosts.</li>
+<li>Although 64-bit Macs are widespread, there are not so many 64-bit compatible plugin hosts, though this is slowly changing.</li>
 
 <li>Likewise, building 64-bit VST&#8217;s is sometimes a bit difficult, as Apple is deprecating Carbon, which is 32-bit only.</li>
 
