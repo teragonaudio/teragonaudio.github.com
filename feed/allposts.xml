@@ -3,13 +3,56 @@
   <title>Teragon Audio</title>
   <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
   <link href="http://teragonaudio.com"/>
-  <updated>2013-02-15T00:17:10+01:00</updated>
+  <updated>2013-04-15T18:00:02+02:00</updated>
   <id>http://teragonaudio.com/</id>
   <author>
     <name>Teragon Audio</name>
     <email>info@teragonaudio.com</email>
   </author>
 
+  
+  <entry>
+    <title>Building AudioUnits with modern Mac OSX</title>
+    <link href="http://teragonaudio.com/article/Building-AudioUnits-with-modern-Mac-OSX.html"/>
+    <updated>2013-01-15T00:00:00+01:00</updated>
+    <id>http://teragonaudio.com/article/Building-AudioUnits-with-modern-Mac-OSX</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;AudioUnits! That&amp;#8217;s Apple&amp;#8217;s shiny and awesome plugin format which is super easy to work with and great with all things pro-audio, right? No messy SDK downloads like with VST, and all with great examples and documentation?&lt;/p&gt;
+
+&lt;p&gt;But enough with the sarcasm. :) And forgive me in advance for more to follow in this article.&lt;/p&gt;
+
+&lt;p&gt;Although AudioUnits always had some degree of pain, particularly for VST programmers who grew up in a &amp;#8220;push-based&amp;#8221; world, they had their good points as well. However, it pains me to say that many of these advantages, namely the development environment and platform, have fallen into disregard by Apple. I&amp;#8217;m not really sure what the situation is over there (is anyone ever sure?), but regardless, newcomers to AudioUnit programming are sure to find themselves in a confusing world of hurt when trying to support this plugin platform.&lt;/p&gt;
+
+&lt;p&gt;This guide is intented to get you up and running with the most &lt;em&gt;basic&lt;/em&gt; AudioUnit possible. Preferably, you already have some AudioUnit source code which you are merely trying to build it after updating to OSX 10.7/8. At any rate, this guide was written for OSX 10.8.2 and Xcode 4.5.2.&lt;/p&gt;
+
+&lt;h2 id='getting_the_audiounit_sdk_installed'&gt;Getting the AudioUnit SDK installed&lt;/h2&gt;
+
+&lt;p&gt;The first pain in dealing with AudioUnits on a modern Mac is that Apple no longer ships the AudioUnit SDK with Xcode. You&amp;#8217;ll need to &lt;a href='https://developer.apple.com/downloads/index.action'&gt;download it from Apple&amp;#8217;s developer website&lt;/a&gt; &lt;em&gt;with Safari&lt;/em&gt; (seriously, you&amp;#8217;ll get weird session timeout errors by using Chrome).&lt;/p&gt;
+
+&lt;p&gt;Specifically, you need to search for &amp;#8220;Audio&amp;#8221; on that page and download the DMG from February 2012. The later versions &lt;em&gt;do not contain the actual SDK source code&lt;/em&gt;. Mount the DMG, and then pop open a terminal window and run the following command:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo cp -r -v &amp;quot;/Volumes/Audio Tools/CoreAudio&amp;quot; /Applications/Xcode.app/Contents/Developer/Extras&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And then:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo sudo find /Applications/Xcode.app/Contents/Developer/Extras/CoreAudio -type f -exec chmod 666 {} \;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id='patching_the_audiounit_sdk'&gt;Patching the AudioUnit SDK&lt;/h2&gt;
+
+&lt;p&gt;Stupidly enough, the AudioUnit SDK does &lt;em&gt;not&lt;/em&gt; compile out of the box with Xcode 4.5. You will need to alter some of the source code manually in order to get things working again. You&amp;#8217;ll need to edit &lt;code&gt;AUMIDIEffectBase.cpp&lt;/code&gt; at line 154 to:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;    &lt;span class='n'&gt;result&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='n'&gt;AUMIDIBase&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;This&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;MIDIEvent&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;inStatus&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;inData1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;inData2&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;inOffsetSampleFrame&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Furthermore, you may need to change the compiler for your project from Apple&amp;#8217;s LLVM to LLVM GCC 4.2. Otherwise, you&amp;#8217;ll have to change &lt;code&gt;AUCarbonViewBase.cpp&lt;/code&gt; at line 257 to:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;    &lt;span class='n'&gt;HISize&lt;/span&gt; &lt;span class='n'&gt;originalSize&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;CGFloat&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;mBottomRight&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;h&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;CGFloat&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;mBottomRight&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='n'&gt;v&lt;/span&gt; &lt;span class='p'&gt;};&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, using Apple&amp;#8217;s LLVM compiler will also give you problems while building the VST SDK, which is a pain if you intend for your plugin to support both. In addition to the fix above, you&amp;#8217;ll also need to edit &lt;code&gt;audioeffectx.cpp&lt;/code&gt; at line 512 to be:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;    &lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='n'&gt;temp&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{(&lt;/span&gt;&lt;span class='kt'&gt;char&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;digit&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='mh'&gt;0x60&lt;/span&gt;&lt;span class='p'&gt;),&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;\0&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id='making_a_new_audiounit'&gt;Making a new AudioUnit&lt;/h2&gt;
+
+&lt;p&gt;Another annoyance is that Apple has removed the project templates for making AudioUnit projects. I&amp;#8217;m in the process of updating my &lt;a href='https://github.com/teragonaudio/XcodeVstTemplates'&gt;plugin templates&lt;/a&gt;, but &lt;a href='http://www.mojolama.com/restore-apples-audio-unit-templates'&gt;Mojo Lama has also blogged about how to restore the missing templates&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>DJing with Traktor and Ableton Live together</title>
@@ -401,8 +444,7 @@
 
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Unlike audio on the desktop, you don&amp;#8217;t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you&amp;#8217;ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn&amp;#8217;t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.&lt;/p&gt;
 
 &lt;p&gt;If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn&amp;#8217;t need to worry about this.&lt;/p&gt;
@@ -488,8 +530,7 @@
 
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the &amp;#8220;gotchas&amp;#8221; that trips up many developers.&lt;/p&gt;
 
 &lt;h2 id='starting_audio_processing'&gt;Starting audio processing&lt;/h2&gt;
@@ -506,8 +547,7 @@
 
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='processing_data_in_the_callback'&gt;Processing data in the callback&lt;/h2&gt;
 
 &lt;p&gt;At this point, the system will now call your rendering function whenever it wants audio. Generally speaking, you will want to convert the linear PCM data to floating point, which is much easier to work with. However, in some cases (like an echo plugin), you may not necessarily need to manipulate the samples and can keep the data in linear PCM. The below example demonstrates floating point data conversion, but if you can do everything with integer math, it will of course be more efficient.&lt;/p&gt;
@@ -550,8 +590,7 @@
 
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;noErr&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Keep in mind that this code will be called several times &lt;em&gt;per second&lt;/em&gt;. Best development practices tend to advocate lazy initialization and runtime checks to keep readability. This is not necessarily a best practice when it comes to audio development, however. The name of the game here is to move anything you can out of render and into the initialize function. This includes things like allocating blocks of memory and calling system functions. In the best case, your render function will just loop over the input buffer and perform simple mathematical operations on the samples. Even a single malloc call (or even worse, an Obj-C &lt;code&gt;[[[ClassName alloc] init] autorelease]&lt;/code&gt; allocation) in the render call is likely to grind your code to a halt or leak memory like crazy.&lt;/p&gt;
 
 &lt;p&gt;Same goes with &lt;code&gt;NSLog()&lt;/code&gt; or &lt;code&gt;printf()&lt;/code&gt;. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I&amp;#8217;ve noticed that many iOS developers tend to use &lt;code&gt;NSLog()&lt;/code&gt; for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call &amp;#8220;quantum debugging&amp;#8221; where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don&amp;#8217;t occur in a &amp;#8220;clean&amp;#8221; environment.&lt;/p&gt;
@@ -571,8 +610,7 @@
   &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;audioUnit&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='other_considerations'&gt;Other considerations&lt;/h2&gt;
 
 &lt;p&gt;As the point of this tutorial was to demonstrate audio buffer construction and realtime audio processing, I glossed over a lot of details. But these are things which you will probably need to take into consideration when developing an application. Before you start processing audio, you should probably:&lt;/p&gt;
@@ -947,8 +985,7 @@
 &lt;span class='c1'&gt;// Plugin&amp;#39;s process() method&lt;/span&gt;
 &lt;span class='k'&gt;typedef&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;processFuncPtr&lt;/span&gt;&lt;span class='p'&gt;)(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;effect&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
   &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;On Windows, VST plugins are simply dynamically linked libraries (DLL&amp;#8217;s). The code for opening a DLL library in Windows is fairly simple:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;loadPlugin&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
@@ -967,8 +1004,7 @@
   &lt;span class='n'&gt;plugin&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;mainEntryPoint&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;hostCallback&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;On Mac OSX, VST plugins are also dynamic libraries, but they are packaged as bundles. Your host can open these bundles through the Carbon API. On Mac OS9, VST plugins were packaged as CFM files, which has long since been deprecated, and it is highly unlikely that any modern VST host should need to support this format.&lt;/p&gt;
 
 &lt;p&gt;The procedure for opening a plugin under OSX is a bit more complex, but the code should be fairly straightforward. Keep in mind that although a VST plugin can be loaded from any location on disk, they are usually stored in either &lt;code&gt;/Library/Audio/Plug-Ins/VST&lt;/code&gt; or &lt;code&gt;$HOME/Library/Audio/Plug-Ins/VST&lt;/code&gt;.&lt;/p&gt;
@@ -1029,8 +1065,7 @@
 
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You need to keep the bundle pointer around until the host is ready to unload the plugin. At this point, you call &lt;code&gt;CFBundleUnloadExecutable&lt;/code&gt; and then &lt;code&gt;CFRelease&lt;/code&gt; on the bundle&amp;#8217;s reference.&lt;/p&gt;
 
 &lt;h2 id='setting_up_plugin_callbacks'&gt;Setting up plugin callbacks&lt;/h2&gt;
@@ -1055,8 +1090,7 @@
 
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='plugin_initialization'&gt;Plugin initialization&lt;/h2&gt;
 
 &lt;p&gt;At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:&lt;/p&gt;
@@ -1071,8 +1105,7 @@
 
   &lt;span class='n'&gt;resume&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='suspending_and_resuming'&gt;Suspending and resuming&lt;/h2&gt;
 
 &lt;p&gt;Calling the plugin&amp;#8217;s suspend and resume methods are a bit counter-intuitive, and are done like this:&lt;/p&gt;
@@ -1083,16 +1116,14 @@
 &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;suspendPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effMainsChanged&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='plugin_capabilities'&gt;Plugin capabilities&lt;/h2&gt;
 
 &lt;p&gt;The VST protocol uses &amp;#8220;canDo&amp;#8221; strings to define plugin capabilities, the most common of which are defined in audioeffectx.cpp in the PlugCanDos namespace near the top of the file. To ask a plugin if it supports one of these capabilities, make the following dispatcher call:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;bool&lt;/span&gt; &lt;span class='n'&gt;canPluginDo&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;char&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;canDoString&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effCanDo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;void&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;canDoString&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;&amp;gt;&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='host_capabilities'&gt;Host capabilities&lt;/h2&gt;
 
 &lt;p&gt;The plugin can also ask the host if it supports a given capability, which is done through the hostCallback() function defined above. The implementation of this file looks something like this:&lt;/p&gt;
@@ -1111,8 +1142,7 @@
   &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The full list of opcodes is defined in aeffect.h (for the VST 1.x protocol) and aeffectx.h (for VST 2.x protocol). There are a lot of opcodes, and your application doesn&amp;#8217;t need to support them all, but you will soon figure out which ones are the most important through trial and error. Depending on the nature of the opcall, you will either be required to return a given integer value, call a method in the plugin&amp;#8217;s dispatcher, or fill the &lt;code&gt;*ptr&lt;/code&gt; pointer with some type of data. The VST SDK header files have fairly good documentation specifying what you need to do depending on the opcode.&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href='http://teragonaudio.github.com/MrsWatson'&gt;MrsWatson source code&lt;/a&gt; also contains an example implementation of this function with the most common opcode cases.&lt;/p&gt;
@@ -1136,8 +1166,7 @@
     &lt;span class='p'&gt;}&lt;/span&gt;
   &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.&lt;/p&gt;
 
 &lt;h2 id='sending_midi_messages'&gt;Sending MIDI messages&lt;/h2&gt;
@@ -1146,8 +1175,7 @@
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processMidi&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstEvents&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effProcessEvents&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;events&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The above events array should be allocated and properly initialized by the host to contain the MIDI events which the plugin will receive. The &lt;code&gt;VstEvent&lt;/code&gt; structure is defined in aeffectx.h, and there you will also find the respective &lt;code&gt;VstEvent&lt;/code&gt; types, all of which are deprecated except for &lt;code&gt;kVstMidiType&lt;/code&gt; and &lt;code&gt;kVstSysExType&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Note that the plugin must support the &lt;code&gt;receiveVstMidiEvent&lt;/code&gt; canDo in order to process MIDI.&lt;/p&gt;
@@ -1224,8 +1252,7 @@
 
   &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='p'&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The accompanying class definition (YourProjectName.cpp) should look something like this:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#include &amp;quot;YourProjectName.h&amp;quot;&lt;/span&gt;
 
@@ -1244,8 +1271,7 @@
 &lt;span class='n'&gt;VstInt32&lt;/span&gt; &lt;span class='n'&gt;sampleFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='c1'&gt;// Real processing goes here&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Note that your project won&amp;#8217;t compile just yet, but be patient!&lt;/p&gt;
 
 &lt;p&gt;The above code samples are simply blank entry points which don&amp;#8217;t do anything exciting. The VST SDK offers lots of methods which you can override in order to do things like setting parameters, receiving MIDI messages, and so on. These things are beyond the scope of this tutorial; if you don&amp;#8217;t know what code to put inside of processReplacing, try checking out the &amp;#8220;again&amp;#8221; example distributed within the VST SDK in the &lt;code&gt;public.sdk/samples/vst2.x/again&lt;/code&gt; folder.&lt;/p&gt;
@@ -1255,8 +1281,7 @@
 EXPORTS
 VSTPluginMain 
 main=VSTPluginMain
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id='configure_build_settings'&gt;Configure build settings&lt;/h2&gt;
 
 &lt;p&gt;Go to the project settings either by right clicking on the project in the solution explorer and then selecting &amp;#8220;Properties&amp;#8221;. Make the following changes to the project for all build configurations:&lt;/p&gt;
@@ -1368,13 +1393,11 @@ main=VSTPluginMain
 &lt;p&gt;Visual Studio doesn&amp;#8217;t need to have the libraries within your actual project. Instead, place the libraries in a directory of your choosing and be sure to add this path to the list of &amp;#8220;Additional Library Directories&amp;#8221; in the Linker preferences for your project. You may choose to place the libraries in the same directory as the Microsoft Platform SDK stuff, but I personally prefer to keep them in a separate directory checked into version control. Also be sure to add references to &lt;code&gt;libpng.lib&lt;/code&gt; and &lt;code&gt;zlib.lib&lt;/code&gt; for your project in the &amp;#8220;Additional Dependencies&amp;#8221; section of your Linker preferences for the project.&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;IDB_BITMAP1 PNG DISCARDABLE &amp;quot;../resources/bmp10001.png&amp;quot;
 IDB_BITMAP2 PNG DISCARDABLE &amp;quot;../resources/bmp10002.png&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The path must be relative to the location of the project file. Then, in &lt;code&gt;resource.h&lt;/code&gt;, add the following preprocessor definitions:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='cp'&gt;#define IDB_BITMAP1 1&lt;/span&gt;
 &lt;span class='cp'&gt;#define IDB_BITMAP2 2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now you can use &lt;code&gt;IDB_BITMAP1&lt;/code&gt; (or any other name of your choosing) in your code when creating new CBitmap objects.&lt;/p&gt;
 
 &lt;p&gt;I have heard some reports of &lt;code&gt;vstgui.cpp&lt;/code&gt; not compiling properly due to the missing symbol &lt;code&gt;png_set_expand_gray_1_2_4_to_8&lt;/code&gt;. Changing &lt;code&gt;png_set_gray_1_2_4_to_8&lt;/code&gt; to &lt;code&gt;png_set_expand_gray_1_2_4_to_8&lt;/code&gt; in &lt;code&gt;vstgui.cpp&lt;/code&gt; seems to fix this issue.&lt;/p&gt;
@@ -1392,8 +1415,7 @@ IDB_BITMAP2 PNG DISCARDABLE &amp;quot;../resources/bmp10002.png&amp;quot;
 &lt;p&gt;Sometimes you may see errors like the following:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncat
 audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you are getting errors in your build about missing symbols, make sure that you double- and triple-check the debug and release configurations for the library configuration above, since some of the libraries which are used in one build style are specifically excluded from the other. Also, when you close and re-open the project&amp;#8217;s build properties, VS always &amp;#8220;forgets&amp;#8221; the last selected build style, so remember to check and set this appropriately.&lt;/p&gt;
 
 &lt;p&gt;Also, you should check to make sure that the Platform SDK was correctly installed on your system and that your project&amp;#8217;s include and library paths are pointing to these directories.&lt;/p&gt;
@@ -1402,8 +1424,7 @@ audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
 
 &lt;p&gt;If you are seeing errors like this:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;VST1.def : error LNK2001: unresolved external symbol VSTPluginMain
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then this most likely means that the file which contains the given symbol is not correctly added to the VC++ solution.&lt;/p&gt;
 
 &lt;h2 id='linking_errors_with_symbols_defined_multiple_times'&gt;Linking errors with symbols defined multiple times&lt;/h2&gt;
@@ -1412,8 +1433,7 @@ audioeffect.obj : error LNK2001: unresolved external symbol __imp__strncpy
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='text'&gt;msvcrtd.lib(ti_inst.obj) : error LNK2005: &amp;quot;private: __thiscall
 type_info::type_info(class type_info const &amp;amp;)&amp;quot; (??0type_info@@AAE@ABV0@@Z)
 already defined in libcmt.lib(typinfo.obj) 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Most likely, the libcmt and msvcrt libraries are being included incorrectly in your build. Double-check the library list above, keeping in mind that the recommended configuration uses libcmt for &lt;strong&gt;release&lt;/strong&gt; builds only, and msvcrtd for &lt;strong&gt;debug&lt;/strong&gt; builds only.&lt;/p&gt;</content>
   </entry>
   
