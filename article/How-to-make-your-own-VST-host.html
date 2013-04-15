@@ -127,8 +127,7 @@
 <span class='c1'>// Plugin&#39;s process() method</span>
 <span class='k'>typedef</span> <span class='kt'>void</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>processFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span>
   <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>sampleFrames</span><span class='p'>);</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>On Windows, VST plugins are simply dynamically linked libraries (DLL&#8217;s). The code for opening a DLL library in Windows is fairly simple:</p>
 <div class='highlight'><pre><code class='cpp'><span class='n'>AEffect</span><span class='o'>*</span> <span class='n'>loadPlugin</span><span class='p'>()</span> <span class='p'>{</span>
   <span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
@@ -147,8 +146,7 @@
   <span class='n'>plugin</span> <span class='o'>=</span> <span class='n'>mainEntryPoint</span><span class='p'>(</span><span class='n'>hostCallback</span><span class='p'>);</span>
   <span class='k'>return</span> <span class='n'>plugin</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>On Mac OSX, VST plugins are also dynamic libraries, but they are packaged as bundles. Your host can open these bundles through the Carbon API. On Mac OS9, VST plugins were packaged as CFM files, which has long since been deprecated, and it is highly unlikely that any modern VST host should need to support this format.</p>
 
 <p>The procedure for opening a plugin under OSX is a bit more complex, but the code should be fairly straightforward. Keep in mind that although a VST plugin can be loaded from any location on disk, they are usually stored in either <code>/Library/Audio/Plug-Ins/VST</code> or <code>$HOME/Library/Audio/Plug-Ins/VST</code>.</p>
@@ -209,8 +207,7 @@
 
   <span class='k'>return</span> <span class='n'>plugin</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>You need to keep the bundle pointer around until the host is ready to unload the plugin. At this point, you call <code>CFBundleUnloadExecutable</code> and then <code>CFRelease</code> on the bundle&#8217;s reference.</p>
 
 <h2 id='setting_up_plugin_callbacks'>Setting up plugin callbacks</h2>
@@ -235,8 +232,7 @@
 
   <span class='k'>return</span> <span class='n'>plugin</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <h2 id='plugin_initialization'>Plugin initialization</h2>
 
 <p>At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:</p>
@@ -251,8 +247,7 @@
 
   <span class='n'>resume</span><span class='p'>();</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <h2 id='suspending_and_resuming'>Suspending and resuming</h2>
 
 <p>Calling the plugin&#8217;s suspend and resume methods are a bit counter-intuitive, and are done like this:</p>
@@ -263,16 +258,14 @@
 <span class='kt'>void</span> <span class='n'>suspendPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effMainsChanged</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <h2 id='plugin_capabilities'>Plugin capabilities</h2>
 
 <p>The VST protocol uses &#8220;canDo&#8221; strings to define plugin capabilities, the most common of which are defined in audioeffectx.cpp in the PlugCanDos namespace near the top of the file. To ask a plugin if it supports one of these capabilities, make the following dispatcher call:</p>
 <div class='highlight'><pre><code class='cpp'><span class='kt'>bool</span> <span class='n'>canPluginDo</span><span class='p'>(</span><span class='kt'>char</span> <span class='o'>*</span><span class='n'>canDoString</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='k'>return</span> <span class='p'>(</span><span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effCanDo</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='p'>(</span><span class='kt'>void</span><span class='o'>*</span><span class='p'>)</span><span class='n'>canDoString</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>)</span> <span class='o'>&gt;</span> <span class='mi'>0</span><span class='p'>);</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <h2 id='host_capabilities'>Host capabilities</h2>
 
 <p>The plugin can also ask the host if it supports a given capability, which is done through the hostCallback() function defined above. The implementation of this file looks something like this:</p>
@@ -291,8 +284,7 @@
   <span class='p'>}</span>
 <span class='p'>}</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>The full list of opcodes is defined in aeffect.h (for the VST 1.x protocol) and aeffectx.h (for VST 2.x protocol). There are a lot of opcodes, and your application doesn&#8217;t need to support them all, but you will soon figure out which ones are the most important through trial and error. Depending on the nature of the opcall, you will either be required to return a given integer value, call a method in the plugin&#8217;s dispatcher, or fill the <code>*ptr</code> pointer with some type of data. The VST SDK header files have fairly good documentation specifying what you need to do depending on the opcode.</p>
 
 <p>The <a href='http://teragonaudio.github.com/MrsWatson'>MrsWatson source code</a> also contains an example implementation of this function with the most common opcode cases.</p>
@@ -316,8 +308,7 @@
     <span class='p'>}</span>
   <span class='p'>}</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.</p>
 
 <h2 id='sending_midi_messages'>Sending MIDI messages</h2>
@@ -326,8 +317,7 @@
 <div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>processMidi</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>VstEvents</span> <span class='o'>*</span><span class='n'>events</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effProcessEvents</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='n'>events</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>The above events array should be allocated and properly initialized by the host to contain the MIDI events which the plugin will receive. The <code>VstEvent</code> structure is defined in aeffectx.h, and there you will also find the respective <code>VstEvent</code> types, all of which are deprecated except for <code>kVstMidiType</code> and <code>kVstSysExType</code>.</p>
 
 <p>Note that the plugin must support the <code>receiveVstMidiEvent</code> canDo in order to process MIDI.</p>

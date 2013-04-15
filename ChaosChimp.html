@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ChaosChimp</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="/css/button.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+    <div id="smallheader">
+      <div class="wrapper">
+        <div id="logo">
+          <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+        </div>
+
+        <!--
+        <div id="right">
+          <form method="get" id="searchform" action="#"> 
+            <fieldset class="search"> 
+              <input type="text" class="box" /> 
+              <button class="btn" title="Search">Search</button> 
+            </fieldset> 
+          </form>
+        </div> 
+        -->
+      </div>
+    </div>
+    <div id="contentpart">
+      <div class="wrapper">
+        <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+          
+        <div id="content">
+          <div id="main" class="news">
+            <!-- Start content -->
+            <h1 id='chaoschimp'>ChaosChimp</h1>
+
+<p>ChaosChimp is an audio effect plugin designed to cause problems for your sequencer. It&#8217;s inspired by <a href='http://techblog.netflix.com/2010/12/5-lessons-weve-learned-using-aws.html'>Netflix&#8217;s ChaosMonkey</a>, which was built under the philosophy that instead of hoping bad things never happen, they should be caused to happen often so that one is better prepared for the worst.</p>
+
+<p>I&#8217;ve seen many headlining DJ&#8217;s let down by their gear onstage (I won&#8217;t name any names, but let&#8217;s just say that it can happen to the best of us). In some cases, they just slammed their laptop shut in disgust and walked off the stage. Other times, the sound guys had to frantically mute the house speakers to prevent feedback or satan saws (a nickname used for when a soundcard&#8217;s AD/DA stops receiving new data and just keeps playing the same buffer out the speakers, causing a horrendouse sawtooth-wave-type noise). Sometimes the music just stopped and everyone on the dancefloor stopped and looked around quite confused. Does any of this sound familiar?</p>
+
+<p>Most of the time, when this happens, the disgraced DJ&#8217;s exits the stage and proceeds to Twitter to flame about how buggy software X or hardware Y is. <em>Screw that</em>. Have a backup plan in place, and train yourself how to react when disaster strikes. ChaosChimp is designed to cause such disasters at random intervals, allowing you to prepare for them in the safety of your own studio.</p>
+
+<h2 id='chaos_scenarios'>Chaos Scenarios</h2>
+
+<p>ChaosChimp can currently simulate the following disasters:</p>
+
+<ul>
+<li>Audio dropouts</li>
+
+<li>Hogging a ton of CPU</li>
+
+<li>Try to crash the host</li>
+
+<li>Simulate feedback</li>
+
+<li>Leak lots of memory</li>
+</ul>
+
+<p>The scenarios can be individually disabled, and the duration of the chaos and frequency which it occurs can be tweaked within the plugin. ChaosChimp will only run a disaster scenario when actual signal is being sent through it, otherwise it could easily crash your host while you are simply configuring it. For best results, place it on your master output channel and tweak the settings before playing anything. Always save your work and keep backups. :)</p>
+
+<p>Obviously, ChaosChimp is not intended to be used when performing. But more bonus points to the ballsy DJ&#8217;s who do.</p>
+            <!-- End content -->
+          </div>
+          <div id="sidebar">
+            <ul class="sidemenu">
+              <li><a href="http://static.teragonaudio.com/ChaosChimp.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
+              <li><a href="https://github.com/teragonaudio/ChaosChimp/zipball/master">Source code</a></li>
+              <li><a href="https://github.com/teragonaudio/ChaosChimp">Project page</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Having problems with this software?</b> Send an email to
+            <script>mail2("support", "teragonaudio", 0, "subject=ChaosChimp", "support at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

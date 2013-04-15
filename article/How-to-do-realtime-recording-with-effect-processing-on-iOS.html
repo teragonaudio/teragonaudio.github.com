@@ -124,8 +124,7 @@
 
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>Unlike audio on the desktop, you don&#8217;t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you&#8217;ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn&#8217;t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.</p>
 
 <p>If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn&#8217;t need to worry about this.</p>
@@ -211,8 +210,7 @@
 
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the &#8220;gotchas&#8221; that trips up many developers.</p>
 
 <h2 id='starting_audio_processing'>Starting audio processing</h2>
@@ -229,8 +227,7 @@
 
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <h2 id='processing_data_in_the_callback'>Processing data in the callback</h2>
 
 <p>At this point, the system will now call your rendering function whenever it wants audio. Generally speaking, you will want to convert the linear PCM data to floating point, which is much easier to work with. However, in some cases (like an echo plugin), you may not necessarily need to manipulate the samples and can keep the data in linear PCM. The below example demonstrates floating point data conversion, but if you can do everything with integer math, it will of course be more efficient.</p>
@@ -273,8 +270,7 @@
 
   <span class='k'>return</span> <span class='n'>noErr</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <p>Keep in mind that this code will be called several times <em>per second</em>. Best development practices tend to advocate lazy initialization and runtime checks to keep readability. This is not necessarily a best practice when it comes to audio development, however. The name of the game here is to move anything you can out of render and into the initialize function. This includes things like allocating blocks of memory and calling system functions. In the best case, your render function will just loop over the input buffer and perform simple mathematical operations on the samples. Even a single malloc call (or even worse, an Obj-C <code>[[[ClassName alloc] init] autorelease]</code> allocation) in the render call is likely to grind your code to a halt or leak memory like crazy.</p>
 
 <p>Same goes with <code>NSLog()</code> or <code>printf()</code>. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I&#8217;ve noticed that many iOS developers tend to use <code>NSLog()</code> for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call &#8220;quantum debugging&#8221; where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don&#8217;t occur in a &#8220;clean&#8221; environment.</p>
@@ -294,8 +290,7 @@
   <span class='o'>*</span><span class='n'>audioUnit</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
-</code></pre>
-</div>
+</code></pre></div>
 <h2 id='other_considerations'>Other considerations</h2>
 
 <p>As the point of this tutorial was to demonstrate audio buffer construction and realtime audio processing, I glossed over a lot of details. But these are things which you will probably need to take into consideration when developing an application. Before you start processing audio, you should probably:</p>
