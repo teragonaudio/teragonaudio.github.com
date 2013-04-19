@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PluginParameters</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="/css/button.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+    <div id="smallheader">
+      <div class="wrapper">
+        <div id="logo">
+          <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+        </div>
+
+        <!--
+        <div id="right">
+          <form method="get" id="searchform" action="#"> 
+            <fieldset class="search"> 
+              <input type="text" class="box" /> 
+              <button class="btn" title="Search">Search</button> 
+            </fieldset> 
+          </form>
+        </div> 
+        -->
+      </div>
+    </div>
+    <div id="contentpart">
+      <div class="wrapper">
+        <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+          
+        <div id="content">
+          <div id="main" class="news">
+            <!-- Start content -->
+            <h1 id='pluginparameters'>PluginParameters</h1>
+
+<p>PluginParameters is a simple library used to keep parameter information for an audio plugin, such as a VST or AudioUnit. The need for this arises from the fact that most plugins have a number of parameters they need to maintain, and this information needs to be sent to various parts of the plugin&#8217;s processing code. The VST or AudioUnit side of things also needs to query this information in a more structured manner, and this can lead to plugin code getting very messy with huge <code>switch</code> blocks to get/set the correct value.</p>
+
+<h2 id='features'>Features</h2>
+
+<ul>
+<li>
+<p>Small! Less than 200 lines of code, all implementation in header files, so dynamic libraries or adding files to your project. Simply include <code>PluginParameters.h</code> and you&#8217;ve got the whole library at your fingertips.</p>
+</li>
+
+<li>
+<p>Provides a plugin parameter interface with the following implementations:</p>
+
+<ul>
+<li>BooleanParameter</li>
+
+<li>DecibelParameter</li>
+
+<li>FloatParameter</li>
+
+<li>FrequencyParameter</li>
+
+<li>IntegerParameter</li>
+</ul>
+</li>
+
+<li>
+<p>For all parameter types, you can get the raw value (ie, the thing you probably need in your code to do useful stuff), or a scaled value between 0.0 - 1.0 for use in plugin wrappers.</p>
+</li>
+
+<li>
+<p>The integer parameters provide a minimum, maximum, and default value.</p>
+</li>
+
+<li>
+<p>All parameter types also have a function to get the displayable value.</p>
+</li>
+
+<li>
+<p>Lookup of parameters can be done either by index or by name, with either the <code>get()</code> method or the square brackets.</p>
+</li>
+</ul>
+
+<h2 id='usage'>Usage</h2>
+
+<p>Assuming that you&#8217;ve pointed your source to include <code>PluginParameters.h</code> and everything compiles fine, your next step is to make a <code>PluginParameterSet</code> and add some parameters to it. This should probably be done in your plugin&#8217;s constructor:</p>
+<div class='highlight'><pre><code class='cpp'><span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>MyPlugin</span><span class='p'>()</span> <span class='p'>{</span>
+  <span class='c1'>// Assumes that there is a PluginParameterSet member named &quot;parameters&quot; in</span>
+  <span class='c1'>// the header file.</span>
+  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>BooleanParameter</span><span class='p'>(</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>,</span> <span class='kc'>true</span><span class='p'>));</span>
+  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>DecibelParameter</span><span class='p'>(</span><span class='s'>&quot;Frequency&quot;</span><span class='p'>,</span> <span class='mf'>20.0</span><span class='p'>,</span> <span class='mf'>20000.0</span><span class='p'>,</span> <span class='mf'>10000.0</span><span class='p'>);</span>
+  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>FloatParameter</span><span class='p'>(</span><span class='s'>&quot;Ratio&quot;</span><span class='p'>,</span> <span class='mf'>0.0</span><span class='p'>,</span> <span class='mf'>10.0</span><span class='p'>,</span> <span class='mf'>2.0</span><span class='p'>));</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>For a VST plugin, a ton of boilerplate code can thus be eliminated:</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>float</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameter</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>return</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getScaledValue</span><span class='p'>();</span>
+<span class='p'>}</span>
+
+<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>setParameter</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>value</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>setScaledValue</span><span class='p'>(</span><span class='n'>value</span><span class='p'>);</span>
+<span class='p'>}</span>
+
+<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameterName</span> <span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>char</span><span class='o'>*</span> <span class='n'>label</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='n'>vst_strncpy</span><span class='p'>(</span><span class='n'>label</span><span class='p'>,</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getName</span><span class='p'>().</span><span class='n'>c_str</span><span class='p'>(),</span> <span class='n'>kVstMaxParamStrLen</span><span class='p'>);</span>
+<span class='p'>}</span>
+
+<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameterDisplay</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>char</span><span class='o'>*</span> <span class='n'>text</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='n'>vst_strncpy</span><span class='p'>(</span><span class='n'>text</span><span class='p'>,</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getDisplayText</span><span class='p'>().</span><span class='n'>c_str</span><span class='p'>(),</span> <span class='n'>kVstMaxParamStrLen</span><span class='p'>);</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>When you actually want to use the parameter data in your code, it might look something like this:</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>processReplacing</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span> <span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span><span class='o'>**</span> <span class='n'>outputs</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>sampleFrames</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getValue</span><span class='p'>())</span> <span class='p'>{</span>
+    <span class='k'>for</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>i</span> <span class='o'>&lt;</span> <span class='n'>sampleFrames</span><span class='p'>;</span> <span class='n'>i</span><span class='o'>++</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='kt'>float</span> <span class='n'>gain</span> <span class='o'>=</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='s'>&quot;Ratio&quot;</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getValue</span><span class='p'>();</span>
+      <span class='o'>*</span><span class='n'>outputs</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='o'>*</span><span class='n'>inputs</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>*</span> <span class='n'>gain</span><span class='p'>;</span>
+    <span class='p'>}</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+</code></pre></div>
+<p>Note: The above example code may look a bit different than your actual implementation. It&#8217;s just to give you a general idea as to how the library should be used.</p>
+
+<h2 id='license'>License</h2>
+
+<p>PluginParameters is licensed under the BSD licnese. See the file <code>LICENSE.txt</code> provided with the source code for more details.</p>
+            <!-- End content -->
+          </div>
+          <div id="sidebar">
+            <ul class="sidemenu">
+              <li><a href="http://static.teragonaudio.com/PluginParameters.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
+              <li><a href="https://github.com/teragonaudio/PluginParameters/zipball/master">Source code</a></li>
+              <li><a href="https://github.com/teragonaudio/PluginParameters">Project page</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Having problems with this software?</b> Send an email to
+            <script>mail2("support", "teragonaudio", 0, "subject=PluginParameters", "support at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
