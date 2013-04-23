@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Building VST plugins on Linux</title>
+
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="/css/pygments.css" type="text/css" />
+
+    <script language="javascript" src="/js/email.js"></script>
+    <!-- google analytics -->
+<script type='text/javascript'> 
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type='text/javascript'> 
+  var pageTracker = _gat._getTracker("UA-4400684-1");
+  pageTracker._initData();
+  pageTracker._trackPageview();
+</script>
+
+  </head>
+  <body>
+  <div id="smallheader">
+    <div class="wrapper">
+      <div id="logo">
+        <a href="/"><img src="/images/ta_logo_inverted.png" alt="Teragon Audio"/></a>
+      </div>
+        
+      <!--
+      <div id="right">
+        <form method="get" id="searchform" action="#"> 
+          <fieldset class="search"> 
+            <input type="text" class="box" /> 
+            <button class="btn" title="Search">Search</button> 
+          </fieldset> 
+        </form>
+      </div> 
+      -->
+    </div>
+  </div>
+  <div id="contentpart">
+    <div class="wrapper">
+      <ul class="menu">
+  <li class="menuitem"><a href="index.html">Home</a></li>
+  <li class="menuitem"><a href="/software.html">Software</a></li>
+  <li class="menuitem"><a href="/developers.html">Developer Portal</a></li>
+  <li class="menuitem"><a href="/performers.html">Performer Portal</a></li>
+  <li class="menuitem"><a href="/contact.html">Contact</a></li>
+</ul> 
+
+
+      <div id="content">						
+        <div class="title">
+          <h1>
+            Building VST plugins on Linux
+          </h1>
+        </div>
+
+        <!-- Start content -->
+        <p>While I normally prefer to use <a href='http://www.rawmaterialsoftware.com/juce.php'>Juce</a> for plugin development on Linux (since it generates a nice Makefile for you which compiles cleanly on that platform), sometimes you gotta get your hands dirty and build a VST by hand on that platform. I recently ran into this when trying to build the Steinberg VST examples by hand. Anyways, the compilation procedure is simple but not obvious. Basically the source files must be compiled like so:</p>
+
+<p><code>g++ -fPIC -c -Ipath/to/vstsdk2.4 -D__cdecl=&quot;&quot; file.cpp</code></p>
+
+<p>By redefining <code>__cdecl</code> to an empty string, one can avoid having to alter the VST SDK sources and &#8220;trick&#8221; it into building correctly for that platform. You&#8217;ll need to build all of your own source files with the above switches (plus any other switches you want, such as debugging, optimization, warnings, etc), as well as <code>audioeffect.cpp</code>, <code>audioeffectx.cpp</code>, and <code>vstplugmain.cpp</code>.</p>
+
+<p>Once you have built all object files, they must be linked together to create a single shared library:</p>
+
+<p><code>gcc -shared -Wl,soname,myplugin.so -o myplugin.so *.o</code></p>
+
+<p>That&#8217;s it! Now you should have a VST plugin usable on Linux.</p>
+        <!-- End content -->
+      </div>									
+      <div style="clear:both;"></div>
+        <div id="bottom">
+          <p class="footer">
+            <b>Questions or comments?</b> Send an email to
+            <script>mail2("info", "teragonaudio", 0, "subject=Building VST plugins on Linux", "info at teragonaudio dot com")</script>.
+            Copyright (c) 2012 Teragon Audio. All Rights Reserved.
+
+          </p>
+        </div>
+      </div>								
+    </div>
+  </body>
+</html>

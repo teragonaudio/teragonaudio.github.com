@@ -12,6 +12,24 @@
 
   
   <entry>
+    <title>Building VST plugins on Linux</title>
+    <link href="http://teragonaudio.com/article/Building-VST-plugins-on-Linux.html"/>
+    <updated>2013-04-22T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Building-VST-plugins-on-Linux</id>
+    <content type="html">&lt;p&gt;While I normally prefer to use &lt;a href='http://www.rawmaterialsoftware.com/juce.php'&gt;Juce&lt;/a&gt; for plugin development on Linux (since it generates a nice Makefile for you which compiles cleanly on that platform), sometimes you gotta get your hands dirty and build a VST by hand on that platform. I recently ran into this when trying to build the Steinberg VST examples by hand. Anyways, the compilation procedure is simple but not obvious. Basically the source files must be compiled like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;g++ -fPIC -c -Ipath/to/vstsdk2.4 -D__cdecl=&amp;quot;&amp;quot; file.cpp&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;By redefining &lt;code&gt;__cdecl&lt;/code&gt; to an empty string, one can avoid having to alter the VST SDK sources and &amp;#8220;trick&amp;#8221; it into building correctly for that platform. You&amp;#8217;ll need to build all of your own source files with the above switches (plus any other switches you want, such as debugging, optimization, warnings, etc), as well as &lt;code&gt;audioeffect.cpp&lt;/code&gt;, &lt;code&gt;audioeffectx.cpp&lt;/code&gt;, and &lt;code&gt;vstplugmain.cpp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once you have built all object files, they must be linked together to create a single shared library:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gcc -shared -Wl,soname,myplugin.so -o myplugin.so *.o&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;#8217;s it! Now you should have a VST plugin usable on Linux.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
     <title>Building AudioUnits with modern Mac OSX</title>
     <link href="http://teragonaudio.com/article/Building-AudioUnits-with-modern-Mac-OSX.html"/>
     <updated>2013-01-15T00:00:00+01:00</updated>
