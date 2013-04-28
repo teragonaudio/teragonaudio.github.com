@@ -65,21 +65,25 @@
 
 <p>On a standard 3-band equalizer, most DJ&#8217;s would simply turn the lower knob down for the track which they want to remove bass frequencies from. This results in the track losing <em>all</em> low frequencies, whereas sidechain filtering removes only <em>the exact</em> frequencies in the other track. Most conventional DJ software isn&#8217;t able to do sidechain filtering at all, but in Ableton Live it&#8217;s very easy to build a custom filterchain for DJ&#8217;ing, which is exactly what is needed here.</p>
 
+<p>It&#8217;s easier to show sidechain filtering in action than to explain it. Here&#8217;s a sample mix, where song A plays (in full) for 32 beats, then song B for 32 beats. Then for 32 beats, song A &amp; B play together, but only with the bass frequencies from song B. For the last 32 beats, the sidechain filters flip and only the bass frequencies from song A are heard.</p>
+
+<p><a href='http://static.teragonaudio.com/sidechain-filtering-example.mp3'>Sidechain filtering example mix</a></p>
+
 <h2 id='setting_up_filtering'>Setting Up Filtering</h2>
 
 <p>To get started, let&#8217;s build a sidechain filter for an arbitrary number of decks. This is a bit simpler than a 2-deck setup and can support an unlimited number of tracks, but also has a few other drawbacks which will be discussed later.</p>
 
 <p>First, set up a return track named &#8220;sidechain&#8221; (always label your tracks!) and set the output to &#8220;Sends Only&#8221;. Route all tracks to this one by turning the send knob up to the maximum.</p>
 
-<p><img src='http://static.teragonaudio.com/sidechain-filtering-basic-setup.png' alt='Setting up return tracks for sidechaining' /></p>
+<p><img alt='Setting up return tracks for sidechaining' src='http://static.teragonaudio.com/sidechain-filtering-basic-setup.png' /></p>
 
 <p>Next, put an EQ Eight in the sidechain return track. Configure it to be a lowpass filter with a cutoff frequency of around 650Hz and set the Q to 1.0.</p>
 
-<p><img src='http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png' alt='Lowpass filter configuration' /></p>
+<p><img alt='Lowpass filter configuration' src='http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png' /></p>
 
 <p>Now, in each deck track, add a Compressor. Expand it by clicking the small downward-pointing arrow in the top left-hand corner, and enable sidechaining. Set &#8220;Audio From&#8221; to be &#8220;A-Sidechain&#8221;, Post FX.</p>
 
-<p><img src='http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png' alt='Sidechain compressor configuration' /></p>
+<p><img alt='Sidechain compressor configuration' src='http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png' /></p>
 
 <p>To actually apply the sidechain filter, MIDI map the &#8220;Gain&#8221; knob with a range of 0.00 dB - 24.0 dB. At 0.00 dB, no filtering is applied. At 24.0 dB, the bass frequencies of all <em>other</em> tracks will be subtracted from this one, meaning that their basslines will punch through those of this track.</p>
 
@@ -91,11 +95,11 @@
 
 <p>To get around the two problems above, one can set up two sidechain filters which subtract cleanly from each other&#8217;s basslines. While solving these problems, this configuration also has another limitation, which is that it only works for 2 decks. Again, there is a workaround for this, which will be discussed later. First, remove the sidechain return track from the set and create two new audio tracks, named &#8220;Sidechain 1&#8221; and &#8220;Sidechain 2&#8221;. Set their outputs to &#8220;Sends Only&#8221; and have them pull audio from &#8220;Deck 1&#8221; and &#8220;Deck 2&#8221;, respectively. Also set monitoring to &#8220;In&#8221; for both sidechain tracks.</p>
 
-<p><img src='http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png' alt='Setting up tracks for sidechaining' /></p>
+<p><img alt='Setting up tracks for sidechaining' src='http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png' /></p>
 
 <p>In each sidechain track, add the same EQ Eight as was described above. Now, for both Deck 1 &amp; 2, set the compressor&#8217;s sidechain input to be the output of the other&#8217;s sidechain track, so that in Deck 1 the compressor pulls audio from Sidechain 2, and vice versa.</p>
 
-<p><img src='http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png' alt='Sidechain compressor for tracks' /></p>
+<p><img alt='Sidechain compressor for tracks' src='http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png' /></p>
 
 <p>Now the sidechain setup involves no return tracks, and leaving the Gain up will have no effect if only one track is playing. The result is an even cleaner sidechain filter, but again, the limitation of 2 decks is a bit irritating.</p>
 
@@ -105,7 +109,7 @@
 
 <p>This can start to become difficult to manage, so group the two compressors into an audio effect rack. Turn on mapping mode, and set the Gain of <em>both</em> compressors to a knob in the rack. Now when this knob is turned, it will subtract bass from all other tracks.</p>
 
-<p><img src='http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png' alt='Filtering from mulitple tracks' /></p>
+<p><img alt='Filtering from mulitple tracks' src='http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png' /></p>
 
 <p>For 4 decks, just repeat this procedure and add an extra compressor to the rack. Finally, I like to group the sidechain audio tracks and fold it away; it&#8217;s not necessary to see the output of these tracks and they can simply be tucked away in the liveset.</p>
 

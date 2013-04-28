@@ -3,13 +3,181 @@
   <title>Teragon Audio</title>
   <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
   <link href="http://teragonaudio.com"/>
-  <updated>2013-04-28T16:40:32+02:00</updated>
+  <updated>2013-04-28T21:33:14+02:00</updated>
   <id>http://teragonaudio.com/</id>
   <author>
     <name>Teragon Audio</name>
     <email>info@teragonaudio.com</email>
   </author>
 
+  
+  <entry>
+    <title>Warping tips in Ableton Live</title>
+    <link href="http://teragonaudio.com/article/Warping-tips-in-Ableton-Live.html"/>
+    <updated>2013-04-28T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Warping-tips-in-Ableton-Live</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Ableton Live&amp;#8217;s warping engine is very powerful, but does not necessarily offer the best results out of the box. Especially in Live 8, the automatic warping feature was much improved, but is still not perfect. Here are some tips to get better results from Live&amp;#8217;s warping engine.&lt;/p&gt;
+
+&lt;h2 id='know_your_warp_modes'&gt;Know Your Warp Modes&lt;/h2&gt;
+
+&lt;p&gt;Live&amp;#8217;s manual offers a bit of advice about which warping mode to use for what type of materal (see section 9.3.1), basically it boils down to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Beats: Good for simple percussion or drum loops&lt;/li&gt;
+
+&lt;li&gt;Tones: Good for monophonic instruments or vocals&lt;/li&gt;
+
+&lt;li&gt;Texture: Best for atonal or pad sounds&lt;/li&gt;
+
+&lt;li&gt;Re-pitch: Best quality of all, if you don&amp;#8217;t mind the pitch being changed&lt;/li&gt;
+
+&lt;li&gt;Complex: Rather useless, because&amp;#8230;&lt;/li&gt;
+
+&lt;li&gt;Complex Pro: Best for complex arrangements (ie, entire tracks). Sounds much better than &amp;#8220;Complex&amp;#8221; and uses modestly more CPU.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ableton seems to have some hang-ups about Complex Pro using too much CPU, however on any modern machine the difference is barely noticeable (and for this reason they have &lt;a href='https://forum.ableton.com/viewtopic.php?p=1494129#p1494129'&gt;intentionally excluded it from the default warp mode preference box&lt;/a&gt;), however my philosophy is that if Complex sounds good, Complex Pro will almost always sound better.&lt;/p&gt;
+
+&lt;p&gt;However, don&amp;#8217;t take my word for it. If you are really debating which warp mode works for a piece, do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Duplicate the track you&amp;#8217;re working on&lt;/li&gt;
+
+&lt;li&gt;Set the duplicate to the other warp mode you are considering&lt;/li&gt;
+
+&lt;li&gt;Map a keystroke to enable/disable both the first and second track&lt;/li&gt;
+
+&lt;li&gt;Disable one of the two tracks, so that the key will switch between them&lt;/li&gt;
+
+&lt;li&gt;Close your eyes (seriously)&lt;/li&gt;
+
+&lt;li&gt;Press the key a bunch of times rapidly (again, seriously)&lt;/li&gt;
+
+&lt;li&gt;Now, with your eyes still closed, press the key and listen &lt;em&gt;carefully&lt;/em&gt;&lt;/li&gt;
+
+&lt;li&gt;Which sounds better? Open your eyes&lt;/li&gt;
+
+&lt;li&gt;Repeat a few times&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The closing your eyes bit is indeed serious advice, don&amp;#8217;t just look away from the screen. Closing your eyes will shift your brain&amp;#8217;s focus from hearing and vision to just hearing. Usually I can hear 9/10 the difference between Complex and Complex Pro, so I pick Pro. If I can&amp;#8217;t tell the difference, then I pick the one which uses less CPU.&lt;/p&gt;
+
+&lt;h2 id='disable_create_analysis_files'&gt;Disable Create Analysis Files&lt;/h2&gt;
+
+&lt;p&gt;I highly recommend going to Live&amp;#8217;s preferences and disabling &amp;#8220;Create Analysis Files&amp;#8221; (under the File/Folder section), which is enabled by default. The rationale here is that one wants to be &lt;em&gt;absolutely sure&lt;/em&gt; that when you drag a track into Live, it has been warped to your standards and will mix will.&lt;/p&gt;
+
+&lt;p&gt;This means that you need to click &amp;#8220;Save&amp;#8221; on each warped track to manually save the corresponding ASD file, however it means that when you have a large library of tracks which ones can be safely dropped into a liveset during your performance without having to worry about the sound.&lt;/p&gt;
+
+&lt;h2 id='warping_dance_music'&gt;Warping Dance Music&lt;/h2&gt;
+
+&lt;p&gt;When I want to warp a new dance track (ie, something composed on a computer), I do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Turn on the metronome&lt;/li&gt;
+
+&lt;li&gt;Find the first kick drum, make a transient there by double-clicking if there isn&amp;#8217;t already a transient in place.&lt;/li&gt;
+
+&lt;li&gt;Shift-click on the transient and drag it carefully into place. The more exact, the better. Rather than placing transients before the kick, I tend to place them at the peak, as this sounds better when mixing.&lt;/li&gt;
+
+&lt;li&gt;Right-click on the transient and click &amp;#8220;warp from here&amp;#8221;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;At this point, three outcomes can occur. Sometimes, Live get everything right, which is made clear by skipping through the rest of the track and noting that the metronome is tightly aligned with the audio. If this is the case, skip to &amp;#8220;Finishing the warp&amp;#8221;. The second outcome is that Live got it &lt;em&gt;mostly&lt;/em&gt; right, which is usually the case if there are no transients at all or the metronome is just slightly off throughout the track. In this case:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Set transients on the first beat after a breakdown&lt;/li&gt;
+
+&lt;li&gt;Right-click on post-breakdown transients, and warp from here&lt;/li&gt;
+
+&lt;li&gt;Set a transient on a clear beat towards the end of the track&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Usually this will result in tight sync throughout the track. The third possible outcome is that Live is way off, which is easily identified by either a wild metronome or more warp transients than can be counted on one&amp;#8217;s fingers and toes. In this case:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Delete all transients after the first one (at 1.1.1 which was placed manually)&lt;/li&gt;
+
+&lt;li&gt;Turn off warping for the track and tap the tempo&lt;/li&gt;
+
+&lt;li&gt;When you&amp;#8217;ve found the tempo for the track, right click on the 1.1.1 marker and select warp from here. If this doesn&amp;#8217;t result in a tight sync, see the &amp;#8220;Warping Rock Music&amp;#8221; section.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id='warping_vinyl_rips'&gt;Warping Vinyl Rips&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;#8217;ve converted your vinyl collection to digital, then it&amp;#8217;s important to compensate for any subtle tempo drifts caused by the natural periodic motion of a turntable. In these cases I usually prefer to set the first warp marker, and then &amp;#8220;Warp XXX BPM from here&amp;#8221;. Follow the entire track, stopping to readjust and re-warp from here when necessary.&lt;/p&gt;
+
+&lt;h2 id='warping_rock_music'&gt;Warping Rock Music&lt;/h2&gt;
+
+&lt;p&gt;Actually this section applies to any music played by a real band, and not a computer-driven drum machine. In these cases, it is more important &lt;em&gt;not&lt;/em&gt; to let Live automatically warp the track, as overcorrecting for natural tempo drift will suck much of the energy out of the music. In such cases, I usually do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Find 1.1.1, set a transient there&lt;/li&gt;
+
+&lt;li&gt;Disable warping, tap the tempo&lt;/li&gt;
+
+&lt;li&gt;Turn on warping again&lt;/li&gt;
+
+&lt;li&gt;Right click on 1.1.1, select &amp;#8220;Warp from here (Straight)&amp;#8221;&lt;/li&gt;
+
+&lt;li&gt;Go through the track, placing a transient on every bar. Do &lt;em&gt;not&lt;/em&gt; place any other transients in the track.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Sometimes instead of every bar, a transient can be placed every X bars, where X is a number that just &amp;#8220;feels right&amp;#8221; given the consistency of the tempo for the track in question. Warping in this manner takes more time, but you&amp;#8217;ll preserve the &amp;#8220;human&amp;#8221; elements of the track while still keeping a tight tempo, allowing you to mix the track with dance music.&lt;/p&gt;
+
+&lt;h2 id='warping_long_intros'&gt;Warping Long Intros&lt;/h2&gt;
+
+&lt;p&gt;In the case of a long intro, find the first actual kick drum and place 1.1.1 there. Warp the rest of the track first and forget about the intro. Then, place a transient at the very beginning on the track where the music actually begins. Right-click and set that as 1.1.1 and move the starting arrow marker there.&lt;/p&gt;
+
+&lt;p&gt;Now, delete all warp markers between that point and the other transient for the first kick. They are likely to be wrong anyways. If the intro is off, place just one or two transients to correct it, not many will be needed.&lt;/p&gt;
+
+&lt;h2 id='warping_tempo_changes'&gt;Warping Tempo Changes&lt;/h2&gt;
+
+&lt;p&gt;Usually it&amp;#8217;s a bad idea to correct momentary tempo changes, such as when a song picks up tempo during a breakdown or drops through the floor. If the artist is crazy enough to have written them into the song, it&amp;#8217;s likely that the song will sound terrible if you iron them out. Instead, just place a single transient at the very end of the &amp;#8220;normal&amp;#8221; part, and another one on the first beat when the tempo goes back to normal.&lt;/p&gt;
+
+&lt;p&gt;You&amp;#8217;ll need to make sure that the second transient corresponds to the first beat in a bar (the downswing beat), or else the track will be all screwed up when the tempo comes back to normal. In these cases it is likely that the next even bar is some distance away; simply drag the closest bar over and use that point. The tempo change breakdown is already going to sound crazy, so this won&amp;#8217;t be so noticable.&lt;/p&gt;
+
+&lt;p&gt;Now, delete all transients between those two points, and set a &amp;#8221;!&amp;#8221; as the track type so you&amp;#8217;ll remember not to attempt mixing during the tempo change.&lt;/p&gt;
+
+&lt;p&gt;If a song has a permanent tempo change, then it will likely sound ok if it is ironed out. In this case, keep creating transients and &amp;#8220;warp from here&amp;#8221; until you flatten the correct tempo out.&lt;/p&gt;
+
+&lt;h2 id='when_not_to_warp'&gt;When not to Warp&lt;/h2&gt;
+
+&lt;p&gt;There are some cases when a song is just too difficult to nail into place for whatever reason. If you still want to play it, sometimes it&amp;#8217;s best &lt;em&gt;not&lt;/em&gt; to warp it, and to mix it in another manner.&lt;/p&gt;
+
+&lt;p&gt;For such tracks, I still make sure to set the starting point correctly, and mark the track with a &amp;#8221;!&amp;#8221; so I know that the tempo is odd. Mixing into such tracks is not terribly difficult, one good technique for this is to take the previous track apply a highpass filter and reverb over the course of several bars. When one only hears the ambience of the reverb, bring in the next track. &lt;a href='http://static.teragonaudio.com/warping-tricks-unwarped-mixing.mp3'&gt;Here&amp;#8217;s an example of mixing a warped track with an unwarped one&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id='finishing_the_warp'&gt;Finishing the Warp&lt;/h2&gt;
+
+&lt;p&gt;After a piece has been warped, I like to set a nice clip name for it in the form of &amp;#8220;(Type)Artist: Track&amp;#8221;. I use the following characters to designate the clip type:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;(No character): A normal track, will start at the beginning and play until the end.&lt;/li&gt;
+
+&lt;li&gt;!: This track is unwarped or does evil things like tempo changes. Use caution when playing.&lt;/li&gt;
+
+&lt;li&gt;&amp;#62;: This clip is an intro loop&lt;/li&gt;
+
+&lt;li&gt;&amp;#60;: This track has a loop point at the end&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Setting a name has two purposes. First, it&amp;#8217;s much easier to identify tracks based on a consistent naming scheme rather than filenames (especially those annoying &amp;#8220;01 Trackname.m4a&amp;#8221; ones generated by iTunes). Second, it allows you to quickly identify unwarped tracks when dragging them into a set &amp;#8211; if it doesn&amp;#8217;t have your naming convention, then it can&amp;#8217;t be trusted. This is especially important when your track library is extremely large.&lt;/p&gt;
+
+&lt;p&gt;Next, skip the track to the body and set the clip volume so that it gently bounces around the 0.0dB point. Make sure you have disabled any limiters or other effects on this track before calculating volume. Some warp modes, namely Complex Pro, will add a few decibels of volume to the track and one must compensate for this in order to make sure that the volume levels of all warped tracks are consistent.&lt;/p&gt;
+
+&lt;p&gt;Also for some reason Live&amp;#8217;s colorschemes always use a single color for text, regardless of whether or not the text sits on a light or dark background. If the randomly assigned color for the clip is unreadable, pick another one.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;#8217;t forget to hit &amp;#8220;save&amp;#8221; under the clip properties!&lt;/p&gt;
+
+&lt;h2 id='use_beats_as_a_gate_effect'&gt;Use Beats As A Gate Effect&lt;/h2&gt;
+
+&lt;p&gt;The transient artifacts in the Beats warp mode can do some cool stuff as an unintended effect, especially with non-percussive material. For example, it can act as a strange gate when set to &amp;#8220;off&amp;#8221; with an envelope length of 0:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='Abusing Beats as a Gate effect' src='http://static.teragonaudio.com/warping-tricks-gate.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;You&amp;#8217;ll also need to play around with the &amp;#8220;Preserve&amp;#8221; value make sure that some audio is still produced at regular intervals.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>Sidechain filtering in Ableton Live</title>
@@ -22,21 +190,25 @@
 
 &lt;p&gt;On a standard 3-band equalizer, most DJ&amp;#8217;s would simply turn the lower knob down for the track which they want to remove bass frequencies from. This results in the track losing &lt;em&gt;all&lt;/em&gt; low frequencies, whereas sidechain filtering removes only &lt;em&gt;the exact&lt;/em&gt; frequencies in the other track. Most conventional DJ software isn&amp;#8217;t able to do sidechain filtering at all, but in Ableton Live it&amp;#8217;s very easy to build a custom filterchain for DJ&amp;#8217;ing, which is exactly what is needed here.&lt;/p&gt;
 
+&lt;p&gt;It&amp;#8217;s easier to show sidechain filtering in action than to explain it. Here&amp;#8217;s a sample mix, where song A plays (in full) for 32 beats, then song B for 32 beats. Then for 32 beats, song A &amp;amp; B play together, but only with the bass frequencies from song B. For the last 32 beats, the sidechain filters flip and only the bass frequencies from song A are heard.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/sidechain-filtering-example.mp3'&gt;Sidechain filtering example mix&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2 id='setting_up_filtering'&gt;Setting Up Filtering&lt;/h2&gt;
 
 &lt;p&gt;To get started, let&amp;#8217;s build a sidechain filter for an arbitrary number of decks. This is a bit simpler than a 2-deck setup and can support an unlimited number of tracks, but also has a few other drawbacks which will be discussed later.&lt;/p&gt;
 
 &lt;p&gt;First, set up a return track named &amp;#8220;sidechain&amp;#8221; (always label your tracks!) and set the output to &amp;#8220;Sends Only&amp;#8221;. Route all tracks to this one by turning the send knob up to the maximum.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/sidechain-filtering-basic-setup.png' alt='Setting up return tracks for sidechaining' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Setting up return tracks for sidechaining' src='http://static.teragonaudio.com/sidechain-filtering-basic-setup.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, put an EQ Eight in the sidechain return track. Configure it to be a lowpass filter with a cutoff frequency of around 650Hz and set the Q to 1.0.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png' alt='Lowpass filter configuration' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Lowpass filter configuration' src='http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, in each deck track, add a Compressor. Expand it by clicking the small downward-pointing arrow in the top left-hand corner, and enable sidechaining. Set &amp;#8220;Audio From&amp;#8221; to be &amp;#8220;A-Sidechain&amp;#8221;, Post FX.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png' alt='Sidechain compressor configuration' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Sidechain compressor configuration' src='http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;To actually apply the sidechain filter, MIDI map the &amp;#8220;Gain&amp;#8221; knob with a range of 0.00 dB - 24.0 dB. At 0.00 dB, no filtering is applied. At 24.0 dB, the bass frequencies of all &lt;em&gt;other&lt;/em&gt; tracks will be subtracted from this one, meaning that their basslines will punch through those of this track.&lt;/p&gt;
 
@@ -48,11 +220,11 @@
 
 &lt;p&gt;To get around the two problems above, one can set up two sidechain filters which subtract cleanly from each other&amp;#8217;s basslines. While solving these problems, this configuration also has another limitation, which is that it only works for 2 decks. Again, there is a workaround for this, which will be discussed later. First, remove the sidechain return track from the set and create two new audio tracks, named &amp;#8220;Sidechain 1&amp;#8221; and &amp;#8220;Sidechain 2&amp;#8221;. Set their outputs to &amp;#8220;Sends Only&amp;#8221; and have them pull audio from &amp;#8220;Deck 1&amp;#8221; and &amp;#8220;Deck 2&amp;#8221;, respectively. Also set monitoring to &amp;#8220;In&amp;#8221; for both sidechain tracks.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png' alt='Setting up tracks for sidechaining' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Setting up tracks for sidechaining' src='http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;In each sidechain track, add the same EQ Eight as was described above. Now, for both Deck 1 &amp;amp; 2, set the compressor&amp;#8217;s sidechain input to be the output of the other&amp;#8217;s sidechain track, so that in Deck 1 the compressor pulls audio from Sidechain 2, and vice versa.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png' alt='Sidechain compressor for tracks' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Sidechain compressor for tracks' src='http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now the sidechain setup involves no return tracks, and leaving the Gain up will have no effect if only one track is playing. The result is an even cleaner sidechain filter, but again, the limitation of 2 decks is a bit irritating.&lt;/p&gt;
 
@@ -62,7 +234,7 @@
 
 &lt;p&gt;This can start to become difficult to manage, so group the two compressors into an audio effect rack. Turn on mapping mode, and set the Gain of &lt;em&gt;both&lt;/em&gt; compressors to a knob in the rack. Now when this knob is turned, it will subtract bass from all other tracks.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png' alt='Filtering from mulitple tracks' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Filtering from mulitple tracks' src='http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;For 4 decks, just repeat this procedure and add an extra compressor to the rack. Finally, I like to group the sidechain audio tracks and fold it away; it&amp;#8217;s not necessary to see the output of these tracks and they can simply be tucked away in the liveset.&lt;/p&gt;
 
@@ -181,7 +353,7 @@
 
 &lt;p&gt;First, set up Traktor to use an external mixer, and route each deck to a separate output channel, as pictured below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' alt='Traktor External Output Routing' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Traktor External Output Routing' src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Even if you use an external mixer, you will still be able to use Traktor&amp;#8217;s own filters and effects.&lt;/p&gt;
 
@@ -189,11 +361,11 @@
 
 &lt;p&gt;Then, set up Live to record from the same channels:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' alt='Ableton Live Input Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img alt='Ableton Live Input Routings' src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, create audio tracks in Live to route the audio from Traktor:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' alt='Ableton Live Track Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img alt='Ableton Live Track Routings' src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Assuming that you have a multi-channel soundcard, you can now cue and route these output tracks as you would other tracks within Live.&lt;/p&gt;
 
@@ -207,23 +379,23 @@
 
 &lt;p&gt;MIDI clock is the sync mechanism described in most &lt;a href='http://www.youtube.com/watch?v=4xzldehIsCE&amp;amp;feature=youtube_gdata'&gt;other blogs and tutorials&lt;/a&gt;, and assuming that you don&amp;#8217;t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor&amp;#8217;s preferences and enable sending MIDI clock:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' alt='Traktor Enable MIDI Clock' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Traktor Enable MIDI Clock' src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;For some reason, this isn&amp;#8217;t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the &amp;#8220;Controller Manager&amp;#8221; section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' alt='Traktor Controller Manager' /&gt; &lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' alt='Traktor Controller Manager' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' /&gt; &lt;img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Just creating the device is enough; you don&amp;#8217;t need to make any mappings. You should now see MIDI clock messages in a utility like &lt;a href='http://www.snoize.com/MIDIMonitor/'&gt;MIDI Monitor&lt;/a&gt; or &lt;a href='http://www.midiox.com/'&gt;MIDI-OX&lt;/a&gt;. Now within Live, go to the MIDI preference pane and sync Live to Traktor&amp;#8217;s virtual MIDI output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' alt='Ableton Live MIDI clock sync' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Ableton Live MIDI clock sync' src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You will also need to enable the &amp;#8220;EXT&amp;#8221; button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor&amp;#8217;s.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' alt='Ableton Live External Sync' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Ableton Live External Sync' src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the &amp;#8220;Extended&amp;#8221; layout and enabling the &amp;#8220;TICK&amp;#8221; button. You will also need to cue at least one deck (doesn&amp;#8217;t matter which one) to hear the tick within Live.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' alt='Traktor metronome' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img alt='Traktor metronome' src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live&amp;#8217;s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.&lt;/p&gt;
 
@@ -269,7 +441,7 @@
 
 &lt;p&gt;I have managed to get the above setup working on a somewhat old Macbook Pro (a 2x2.66Ghz Core 2 Duo with 8Gb RAM) and a MOTU Ultralite MK3 using a buffer size of 256 samples at a sample rate of 44.1kHz). CPU usage is a constant ~40% per core, and I get no audio dropouts at all:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' alt='Screenshot of Traktor + Live' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img alt='Screenshot of Traktor + Live' src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I&amp;#8217;m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.&lt;/p&gt;
 
@@ -467,7 +639,7 @@
 
 &lt;p&gt;First, one needs to understand a bit of terminology. A sample is a single point of audio data, sometimes called a sample frame. A group of samples comes together to make a channel, just like the left &amp;amp; right channels of a stereo signal. Finally, a packet contains one or more channels.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ios-buffers.png' alt='Visual representation of iOS buffers' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Visual representation of iOS buffers' src='http://static.teragonaudio.com/ios-buffers.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You might be wondering why each channel only contains one frame. I don&amp;#8217;t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.&lt;/p&gt;
 
@@ -811,11 +983,11 @@
 
 &lt;p&gt;If you are using iTunes for your own music libraries, you may not necessarily want to import all of your DJ tracks into it, particularly if you already have organized them to your liking. If this is the case, first disable &amp;#8220;Keep iTunes Media folder organized&amp;#8221; and &amp;#8220;Copy files to iTunes Media folder when adding to library&amp;#8221;. This will prevent iTunes from mangling your music or renaming tracks which already have an associated ASD file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' alt='iTunes Preferences as they (mostly) should appear' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='iTunes Preferences as they (mostly) should appear' src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, quit iTunes and restart it while holding down the &amp;#8220;alt/option&amp;#8221; key when you re-open the program. iTunes will now prompt you to either create a new library or to select an existing library. You will want to create a new library somewhere on your hard drive. Now, take your existing music library and move it to the folder you just created underneath iTunes Media/Music. Drag all of these folders into iTunes to import them into the new library. After importing, simply quit iTunes and re-open with the alt/option key to switch back to your main iTunes library.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_choose_library.png' alt='Choose iTunes Library dialog' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Choose iTunes Library dialog' src='http://static.nikreiman.com/ableton_itunes_choose_library.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;From this point, you may choose to take advantage of a special folder inside of the iTunes library named &amp;#8220;Automatically add to iTunes&amp;#8221;. Any tracks here are, as the name suggests, automatically added to the iTunes library when dropped in. However, they will be sorted under iTunes Media/Music/Artist Name/Album Name, which may clash with any existing organizational scheme in place. If you are planning on using this feature along with Live, add the files first before warping them, or else iTunes will copy only the music file and move the associated ASD file behind in a directory named &amp;#8220;Not Moved&amp;#8221;.&lt;/p&gt;
 
