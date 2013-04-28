@@ -123,7 +123,7 @@
 
 &lt;p&gt;First, set up Traktor to use an external mixer, and route each deck to a separate output channel, as pictured below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Traktor External Output Routing' src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' alt='Traktor External Output Routing' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Even if you use an external mixer, you will still be able to use Traktor&amp;#8217;s own filters and effects.&lt;/p&gt;
 
@@ -131,11 +131,11 @@
 
 &lt;p&gt;Then, set up Live to record from the same channels:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img alt='Ableton Live Input Routings' src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' alt='Ableton Live Input Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, create audio tracks in Live to route the audio from Traktor:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img alt='Ableton Live Track Routings' src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' alt='Ableton Live Track Routings' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Assuming that you have a multi-channel soundcard, you can now cue and route these output tracks as you would other tracks within Live.&lt;/p&gt;
 
@@ -149,23 +149,23 @@
 
 &lt;p&gt;MIDI clock is the sync mechanism described in most &lt;a href='http://www.youtube.com/watch?v=4xzldehIsCE&amp;amp;feature=youtube_gdata'&gt;other blogs and tutorials&lt;/a&gt;, and assuming that you don&amp;#8217;t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor&amp;#8217;s preferences and enable sending MIDI clock:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Traktor Enable MIDI Clock' src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' alt='Traktor Enable MIDI Clock' /&gt;&lt;/p&gt;
 
 &lt;p&gt;For some reason, this isn&amp;#8217;t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the &amp;#8220;Controller Manager&amp;#8221; section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' /&gt; &lt;img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' alt='Traktor Controller Manager' /&gt; &lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' alt='Traktor Controller Manager' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Just creating the device is enough; you don&amp;#8217;t need to make any mappings. You should now see MIDI clock messages in a utility like &lt;a href='http://www.snoize.com/MIDIMonitor/'&gt;MIDI Monitor&lt;/a&gt; or &lt;a href='http://www.midiox.com/'&gt;MIDI-OX&lt;/a&gt;. Now within Live, go to the MIDI preference pane and sync Live to Traktor&amp;#8217;s virtual MIDI output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Ableton Live MIDI clock sync' src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' alt='Ableton Live MIDI clock sync' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You will also need to enable the &amp;#8220;EXT&amp;#8221; button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor&amp;#8217;s.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Ableton Live External Sync' src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' alt='Ableton Live External Sync' /&gt;&lt;/p&gt;
 
 &lt;p&gt;The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the &amp;#8220;Extended&amp;#8221; layout and enabling the &amp;#8220;TICK&amp;#8221; button. You will also need to cue at least one deck (doesn&amp;#8217;t matter which one) to hear the tick within Live.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img alt='Traktor metronome' src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' alt='Traktor metronome' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live&amp;#8217;s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.&lt;/p&gt;
 
@@ -211,7 +211,7 @@
 
 &lt;p&gt;I have managed to get the above setup working on a somewhat old Macbook Pro (a 2x2.66Ghz Core 2 Duo with 8Gb RAM) and a MOTU Ultralite MK3 using a buffer size of 256 samples at a sample rate of 44.1kHz). CPU usage is a constant ~40% per core, and I get no audio dropouts at all:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img alt='Screenshot of Traktor + Live' src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'&gt;&lt;img src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' alt='Screenshot of Traktor + Live' /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I&amp;#8217;m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.&lt;/p&gt;
 
@@ -409,7 +409,7 @@
 
 &lt;p&gt;First, one needs to understand a bit of terminology. A sample is a single point of audio data, sometimes called a sample frame. A group of samples comes together to make a channel, just like the left &amp;amp; right channels of a stereo signal. Finally, a packet contains one or more channels.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Visual representation of iOS buffers' src='http://static.teragonaudio.com/ios-buffers.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.teragonaudio.com/ios-buffers.png' alt='Visual representation of iOS buffers' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You might be wondering why each channel only contains one frame. I don&amp;#8217;t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.&lt;/p&gt;
 
@@ -753,11 +753,11 @@
 
 &lt;p&gt;If you are using iTunes for your own music libraries, you may not necessarily want to import all of your DJ tracks into it, particularly if you already have organized them to your liking. If this is the case, first disable &amp;#8220;Keep iTunes Media folder organized&amp;#8221; and &amp;#8220;Copy files to iTunes Media folder when adding to library&amp;#8221;. This will prevent iTunes from mangling your music or renaming tracks which already have an associated ASD file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='iTunes Preferences as they (mostly) should appear' src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_advanced_prefs.png' alt='iTunes Preferences as they (mostly) should appear' /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, quit iTunes and restart it while holding down the &amp;#8220;alt/option&amp;#8221; key when you re-open the program. iTunes will now prompt you to either create a new library or to select an existing library. You will want to create a new library somewhere on your hard drive. Now, take your existing music library and move it to the folder you just created underneath iTunes Media/Music. Drag all of these folders into iTunes to import them into the new library. After importing, simply quit iTunes and re-open with the alt/option key to switch back to your main iTunes library.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt='Choose iTunes Library dialog' src='http://static.nikreiman.com/ableton_itunes_choose_library.png' /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://static.nikreiman.com/ableton_itunes_choose_library.png' alt='Choose iTunes Library dialog' /&gt;&lt;/p&gt;
 
 &lt;p&gt;From this point, you may choose to take advantage of a special folder inside of the iTunes library named &amp;#8220;Automatically add to iTunes&amp;#8221;. Any tracks here are, as the name suggests, automatically added to the iTunes library when dropped in. However, they will be sorted under iTunes Media/Music/Artist Name/Album Name, which may clash with any existing organizational scheme in place. If you are planning on using this feature along with Live, add the files first before warping them, or else iTunes will copy only the music file and move the associated ASD file behind in a directory named &amp;#8220;Not Moved&amp;#8221;.&lt;/p&gt;
 
