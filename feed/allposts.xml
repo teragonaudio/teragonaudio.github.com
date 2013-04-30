@@ -3,7 +3,7 @@
   <title>Teragon Audio</title>
   <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
   <link href="http://teragonaudio.com"/>
-  <updated>2013-04-28T21:33:14+02:00</updated>
+  <updated>2013-04-30T09:58:26+02:00</updated>
   <id>http://teragonaudio.com/</id>
   <author>
     <name>Teragon Audio</name>
@@ -177,6 +177,84 @@
 &lt;p&gt;&lt;img alt='Abusing Beats as a Gate effect' src='http://static.teragonaudio.com/warping-tricks-gate.png' /&gt;&lt;/p&gt;
 
 &lt;p&gt;You&amp;#8217;ll also need to play around with the &amp;#8220;Preserve&amp;#8221; value make sure that some audio is still produced at regular intervals.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Using Chipsounds in Ableton Live</title>
+    <link href="http://teragonaudio.com/article/Using-Chipsounds-in-Ableton-Live.html"/>
+    <updated>2013-04-28T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Using-Chipsounds-in-Ableton-Live</id>
+    <content type="html">&lt;h2 id='introduction'&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href='http://www.plogue.com/products/chipsounds/'&gt;Chipsounds&lt;/a&gt; is an incredible softsynth plugin, offering emulation of 15 classic chips (including several variants of each one) and faithful recreations of the hardware down to the bugs found in the original chips. I&amp;#8217;ve been using it in combination with Ableton Live for performing 8-bit remixes at &lt;a href='http://www.syntax-error.se/'&gt;Syntax Error clubnight in Stockholm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Although using VST instruments uses more processing power than playing audio files (even when warped with Complex Pro), the sound quality is unquestionably better. Live&amp;#8217;s warping engine tends to take a lot of the &amp;#8220;bite&amp;#8221; out of 8-bit and chiptunes music, especially the Complex &amp;amp; Complex Pro warping modes introduce very audible artifacts due to the increased presence of raw PCM sounds in this type of music.&lt;/p&gt;
+
+&lt;p&gt;For this reason, I set up a liveset which contains large amounts of MIDI files for most classic games and several Chipsounds instances to play them. During the construction of this set, I learned a lot about making Chipsounds play nicely with Live.&lt;/p&gt;
+
+&lt;h2 id='parameter_automation'&gt;Parameter Automation&lt;/h2&gt;
+
+&lt;p&gt;For plugins which have more than 128 parameters, Live does not show all the parameters. Instead, it shows a small text stating &amp;#8220;To add plug-in parameters to this panel, click the &amp;#8220;Configure&amp;#8221; button.&amp;#8221; However, one can exploit a bug in Live to see all parameters by doing the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Click &amp;#8220;Configure&amp;#8221;&lt;/li&gt;
+
+&lt;li&gt;Open the Chipsounds GUI&lt;/li&gt;
+
+&lt;li&gt;Load a new chip into the active part&lt;/li&gt;
+
+&lt;li&gt;Unclick &amp;#8220;Configure&amp;#8221;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now Live will display all possible parameters for the plugin. Shhhh, nobody report this bug to Ableton, let&amp;#8217;s just keep it our little secret for future versions of Live. ;)&lt;/p&gt;
+
+&lt;h2 id='changing_chips_on_the_fly'&gt;Changing Chips on the Fly&lt;/h2&gt;
+
+&lt;p&gt;Since Chipsounds only exposes parameters for a single part at a time, enabling or disabling parts in on the fly (for instance, in a live performance) or automating multiple parts can be difficult. The easist way around this is to instead create an Instrument Rack with multiple single-part instances of Chipsounds. From here, one can map common parameters to single knobs.&lt;/p&gt;
+
+&lt;p&gt;To disable or enable specific instruments, be sure to map the &amp;#8220;device on&amp;#8221; button (ie, the one in the upper left-hand corner of the device) to the respective control. If you map to the volume button in the Instrument Rack, this will still deliver MIDI notes to Chipsounds, causing your liveset to use much more CPU than necessary.&lt;/p&gt;
+
+&lt;h2 id='dealing_with_cc_data'&gt;Dealing with CC Data&lt;/h2&gt;
+
+&lt;p&gt;Chipsounds persists some parameters in the plugin as saved state, such as the expression pedal. This means that one can get stuck notes or other weird behavior from Chipsounds when switching MIDI clips within Live. The behavior can be seen by doing the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a clip that is 2 bars long, on the first beat send a CC message to the expression pedal, and on the last beat unsets the value to 0.&lt;/li&gt;
+
+&lt;li&gt;Create another clip which has some MIDI notes in it and nothing else&lt;/li&gt;
+
+&lt;li&gt;Play the first clip, but before it finishes switch to the second one.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now the expression pedal will be &amp;#8220;stuck&amp;#8221;, and even worse if you save your document this state will be persisted in the plugin so that when you reopen the set, the notes are still stuck.&lt;/p&gt;
+
+&lt;p&gt;I had a friendly debate with one of the Chipsounds engineers, and their opinion is that plugin state should be persisted, as this is the desired behavior for most users. With this in mind, Live users need to be aware of this behavior and construct solutions to this behavior.&lt;/p&gt;
+
+&lt;p&gt;One solution (and the one I&amp;#8217;ve been using in my liveset) is to remove any CC automation from your MIDI clips, just to be on the safe side. So for each clip, select the &amp;#8220;Envelopes&amp;#8221; section (if not shown, click the small &amp;#8220;E&amp;#8221; in the lower left hand corner of the clip properties), and look for any red squares which mark automation for the clip. MIDI CC data is represented in live alongside clip automation envelopes, such as clip volume level and panning. To clear the envelope, select the given CC and then right click anywhere in the clip data and select clear automation envelope.&lt;/p&gt;
+
+&lt;p&gt;Another solution is to use a &amp;#8220;panic&amp;#8221; clip to clear out any automation data. I have &lt;a href='http://static.teragonaudio.com/chipsounds-on-live-panic.midi'&gt;created a MIDI clip which will turn off all CC automations by setting them all to 0&lt;/a&gt;. Simply drag this clip into your set, turn of looping for it, and fire it to reset any stuck CC state in Chipsounds.&lt;/p&gt;
+
+&lt;h2 id='applying_fx'&gt;Applying FX&lt;/h2&gt;
+
+&lt;p&gt;Ableton has several effects which compliment Chipsounds very nicely, at the moment my liveset has &lt;a href='http://static.teragonaudio.com/chipsounds-on-live-chipfx.adg'&gt;an effect rack with the following plugins&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Vinyl distortion, to add a bit of hiss and crackle&lt;/li&gt;
+
+&lt;li&gt;Erosion, to add a touch of distortion to the high end&lt;/li&gt;
+
+&lt;li&gt;Reverb, but just a tiny bit in order to add some &amp;#8220;space&amp;#8221; to the sound&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And for more dramatic effects, usually ones you&amp;#8217;d want to control with a knob:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Bit reduction (soft)&lt;/li&gt;
+
+&lt;li&gt;Grain delay&lt;/li&gt;
+
+&lt;li&gt;One of the excellent &lt;a href='http://4live.me/tagged/oneknob#.UX4qcKDmpIM'&gt;one-knob effects&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
   </entry>
   
   <entry>
