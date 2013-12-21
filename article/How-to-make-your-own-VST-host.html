@@ -59,37 +59,37 @@
         </div>
 
         <!-- Start content -->
-        <h2 id='introduction'>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
 
-<p>Writing VST plugins is a lot of fun, but it&#8217;s even more fun to write your own host which uses the wide variety of plugins already out there to do something original and new. Making your own VST host is not a trivial task, but the trickiest part is figuring out how to load the plugins and connect them to your code&#8217;s callback functions. As the VST documentation is a bit sparse on the subject of hosting, this guide will assist you in setting up your own host.</p>
+<p>Writing VST plugins is a lot of fun, but it’s even more fun to write your own host which uses the wide variety of plugins already out there to do something original and new. Making your own VST host is not a trivial task, but the trickiest part is figuring out how to load the plugins and connect them to your code’s callback functions. As the VST documentation is a bit sparse on the subject of hosting, this guide will assist you in setting up your own host.</p>
 
-<p>This guide only covers loading the plugin and basic communication, and the language of choice here is C++. C# programmers should consider using the <a href='http://www.codeplex.com/vstnet'>VST.NET framework</a>, and I&#8217;m not sure what frameworks exist for other languages.</p>
+<p>This guide only covers loading the plugin and basic communication, and the language of choice here is C++. C# programmers should consider using the <a href="http://www.codeplex.com/vstnet">VST.NET framework</a>, and I’m not sure what frameworks exist for other languages.</p>
 
-<p>Also, it&#8217;s worth noting that Teragon Audio has developed an <a href='http://teragonaudio.github.com/MrsWatson'>open-source VST host, MrsWatson</a>. Feel free to look at the code and fork it for your own project! If you find yourself using a substantial portion of the MrsWatson source in your own code, please let me know so I can add a link to your project from the MrsWatson page.</p>
+<p>Also, it’s worth noting that Teragon Audio has developed an <a href="http://teragonaudio.github.com/MrsWatson">open-source VST host, MrsWatson</a>. Feel free to look at the code and fork it for your own project! If you find yourself using a substantial portion of the MrsWatson source in your own code, please let me know so I can add a link to your project from the MrsWatson page.</p>
 
-<h2 id='code_conventions'>Code conventions</h2>
+<h2 id="code_conventions">Code conventions</h2>
 
-<p>In the course of your development, you will probably require logging, error handling, etc. To simplify the code in this tutorial, I have simply written &#8220;return -1&#8221; or &#8220;return NULL&#8221; statements, but you should consider expanding this to log some info or handle the error.</p>
+<p>In the course of your development, you will probably require logging, error handling, etc. To simplify the code in this tutorial, I have simply written “return -1” or “return NULL” statements, but you should consider expanding this to log some info or handle the error.</p>
 
 <p>Also, this tutorial is written for both Windows and Mac OSX developers. As such, there is a lot of platform-specific code, which you will probably need to box with #ifdef/#endif statements in the preprocessor.</p>
 
-<h2 id='setting_up_your_build_environment'>Setting up your build environment</h2>
+<h2 id="setting_up_your_build_environment">Setting up your build environment</h2>
 
-<p>You&#8217;ll need to first download and install the following tools:</p>
+<p>You’ll need to first download and install the following tools:</p>
 
 <ol>
-<li><a href='http://www.steinberg.net/en/company/3rd_party_developer.html'>Steinberg&#8217;s VST SDK</a>, which requires you to make a <a href='http://www.steinberg.net/en/company/3rd_party_developer/sdk_download_portal/create_3rd_party_developer_account.html'>free Steinberg Developer account</a>. This tutorial assumes you are working with the VST 2.4 SDK.</li>
+<li><a href="http://www.steinberg.net/en/company/3rd_party_developer.html">Steinberg’s VST SDK</a>, which requires you to make a <a href="http://www.steinberg.net/en/company/3rd_party_developer/sdk_download_portal/create_3rd_party_developer_account.html">free Steinberg Developer account</a>. This tutorial assumes you are working with the VST 2.4 SDK.</li>
 
-<li><a href='http://msdn.microsoft.com/vstudio/express/visualc/'>Microsoft&#8217;s Visual C++ 2010 Express</a>, if you wish to support Windows.</li>
+<li><a href="http://msdn.microsoft.com/vstudio/express/visualc/">Microsoft’s Visual C++ 2010 Express</a>, if you wish to support Windows.</li>
 
-<li><a href='http://www.microsoft.com/downloads/details.aspx?FamilyId=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB&amp;displaylang=en'>Microsoft&#8217;s Platform SDK</a>, again if you are developing on Windows.</li>
+<li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB&displaylang=en">Microsoft’s Platform SDK</a>, again if you are developing on Windows.</li>
 
-<li><a href='http://developer.apple.com/programs/mac/'>Xcode 4.x</a>, if you are developing on Mac OS X.</li>
+<li><a href="http://developer.apple.com/programs/mac/">Xcode 4.x</a>, if you are developing on Mac OS X.</li>
 </ol>
 
-<h2 id='project_configuration'>Project configuration</h2>
+<h2 id="project_configuration">Project configuration</h2>
 
-<p>Aside from your project files, you need only to add the VST SDK headers into your project&#8217;s include path. This includes the following files, which are located under the vstsdk2.4/pluginterfaces/vst2.x directory:</p>
+<p>Aside from your project files, you need only to add the VST SDK headers into your project’s include path. This includes the following files, which are located under the vstsdk2.4/pluginterfaces/vst2.x directory:</p>
 
 <ul>
 <li>aeffect.h</li>
@@ -101,9 +101,9 @@
 
 <p>On both Windows and Mac OSX, you should probably configure your program to build as a 32-bit binary, simply because most VST plugins are not 64-bit compatible yet. On the Mac, this gets to be a bit hairy because Apple is working to deprecate Carbon, which is a 32-bit framework. If anyone out there has example code in C (not objective-C) to load a plugin from bundle without using Carbon, please let me know so I can update this article.</p>
 
-<h2 id='loading_the_vst_plugin'>Loading the VST plugin</h2>
+<h2 id="loading_the_vst_plugin">Loading the VST plugin</h2>
 
-<p>After your host performs its own internal initialization routines, it is time to load the VST plugin from source. This procedure varies a bit depending on the platform, but the algorithm is fundamentally the same: find the plugin, load the dynamic library into memory, acquire the plugin&#8217;s main address, and create a VST callback connection. These callbacks are defined function pointers which you should define in one of your project&#8217;s header files, and are as follows:</p>
+<p>After your host performs its own internal initialization routines, it is time to load the VST plugin from source. This procedure varies a bit depending on the platform, but the algorithm is fundamentally the same: find the plugin, load the dynamic library into memory, acquire the plugin’s main address, and create a VST callback connection. These callbacks are defined function pointers which you should define in one of your project’s header files, and are as follows:</p>
 <div class='highlight'><pre><code class='cpp'><span class='cp'>#include &quot;aeffectx.h&quot;</span>
 
 <span class='c1'>// C callbacks</span>
@@ -116,20 +116,20 @@
 <span class='c1'>// Plugin&#39;s entry point</span>
 <span class='k'>typedef</span> <span class='n'>AEffect</span> <span class='o'>*</span><span class='p'>(</span><span class='o'>*</span><span class='n'>vstPluginFuncPtr</span><span class='p'>)(</span><span class='n'>audioMasterCallback</span> <span class='n'>host</span><span class='p'>);</span>
 <span class='c1'>// Plugin&#39;s dispatcher function</span>
-<span class='k'>typedef</span> <span class='n'>VstIntPtr</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>dispatcherFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>opCode</span><span class='p'>,</span>
+<span class='k'>typedef</span> <span class='nf'>VstIntPtr</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>dispatcherFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>opCode</span><span class='p'>,</span>
   <span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>value</span><span class='p'>,</span> <span class='kt'>void</span> <span class='o'>*</span><span class='n'>ptr</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>opt</span><span class='p'>);</span>
 <span class='c1'>// Plugin&#39;s getParameter() method</span>
-<span class='k'>typedef</span> <span class='kt'>float</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>getParameterFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>);</span>
+<span class='k'>typedef</span> <span class='nf'>float</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>getParameterFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>);</span>
 <span class='c1'>// Plugin&#39;s setParameter() method</span>
-<span class='k'>typedef</span> <span class='kt'>void</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>setParameterFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>value</span><span class='p'>);</span>
+<span class='k'>typedef</span> <span class='nf'>void</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>setParameterFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>value</span><span class='p'>);</span>
 <span class='c1'>// Plugin&#39;s processEvents() method</span>
-<span class='k'>typedef</span> <span class='n'>VstInt32</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>processEventsFuncPtr</span><span class='p'>)(</span><span class='n'>VstEvents</span> <span class='o'>*</span><span class='n'>events</span><span class='p'>);</span>
+<span class='k'>typedef</span> <span class='nf'>VstInt32</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>processEventsFuncPtr</span><span class='p'>)(</span><span class='n'>VstEvents</span> <span class='o'>*</span><span class='n'>events</span><span class='p'>);</span>
 <span class='c1'>// Plugin&#39;s process() method</span>
-<span class='k'>typedef</span> <span class='kt'>void</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>processFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span>
+<span class='k'>typedef</span> <span class='nf'>void</span> <span class='p'>(</span><span class='o'>*</span><span class='n'>processFuncPtr</span><span class='p'>)(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span>
   <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>sampleFrames</span><span class='p'>);</span>
 </code></pre></div>
-<p>On Windows, VST plugins are simply dynamically linked libraries (DLL&#8217;s). The code for opening a DLL library in Windows is fairly simple:</p>
-<div class='highlight'><pre><code class='cpp'><span class='n'>AEffect</span><span class='o'>*</span> <span class='n'>loadPlugin</span><span class='p'>()</span> <span class='p'>{</span>
+<p>On Windows, VST plugins are simply dynamically linked libraries (DLL’s). The code for opening a DLL library in Windows is fairly simple:</p>
+<div class='highlight'><pre><code class='cpp'><span class='n'>AEffect</span><span class='o'>*</span> <span class='nf'>loadPlugin</span><span class='p'>()</span> <span class='p'>{</span>
   <span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
   <span class='kt'>char</span> <span class='o'>*</span><span class='n'>vstPath</span> <span class='o'>=</span> <span class='s'>&quot;c:</span><span class='se'>\\</span><span class='s'>wherever</span><span class='se'>\\</span><span class='s'>the</span><span class='se'>\\</span><span class='s'>plugin</span><span class='se'>\\</span><span class='s'>is</span><span class='se'>\\</span><span class='s'>located.vst&quot;</span><span class='p'>;</span>
 
@@ -152,7 +152,7 @@
 <p>The procedure for opening a plugin under OSX is a bit more complex, but the code should be fairly straightforward. Keep in mind that although a VST plugin can be loaded from any location on disk, they are usually stored in either <code>/Library/Audio/Plug-Ins/VST</code> or <code>$HOME/Library/Audio/Plug-Ins/VST</code>.</p>
 
 <p>Anyways, to load the VST plugin on Mac OSX, that will look something like this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='n'>AEffect</span><span class='o'>*</span> <span class='n'>loadPlugin</span><span class='p'>()</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='n'>AEffect</span><span class='o'>*</span> <span class='nf'>loadPlugin</span><span class='p'>()</span> <span class='p'>{</span>
   <span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
   <span class='n'>audioMasterCallback</span> <span class='n'>hostCallbackFuncPtr</span> <span class='o'>=</span> <span class='n'>hostCallback</span><span class='p'>;</span>
   <span class='kt'>char</span> <span class='o'>*</span><span class='n'>pluginPath</span> <span class='o'>=</span> <span class='s'>&quot;/wherever/the/plugin/is/located.vst&quot;</span><span class='p'>;</span>
@@ -161,7 +161,7 @@
   <span class='n'>CFStringRef</span> <span class='n'>pluginPathStringRef</span> <span class='o'>=</span> <span class='n'>CFStringCreateWithCString</span><span class='p'>(</span><span class='nb'>NULL</span><span class='p'>,</span>
     <span class='n'>pluginPath</span><span class='p'>,</span> <span class='n'>kCFStringEncodingASCII</span><span class='p'>);</span>
   <span class='n'>CFURLRef</span> <span class='n'>bundleUrl</span> <span class='o'>=</span> <span class='n'>CFURLCreateWithFileSystemPath</span><span class='p'>(</span><span class='n'>kCFAllocatorDefault</span><span class='p'>,</span>
-    <span class='n'>pluginPathStringRef</span><span class='p'>,</span> <span class='n'>kCFURLPOSIXPathStyle</span><span class='p'>,</span> <span class='kc'>true</span><span class='p'>);</span>
+    <span class='n'>pluginPathStringRef</span><span class='p'>,</span> <span class='n'>kCFURLPOSIXPathStyle</span><span class='p'>,</span> <span class='nb'>true</span><span class='p'>);</span>
   <span class='k'>if</span><span class='p'>(</span><span class='n'>bundleUrl</span> <span class='o'>==</span> <span class='nb'>NULL</span><span class='p'>)</span> <span class='p'>{</span>
     <span class='n'>printf</span><span class='p'>(</span><span class='s'>&quot;Couldn&#39;t make URL reference for plugin</span><span class='se'>\n</span><span class='s'>&quot;</span><span class='p'>);</span>
     <span class='k'>return</span> <span class='nb'>NULL</span><span class='p'>;</span>
@@ -208,12 +208,12 @@
   <span class='k'>return</span> <span class='n'>plugin</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
-<p>You need to keep the bundle pointer around until the host is ready to unload the plugin. At this point, you call <code>CFBundleUnloadExecutable</code> and then <code>CFRelease</code> on the bundle&#8217;s reference.</p>
+<p>You need to keep the bundle pointer around until the host is ready to unload the plugin. At this point, you call <code>CFBundleUnloadExecutable</code> and then <code>CFRelease</code> on the bundle’s reference.</p>
 
-<h2 id='setting_up_plugin_callbacks'>Setting up plugin callbacks</h2>
+<h2 id="setting_up_plugin_callbacks">Setting up plugin callbacks</h2>
 
 <p>At this point, you should now have successfully loaded the plugin into memory, and you can now establish the plugin dispatcher callbacks:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>initPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='nf'>initPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='c1'>// Check plugin&#39;s magic number</span>
   <span class='c1'>// If incorrect, then the file either was not loaded properly, is not a</span>
   <span class='c1'>// real VST plugin, or is otherwise corrupt.</span>
@@ -233,10 +233,10 @@
   <span class='k'>return</span> <span class='n'>plugin</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
-<h2 id='plugin_initialization'>Plugin initialization</h2>
+<h2 id="plugin_initialization">Plugin initialization</h2>
 
 <p>At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>initPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>initPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effOpen</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 
   <span class='c1'>// Set some default properties</span>
@@ -248,51 +248,51 @@
   <span class='n'>resume</span><span class='p'>();</span>
 <span class='p'>}</span>
 </code></pre></div>
-<h2 id='suspending_and_resuming'>Suspending and resuming</h2>
+<h2 id="suspending_and_resuming">Suspending and resuming</h2>
 
-<p>Calling the plugin&#8217;s suspend and resume methods are a bit counter-intuitive, and are done like this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>resumePlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
+<p>Calling the plugin’s suspend and resume methods are a bit counter-intuitive, and are done like this:</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>resumePlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effMainsChanged</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>1</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 <span class='p'>}</span>
 
-<span class='kt'>void</span> <span class='n'>suspendPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
+<span class='kt'>void</span> <span class='nf'>suspendPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effMainsChanged</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 <span class='p'>}</span>
 </code></pre></div>
-<h2 id='plugin_capabilities'>Plugin capabilities</h2>
+<h2 id="plugin_capabilities">Plugin capabilities</h2>
 
-<p>The VST protocol uses &#8220;canDo&#8221; strings to define plugin capabilities, the most common of which are defined in audioeffectx.cpp in the PlugCanDos namespace near the top of the file. To ask a plugin if it supports one of these capabilities, make the following dispatcher call:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>bool</span> <span class='n'>canPluginDo</span><span class='p'>(</span><span class='kt'>char</span> <span class='o'>*</span><span class='n'>canDoString</span><span class='p'>)</span> <span class='p'>{</span>
+<p>The VST protocol uses “canDo” strings to define plugin capabilities, the most common of which are defined in audioeffectx.cpp in the PlugCanDos namespace near the top of the file. To ask a plugin if it supports one of these capabilities, make the following dispatcher call:</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>bool</span> <span class='nf'>canPluginDo</span><span class='p'>(</span><span class='kt'>char</span> <span class='o'>*</span><span class='n'>canDoString</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='k'>return</span> <span class='p'>(</span><span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effCanDo</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='p'>(</span><span class='kt'>void</span><span class='o'>*</span><span class='p'>)</span><span class='n'>canDoString</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>)</span> <span class='o'>&gt;</span> <span class='mi'>0</span><span class='p'>);</span>
 <span class='p'>}</span>
 </code></pre></div>
-<h2 id='host_capabilities'>Host capabilities</h2>
+<h2 id="host_capabilities">Host capabilities</h2>
 
 <p>The plugin can also ask the host if it supports a given capability, which is done through the hostCallback() function defined above. The implementation of this file looks something like this:</p>
 <div class='highlight'><pre><code class='cpp'><span class='k'>extern</span> <span class='s'>&quot;C&quot;</span> <span class='p'>{</span>
 <span class='n'>VstIntPtr</span> <span class='n'>VSTCALLBACK</span> <span class='n'>hostCallback</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>opcode</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span>
   <span class='n'>VstInt32</span> <span class='n'>value</span><span class='p'>,</span> <span class='kt'>void</span> <span class='o'>*</span><span class='n'>ptr</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>opt</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='k'>switch</span><span class='p'>(</span><span class='n'>opcode</span><span class='p'>)</span> <span class='p'>{</span>
-    <span class='k'>case</span> <span class='nl'>audioMasterVersion:</span>
+    <span class='k'>case</span> <span class='n'>audioMasterVersion</span>:
       <span class='k'>return</span> <span class='mi'>2400</span><span class='p'>;</span>
-    <span class='k'>case</span> <span class='nl'>audioMasterIdle:</span>
+    <span class='k'>case</span> <span class='n'>audioMasterIdle</span>:
       <span class='n'>effect</span><span class='o'>-&gt;</span><span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>effect</span><span class='p'>,</span> <span class='n'>effEditIdle</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>);</span>
     <span class='c1'>// Handle other opcodes here... there will be lots of them</span>
-    <span class='k'>default</span><span class='o'>:</span>
+    <span class='nl'>default:</span>
       <span class='n'>printf</span><span class='p'>(</span><span class='s'>&quot;Plugin requested value of opcode %d</span><span class='se'>\n</span><span class='s'>&quot;</span><span class='p'>,</span> <span class='n'>opcode</span><span class='p'>);</span>
       <span class='k'>break</span><span class='p'>;</span>
   <span class='p'>}</span>
 <span class='p'>}</span>
 <span class='p'>}</span>
 </code></pre></div>
-<p>The full list of opcodes is defined in aeffect.h (for the VST 1.x protocol) and aeffectx.h (for VST 2.x protocol). There are a lot of opcodes, and your application doesn&#8217;t need to support them all, but you will soon figure out which ones are the most important through trial and error. Depending on the nature of the opcall, you will either be required to return a given integer value, call a method in the plugin&#8217;s dispatcher, or fill the <code>*ptr</code> pointer with some type of data. The VST SDK header files have fairly good documentation specifying what you need to do depending on the opcode.</p>
+<p>The full list of opcodes is defined in aeffect.h (for the VST 1.x protocol) and aeffectx.h (for VST 2.x protocol). There are a lot of opcodes, and your application doesn’t need to support them all, but you will soon figure out which ones are the most important through trial and error. Depending on the nature of the opcall, you will either be required to return a given integer value, call a method in the plugin’s dispatcher, or fill the <code>*ptr</code> pointer with some type of data. The VST SDK header files have fairly good documentation specifying what you need to do depending on the opcode.</p>
 
-<p>The <a href='http://teragonaudio.github.com/MrsWatson'>MrsWatson source code</a> also contains an example implementation of this function with the most common opcode cases.</p>
+<p>The <a href="http://teragonaudio.github.com/MrsWatson">MrsWatson source code</a> also contains an example implementation of this function with the most common opcode cases.</p>
 
-<h2 id='processing_audio'>Processing audio</h2>
+<h2 id="processing_audio">Processing audio</h2>
 
-<p>In the VST SDK 2.4, <code>processReplacing()</code> became the new standard call. You may have to add in support to your host for the old style of <code>process()</code> plugins, though there aren&#8217;t so many plugins out there which still do this. To have the plugin process some audio:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>processAudio</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span>
+<p>In the VST SDK 2.4, <code>processReplacing()</code> became the new standard call. You may have to add in support to your host for the old style of <code>process()</code> plugins, though there aren’t so many plugins out there which still do this. To have the plugin process some audio:</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>processAudio</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span>
   <span class='kt'>long</span> <span class='n'>numFrames</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='c1'>// Note: If you are processing an instrument, you should probably zero</span>
   <span class='c1'>// out the input channels first to avoid any accidental noise. If you</span>
@@ -301,7 +301,7 @@
   <span class='n'>plugin</span><span class='o'>-&gt;</span><span class='n'>processReplacing</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>inputs</span><span class='p'>,</span> <span class='n'>outputs</span><span class='p'>,</span> <span class='n'>numFrames</span><span class='p'>);</span>
 <span class='p'>}</span>
 
-<span class='kt'>void</span> <span class='n'>silenceChannel</span><span class='p'>(</span><span class='kt'>float</span> <span class='o'>**</span><span class='n'>channelData</span><span class='p'>,</span> <span class='kt'>int</span> <span class='n'>numChannels</span><span class='p'>,</span> <span class='kt'>long</span> <span class='n'>numFrames</span><span class='p'>)</span> <span class='p'>{</span>
+<span class='kt'>void</span> <span class='nf'>silenceChannel</span><span class='p'>(</span><span class='kt'>float</span> <span class='o'>**</span><span class='n'>channelData</span><span class='p'>,</span> <span class='kt'>int</span> <span class='n'>numChannels</span><span class='p'>,</span> <span class='kt'>long</span> <span class='n'>numFrames</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='k'>for</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>channel</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>channels</span> <span class='o'>&lt;</span> <span class='n'>numChannels</span><span class='p'>;</span> <span class='o'>++</span><span class='n'>channel</span><span class='p'>)</span> <span class='p'>{</span>
     <span class='k'>for</span><span class='p'>(</span><span class='kt'>long</span> <span class='n'>frame</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>frame</span> <span class='o'>&lt;</span> <span class='n'>numFrames</span><span class='p'>;</span> <span class='o'>++</span><span class='n'>frame</span><span class='p'>)</span> <span class='p'>{</span>
       <span class='n'>channelData</span><span class='p'>[</span><span class='n'>channel</span><span class='p'>][</span><span class='n'>frame</span><span class='p'>]</span> <span class='o'>=</span> <span class='mf'>0.0f</span><span class='p'>;</span>
@@ -311,10 +311,10 @@
 </code></pre></div>
 <p>Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.</p>
 
-<h2 id='sending_midi_messages'>Sending MIDI messages</h2>
+<h2 id="sending_midi_messages">Sending MIDI messages</h2>
 
 <p>Processing MIDI events is very similar to processing audio:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>processMidi</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>VstEvents</span> <span class='o'>*</span><span class='n'>events</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>processMidi</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>VstEvents</span> <span class='o'>*</span><span class='n'>events</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effProcessEvents</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='n'>events</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 <span class='p'>}</span>
 </code></pre></div>
@@ -322,7 +322,7 @@
 
 <p>Note that the plugin must support the <code>receiveVstMidiEvent</code> canDo in order to process MIDI.</p>
 
-<h2 id='final_notes'>Final Notes</h2>
+<h2 id="final_notes">Final Notes</h2>
 
 <p>At this point, you should have a basic working host capable of loading and communicating with a VST plugin. As you continue your development, take care to thoroughly read the VST SDK header files and other associated documentation, as they will provide you with further hints as to the correct implementation. Also, you should take time to create good logging facilities in your host, particularly in the <code>hostCallback()</code> method, as most plugin incompatibilities are usually triggered from some error there.</p>
         <!-- End content -->

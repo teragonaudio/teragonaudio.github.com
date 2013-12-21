@@ -59,43 +59,53 @@
         </div>
 
         <!-- Start content -->
-        <h2 id='introduction'>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
 
-<p>A few years ago, I helped to develop an iPhone app which did some basic DSP processing on the iPhone&#8217;s microphone signal. Since then, I have seen a barrage of questions on StackOverflow with people who want to this and are having trouble doing so. The biggest barrier seems to be not the actual DSP processing, but all of the associated framework stuff to get the iPhone to send you a raw PCM data stream.</p>
+<p>A few years ago, I helped to develop an iPhone app which did some basic DSP processing on the iPhone’s microphone signal. Since then, I have seen a barrage of questions on StackOverflow with people who want to this and are having trouble doing so. The biggest barrier seems to be not the actual DSP processing, but all of the associated framework stuff to get the iPhone to send you a raw PCM data stream.</p>
 
-<p>Apple has some documentation on both subjects, but not really enough to figure out how to put all the pieces together. So without further ado, let&#8217;s get started.</p>
+<p>Apple has some documentation on both subjects, but not really enough to figure out how to put all the pieces together. So without further ado, let’s get started.</p>
 
-<h2 id='how_ios_buffers_audio'>How iOS buffers audio</h2>
+<h2 id="wait_a_second__before_you_read_any_further">WAIT A SECOND – BEFORE YOU READ ANY FURTHER</h2>
+
+<p>Yes, this blog post is going to tell you how to do real-time audio processing on iOS, the hard and old-fashioned way. So before we get started with the dirty details, it’s worth asking yourself if you really, really need to do things the hard way.</p>
+
+<p><img src="http://static.teragonaudio.com/road-to-heaven-or-hell.jpg" alt="Which path do you really want to choose?" /></p>
+
+<p>There is actually an easier way to do all of this, and it’s a framework called <a href="https://github.com/alexbw/novocaine">novocaine</a>. The framework name says it all; it provides a painless way of doing something otherwise would be very painful. And believe me, doing these low level audio operations on iOS can be quite painful. This framework provides a easy way to do audio processing on iOS, giving the programmer a simple block-based callback which contains the DSP code.</p>
+
+<p>Before you continue reading this article, please, check out novacaine’s GitHub page. If that framework doesn’t meet your needs, then feel free to continue reading and doing things the hard way.</p>
+
+<h2 id="how_ios_buffers_audio">How iOS buffers audio</h2>
 
 <p>One of the most difficult tripping blocks for people wanting to program audio for iOS is how it deals with audio buffering. Unlike in the VST world where your code is simply delivered a nice array of floats, you need to tell the iPhone exactly how to pack up the data blocks and send them to you. If you do not tell it this properly, you will get a not helpful error code and be stuck scratching your head.</p>
 
 <p>First, one needs to understand a bit of terminology. A sample is a single point of audio data, sometimes called a sample frame. A group of samples comes together to make a channel, just like the left &amp; right channels of a stereo signal. Finally, a packet contains one or more channels.</p>
 
-<p><img alt='Visual representation of iOS buffers' src='http://static.teragonaudio.com/ios-buffers.png' /></p>
+<p><img src="http://static.teragonaudio.com/ios-buffers.png" alt="Visual representation of iOS buffers" /></p>
 
-<p>You might be wondering why each channel only contains one frame. I don&#8217;t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.</p>
+<p>You might be wondering why each channel only contains one frame. I don’t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.</p>
 
-<h2 id='audiounits_on_ios'>AudioUnits on iOS</h2>
+<h2 id="audiounits_on_ios">AudioUnits on iOS</h2>
 
-<p>If you are used to developing AudioUnits on Mac OSX, you might think that AudioUnit development on iOS is going to be basically the same thing. And it is, depending on how you define the word &#8220;basically&#8221;. The architecture is fundamentally the same, but rather than loading plugins from bundles, you basically do your processing directly in the graph. So if you are trying to port an AU from the Mac to iOS, it&#8217;s going to take more work than just hitting recompile.</p>
+<p>If you are used to developing AudioUnits on Mac OSX, you might think that AudioUnit development on iOS is going to be basically the same thing. And it is, depending on how you define the word “basically”. The architecture is fundamentally the same, but rather than loading plugins from bundles, you basically do your processing directly in the graph. So if you are trying to port an AU from the Mac to iOS, it’s going to take more work than just hitting recompile.</p>
 
 <p>If you are trying to port a VST/AU algorithm to iOS, hopefully the process() function is well abstracted and written in very vanilla C. If so, then you can easily drop this code into an iOS AudioUnit for processing.</p>
 
-<h2 id='initializing_the_audio_subsystem'>Initializing the audio subsystem</h2>
+<h2 id="initializing_the_audio_subsystem">Initializing the audio subsystem</h2>
 
 <p>When you are ready to start processing audio, you need to create your AudioUnit and get the system ready to start delivering you sound. That routine looks something like this:</p>
 <div class='highlight'><pre><code class='cpp'><span class='c1'>// Yeah, global variables suck, but it&#39;s kind of a necessary evil here</span>
 <span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
 <span class='kt'>float</span> <span class='o'>*</span><span class='n'>convertedSampleBuffer</span> <span class='o'>=</span> <span class='nb'>NULL</span><span class='p'>;</span>
 
-<span class='kt'>int</span> <span class='n'>initAudioSession</span><span class='p'>()</span> <span class='p'>{</span>
+<span class='kt'>int</span> <span class='nf'>initAudioSession</span><span class='p'>()</span> <span class='p'>{</span>
   <span class='n'>audioUnit</span> <span class='o'>=</span> <span class='p'>(</span><span class='n'>AudioUnit</span><span class='o'>*</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='n'>AudioUnit</span><span class='p'>));</span>
 
   <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionInitialize</span><span class='p'>(</span><span class='nb'>NULL</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
     <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
   <span class='p'>}</span>
 
-  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetActive</span><span class='p'>(</span><span class='kc'>true</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetActive</span><span class='p'>(</span><span class='nb'>true</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
     <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
   <span class='p'>}</span>
 
@@ -125,14 +135,14 @@
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
-<p>Unlike audio on the desktop, you don&#8217;t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you&#8217;ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn&#8217;t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.</p>
+<p>Unlike audio on the desktop, you don’t get to tell the system your buffer size. Instead, you can ask the system to provide you with an approximate buffer size. iOS does not guarantee to return the exact buffer size that you’ve asked for, but it will give you something which works for the device and is near what you request. Certain types of DSP applications, such as those using FFT, will greatly benefit from having known buffer sizes during runtime or compile time, but most other audio effect processing shouldn’t matter too much. Unless you need a specific buffer size, you should code flexibly and let the system decide for you.</p>
 
-<p>If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn&#8217;t need to worry about this.</p>
+<p>If you do need a specific buffer size, however, you should create statically-sized structures and proxy buffers to deliver them to the size that iOS determines. This will introduce extra latency, but will improve performance in these cases. And please note, this in a very small number of cases. Most people shouldn’t need to worry about this.</p>
 
-<h2 id='setting_up_your_streams'>Setting up your streams</h2>
+<h2 id="setting_up_your_streams">Setting up your streams</h2>
 
 <p>Before you can call AudioUnitInitialize(), you need to tell the system what type of streams you expect to have. That code will look something like this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>initAudioStreams</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='nf'>initAudioStreams</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>UInt32</span> <span class='n'>audioCategory</span> <span class='o'>=</span> <span class='n'>kAudioSessionCategory_PlayAndRecord</span><span class='p'>;</span>
   <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioSessionSetProperty</span><span class='p'>(</span><span class='n'>kAudioSessionProperty_AudioCategory</span><span class='p'>,</span>
      <span class='k'>sizeof</span><span class='p'>(</span><span class='n'>UInt32</span><span class='p'>),</span> <span class='o'>&amp;</span><span class='n'>audioCategory</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
@@ -211,12 +221,12 @@
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
-<p>It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the &#8220;gotchas&#8221; that trips up many developers.</p>
+<p>It might be tempting to use the kAudioFormatFlagIsFloat flag when setting up your stream. It will even compile on Xcode without any warnings. However, that will not run on an actual iPhone, so you need to construct your app to use linear PCM and convert it to floating point data if necessary. This is one of the “gotchas” that trips up many developers.</p>
 
-<h2 id='starting_audio_processing'>Starting audio processing</h2>
+<h2 id="starting_audio_processing">Starting audio processing</h2>
 
 <p>At this point, everything is ready to go and we can tell the OS to start recording and sending us data.</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>startAudioUnit</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='nf'>startAudioUnit</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioUnitInitialize</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
     <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
   <span class='p'>}</span>
@@ -228,10 +238,10 @@
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
-<h2 id='processing_data_in_the_callback'>Processing data in the callback</h2>
+<h2 id="processing_data_in_the_callback">Processing data in the callback</h2>
 
 <p>At this point, the system will now call your rendering function whenever it wants audio. Generally speaking, you will want to convert the linear PCM data to floating point, which is much easier to work with. However, in some cases (like an echo plugin), you may not necessarily need to manipulate the samples and can keep the data in linear PCM. The below example demonstrates floating point data conversion, but if you can do everything with integer math, it will of course be more efficient.</p>
-<div class='highlight'><pre><code class='cpp'><span class='n'>OSStatus</span> <span class='n'>renderCallback</span><span class='p'>(</span><span class='kt'>void</span> <span class='o'>*</span><span class='n'>userData</span><span class='p'>,</span> <span class='n'>AudioUnitRenderActionFlags</span> <span class='o'>*</span><span class='n'>actionFlags</span><span class='p'>,</span>
+<div class='highlight'><pre><code class='cpp'><span class='n'>OSStatus</span> <span class='nf'>renderCallback</span><span class='p'>(</span><span class='kt'>void</span> <span class='o'>*</span><span class='n'>userData</span><span class='p'>,</span> <span class='n'>AudioUnitRenderActionFlags</span> <span class='o'>*</span><span class='n'>actionFlags</span><span class='p'>,</span>
                         <span class='k'>const</span> <span class='n'>AudioTimeStamp</span> <span class='o'>*</span><span class='n'>audioTimeStamp</span><span class='p'>,</span> <span class='n'>UInt32</span> <span class='n'>busNumber</span><span class='p'>,</span>
                         <span class='n'>UInt32</span> <span class='n'>numFrames</span><span class='p'>,</span> <span class='n'>AudioBufferList</span> <span class='o'>*</span><span class='n'>buffers</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>OSStatus</span> <span class='n'>status</span> <span class='o'>=</span> <span class='n'>AudioUnitRender</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>,</span> <span class='n'>actionFlags</span><span class='p'>,</span> <span class='n'>audioTimeStamp</span><span class='p'>,</span>
@@ -273,12 +283,12 @@
 </code></pre></div>
 <p>Keep in mind that this code will be called several times <em>per second</em>. Best development practices tend to advocate lazy initialization and runtime checks to keep readability. This is not necessarily a best practice when it comes to audio development, however. The name of the game here is to move anything you can out of render and into the initialize function. This includes things like allocating blocks of memory and calling system functions. In the best case, your render function will just loop over the input buffer and perform simple mathematical operations on the samples. Even a single malloc call (or even worse, an Obj-C <code>[[[ClassName alloc] init] autorelease]</code> allocation) in the render call is likely to grind your code to a halt or leak memory like crazy.</p>
 
-<p>Same goes with <code>NSLog()</code> or <code>printf()</code>. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I&#8217;ve noticed that many iOS developers tend to use <code>NSLog()</code> for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call &#8220;quantum debugging&#8221; where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don&#8217;t occur in a &#8220;clean&#8221; environment.</p>
+<p>Same goes with <code>NSLog()</code> or <code>printf()</code>. Those functions should never be called from within render, except possibly during development. Since Xcode has a somewhat weak debugger, I’ve noticed that many iOS developers tend to use <code>NSLog()</code> for debugging, but I would encourage you to instead be clever and find other ways of fixing problems in your render routine. The reason why is that calling slow functions from render may cause a condition I jokingly call “quantum debugging” where code behaves one way in production runs, but radically different when being observed. This is rather common when trying to iron out problems in realtime audio code, especially when it comes to dropouts and distortion which don’t occur in a “clean” environment.</p>
 
-<h2 id='shutting_down'>Shutting down</h2>
+<h2 id="shutting_down">Shutting down</h2>
 
-<p>When you are finished processing audio, you need to tell the OS to stop processing and free the AudioUnit&#8217;s resources.</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='n'>stopProcessingAudio</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
+<p>When you are finished processing audio, you need to tell the OS to stop processing and free the AudioUnit’s resources.</p>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='nf'>stopProcessingAudio</span><span class='p'>(</span><span class='n'>AudioUnit</span> <span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='k'>if</span><span class='p'>(</span><span class='n'>AudioOutputUnitStop</span><span class='p'>(</span><span class='o'>*</span><span class='n'>audioUnit</span><span class='p'>)</span> <span class='o'>!=</span> <span class='n'>noErr</span><span class='p'>)</span> <span class='p'>{</span>
     <span class='k'>return</span> <span class='mi'>1</span><span class='p'>;</span>
   <span class='p'>}</span>
@@ -291,27 +301,27 @@
   <span class='k'>return</span> <span class='mi'>0</span><span class='p'>;</span>
 <span class='p'>}</span>
 </code></pre></div>
-<h2 id='other_considerations'>Other considerations</h2>
+<h2 id="other_considerations">Other considerations</h2>
 
 <p>As the point of this tutorial was to demonstrate audio buffer construction and realtime audio processing, I glossed over a lot of details. But these are things which you will probably need to take into consideration when developing an application. Before you start processing audio, you should probably:</p>
 
 <ul>
 <li>Make sure that the device can record audio (this is not possible for the iPod Touch without the headset, for instance).</li>
 
-<li>Check for possible feedback loops, usually caused when the system&#8217;s default input and output are the external mic and speakers. Since the render callback imposes a few milliseconds of latency and the mic and external speaker sit very near to each other on the iPhone, there is a very real possibility of harsh feedback on the device. If you detect a possible feedback loop, you may want to avoid recording or playback (or both, depending on your app&#8217;s requirements).</li>
+<li>Check for possible feedback loops, usually caused when the system’s default input and output are the external mic and speakers. Since the render callback imposes a few milliseconds of latency and the mic and external speaker sit very near to each other on the iPhone, there is a very real possibility of harsh feedback on the device. If you detect a possible feedback loop, you may want to avoid recording or playback (or both, depending on your app’s requirements).</li>
 
 <li>Install a callback function which will be called when the audio route changes (ie, the user plugs in or disconnects the headset).</li>
 
-<li>Handle application pausing and switching. If processing is interrupted and you don&#8217;t clear the buffers by zeroing them out, you will get nasty noise (aka the &#8220;satan saw&#8221;).</li>
+<li>Handle application pausing and switching. If processing is interrupted and you don’t clear the buffers by zeroing them out, you will get nasty noise (aka the “satan saw”).</li>
 </ul>
 
-<h2 id='a_word_on_developing_audio_on_ios'>A word on developing audio on iOS</h2>
+<h2 id="a_word_on_developing_audio_on_ios">A word on developing audio on iOS</h2>
 
-<p>Unlike Android, iOS development can be mostly done on the desktop without any external hardware. Many developers do their entire application development with the iOS Simulator, which is definitely fine for most day-to-day development tasks. However, if you are writing audio processing apps for iOS, you will most definitely need to develop and deploy them to hardware, and <em>not just during your final testing before submitting them to the app store</em>. I can&#8217;t stress that last part enough.</p>
+<p>Unlike Android, iOS development can be mostly done on the desktop without any external hardware. Many developers do their entire application development with the iOS Simulator, which is definitely fine for most day-to-day development tasks. However, if you are writing audio processing apps for iOS, you will most definitely need to develop and deploy them to hardware, and <em>not just during your final testing before submitting them to the app store</em>. I can’t stress that last part enough.</p>
 
-<p>The iOS Simulator uses your Mac&#8217;s soundcard and CoreAudio, which is much different than an iPhone or an iPad. Many developers are surprised that simple audio code which works &#8220;perfectly fine&#8221; in the iOS Simulator will mysteriously fail with the dreaded error -50 on iPhone hardware. Likewise, some things work fine on the hardware but not the simulator. The bottom line is, when you are developing the DSP part of your app, it needs to be done on hardware and preferably tested on every iOS device you intend to support.</p>
+<p>The iOS Simulator uses your Mac’s soundcard and CoreAudio, which is much different than an iPhone or an iPad. Many developers are surprised that simple audio code which works “perfectly fine” in the iOS Simulator will mysteriously fail with the dreaded error -50 on iPhone hardware. Likewise, some things work fine on the hardware but not the simulator. The bottom line is, when you are developing the DSP part of your app, it needs to be done on hardware and preferably tested on every iOS device you intend to support.</p>
 
-<p>That said, iOS is not a very efficient platform for developing DSP algorithms, so you might find it much faster to whip up a quick C++ plugin wrapper using <a href='http://rawmaterialsoftware.com/juce.php'>Juce</a> and get it sounding right on a desktop sequencer. Once you are happy with the DSP algorithms, you can take the code (preferably written in very vanilla C) and drop it into the iOS AudioUnit as described above.</p>
+<p>That said, iOS is not a very efficient platform for developing DSP algorithms, so you might find it much faster to whip up a quick C++ plugin wrapper using <a href="http://rawmaterialsoftware.com/juce.php">Juce</a> and get it sounding right on a desktop sequencer. Once you are happy with the DSP algorithms, you can take the code (preferably written in very vanilla C) and drop it into the iOS AudioUnit as described above.</p>
 
 <p>Happy coding!</p>
         <!-- End content -->

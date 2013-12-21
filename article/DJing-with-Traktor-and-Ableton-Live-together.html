@@ -59,18 +59,18 @@
         </div>
 
         <!-- Start content -->
-        <h2 id='introduction'>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
 
-<p>I write a lot about Ableton Live, and looking through my performance-related posts, I guess I sound a bit like a Live fanboy. But in truth, there as many things which bug me about Live as things which I love. Top among these complaints is that DJ&#8217;ing with Live is very time-consuming, especially when it comes to preparation. Also, <a href='http://teragonaudio.com/article/Using-iTunes-as-Ableton-Lives-file-browser.html'>Live&#8217;s file browser is rather terrible</a>, making it difficult to hunt for the perfect track to play next.</p>
+<p>I write a lot about Ableton Live, and looking through my performance-related posts, I guess I sound a bit like a Live fanboy. But in truth, there as many things which bug me about Live as things which I love. Top among these complaints is that DJ’ing with Live is very time-consuming, especially when it comes to preparation. Also, <a href="http://teragonaudio.com/article/Using-iTunes-as-Ableton-Lives-file-browser.html">Live’s file browser is rather terrible</a>, making it difficult to hunt for the perfect track to play next.</p>
 
-<p>I have recently started playing a bit more with Traktor, mostly because several other DJ&#8217;s I collaborate with use it. If we want to play together, well, I&#8217;d need to meet them halfway. But I wasn&#8217;t really ready to give up on Live altogether, and there are several things about DJ&#8217;ing with Live which I missed right away. So instead of making the full switch from Live to Traktor, I figured I&#8217;d rather have my cake and eat it, too. Now I run both Traktor and Live side-by-side, and I get (mostly) the best of both worlds.</p>
+<p>I have recently started playing a bit more with Traktor, mostly because several other DJ’s I collaborate with use it. If we want to play together, well, I’d need to meet them halfway. But I wasn’t really ready to give up on Live altogether, and there are several things about DJ’ing with Live which I missed right away. So instead of making the full switch from Live to Traktor, I figured I’d rather have my cake and eat it, too. Now I run both Traktor and Live side-by-side, and I get (mostly) the best of both worlds.</p>
 
-<h2 id='why_both'>Why both?</h2>
+<h2 id="why_both">Why both?</h2>
 
 <p>So, why not just pick a platform and go with it? Why go through all the extra trouble of running two rather heavy apps at the same time? Well, running Live with Traktor has a number of advantages which are hard to do with either one alone:</p>
 
 <ul>
-<li>Traktor&#8217;s browser can be completely controlled via MIDI, making your performance more handsfree.</li>
+<li>Traktor’s browser can be completely controlled via MIDI, making your performance more handsfree.</li>
 
 <li>Preparing tracks for playback in Traktor is a bit easier than in Live, which saves many hours of work.</li>
 
@@ -78,14 +78,14 @@
 
 <li>Live supports audio plugins, and Traktor obviously does not. Again, more possibilities.</li>
 
-<li>Traktor&#8217;s remix decks (introduced in 2.5) are quite limited compared to looping in Live.</li>
+<li>Traktor’s remix decks (introduced in 2.5) are quite limited compared to looping in Live.</li>
 
 <li>Within Live you can build drum machines, samplers, etc.</li>
 </ul>
 
-<p>However, using Traktor and Live together still allows one to play warped tracks within Live, or to use the 3-band EQ within Traktor (for example). Using both together combines the strengths of each platform, but with very few disadvantages. One disadvantage is that this setup is a bit complex, so bear with me as we get down to the details&#8230;</p>
+<p>However, using Traktor and Live together still allows one to play warped tracks within Live, or to use the 3-band EQ within Traktor (for example). Using both together combines the strengths of each platform, but with very few disadvantages. One disadvantage is that this setup is a bit complex, so bear with me as we get down to the details</p>
 
-<h2 id='overview_of_the_setup'>Overview of the setup</h2>
+<h2 id="overview_of_the_setup">Overview of the setup</h2>
 
 <p>To combine Traktor with Live, we will be using an external mixer within Traktor and routing the audio to Live for post-processing. Live will in turn be responsible for cueing audio both from itself and Traktor.</p>
 
@@ -94,68 +94,68 @@
 <ul>
 <li>Play warped tracks or loops from Live</li>
 
-<li>Have time sync&#8217;d effects in Live</li>
+<li>Have time sync’d effects in Live</li>
 </ul>
 
-<p>Otherwise, it&#8217;s probably easier to use Live just for processing audio and skip the MIDI sync entirely.</p>
+<p>Otherwise, it’s probably easier to use Live just for processing audio and skip the MIDI sync entirely.</p>
 
-<h2 id='transporting_audio'>Transporting audio</h2>
+<h2 id="transporting_audio">Transporting audio</h2>
 
 <p>The first and most important step is getting audio from Traktor to Live for processing. This can be done either virtually or in hardware, though if you have a soundcard which has enough I/O ports, I find that it works much better in hardware.</p>
 
 <p>First, set up Traktor to use an external mixer, and route each deck to a separate output channel, as pictured below:</p>
 
-<p><img alt='Traktor External Output Routing' src='http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png' /></p>
+<p><img src="http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png" alt="Traktor External Output Routing" /></p>
 
-<p>Even if you use an external mixer, you will still be able to use Traktor&#8217;s own filters and effects.</p>
+<p>Even if you use an external mixer, you will still be able to use Traktor’s own filters and effects.</p>
 
-<p>In this example, we are routing audio via the <a href='http://cycling74.com/products/soundflower/'>Soundflower</a> virtual interface. On Windows, there is no free Soundflower-like software (at least not that I could find), but <a href='http://software.muzychenko.net/eng/vac.htm'>Virtual Audio Cable</a> seems to do the same thing and is rather cheap.</p>
+<p>In this example, we are routing audio via the <a href="http://cycling74.com/products/soundflower/">Soundflower</a> virtual interface. On Windows, there is no free Soundflower-like software (at least not that I could find), but <a href="http://software.muzychenko.net/eng/vac.htm">Virtual Audio Cable</a> seems to do the same thing and is rather cheap.</p>
 
 <p>Then, set up Live to record from the same channels:</p>
 
-<p><a href='http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png'><img alt='Ableton Live Input Routings' src='http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png' /></a></p>
+<p><a href="http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png"><img src="http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png" alt="Ableton Live Input Routings" /></a></p>
 
 <p>Finally, create audio tracks in Live to route the audio from Traktor:</p>
 
-<p><a href='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png'><img alt='Ableton Live Track Routings' src='http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png' /></a></p>
+<p><a href="http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png"><img src="http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png" alt="Ableton Live Track Routings" /></a></p>
 
 <p>Assuming that you have a multi-channel soundcard, you can now cue and route these output tracks as you would other tracks within Live.</p>
 
-<h2 id='syncing_midi'>Syncing MIDI</h2>
+<h2 id="syncing_midi">Syncing MIDI</h2>
 
-<p>There are two ways to do MIDI sync: the totally unreliable way with MIDI clock, or the more tedious old-school manual way. MIDI clock is only recommended if you are not playing any tracks from Live and only using it for tempo sync&#8217;d effects. If you are playing any loops or musical material from Live, you will find MIDI clock to be vastly disappointing. Due to the nature of the MIDI protocol, there is a very noticeable amount of jitter and achieving perfect sync is impossible. Sorry!</p>
+<p>There are two ways to do MIDI sync: the totally unreliable way with MIDI clock, or the more tedious old-school manual way. MIDI clock is only recommended if you are not playing any tracks from Live and only using it for tempo sync’d effects. If you are playing any loops or musical material from Live, you will find MIDI clock to be vastly disappointing. Due to the nature of the MIDI protocol, there is a very noticeable amount of jitter and achieving perfect sync is impossible. Sorry!</p>
 
-<p>If you plan on playing loops or other material from Live, you&#8217;ll need a separate MIDI controller with a few buttons, and your beatmatching skills. Assuming that you have both of those, manually syncing the two isn&#8217;t hard once you get the hang of it.</p>
+<p>If you plan on playing loops or other material from Live, you’ll need a separate MIDI controller with a few buttons, and your beatmatching skills. Assuming that you have both of those, manually syncing the two isn’t hard once you get the hang of it.</p>
 
-<h2 id='sync_via_midi_clock'>Sync via MIDI clock</h2>
+<h2 id="sync_via_midi_clock">Sync via MIDI clock</h2>
 
-<p>MIDI clock is the sync mechanism described in most <a href='http://www.youtube.com/watch?v=4xzldehIsCE&amp;feature=youtube_gdata'>other blogs and tutorials</a>, and assuming that you don&#8217;t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor&#8217;s preferences and enable sending MIDI clock:</p>
+<p>MIDI clock is the sync mechanism described in most <a href="http://www.youtube.com/watch?v=4xzldehIsCE&feature=youtube_gdata">other blogs and tutorials</a>, and assuming that you don’t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor’s preferences and enable sending MIDI clock:</p>
 
-<p><img alt='Traktor Enable MIDI Clock' src='http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png' /></p>
+<p><img src="http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png" alt="Traktor Enable MIDI Clock" /></p>
 
-<p>For some reason, this isn&#8217;t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the &#8220;Controller Manager&#8221; section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:</p>
+<p>For some reason, this isn’t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the “Controller Manager” section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:</p>
 
-<p><img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png' /> <img alt='Traktor Controller Manager' src='http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png' /></p>
+<p><img src="http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png" alt="Traktor Controller Manager" /> <img src="http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png" alt="Traktor Controller Manager" /></p>
 
-<p>Just creating the device is enough; you don&#8217;t need to make any mappings. You should now see MIDI clock messages in a utility like <a href='http://www.snoize.com/MIDIMonitor/'>MIDI Monitor</a> or <a href='http://www.midiox.com/'>MIDI-OX</a>. Now within Live, go to the MIDI preference pane and sync Live to Traktor&#8217;s virtual MIDI output:</p>
+<p>Just creating the device is enough; you don’t need to make any mappings. You should now see MIDI clock messages in a utility like <a href="http://www.snoize.com/MIDIMonitor/">MIDI Monitor</a> or <a href="http://www.midiox.com/">MIDI-OX</a>. Now within Live, go to the MIDI preference pane and sync Live to Traktor’s virtual MIDI output:</p>
 
-<p><img alt='Ableton Live MIDI clock sync' src='http://static.teragonaudio.com/ta-djsync-live-midi-config.png' /></p>
+<p><img src="http://static.teragonaudio.com/ta-djsync-live-midi-config.png" alt="Ableton Live MIDI clock sync" /></p>
 
-<p>You will also need to enable the &#8220;EXT&#8221; button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor&#8217;s.</p>
+<p>You will also need to enable the “EXT” button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor’s.</p>
 
-<p><img alt='Ableton Live External Sync' src='http://static.teragonaudio.com/ta-djsync-live-ext-button.png' /></p>
+<p><img src="http://static.teragonaudio.com/ta-djsync-live-ext-button.png" alt="Ableton Live External Sync" /></p>
 
-<p>The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the &#8220;Extended&#8221; layout and enabling the &#8220;TICK&#8221; button. You will also need to cue at least one deck (doesn&#8217;t matter which one) to hear the tick within Live.</p>
+<p>The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the “Extended” layout and enabling the “TICK” button. You will also need to cue at least one deck (doesn’t matter which one) to hear the tick within Live.</p>
 
-<p><a href='http://static.teragonaudio.com/ta-djsync-traktor-tick.png'><img alt='Traktor metronome' src='http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png' /></a></p>
+<p><a href="http://static.teragonaudio.com/ta-djsync-traktor-tick.png"><img src="http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png" alt="Traktor metronome" /></a></p>
 
-<p>Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live&#8217;s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.</p>
+<p>Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live’s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.</p>
 
-<p>If the sync starts to drift (and it will!), you can realign the sync by pressing the &#8220;SYNC&#8221; button in Traktor. In my experience, this will cause Live to jump rather dramatically, and sometimes drop audio. Not really perfect, but again, this is part of the downside of MIDI sync. If you need something more exact, you&#8217;ll need to take matters in your own hands&#8230;</p>
+<p>If the sync starts to drift (and it will!), you can realign the sync by pressing the “SYNC” button in Traktor. In my experience, this will cause Live to jump rather dramatically, and sometimes drop audio. Not really perfect, but again, this is part of the downside of MIDI sync. If you need something more exact, you’ll need to take matters in your own hands</p>
 
-<h2 id='syncing_midi_manually'>Syncing MIDI Manually</h2>
+<h2 id="syncing_midi_manually">Syncing MIDI Manually</h2>
 
-<p>If you don&#8217;t know how to beatmatch records, then you should probably stop reading here and <a href='http://www.beginnerdj.com/how-to-beat-match'>first learn how to do that</a>, otherwise this method will be very difficult for you.</p>
+<p>If you don’t know how to beatmatch records, then you should probably stop reading here and <a href="http://www.beginnerdj.com/how-to-beat-match">first learn how to do that</a>, otherwise this method will be very difficult for you.</p>
 
 <p>You will need to have a MIDI controller with buttons; the keyboard is not going to work very well as you will need to flip back to Live in order to fine-adjust the sync, and small adjustments will be needed throughout the mix, just like mixing records.</p>
 
@@ -175,31 +175,31 @@
 <li>Optionally, the nudge tempo controls in Traktor as well</li>
 </ul>
 
-<p>Now, for the fun stuff. Say you are starting in Traktor and want to play some loops in Live. Start by turning <em>off</em> the metronome and tapping the BPM for awhile. Then turn the metronome on. Live&#8217;s tap BPM function starts making tempo adjustments on the first press (why, I have no idea), so it can be very confusing and hard to start tapping BPM with the metronome on.</p>
+<p>Now, for the fun stuff. Say you are starting in Traktor and want to play some loops in Live. Start by turning <em>off</em> the metronome and tapping the BPM for awhile. Then turn the metronome on. Live’s tap BPM function starts making tempo adjustments on the first press (why, I have no idea), so it can be very confusing and hard to start tapping BPM with the metronome on.</p>
 
-<p>At this point, the two should be roughly in sync. However, you may find that they start to drift or the first downbeat doesn&#8217;t match up. To fix this, wait until your song in Traktor hits the first beat, and then hit the play button in Live.</p>
+<p>At this point, the two should be roughly in sync. However, you may find that they start to drift or the first downbeat doesn’t match up. To fix this, wait until your song in Traktor hits the first beat, and then hit the play button in Live.</p>
 
-<p>The secret behind the play button is that if you restart Live&#8217;s transport (ie, by pressing stop/start or the spacebar), Live has a tendency to briefly drop audio. But if you press the play button during playback, Live will simply start playback again without dropping audio. Neat!</p>
+<p>The secret behind the play button is that if you restart Live’s transport (ie, by pressing stop/start or the spacebar), Live has a tendency to briefly drop audio. But if you press the play button during playback, Live will simply start playback again without dropping audio. Neat!</p>
 
 <p>However, this is a bit impractical if you are planning on playing a warped track within Live, but in that case you can at least start the track out on the right tempo.</p>
 
-<p>As you start mixing between the two, the two tracks will start to drift. You can use the nudge function to push Live (or Traktor, as desired) a bit forward or backwards, just like a record. Also, you can cheat a bit by looking at the tempo of the master deck in Traktor and manually entering it into Live instead of tapping BPM, but this approach involves a bit more fiddling around with the keyboard. Once you get used to syncing in this manner, it&#8217;s actually quite comfortable.</p>
+<p>As you start mixing between the two, the two tracks will start to drift. You can use the nudge function to push Live (or Traktor, as desired) a bit forward or backwards, just like a record. Also, you can cheat a bit by looking at the tempo of the master deck in Traktor and manually entering it into Live instead of tapping BPM, but this approach involves a bit more fiddling around with the keyboard. Once you get used to syncing in this manner, it’s actually quite comfortable.</p>
 
-<p>So say you now want to mix from looped material in Live back to Traktor. The reverse mixing process is a bit different but fundamentally the same idea. Check out the tempo in Live and then adjust your song in Traktor to be the same. Disable sync for that deck in Traktor just to avoid any potential problems (you can always enable it once you get playback started). Now, fine-adjust the two tracks using the nudge feature, preferably from Traktor as not to disrupt Live&#8217;s tempo.</p>
+<p>So say you now want to mix from looped material in Live back to Traktor. The reverse mixing process is a bit different but fundamentally the same idea. Check out the tempo in Live and then adjust your song in Traktor to be the same. Disable sync for that deck in Traktor just to avoid any potential problems (you can always enable it once you get playback started). Now, fine-adjust the two tracks using the nudge feature, preferably from Traktor as not to disrupt Live’s tempo.</p>
 
-<p>I find that it helps here to turn on the metronome again, but that may not be needed. Also, I generally prefer to nudge the less dominant of the two tracks, meaning that as you are <em>mixing in</em> a new track, that is the one to be nudged until it is louder than the other one. Likewise, when <em>mixing out</em> a track, that one should be nudged when it starts to become quieter than the one you&#8217;ve just mixed in.</p>
+<p>I find that it helps here to turn on the metronome again, but that may not be needed. Also, I generally prefer to nudge the less dominant of the two tracks, meaning that as you are <em>mixing in</em> a new track, that is the one to be nudged until it is louder than the other one. Likewise, when <em>mixing out</em> a track, that one should be nudged when it starts to become quieter than the one you’ve just mixed in.</p>
 
-<h2 id='performance_considerations'>Performance considerations</h2>
+<h2 id="performance_considerations">Performance considerations</h2>
 
 <p>I have managed to get the above setup working on a somewhat old Macbook Pro (a 2x2.66Ghz Core 2 Duo with 8Gb RAM) and a MOTU Ultralite MK3 using a buffer size of 256 samples at a sample rate of 44.1kHz). CPU usage is a constant ~40% per core, and I get no audio dropouts at all:</p>
 
-<p><a href='http://static.teragonaudio.com/ta-djsync-runtime-performance.png'><img alt='Screenshot of Traktor + Live' src='http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png' /></a></p>
+<p><a href="http://static.teragonaudio.com/ta-djsync-runtime-performance.png"><img src="http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png" alt="Screenshot of Traktor + Live" /></a></p>
 
-<p>As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I&#8217;m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.</p>
+<p>As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I’m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.</p>
 
-<p>However, I had problems with Soundflower dropping audio after some hours of playback. <a href='https://code.google.com/p/soundflower/issues/detail?id=24'>Apparently this is a rather common problem</a> and I&#8217;m not sure if there is a good solution here. Likewise, I&#8217;ve not tried this in Windows with Virtual Audio Cable, so I can&#8217;t speak to the performance there. But if you have a soundcard which has enough inputs and outputs to do the routing there, that approach might work better for you. In my case, I literally patched 4 outputs of my soundcard back into the inputs and recorded them directly from Live. Again, this seems a bit impractical but it is actually quite stable, and as noted, even on my aging laptop this works with quite low latency.</p>
+<p>However, I had problems with Soundflower dropping audio after some hours of playback. <a href="https://code.google.com/p/soundflower/issues/detail?id=24">Apparently this is a rather common problem</a> and I’m not sure if there is a good solution here. Likewise, I’ve not tried this in Windows with Virtual Audio Cable, so I can’t speak to the performance there. But if you have a soundcard which has enough inputs and outputs to do the routing there, that approach might work better for you. In my case, I literally patched 4 outputs of my soundcard back into the inputs and recorded them directly from Live. Again, this seems a bit impractical but it is actually quite stable, and as noted, even on my aging laptop this works with quite low latency.</p>
 
-<p><em>Update</em>: After it seems that <a href='http://jackosx.com/'>Jack for Mac OSX</a> is also capable of routing sound in the same way as Soundflower, so if you are having problems with Soundflower then give Jack a try.</p>
+<p><em>Update</em>: After it seems that <a href="http://jackosx.com/">Jack for Mac OSX</a> is also capable of routing sound in the same way as Soundflower, so if you are having problems with Soundflower then give Jack a try.</p>
         <!-- End content -->
       </div>									
       <div style="clear:both;"></div>

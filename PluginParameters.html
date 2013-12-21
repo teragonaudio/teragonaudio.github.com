@@ -54,20 +54,16 @@
         <div id="content">
           <div id="main" class="news">
             <!-- Start content -->
-            <h1 id='pluginparameters'>PluginParameters</h1>
+            <h1 id="pluginparameters">PluginParameters</h1>
 
-<p>PluginParameters is a simple library used to keep parameter information for an audio plugin, such as a VST or AudioUnit. The need for this arises from the fact that most plugins have a number of parameters they need to maintain, and this information needs to be sent to various parts of the plugin&#8217;s processing code. The VST or AudioUnit side of things also needs to query this information in a more structured manner, and this can lead to plugin code getting very messy with huge <code>switch</code> blocks to get/set the correct value.</p>
+<p>PluginParameters is a simple library used to keep parameter information for an audio plugin, such as a VST or AudioUnit. The need for this arises from the fact that most plugins have a number of parameters they need to maintain, and this information needs to be sent to various parts of the plugin’s processing code. The VST or AudioUnit side of things also needs to query this information in a more structured manner, and this can lead to plugin code getting very messy with huge <code>switch</code> blocks to get/set the correct value.</p>
 
-<h2 id='features'>Features</h2>
+<h2 id="features">Features</h2>
 
 <ul>
-<li>
-<p>Small! Less than 200 lines of code, all implementation in header files, so dynamic libraries or adding files to your project. Simply include <code>PluginParameters.h</code> and you&#8217;ve got the whole library at your fingertips.</p>
-</li>
+<li>Small! Less than 200 lines of code, all implementation in header files, so dynamic libraries or adding files to your project. Simply include <code>PluginParameters.h</code> and you’ve got the whole library at your fingertips.</li>
 
-<li>
-<p>Provides a plugin parameter interface with the following implementations:</p>
-
+<li>Provides a plugin parameter interface with the following implementations:
 <ul>
 <li>BooleanParameter</li>
 
@@ -81,30 +77,22 @@
 </ul>
 </li>
 
-<li>
-<p>For all parameter types, you can get the raw value (ie, the thing you probably need in your code to do useful stuff), or a scaled value between 0.0 - 1.0 for use in plugin wrappers.</p>
-</li>
+<li>For all parameter types, you can get the raw value (ie, the thing you probably need in your code to do useful stuff), or a scaled value between 0.0 - 1.0 for use in plugin wrappers.</li>
 
-<li>
-<p>The integer parameters provide a minimum, maximum, and default value.</p>
-</li>
+<li>The integer parameters provide a minimum, maximum, and default value.</li>
 
-<li>
-<p>All parameter types also have a function to get the displayable value.</p>
-</li>
+<li>All parameter types also have a function to get the displayable value.</li>
 
-<li>
-<p>Lookup of parameters can be done either by index or by name, with either the <code>get()</code> method or the square brackets.</p>
-</li>
+<li>Lookup of parameters can be done either by index or by name, with either the <code>get()</code> method or the square brackets.</li>
 </ul>
 
-<h2 id='usage'>Usage</h2>
+<h2 id="usage">Usage</h2>
 
-<p>Assuming that you&#8217;ve pointed your source to include <code>PluginParameters.h</code> and everything compiles fine, your next step is to make a <code>PluginParameterSet</code> and add some parameters to it. This should probably be done in your plugin&#8217;s constructor:</p>
+<p>Assuming that you’ve pointed your source to include <code>PluginParameters.h</code> and everything compiles fine, your next step is to make a <code>PluginParameterSet</code> and add some parameters to it. This should probably be done in your plugin’s constructor:</p>
 <div class='highlight'><pre><code class='cpp'><span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>MyPlugin</span><span class='p'>()</span> <span class='p'>{</span>
   <span class='c1'>// Assumes that there is a PluginParameterSet member named &quot;parameters&quot; in</span>
   <span class='c1'>// the header file.</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>BooleanParameter</span><span class='p'>(</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>,</span> <span class='kc'>true</span><span class='p'>));</span>
+  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>BooleanParameter</span><span class='p'>(</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>,</span> <span class='nb'>true</span><span class='p'>));</span>
   <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>DecibelParameter</span><span class='p'>(</span><span class='s'>&quot;Frequency&quot;</span><span class='p'>,</span> <span class='mf'>20.0</span><span class='p'>,</span> <span class='mf'>20000.0</span><span class='p'>,</span> <span class='mf'>10000.0</span><span class='p'>);</span>
   <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>FloatParameter</span><span class='p'>(</span><span class='s'>&quot;Ratio&quot;</span><span class='p'>,</span> <span class='mf'>0.0</span><span class='p'>,</span> <span class='mf'>10.0</span><span class='p'>,</span> <span class='mf'>2.0</span><span class='p'>));</span>
 <span class='p'>}</span>
@@ -136,9 +124,9 @@
   <span class='p'>}</span>
 <span class='p'>}</span>
 </code></pre></div>
-<p>Note: The above example code may look a bit different than your actual implementation. It&#8217;s just to give you a general idea as to how the library should be used.</p>
+<p>Note: The above example code may look a bit different than your actual implementation. It’s just to give you a general idea as to how the library should be used.</p>
 
-<h2 id='license'>License</h2>
+<h2 id="license">License</h2>
 
 <p>PluginParameters is licensed under the BSD licnese. See the file <code>LICENSE.txt</code> provided with the source code for more details.</p>
             <!-- End content -->

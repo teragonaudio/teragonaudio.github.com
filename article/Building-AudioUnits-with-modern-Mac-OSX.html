@@ -59,42 +59,47 @@
         </div>
 
         <!-- Start content -->
-        <h2 id='introduction'>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
 
-<p>AudioUnits! That&#8217;s Apple&#8217;s shiny and awesome plugin format which is super easy to work with and great with all things pro-audio, right? No messy SDK downloads like with VST, and all with great examples and documentation?</p>
+<p>AudioUnits! That’s Apple’s shiny and awesome plugin format which is super easy to work with and great with all things pro-audio, right? No messy SDK downloads like with VST, and all with great examples and documentation?</p>
 
 <p>But enough with the sarcasm. :) And forgive me in advance for more to follow in this article.</p>
 
-<p>Although AudioUnits always had some degree of pain, particularly for VST programmers who grew up in a &#8220;push-based&#8221; world, they had their good points as well. However, it pains me to say that many of these advantages, namely the development environment and platform, have fallen into disregard by Apple. I&#8217;m not really sure what the situation is over there (is anyone ever sure?), but regardless, newcomers to AudioUnit programming are sure to find themselves in a confusing world of hurt when trying to support this plugin platform.</p>
+<p>Although AudioUnits always had some degree of pain, particularly for VST programmers who grew up in a “push-based” world, they had their good points as well. However, it pains me to say that many of these advantages, namely the development environment and platform, have fallen into disregard by Apple. I’m not really sure what the situation is over there (is anyone ever sure?), but regardless, newcomers to AudioUnit programming are sure to find themselves in a confusing world of hurt when trying to support this plugin platform.</p>
 
 <p>This guide is intented to get you up and running with the most <em>basic</em> AudioUnit possible. Preferably, you already have some AudioUnit source code which you are merely trying to build it after updating to OSX 10.7/8. At any rate, this guide was written for OSX 10.8.2 and Xcode 4.5.2.</p>
 
-<h2 id='getting_the_audiounit_sdk_installed'>Getting the AudioUnit SDK installed</h2>
+<h2 id="getting_the_audiounit_sdk_installed">Getting the AudioUnit SDK installed</h2>
 
-<p>The first pain in dealing with AudioUnits on a modern Mac is that Apple no longer ships the AudioUnit SDK with Xcode. You&#8217;ll need to <a href='https://developer.apple.com/downloads/index.action'>download it from Apple&#8217;s developer website</a> <em>with Safari</em> (seriously, you&#8217;ll get weird session timeout errors by using Chrome).</p>
+<p>The first pain in dealing with AudioUnits on a modern Mac is that Apple no longer ships the AudioUnit SDK with Xcode. You’ll need to <a href="https://developer.apple.com/downloads/index.action">download it from Apple’s developer website</a> <em>with Safari</em> (seriously, you’ll get weird session timeout errors by using Chrome).</p>
 
-<p>Specifically, you need to search for &#8220;Audio&#8221; on that page and download the DMG from February 2012. The later versions <em>do not contain the actual SDK source code</em>. Mount the DMG, and then pop open a terminal window and run the following command:</p>
+<p>Specifically, you need to search for “Audio” on that page and download the DMG from February 2012. The later versions <em>do not contain the actual SDK source code</em>. Mount the DMG, and then pop open a terminal window and run the following command:</p>
 
-<p><code>sudo cp -r -v &quot;/Volumes/Audio Tools/CoreAudio&quot; /Applications/Xcode.app/Contents/Developer/Extras</code></p>
+<p><code>sudo cp -r -v &quot;/Volumes/Audio Tools/CoreAudio&quot; /Applications/Xcode.app/Contents/Developer/Extras/CoreAudio</code></p>
 
 <p>And then:</p>
 
-<p><code>sudo sudo find /Applications/Xcode.app/Contents/Developer/Extras/CoreAudio -type f -exec chmod 666 {} \;</code></p>
+<p><code>sudo find /Applications/Xcode.app/Contents/Developer/Extras/CoreAudio -type f -exec chmod 666 {} \;</code></p>
 
-<h2 id='patching_the_audiounit_sdk'>Patching the AudioUnit SDK</h2>
+<h2 id="patching_the_audiounit_sdk">Patching the AudioUnit SDK</h2>
 
-<p>Stupidly enough, the AudioUnit SDK does <em>not</em> compile out of the box with Xcode 4.5. You will need to alter some of the source code manually in order to get things working again. You&#8217;ll need to edit <code>AUMIDIEffectBase.cpp</code> at line 154 to:</p>
+<p>As of Mac OS X 10.7 and above the AudioUnit SDK does <em>not</em> compile out of the box with Xcode 4.5. You will need to alter some of the source code manually in order to get things working again. You’ll need to edit <code>AUMIDIEffectBase.cpp</code> at line 154 to:</p>
 <div class='highlight'><pre><code class='cpp'>    <span class='n'>result</span> <span class='o'>=</span> <span class='p'>((</span><span class='n'>AUMIDIBase</span><span class='o'>*</span><span class='p'>)</span><span class='n'>This</span><span class='p'>)</span><span class='o'>-&gt;</span><span class='n'>MIDIEvent</span><span class='p'>(</span><span class='n'>inStatus</span><span class='p'>,</span> <span class='n'>inData1</span><span class='p'>,</span> <span class='n'>inData2</span><span class='p'>,</span> <span class='n'>inOffsetSampleFrame</span><span class='p'>);</span>
 </code></pre></div>
-<p>Furthermore, you may need to change the compiler for your project from Apple&#8217;s LLVM to LLVM GCC 4.2. Otherwise, you&#8217;ll have to change <code>AUCarbonViewBase.cpp</code> at line 257 to:</p>
+<p>Furthermore, you may need to change the compiler for your project from Apple’s LLVM to LLVM GCC 4.2. Otherwise, you’ll have to change <code>AUCarbonViewBase.cpp</code> at line 257 to:</p>
 <div class='highlight'><pre><code class='cpp'>    <span class='n'>HISize</span> <span class='n'>originalSize</span> <span class='o'>=</span> <span class='p'>{</span> <span class='p'>(</span><span class='n'>CGFloat</span><span class='p'>)</span><span class='n'>mBottomRight</span><span class='p'>.</span><span class='n'>h</span><span class='p'>,</span> <span class='p'>(</span><span class='n'>CGFloat</span><span class='p'>)</span><span class='n'>mBottomRight</span><span class='p'>.</span><span class='n'>v</span> <span class='p'>};</span> 
 </code></pre></div>
-<p>However, using Apple&#8217;s LLVM compiler will also give you problems while building the VST SDK, which is a pain if you intend for your plugin to support both. In addition to the fix above, you&#8217;ll also need to edit <code>audioeffectx.cpp</code> at line 512 to be:</p>
+<p>However, using Apple’s LLVM compiler will also give you problems while building the VST SDK, which is a pain if you intend for your plugin to support both. In addition to the fix above, you’ll also need to edit <code>audioeffectx.cpp</code> at line 512 to be:</p>
 <div class='highlight'><pre><code class='cpp'>    <span class='kt'>char</span> <span class='n'>temp</span><span class='p'>[</span><span class='mi'>2</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{(</span><span class='kt'>char</span><span class='p'>)(</span><span class='n'>digit</span> <span class='o'>+</span> <span class='mh'>0x60</span><span class='p'>),</span> <span class='sc'>&#39;\0&#39;</span><span class='p'>};</span>
 </code></pre></div>
-<h2 id='making_a_new_audiounit'>Making a new AudioUnit</h2>
+<p>Additionally, you may need to patch CADebugMacros.h if you want to use C++11 features in your code. The offending line is 138, and should be changed to:</p>
+<div class='highlight'><pre><code class='cpp'>    <span class='err'>#</span><span class='n'>define</span> <span class='n'>DebugMessage</span><span class='p'>(</span><span class='n'>msg</span><span class='p'>)</span> <span class='n'>DebugPrintfRtn</span><span class='p'>(</span><span class='n'>DebugPrintfFileComma</span> <span class='s'>&quot;%s&quot;</span> <span class='n'>DebugPrintfLineEnding</span><span class='p'>,</span> <span class='n'>msg</span><span class='p'>)</span> <span class='n'>FlushRtn</span>
+</code></pre></div>
+<p>Amusingly enough, Xcode does have a quick fix for this problem and will offer to insert a space after the “%s”, however it will always fail in doing so because it is not able to unlock the file for writing in spite of asking you if you would like to unlock the file. Oh well, it doesn’t really matter because you’ll probably already need o terminal window open with sudo + vim to do the rest of the above patching.</p>
 
-<p>Another annoyance is that Apple has removed the project templates for making AudioUnit projects. I&#8217;m in the process of updating my <a href='https://github.com/teragonaudio/XcodeVstTemplates'>plugin templates</a>, but <a href='http://www.mojolama.com/restore-apples-audio-unit-templates'>Mojo Lama has also blogged about how to restore the missing templates</a>.</p>
+<h2 id="making_a_new_audiounit">Making a new AudioUnit</h2>
+
+<p>Another annoyance is that Apple has removed the project templates for making AudioUnit projects. I’m in the process of updating my <a href="https://github.com/teragonaudio/XcodeVstTemplates">plugin templates</a>, but <a href="http://www.mojolama.com/restore-apples-audio-unit-templates">Mojo Lama has also blogged about how to restore the missing templates</a>.</p>
         <!-- End content -->
       </div>									
       <div style="clear:both;"></div>
