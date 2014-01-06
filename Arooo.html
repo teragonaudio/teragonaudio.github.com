@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AUNotes</title>
+    <title>Arooo</title>
 
     <link rel="stylesheet" href="/css/reset.css" type="text/css" />
     <link rel="stylesheet" href="/css/default.css" type="text/css" />
@@ -54,16 +54,30 @@
         <div id="content">
           <div id="main" class="news">
             <!-- Start content -->
-            <p>AUNotes has been renamed!</p>
+            <h1 id="arooo">Arooo</h1>
 
-<p>AUNotes is now named <a href="http://teragonaudio.com/ExtraNotes.html">ExtraNotes</a>, please update your bookmarks accordingly.</p>
+<p>Arooo is a quick-and-dirty project done for Music Hack Day Stockholm 2013. It runs on Mac OSX and requires <a href="http://github.com/teragonaudio/Midiflower">Midiflower</a> to be installed. Arooo has been described as “a very high-tech solution to a very low-tech problem”, the problem being that our dog tends to howl when she is home alone. Since I’m not at home when it happens, I can’t be there to correct the behavior, which is where Arooo comes in.</p>
+
+<p><img src="http://24.media.tumblr.com/dedc95a587ba2fbbff1f096ddb1192ea/tumblr_mgq89dn02k1rw3kevo1_500.jpg" alt="Sally" /></p>
+
+<p>Given that the dog tends to howl at the same pitches, I analyzed recordings of some previous howls and isolated the strongest frequencies. Then, using <a href="http://ldesoras.free.fr/prod.html">FFTReal</a> and <a href="http://rawmaterialsoftware.com/juce">JUCE</a>, I set up a basic application to look for those frequencies.</p>
+
+<p>When Arooo detects that a howl is occurring, it sends a MIDI note to Midiflower. The idea is that this note can be routed to a synthesizer to play a horrible noise, which in turn I can train the dog to react to.</p>
+
+<h2 id="license">License</h2>
+
+<p>Arooo, in accordance with JUCE’s licensing terms, is released under the GPL. Please see the file <code>LICENSE.txt</code> for more details.</p>
+<hr />
+<p>Changelog:</p>
+
+<p>Version 0.9.0: (No comment)</p>
             <!-- End content -->
           </div>
           <div id="sidebar">
             <ul class="sidemenu">
-              <li><a href="http://static.teragonaudio.com/AUNotes.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
-              <li><a href="https://github.com/teragonaudio/AUNotes/zipball/master">Source code</a></li>
-              <li><a href="https://github.com/teragonaudio/AUNotes">Project page</a></li>
+              <li><a href="http://static.teragonaudio.com/Arooo.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
+              <li><a href="https://github.com/teragonaudio/Arooo/zipball/master">Source code</a></li>
+              <li><a href="https://github.com/teragonaudio/Arooo">Project page</a></li>
             </ul>
           </div>
         </div>
@@ -72,7 +86,7 @@
         <div id="bottom">
           <p class="footer">
             <b>Having problems with this software?</b> Send an email to
-            <script>mail2("support", "teragonaudio", 0, "subject=AUNotes", "support at teragonaudio dot com")</script>.
+            <script>mail2("support", "teragonaudio", 0, "subject=Arooo", "support at teragonaudio dot com")</script>.
             Copyright (c) 2012 Teragon Audio. All Rights Reserved.
 
           </p>
