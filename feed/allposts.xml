@@ -3,13 +3,31 @@
   <title>Teragon Audio</title>
   <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
   <link href="http://teragonaudio.com"/>
-  <updated>2014-01-25T14:34:48+01:00</updated>
+  <updated>2014-04-26T16:13:46+02:00</updated>
   <id>http://teragonaudio.com/</id>
   <author>
     <name>Teragon Audio</name>
     <email>info@teragonaudio.com</email>
   </author>
 
+  
+  <entry>
+    <title>Exporting channel strips from Logic Pro to Mainstage</title>
+    <link href="http://teragonaudio.com/article/Exporting-channel-strips-from-Logic-Pro-to-Mainstage.html"/>
+    <updated>2014-04-26T00:00:00+02:00</updated>
+    <id>http://teragonaudio.com/article/Exporting-channel-strips-from-Logic-Pro-to-Mainstage</id>
+    <content type="html">&lt;p&gt;Just a quick tip here as to how to “correctly” export entire channel strips from Logic Pro to Mainstage, since it seems to be secretly (or possibly not at all) documented. Anyways, one can save channel strip settings in Logic Pro and open them in Mainstage through the usual mechanism, however the problem is that this only works for an individual channel. If you have an instrument such as Ultrabeat and have placed effects on several individual instruments, then it seems you cannot directly import these into Mainstage.&lt;/p&gt;
+
+&lt;p&gt;In Logic Pro X, plugins with multiple output channels (like Ultrabeat) show the individual outputs in a group, and each one of the channels in the group can have their own channel EQ settings and effects, which is extremely useful especially for doing drums. However, these files get exported into a special folder in Logic’s default preference location, and such files don’t show up in Mainstage when loading channel strip settings.&lt;/p&gt;
+
+&lt;p&gt;It turns out that it is possible to import an entire instrument and all of its grouped channels, however this cannot be done by saving channel strip settings. Instead, one must create a patch.&lt;/p&gt;
+
+&lt;p&gt;To do this, select the instrument you want to export in Logic Pro, and make sure that the instrument channel is selected (and not one of the individual channels in the group). Then open the Library by clicking the button in the upper left-hand corner of the screen, and click “Save” in the lower right-hand part of the Library panel.&lt;/p&gt;
+
+&lt;p&gt;Now in Mainstage don’t create a new channel, instead click the gear icon to the right of the “+” at the top of the “Patch List” panel. At the bottom of this menu there is an option named “Load Patch/Set”. When you select this option, you can now load your saved patch from Logic, with almost all channel settings correctly saved!&lt;/p&gt;
+
+&lt;p&gt;I say “almost” because the one thing that’s not saved is volume settings. This is a bit sad though understandable, however it means that if you are mixing drums in Logic and want to set exact levels which should be respected by Mainstage, then you are better off using the Channel EQ’s “Gain” feature rather than the mixer volume.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>Warping tips in Ableton Live</title>
@@ -174,7 +192,7 @@
 
 &lt;p&gt;The transient artifacts in the Beats warp mode can do some cool stuff as an unintended effect, especially with non-percussive material. For example, it can act as a strange gate when set to “off” with an envelope length of 0:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/warping-tricks-gate.png&quot; alt=&quot;Abusing Beats as a Gate effect&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Abusing Beats as a Gate effect&quot; src=&quot;http://static.teragonaudio.com/warping-tricks-gate.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You’ll also need to play around with the “Preserve” value make sure that some audio is still produced at regular intervals.&lt;/p&gt;</content>
   </entry>
@@ -278,15 +296,15 @@
 
 &lt;p&gt;First, set up a return track named “sidechain” (always label your tracks!) and set the output to “Sends Only”. Route all tracks to this one by turning the send knob up to the maximum.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/sidechain-filtering-basic-setup.png&quot; alt=&quot;Setting up return tracks for sidechaining&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Setting up return tracks for sidechaining&quot; src=&quot;http://static.teragonaudio.com/sidechain-filtering-basic-setup.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, put an EQ Eight in the sidechain return track. Configure it to be a lowpass filter with a cutoff frequency of around 650Hz and set the Q to 1.0.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png&quot; alt=&quot;Lowpass filter configuration&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Lowpass filter configuration&quot; src=&quot;http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, in each deck track, add a Compressor. Expand it by clicking the small downward-pointing arrow in the top left-hand corner, and enable sidechaining. Set “Audio From” to be “A-Sidechain”, Post FX.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png&quot; alt=&quot;Sidechain compressor configuration&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Sidechain compressor configuration&quot; src=&quot;http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To actually apply the sidechain filter, MIDI map the “Gain” knob with a range of 0.00 dB - 24.0 dB. At 0.00 dB, no filtering is applied. At 24.0 dB, the bass frequencies of all &lt;em&gt;other&lt;/em&gt; tracks will be subtracted from this one, meaning that their basslines will punch through those of this track.&lt;/p&gt;
 
@@ -298,11 +316,11 @@
 
 &lt;p&gt;To get around the two problems above, one can set up two sidechain filters which subtract cleanly from each other’s basslines. While solving these problems, this configuration also has another limitation, which is that it only works for 2 decks. Again, there is a workaround for this, which will be discussed later. First, remove the sidechain return track from the set and create two new audio tracks, named “Sidechain 1” and “Sidechain 2”. Set their outputs to “Sends Only” and have them pull audio from “Deck 1” and “Deck 2”, respectively. Also set monitoring to “In” for both sidechain tracks.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png&quot; alt=&quot;Setting up tracks for sidechaining&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Setting up tracks for sidechaining&quot; src=&quot;http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In each sidechain track, add the same EQ Eight as was described above. Now, for both Deck 1 &amp;amp; 2, set the compressor’s sidechain input to be the output of the other’s sidechain track, so that in Deck 1 the compressor pulls audio from Sidechain 2, and vice versa.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png&quot; alt=&quot;Sidechain compressor for tracks&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Sidechain compressor for tracks&quot; src=&quot;http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now the sidechain setup involves no return tracks, and leaving the Gain up will have no effect if only one track is playing. The result is an even cleaner sidechain filter, but again, the limitation of 2 decks is a bit irritating.&lt;/p&gt;
 
@@ -312,7 +330,7 @@
 
 &lt;p&gt;This can start to become difficult to manage, so group the two compressors into an audio effect rack. Turn on mapping mode, and set the Gain of &lt;em&gt;both&lt;/em&gt; compressors to a knob in the rack. Now when this knob is turned, it will subtract bass from all other tracks.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png&quot; alt=&quot;Filtering from mulitple tracks&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Filtering from mulitple tracks&quot; src=&quot;http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For 4 decks, just repeat this procedure and add an extra compressor to the rack. Finally, I like to group the sidechain audio tracks and fold it away; it’s not necessary to see the output of these tracks and they can simply be tucked away in the liveset.&lt;/p&gt;
 
@@ -436,7 +454,7 @@
 
 &lt;p&gt;First, set up Traktor to use an external mixer, and route each deck to a separate output channel, as pictured below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png&quot; alt=&quot;Traktor External Output Routing&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Traktor External Output Routing&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-output-routing.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Even if you use an external mixer, you will still be able to use Traktor’s own filters and effects.&lt;/p&gt;
 
@@ -444,11 +462,11 @@
 
 &lt;p&gt;Then, set up Live to record from the same channels:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png&quot;&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png&quot; alt=&quot;Ableton Live Input Routings&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-live-audio-inputs.png&quot;&gt;&lt;img alt=&quot;Ableton Live Input Routings&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-live-audio-inputs-thumb.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, create audio tracks in Live to route the audio from Traktor:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png&quot;&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png&quot; alt=&quot;Ableton Live Track Routings&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks.png&quot;&gt;&lt;img alt=&quot;Ableton Live Track Routings&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-live-traktor-routing-tracks-thumb.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Assuming that you have a multi-channel soundcard, you can now cue and route these output tracks as you would other tracks within Live.&lt;/p&gt;
 
@@ -462,23 +480,23 @@
 
 &lt;p&gt;MIDI clock is the sync mechanism described in most &lt;a href=&quot;http://www.youtube.com/watch?v=4xzldehIsCE&amp;feature=youtube_gdata&quot;&gt;other blogs and tutorials&lt;/a&gt;, and assuming that you don’t need a tight or accurate sync, it works ok (with a few caveats). To set this up, first go to Traktor’s preferences and enable sending MIDI clock:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png&quot; alt=&quot;Traktor Enable MIDI Clock&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Traktor Enable MIDI Clock&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-send-midi-clock.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For some reason, this isn’t actually enough to get Traktor to send the clock signal. You also need to create a virtual output device by going to the “Controller Manager” section and adding a new Generic MIDI Device. Now set the output of this device to be Traktor Virtual Output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png&quot; alt=&quot;Traktor Controller Manager&quot; /&gt; &lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png&quot; alt=&quot;Traktor Controller Manager&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Traktor Controller Manager&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-1.png&quot; /&gt; &lt;img alt=&quot;Traktor Controller Manager&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-controller-manager-2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Just creating the device is enough; you don’t need to make any mappings. You should now see MIDI clock messages in a utility like &lt;a href=&quot;http://www.snoize.com/MIDIMonitor/&quot;&gt;MIDI Monitor&lt;/a&gt; or &lt;a href=&quot;http://www.midiox.com/&quot;&gt;MIDI-OX&lt;/a&gt;. Now within Live, go to the MIDI preference pane and sync Live to Traktor’s virtual MIDI output:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-live-midi-config.png&quot; alt=&quot;Ableton Live MIDI clock sync&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Ableton Live MIDI clock sync&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-live-midi-config.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You will also need to enable the “EXT” button in Live to get it to slave its transport to Traktor. When you start playing, you will see that Live starts and will roughly match its BPM to Traktor’s.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-live-ext-button.png&quot; alt=&quot;Ableton Live External Sync&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Ableton Live External Sync&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-live-ext-button.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The next step is to tighten the sync up as much as possible. To do this, turn on the metronome in Traktor by switching to the “Extended” layout and enabling the “TICK” button. You will also need to cue at least one deck (doesn’t matter which one) to hear the tick within Live.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-traktor-tick.png&quot;&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png&quot; alt=&quot;Traktor metronome&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-traktor-tick.png&quot;&gt;&lt;img alt=&quot;Traktor metronome&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-traktor-tick-thumb.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Start playing a song in Traktor, but mute it by keeping the volume fader at zero. Switch back to Live and enable the metronome. You should now hear the two metronomes ticking side by side. In Live’s preferences, you can now adjust the MIDI sync delay to make it so that the two ticks fall directly on top of each other. In my experience, most computers will line up with a pre-delay of about -40ms, though obviously this value will vary depending on your hardware.&lt;/p&gt;
 
@@ -524,7 +542,7 @@
 
 &lt;p&gt;I have managed to get the above setup working on a somewhat old Macbook Pro (a 2x2.66Ghz Core 2 Duo with 8Gb RAM) and a MOTU Ultralite MK3 using a buffer size of 256 samples at a sample rate of 44.1kHz). CPU usage is a constant ~40% per core, and I get no audio dropouts at all:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-runtime-performance.png&quot;&gt;&lt;img src=&quot;http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png&quot; alt=&quot;Screenshot of Traktor + Live&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://static.teragonaudio.com/ta-djsync-runtime-performance.png&quot;&gt;&lt;img alt=&quot;Screenshot of Traktor + Live&quot; src=&quot;http://static.teragonaudio.com/ta-djsync-runtime-performance-thumb.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;As my processor has only two cores, I found that disabling multiprocessor support in both Live and Traktor provides a bit better performance. However, I’m not sure if this would also be the case on newer 4+ core laptops, so your mileage may vary.&lt;/p&gt;
 
@@ -720,7 +738,7 @@
 
 &lt;p&gt;Yes, this blog post is going to tell you how to do real-time audio processing on iOS, the hard and old-fashioned way. So before we get started with the dirty details, it’s worth asking yourself if you really, really need to do things the hard way.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/road-to-heaven-or-hell.jpg&quot; alt=&quot;Which path do you really want to choose?&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Which path do you really want to choose?&quot; src=&quot;http://static.teragonaudio.com/road-to-heaven-or-hell.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;There is actually an easier way to do all of this, and it’s a framework called &lt;a href=&quot;https://github.com/alexbw/novocaine&quot;&gt;novocaine&lt;/a&gt;. The framework name says it all; it provides a painless way of doing something otherwise would be very painful. And believe me, doing these low level audio operations on iOS can be quite painful. This framework provides a easy way to do audio processing on iOS, giving the programmer a simple block-based callback which contains the DSP code.&lt;/p&gt;
 
@@ -732,7 +750,7 @@
 
 &lt;p&gt;First, one needs to understand a bit of terminology. A sample is a single point of audio data, sometimes called a sample frame. A group of samples comes together to make a channel, just like the left &amp;amp; right channels of a stereo signal. Finally, a packet contains one or more channels.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ios-buffers.png&quot; alt=&quot;Visual representation of iOS buffers&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Visual representation of iOS buffers&quot; src=&quot;http://static.teragonaudio.com/ios-buffers.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You might be wondering why each channel only contains one frame. I don’t know the answer to that; at least on the iPhone this is simply the way that audio is delivered to you.&lt;/p&gt;
 
@@ -1076,11 +1094,11 @@
 
 &lt;p&gt;If you are using iTunes for your own music libraries, you may not necessarily want to import all of your DJ tracks into it, particularly if you already have organized them to your liking. If this is the case, first disable “Keep iTunes Media folder organized” and “Copy files to iTunes Media folder when adding to library”. This will prevent iTunes from mangling your music or renaming tracks which already have an associated ASD file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.nikreiman.com/ableton_itunes_advanced_prefs.png&quot; alt=&quot;iTunes Preferences as they (mostly) should appear&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;iTunes Preferences as they (mostly) should appear&quot; src=&quot;http://static.nikreiman.com/ableton_itunes_advanced_prefs.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, quit iTunes and restart it while holding down the “alt/option” key when you re-open the program. iTunes will now prompt you to either create a new library or to select an existing library. You will want to create a new library somewhere on your hard drive. Now, take your existing music library and move it to the folder you just created underneath iTunes Media/Music. Drag all of these folders into iTunes to import them into the new library. After importing, simply quit iTunes and re-open with the alt/option key to switch back to your main iTunes library.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.nikreiman.com/ableton_itunes_choose_library.png&quot; alt=&quot;Choose iTunes Library dialog&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Choose iTunes Library dialog&quot; src=&quot;http://static.nikreiman.com/ableton_itunes_choose_library.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;From this point, you may choose to take advantage of a special folder inside of the iTunes library named “Automatically add to iTunes”. Any tracks here are, as the name suggests, automatically added to the iTunes library when dropped in. However, they will be sorted under iTunes Media/Music/Artist Name/Album Name, which may clash with any existing organizational scheme in place. If you are planning on using this feature along with Live, add the files first before warping them, or else iTunes will copy only the music file and move the associated ASD file behind in a directory named “Not Moved”.&lt;/p&gt;
 
@@ -1238,7 +1256,7 @@
 
 &lt;p&gt;Now, enter MIDI mapping mode in Live and press one of the two buttons (doesn’t matter which one) to assign this CC to the tempo. Now click on the tempo control again after assigning it, and then at the bottom of the screen change the mode to “Relative (Signed Bit)”.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://static.teragonaudio.com/ableton-live-control-tempo-midi.png&quot; alt=&quot;Changing the controls mode&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Changing the controls mode&quot; src=&quot;http://static.teragonaudio.com/ableton-live-control-tempo-midi.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The MIDI buttons should now increase and decrease the tempo. Hooray! This trick is a bit non-intuitive, but it is actually documented in Live’s manual in a section titled “Mapping to Relative MIDI Controllers”. The table in this section also explains why sending 65/1 varies the tempo in smaller steps than sending 127/64, since these values are at the minimum/maximum extremes for the mapping ranges that Live recognizes.&lt;/p&gt;
 
