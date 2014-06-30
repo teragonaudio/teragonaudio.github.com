@@ -75,15 +75,15 @@
 
 <p>First, set up a return track named “sidechain” (always label your tracks!) and set the output to “Sends Only”. Route all tracks to this one by turning the send knob up to the maximum.</p>
 
-<p><img src="http://static.teragonaudio.com/sidechain-filtering-basic-setup.png" alt="Setting up return tracks for sidechaining" /></p>
+<p><img alt="Setting up return tracks for sidechaining" src="http://static.teragonaudio.com/sidechain-filtering-basic-setup.png" /></p>
 
 <p>Next, put an EQ Eight in the sidechain return track. Configure it to be a lowpass filter with a cutoff frequency of around 650Hz and set the Q to 1.0.</p>
 
-<p><img src="http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png" alt="Lowpass filter configuration" /></p>
+<p><img alt="Lowpass filter configuration" src="http://static.teragonaudio.com/sidechain-filtering-lowpass-filter.png" /></p>
 
 <p>Now, in each deck track, add a Compressor. Expand it by clicking the small downward-pointing arrow in the top left-hand corner, and enable sidechaining. Set “Audio From” to be “A-Sidechain”, Post FX.</p>
 
-<p><img src="http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png" alt="Sidechain compressor configuration" /></p>
+<p><img alt="Sidechain compressor configuration" src="http://static.teragonaudio.com/sidechain-flitering-sidechain-compressor.png" /></p>
 
 <p>To actually apply the sidechain filter, MIDI map the “Gain” knob with a range of 0.00 dB - 24.0 dB. At 0.00 dB, no filtering is applied. At 24.0 dB, the bass frequencies of all <em>other</em> tracks will be subtracted from this one, meaning that their basslines will punch through those of this track.</p>
 
@@ -95,11 +95,11 @@
 
 <p>To get around the two problems above, one can set up two sidechain filters which subtract cleanly from each other’s basslines. While solving these problems, this configuration also has another limitation, which is that it only works for 2 decks. Again, there is a workaround for this, which will be discussed later. First, remove the sidechain return track from the set and create two new audio tracks, named “Sidechain 1” and “Sidechain 2”. Set their outputs to “Sends Only” and have them pull audio from “Deck 1” and “Deck 2”, respectively. Also set monitoring to “In” for both sidechain tracks.</p>
 
-<p><img src="http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png" alt="Setting up tracks for sidechaining" /></p>
+<p><img alt="Setting up tracks for sidechaining" src="http://static.teragonaudio.com/sidechaing-filtering-tracks-setup.png" /></p>
 
 <p>In each sidechain track, add the same EQ Eight as was described above. Now, for both Deck 1 &amp; 2, set the compressor’s sidechain input to be the output of the other’s sidechain track, so that in Deck 1 the compressor pulls audio from Sidechain 2, and vice versa.</p>
 
-<p><img src="http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png" alt="Sidechain compressor for tracks" /></p>
+<p><img alt="Sidechain compressor for tracks" src="http://static.teragonaudio.com/sidechain-filtering-pull-from-track.png" /></p>
 
 <p>Now the sidechain setup involves no return tracks, and leaving the Gain up will have no effect if only one track is playing. The result is an even cleaner sidechain filter, but again, the limitation of 2 decks is a bit irritating.</p>
 
@@ -109,7 +109,7 @@
 
 <p>This can start to become difficult to manage, so group the two compressors into an audio effect rack. Turn on mapping mode, and set the Gain of <em>both</em> compressors to a knob in the rack. Now when this knob is turned, it will subtract bass from all other tracks.</p>
 
-<p><img src="http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png" alt="Filtering from mulitple tracks" /></p>
+<p><img alt="Filtering from mulitple tracks" src="http://static.teragonaudio.com/sidechain-filtering-multiple-tracks.png" /></p>
 
 <p>For 4 decks, just repeat this procedure and add an extra compressor to the rack. Finally, I like to group the sidechain audio tracks and fold it away; it’s not necessary to see the output of these tracks and they can simply be tucked away in the liveset.</p>
 

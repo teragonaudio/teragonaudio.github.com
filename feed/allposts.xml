@@ -3,7 +3,7 @@
   <title>Teragon Audio</title>
   <link href="http://teragonaudio.com/feed/allposts.xml" ref="self"/>
   <link href="http://teragonaudio.com"/>
-  <updated>2014-04-26T16:13:46+02:00</updated>
+  <updated>2014-06-30T23:52:27+02:00</updated>
   <id>http://teragonaudio.com/</id>
   <author>
     <name>Teragon Audio</name>
@@ -1438,7 +1438,7 @@
 &lt;h2 id=&quot;setting_up_plugin_callbacks&quot;&gt;Setting up plugin callbacks&lt;/h2&gt;
 
 &lt;p&gt;At this point, you should now have successfully loaded the plugin into memory, and you can now establish the plugin dispatcher callbacks:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='nf'&gt;initPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='nf'&gt;configurePluginCallbacks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='c1'&gt;// Check plugin&amp;#39;s magic number&lt;/span&gt;
   &lt;span class='c1'&gt;// If incorrect, then the file either was not loaded properly, is not a&lt;/span&gt;
   &lt;span class='c1'&gt;// real VST plugin, or is otherwise corrupt.&lt;/span&gt;
@@ -1461,7 +1461,7 @@
 &lt;h2 id=&quot;plugin_initialization&quot;&gt;Plugin initialization&lt;/h2&gt;
 
 &lt;p&gt;At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='nf'&gt;initPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='nf'&gt;startPlugin&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
   &lt;span class='n'&gt;dispatcher&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;effOpen&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;NULL&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.0f&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 
   &lt;span class='c1'&gt;// Set some default properties&lt;/span&gt;
@@ -1517,12 +1517,31 @@
 &lt;h2 id=&quot;processing_audio&quot;&gt;Processing audio&lt;/h2&gt;
 
 &lt;p&gt;In the VST SDK 2.4, &lt;code&gt;processReplacing()&lt;/code&gt; became the new standard call. You may have to add in support to your host for the old style of &lt;code&gt;process()&lt;/code&gt; plugins, though there aren’t so many plugins out there which still do this. To have the plugin process some audio:&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='nf'&gt;processAudio&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cpp'&gt;&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='nf'&gt;initializeIO&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='c1'&gt;// inputs and outputs are assumed to be float** and are declared elsewhere,&lt;/span&gt;
+  &lt;span class='c1'&gt;// most likely the are fields owned by this class. numChannels and blocksize&lt;/span&gt;
+  &lt;span class='c1'&gt;// are also fields, both should be size_t (or unsigned int, if you prefer).&lt;/span&gt;
+  &lt;span class='n'&gt;inputs&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='n'&gt;outputs&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='k'&gt;for&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;int&lt;/span&gt; &lt;span class='n'&gt;channel&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;channel&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt; &lt;span class='n'&gt;channel&lt;/span&gt;&lt;span class='o'&gt;++&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;blocksize&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='n'&gt;malloc&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;sizeof&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;float&lt;/span&gt;&lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;blocksize&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+
+&lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='nf'&gt;processAudio&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;AEffect&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;float&lt;/span&gt; &lt;span class='o'&gt;**&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
   &lt;span class='kt'&gt;long&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='c1'&gt;// Always reset the output array before processing.&lt;/span&gt;
+  &lt;span class='n'&gt;silenceChannel&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
   &lt;span class='c1'&gt;// Note: If you are processing an instrument, you should probably zero&lt;/span&gt;
   &lt;span class='c1'&gt;// out the input channels first to avoid any accidental noise. If you&lt;/span&gt;
   &lt;span class='c1'&gt;// are processing an effect, you should probably zero the values in the&lt;/span&gt;
   &lt;span class='c1'&gt;// output channels. See the silenceChannel() function below.&lt;/span&gt;
+  &lt;span class='c1'&gt;// However, if you are reading input data from file (or elsewhere), this&lt;/span&gt;
+  &lt;span class='c1'&gt;// step is not necessary.&lt;/span&gt;
+  &lt;span class='n'&gt;silenceChannel&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numChannels&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
   &lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='o'&gt;-&amp;gt;&lt;/span&gt;&lt;span class='n'&gt;processReplacing&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;plugin&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;inputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;outputs&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;numFrames&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
 
@@ -1534,7 +1553,7 @@
   &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;span class='p'&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.&lt;/p&gt;
+&lt;p&gt;In the above code, there is an &lt;code&gt;inputs&lt;/code&gt; and &lt;code&gt;outputs&lt;/code&gt; array which should be initialized by your application as soon you have calculated the desired channel count and buffer size. You should not allocate the &lt;code&gt;inputs&lt;/code&gt; and &lt;code&gt;outputs&lt;/code&gt; arrays in the &lt;code&gt;processAudio()&lt;/code&gt; function, as doing so may severely impact performance. Hence, the call to &lt;code&gt;initializeIO()&lt;/code&gt; should be made as soon as possible and before the first call to &lt;code&gt;processAudio()&lt;/code&gt;. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.&lt;/p&gt;
 
 &lt;h2 id=&quot;sending_midi_messages&quot;&gt;Sending MIDI messages&lt;/h2&gt;
 

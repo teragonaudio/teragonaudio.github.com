@@ -213,7 +213,7 @@
 <h2 id="setting_up_plugin_callbacks">Setting up plugin callbacks</h2>
 
 <p>At this point, you should now have successfully loaded the plugin into memory, and you can now establish the plugin dispatcher callbacks:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='nf'>initPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>int</span> <span class='nf'>configurePluginCallbacks</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='c1'>// Check plugin&#39;s magic number</span>
   <span class='c1'>// If incorrect, then the file either was not loaded properly, is not a</span>
   <span class='c1'>// real VST plugin, or is otherwise corrupt.</span>
@@ -236,7 +236,7 @@
 <h2 id="plugin_initialization">Plugin initialization</h2>
 
 <p>At this point, the plugin should be ready to go, so you can initialize it through the dispatcher handle created in the previous step:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>initPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>startPlugin</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>)</span> <span class='p'>{</span>
   <span class='n'>dispatcher</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>effOpen</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='mi'>0</span><span class='p'>,</span> <span class='nb'>NULL</span><span class='p'>,</span> <span class='mf'>0.0f</span><span class='p'>);</span>
 
   <span class='c1'>// Set some default properties</span>
@@ -292,12 +292,31 @@
 <h2 id="processing_audio">Processing audio</h2>
 
 <p>In the VST SDK 2.4, <code>processReplacing()</code> became the new standard call. You may have to add in support to your host for the old style of <code>process()</code> plugins, though there aren’t so many plugins out there which still do this. To have the plugin process some audio:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>processAudio</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span>
+<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='nf'>initializeIO</span><span class='p'>()</span> <span class='p'>{</span>
+  <span class='c1'>// inputs and outputs are assumed to be float** and are declared elsewhere,</span>
+  <span class='c1'>// most likely the are fields owned by this class. numChannels and blocksize</span>
+  <span class='c1'>// are also fields, both should be size_t (or unsigned int, if you prefer).</span>
+  <span class='n'>inputs</span> <span class='o'>=</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span><span class='p'>)</span> <span class='o'>*</span> <span class='n'>numChannels</span><span class='p'>);</span>
+  <span class='n'>outputs</span> <span class='o'>=</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span><span class='p'>)</span> <span class='o'>*</span> <span class='n'>numChannels</span><span class='p'>);</span>
+  <span class='k'>for</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>channel</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>channel</span> <span class='o'>&lt;</span> <span class='n'>numChannels</span><span class='p'>;</span> <span class='n'>channel</span><span class='o'>++</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='n'>inputs</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>*</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='kt'>float</span><span class='o'>*</span><span class='p'>)</span> <span class='o'>*</span> <span class='n'>blocksize</span><span class='p'>);</span>
+    <span class='n'>outputs</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>*</span><span class='p'>)</span><span class='n'>malloc</span><span class='p'>(</span><span class='k'>sizeof</span><span class='p'>(</span><span class='kt'>float</span><span class='o'>*</span><span class='p'>)</span> <span class='o'>*</span> <span class='n'>blocksize</span><span class='p'>);</span>
+  <span class='p'>}</span>
+<span class='p'>}</span>
+
+<span class='kt'>void</span> <span class='nf'>processAudio</span><span class='p'>(</span><span class='n'>AEffect</span> <span class='o'>*</span><span class='n'>plugin</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span> <span class='o'>**</span><span class='n'>outputs</span><span class='p'>,</span>
   <span class='kt'>long</span> <span class='n'>numFrames</span><span class='p'>)</span> <span class='p'>{</span>
+  <span class='c1'>// Always reset the output array before processing.</span>
+  <span class='n'>silenceChannel</span><span class='p'>(</span><span class='n'>outputs</span><span class='p'>,</span> <span class='n'>numChannels</span><span class='p'>,</span> <span class='n'>numFrames</span><span class='p'>);</span>
+
   <span class='c1'>// Note: If you are processing an instrument, you should probably zero</span>
   <span class='c1'>// out the input channels first to avoid any accidental noise. If you</span>
   <span class='c1'>// are processing an effect, you should probably zero the values in the</span>
   <span class='c1'>// output channels. See the silenceChannel() function below.</span>
+  <span class='c1'>// However, if you are reading input data from file (or elsewhere), this</span>
+  <span class='c1'>// step is not necessary.</span>
+  <span class='n'>silenceChannel</span><span class='p'>(</span><span class='n'>inputs</span><span class='p'>,</span> <span class='n'>numChannels</span><span class='p'>,</span> <span class='n'>numFrames</span><span class='p'>);</span>
+
   <span class='n'>plugin</span><span class='o'>-&gt;</span><span class='n'>processReplacing</span><span class='p'>(</span><span class='n'>plugin</span><span class='p'>,</span> <span class='n'>inputs</span><span class='p'>,</span> <span class='n'>outputs</span><span class='p'>,</span> <span class='n'>numFrames</span><span class='p'>);</span>
 <span class='p'>}</span>
 
@@ -309,7 +328,7 @@
   <span class='p'>}</span>
 <span class='p'>}</span>
 </code></pre></div>
-<p>Note that you need to properly allocate the arrays for the audio inputs and outputs depending on your blocksize and channel count. Like a regular VST plugin, this structure is simply a de-interlaced array ordered by channel of the sample block data, with the left channel being the first one. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.</p>
+<p>In the above code, there is an <code>inputs</code> and <code>outputs</code> array which should be initialized by your application as soon you have calculated the desired channel count and buffer size. You should not allocate the <code>inputs</code> and <code>outputs</code> arrays in the <code>processAudio()</code> function, as doing so may severely impact performance. Hence, the call to <code>initializeIO()</code> should be made as soon as possible and before the first call to <code>processAudio()</code>. You should also take care to properly initialize the data in both the inputs and outputs array to zero, or else you can get static or other random noise in the processed signal.</p>
 
 <h2 id="sending_midi_messages">Sending MIDI messages</h2>
 
