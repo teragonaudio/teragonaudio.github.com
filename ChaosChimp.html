@@ -56,78 +56,105 @@
             <!-- Start content -->
             <h1 id="chaoschimp">ChaosChimp</h1>
 
-<p>ChaosChimp is an audio effect plugin designed to cause problems for your sequencer. Seriously! It’s inspired by <a href="http://techblog.netflix.com/2010/12/5-lessons-weve-learned-using-aws.html">Netflix’s ChaosMonkey</a>, which was built under the philosophy that instead of hoping bad things never happen, they should be forced to happen often so that one is better prepared for them.</p>
+<p>ChaosChimp is an audio effect plugin designed to cause problems for your
+sequencer. Seriously! It’s inspired by <a href="http://techblog.netflix.com/2010/12/5-lessons-weve-learned-using-aws.html">Netflix’s ChaosMonkey</a>, which was
+built under the philosophy that instead of hoping bad things never happen,
+they should be forced to happen often so that one is better prepared for them.</p>
 
-<p><img alt="ChaosChimp User Interface" src="http://static.teragonaudio.com/ta_chaoschimp.png" /></p>
+<p><img src="http://static.teragonaudio.com/website/ta_chaoschimp.png" alt="ChaosChimp User Interface" /></p>
 
-<h2 id="why_on_earth">Why On Earth??</h2>
+<h2 id="why-on-earth">Why On Earth??</h2>
 
-<p>Why would someone want to run this plugin? To be fair, ChaosChimp should probably <em>not</em> be used on stage. But it should be used during practice and preparation sessions.</p>
+<p>Why would someone want to run this plugin? To be fair, ChaosChimp should
+probably <em>not</em> be used on stage. But it should be used during practice and
+preparation sessions.</p>
 
-<p>I’ve seen many headlining DJ’s let down by their gear onstage. I won’t name any names, but let’s just say that it can happen to the best of us. In some cases, they just slammed their laptop in disgust and walked off the stage. Other times, the sound technician had to frantically mute the house speakers to prevent feedback or satan saws (a cruel term for when a soundcard’s AD/DA unit stops receiving new data and keeps outputting the last buffer received, causing a horrendouse sawtooth-type noise). Sometimes the music just stopped and everyone on the dancefloor stopped and looked around. Does any of this sound familiar?</p>
+<p>I’ve seen many headlining DJ’s let down by their gear onstage. I won’t name
+any names, but let’s just say that it can happen to the best of us. In some
+cases, they just slammed their laptop in disgust and walked off the stage.
+Other times, the sound technician had to frantically mute the house speakers
+to prevent feedback or satan saws (a cruel term for when a soundcard’s AD/DA
+unit stops receiving new data and keeps outputting the last buffer received,
+causing a horrendouse sawtooth-type noise). Sometimes the music just stopped
+and everyone on the dancefloor stopped and looked around. Does any of this
+sound familiar?</p>
 
-<p>Most of the time, when this happens, the disgraced DJ’s exits the stage, proceeding to lament on Twitter/Facebook and complain about how buggy software X or hardware Y ruined a perfect evening. <em>Screw that</em>. Always have a plan B ready, and train yourself how to react when disaster strikes. ChaosChimp is designed to cause such disasters at random intervals, allowing you to prepare for them in the safety of your own studio.</p>
+<p>Most of the time, when this happens, the disgraced DJ’s exits the stage,
+proceeding to lament on Twitter/Facebook and complain about how buggy software
+X or hardware Y ruined a perfect evening. <em>Screw that</em>. Always have a plan B
+ready, and train yourself how to react when disaster strikes. ChaosChimp is
+designed to cause such disasters at random intervals, allowing you to prepare
+for them in the safety of your own studio.</p>
 
-<p>Also, ChaosChimp can be useful for sequencer developers to simulate naughty or misbehaving plugins.</p>
+<p>Also, ChaosChimp can be useful for sequencer developers to simulate naughty or
+misbehaving plugins.</p>
 
 <h2 id="parameters">Parameters</h2>
 
-<p>At the top of the plugin are buttons to disable or enable the following types of chaos:</p>
+<p>At the top of the plugin are buttons to disable or enable the following types
+of chaos:</p>
 
 <ul>
-<li>Audio dropouts</li>
-
-<li>Hogging a ton of CPU</li>
-
-<li>Try to crash the host (disabled by default)</li>
-
-<li>Simulate feedback (disabled by default). In actuality, this scenario will play a burst of white noise, as real feedback is quite harsh on loudspeakers (and ears).</li>
-
-<li>Leak lots of memory</li>
+  <li>Audio dropouts</li>
+  <li>Hogging a ton of CPU</li>
+  <li>Try to crash the host (disabled by default)</li>
+  <li>Simulate feedback (disabled by default). In actuality, this scenario will
+play a burst of white noise, as real feedback is quite harsh on
+loudspeakers (and ears).</li>
+  <li>Leak lots of memory</li>
 </ul>
 
-<p>ChaosChimp will run the scenarios at random intervals according to the values set by the three knobs:</p>
+<p>ChaosChimp will run the scenarios at random intervals according to the values
+set by the three knobs:</p>
 
 <ul>
-<li>Probability: Determines the likelihood that one of the selected chaos scenarios will be run.</li>
-
-<li>Duration: How long the chaos scenario will last (in seconds).</li>
-
-<li>Cooldown: How long to wait before running a new scenario after one has just occurred. Note that since the scenarios are run at random intervals, this value only guarantees the minimum amount of chaos-free time after a scenario has been run.</li>
+  <li>Probability: Determines the likelihood that one of the selected chaos
+scenarios will be run.</li>
+  <li>Duration: How long the chaos scenario will last (in seconds).</li>
+  <li>Cooldown: How long to wait before running a new scenario after one has just
+occurred. Note that since the scenarios are run at random intervals, this
+value only guarantees the minimum amount of chaos-free time after a scenario
+has been run.</li>
 </ul>
 
-<p>On the left side of the interface, there is a light which will illuminate when a scenario is running. Below this light is a panic button, which will stop the current scenario if you find it to be too overwhelming for your system.</p>
+<p>On the left side of the interface, there is a light which will illuminate when
+a scenario is running. Below this light is a panic button, which will stop the
+current scenario if you find it to be too overwhelming for your system.</p>
 
-<p>For best results, place it on your master output channel and tweak the settings before playing anything.</p>
+<p>For best results, place it on your master output channel and tweak the
+settings before playing anything.</p>
 
 <h2 id="licensing">Licensing</h2>
 
-<p>ChaosChimp is licensed under the GPL2. Further details can be found in the LICENSE.txt file distributed with the software.</p>
+<p>ChaosChimp is licensed under the GPL2. Further details can be found in the
+LICENSE.txt file distributed with the software.</p>
 
 <h2 id="disclaimer">Disclaimer</h2>
 
-<p>Teragon Audio is not responsible for any damage (either hardware or software) caused by using this plugin. Use at your own risk, and always keep backups!</p>
+<p>Teragon Audio is not responsible for any damage (either hardware or software)
+caused by using this plugin. Use at your own risk, and always keep backups!</p>
+
 <hr />
+
 <p>Changelog:</p>
 
 <p>Version 1.0.0:</p>
-
 <ul>
-<li>Add editor GUI</li>
-
-<li>Add panic button</li>
-
-<li>Update README</li>
-
-<li>Change license to GPL2</li>
+  <li>Add editor GUI</li>
+  <li>Add panic button</li>
+  <li>Update README</li>
+  <li>Change license to GPL2</li>
 </ul>
 
-<p>Version 0.9.0: (No comment)</p>
+<p>Version 0.9.0:
+(No comment)</p>
+
+
             <!-- End content -->
           </div>
           <div id="sidebar">
             <ul class="sidemenu">
-              <li><a href="http://static.teragonaudio.com/ChaosChimp.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
+              <li><a href="http://static.teragonaudio.com/downloads/ChaosChimpChaosChimp.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
               <li><a href="https://github.com/teragonaudio/ChaosChimp/zipball/master">Source code</a></li>
               <li><a href="https://github.com/teragonaudio/ChaosChimp">Project page</a></li>
             </ul>

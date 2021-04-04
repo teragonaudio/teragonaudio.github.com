@@ -56,192 +56,229 @@
             <!-- Start content -->
             <h1 id="teragonguicomponents">TeragonGuiComponents</h1>
 
-<p>TeragonGuiComponents is a set of widgets designed for use in audio software. The graphics were done by <a href="http://www.maxrudberg.com">Max Rudberg</a> and are licensed under the Creative Commons License (see the LICENSE-GRAPHICS.txt file for more details). This project also includes a few classes for use in VST plugins with Juce.</p>
+<p>TeragonGuiComponents is a set of widgets designed for use in audio software.
+The graphics were done by <a href="http://www.maxrudberg.com">Max Rudberg</a> and are licensed under the Creative
+Commons License (see the LICENSE-GRAPHICS.txt file for more details). This
+project also includes a few classes for use in VST plugins with Juce.</p>
 
-<p>Should you wish to reuse the graphics, please give proper attribution to both <a href="http://www.maxrudberg.com">Max Rudberg</a> and <a href="http://www.teragonaudio.com">Teragon Audio</a>.</p>
+<p>Should you wish to reuse the graphics, please give proper attribution to both
+<a href="http://www.maxrudberg.com">Max Rudberg</a> and <a href="http://www.teragonaudio.com">Teragon Audio</a>.</p>
 
-<h2 id="setting_up_teragonguicomponents_in_a_project">Setting up TeragonGuiComponents in a Project</h2>
+<h2 id="setting-up-teragonguicomponents-in-a-project">Setting up TeragonGuiComponents in a Project</h2>
 
-<p>To use TeragonGuiComponents, the plugin needs to store parameter data in a <a href="https://github.com/teragonaudio/PluginParameters">PluginParameters</a> set. These parameters are linked directly to the GUI components and will be notified when the component is changed. If you are storing parameter data in some other format and don’t feel comfortable migrating to PluginParameters, then you can at least mirror the data in a PluginParameters set and observe parameter changes to synchronize the set with your preferred data storage container.</p>
+<p>To use TeragonGuiComponents, the plugin needs to store parameter data in a
+<a href="https://github.com/teragonaudio/PluginParameters">PluginParameters</a> set. These parameters are linked directly to the GUI
+components and will be notified when the component is changed. If you are
+storing parameter data in some other format and don’t feel comfortable
+migrating to PluginParameters, then you can at least mirror the data in a
+PluginParameters set and observe parameter changes to synchronize the set with
+your preferred data storage container.</p>
 
-<p>Please note that PluginParameters must be built in multithreaded mode, otherwise parameter updates will be delivered from the audio thread. See the README of the PluginParameters project for more details. Also be sure to look at the source code of the demo project which demonstrates usage of PluginParameters with the GUI components.</p>
+<p>Please note that PluginParameters must be built in multithreaded mode,
+otherwise parameter updates will be delivered from the audio thread. See the
+README of the PluginParameters project for more details. Also be sure to look
+at the source code of the demo project which demonstrates usage of
+PluginParameters with the GUI components.</p>
 
-<p>TeragonGuiComponents also is built on <a href="http://www.juce.com">Juce</a>, though it is certainly possible to use the graphics with VSTGUI (or other GUI toolkits). While use of the actual code powering the TeragonGuiComponents is covered under the <a href="https://github.com/teragonaudio/TeragonGuiComponents/blob/master/LICENSE-GRAPHICS.txt">BSD license</a>, the graphics are under a <a href="https://github.com/teragonaudio/TeragonGuiComponents/blob/master/LICENSE-CODE.txt">separate Creative Common license</a>, which requires attribution to be given. See the “Licensing” section for more details.</p>
+<p>TeragonGuiComponents also is built on <a href="http://www.juce.com">Juce</a>, though it is certainly
+possible to use the graphics with VSTGUI (or other GUI toolkits). While use of
+the actual code powering the TeragonGuiComponents is covered under the <a href="https://github.com/teragonaudio/TeragonGuiComponents/blob/master/LICENSE-GRAPHICS.txt">BSD
+license</a>, the graphics are under a <a href="https://github.com/teragonaudio/TeragonGuiComponents/blob/master/LICENSE-CODE.txt">separate Creative Common license</a>,
+which requires attribution to be given. See the “Licensing” section for more
+details.</p>
 
-<p>The plugin also needs to have an editor component in Juce, which is typically generated in the Introjucer. I’ve experienced times when the auto-generated editor produced by the Introjucer new project wizard does not yield a functional editor (ie, the GUI editor tabs are not shown). In such cases, just delete the default editor and make a new GUI Component to your project.</p>
+<p>The plugin also needs to have an editor component in Juce, which is typically
+generated in the Introjucer. I’ve experienced times when the auto-generated
+editor produced by the Introjucer new project wizard does not yield a
+functional editor (ie, the GUI editor tabs are not shown). In such cases, just
+delete the default editor and make a new GUI Component to your project.</p>
 
-<p>Also all files under TeragonGuiComponents/Components/Source must be added to your project. You may need to also add this directory to the list of header search paths in your project.</p>
+<p>Also all files under TeragonGuiComponents/Components/Source must be added to
+your project. You may need to also add this directory to the list of header
+search paths in your project.</p>
 
 <p>The editor class will need to take a few additional constructor parameters:</p>
 
 <ul>
-<li><code>AudioProcessor*</code> (which is actually needed in all Juce plugin GUIs)</li>
-
-<li><code>teragon::ThreadsafePluginParameterSet&amp;</code></li>
-
-<li><code>teragon::ResourceCache*</code></li>
+  <li><code>AudioProcessor*</code> (which is actually needed in all Juce plugin GUIs)</li>
+  <li><code>teragon::ThreadsafePluginParameterSet&amp;</code></li>
+  <li><code>teragon::ResourceCache*</code></li>
 </ul>
 
-<p>The <code>TeragonGuiComponents.h</code> header file must therefore be included in the editor’s header.</p>
+<p>The <code>TeragonGuiComponents.h</code> header file must therefore be included in the
+editor’s header.</p>
 
-<p>Correspondingly, the plugin processor should pass up a reference to its parameter set and a new resource cache made with <code>Resources::getCache()</code> (this will require including <code>Resources.h</code> from the file where <code>getCache()</code> is called since this rather long header is not part of <code>TeragonGuiComponents.h</code>).</p>
+<p>Correspondingly, the plugin processor should pass up a reference to its
+parameter set and a new resource cache made with <code>Resources::getCache()</code> (this
+will require including <code>Resources.h</code> from the file where <code>getCache()</code> is
+called since this rather long header is not part of <code>TeragonGuiComponents.h</code>).</p>
 
-<p><strong>NOTE</strong>: The reason that the ResourceCache is passed as a raw pointer instead of a reference is that the editor should take ownership of the cache upon construction. This way, you can delete the cache in the editor’s destructor and spare a bit of memory to the system when the editor is closed. You could also choose to keep a ResourceCache in the processor and pass its address up to the editor, but this is not recommended. In either case, you must make sure that the cache is deleted at some point or else memory will be leaked.</p>
+<p><strong>NOTE</strong>: The reason that the ResourceCache is passed as a raw pointer instead
+of a reference is that the editor should take ownership of the cache upon
+construction. This way, you can delete the cache in the editor’s destructor
+and spare a bit of memory to the system when the editor is closed. You could
+also choose to keep a ResourceCache in the processor and pass its address up
+to the editor, but this is not recommended. In either case, you must make sure
+that the cache is deleted at some point or else memory will be leaked.</p>
 
-<h2 id="adding_components">Adding Components</h2>
+<h2 id="adding-components">Adding Components</h2>
 
-<p>Within the Juce GUI editor, you’ll be adding a bunch of Generic Components rather than Juce’s own knobs, sliders and buttons. The classes for the components must be given in the virtual class section (you can leave the class as <code>Component</code>) of the editor’s right-hand panel. Each component takes the following arguments:</p>
+<p>Within the Juce GUI editor, you’ll be adding a bunch of Generic Components
+rather than Juce’s own knobs, sliders and buttons. The classes for the
+components must be given in the virtual class section (you can leave the class
+as <code>Component</code>) of the editor’s right-hand panel. Each component takes the
+following arguments:</p>
 
 <ul>
-<li>A reference to the parameter set (<code>teragon::ThreadsafePluginParameterSet&amp;</code>)</li>
-
-<li>The parameter name (<code>const ParameterString&amp;</code>)</li>
-
-<li>A pointer to the resource cache (<code>const teragon::ResourceCache*</code>)</li>
+  <li>A reference to the parameter set (<code>teragon::ThreadsafePluginParameterSet&amp;</code>)</li>
+  <li>The parameter name (<code>const ParameterString&amp;</code>)</li>
+  <li>A pointer to the resource cache (<code>const teragon::ResourceCache*</code>)</li>
 </ul>
 
 <p>Where the size of each component is as follows:</p>
 
 <ul>
-<li><code>teragon::ImageKnobLarge</code>: 113x113</li>
-
-<li><code>teragon::ImageKnobSmall</code>: 66x66</li>
-
-<li><code>teragon::ImageSlider</code>: 62x134</li>
-
-<li><code>teragon::IndicatorLight</code>: 24x24</li>
-
-<li><code>teragon::PushButton</code>: 72x(Variable)</li>
-
-<li><code>teragon::ToggleButton</code>: 72x(Variable)</li>
-
-<li><code>teragon::StatusBar</code>: (Variable)x70</li>
+  <li><code>teragon::ImageKnobLarge</code>: 113x113</li>
+  <li><code>teragon::ImageKnobSmall</code>: 66x66</li>
+  <li><code>teragon::ImageSlider</code>: 62x134</li>
+  <li><code>teragon::IndicatorLight</code>: 24x24</li>
+  <li><code>teragon::PushButton</code>: 72x(Variable)</li>
+  <li><code>teragon::ToggleButton</code>: 72x(Variable)</li>
+  <li><code>teragon::StatusBar</code>: (Variable)x70</li>
 </ul>
 
-<p>Both of the buttons are drawn at the top of their 70x40 frame, but only take up 24px of height. Labels should be placed <em>below</em> the buttons, and this area is also clickable, since otherwise the buttons could be hard to hit with the mouse.</p>
+<p>Both of the buttons are drawn at the top of their 70x40 frame, but only take
+up 24px of height. Labels should be placed <em>below</em> the buttons, and this area
+is also clickable, since otherwise the buttons could be hard to hit with the
+mouse.</p>
 
-<p>An example application with all components can be found in the <code>Demo</code> folder, this is a good reference for how to use the classes. Also each class has some usage documentation in the header file.</p>
+<p>An example application with all components can be found in the <code>Demo</code> folder,
+this is a good reference for how to use the classes. Also each class has some
+usage documentation in the header file.</p>
 
-<h2 id="background_images">Background Images</h2>
+<h2 id="background-images">Background Images</h2>
 
-<p>Backgrounds for plugins are created in an image editor, such as Photoshop or Pixelmator. I prefer using <a href="http://www.pixelmator.com">Pixelmator</a> since it is reasonably priced (compared to Photoshop) and very powerful while easy to use (compared to GIMP). It also has nice snapping gridlines for doing accurate layout. In the top-level folder of the project, there is a Pixelmator template for creating the backgrounds. It has each component in a separate layer, making it easy to create GUI mockups. Each component also has a semi-transparent alignment helper layer for use in making pixel-perfect layouts within Introjucer.</p>
+<p>Backgrounds for plugins are created in an image editor, such as Photoshop or
+Pixelmator. I prefer using <a href="http://www.pixelmator.com">Pixelmator</a> since it is reasonably priced
+(compared to Photoshop) and very powerful while easy to use (compared to
+GIMP). It also has nice snapping gridlines for doing accurate layout. In the
+top-level folder of the project, there is a Pixelmator template for creating
+the backgrounds. It has each component in a separate layer, making it easy to
+create GUI mockups. Each component also has a semi-transparent alignment
+helper layer for use in making pixel-perfect layouts within Introjucer.</p>
 
-<p>If you choose not to use the Pixelmator template, please be aware of the following style guidelines:</p>
+<p>If you choose not to use the Pixelmator template, please be aware of the
+following style guidelines:</p>
 
 <ul>
-<li>Use “Title Case” (not “Sentence case”) for component labels.</li>
-
-<li>Text for large knob labels is Open Sans Semi-Bold, 15pt, 100% white.</li>
-
-<li>Text for all other labels is Open Sans Semi-Bold, 12pt, 100% white.</li>
-
-<li>Text for all knob unit labels is Open Sans Semi-Bold, 9pt, 50% white.</li>
-
-<li>Tile the texture image for the background.</li>
-
-<li>Tile the contrast texture to separate groups of related components. Box them in using a rounded rectangle with 3px corner radius.</li>
+  <li>Use “Title Case” (not “Sentence case”) for component labels.</li>
+  <li>Text for large knob labels is Open Sans Semi-Bold, 15pt, 100% white.</li>
+  <li>Text for all other labels is Open Sans Semi-Bold, 12pt, 100% white.</li>
+  <li>Text for all knob unit labels is Open Sans Semi-Bold, 9pt, 50% white.</li>
+  <li>Tile the texture image for the background.</li>
+  <li>Tile the contrast texture to separate groups of related components. Box
+them in using a rounded rectangle with 3px corner radius.</li>
 </ul>
 
-<p>When the background is finished, it can be imported into the Introjucer for the main window’s background. My layout workflow looks something like this:</p>
+<p>When the background is finished, it can be imported into the Introjucer for
+the main window’s background. My layout workflow looks something like this:</p>
 
 <ol>
-<li>Make copy of Template.pxm document in project.</li>
-
-<li>Drag around components in Pixelmator until layout looks nice.</li>
-
-<li>Set labels, component names, etc.</li>
-
-<li>Export PNG from Pixelmator with all layers visible.</li>
-
-<li>Import PNG into Introjucer.</li>
-
-<li>Make Components in Introjucer, align to blue boundary shapes.</li>
-
-<li>Re-export PNG from Pixelmator with all layers disabled except the background and label names. Object such as slider wells and disabled states (for indicator lights and buttons) are not necessary to export, these are done in the Component classes.</li>
-
-<li>Go back to Introjucer, reload background image.</li>
-
-<li>Fill in Component parameters in Introjucer.</li>
+  <li>Make copy of Template.pxm document in project.</li>
+  <li>Drag around components in Pixelmator until layout looks nice.</li>
+  <li>Set labels, component names, etc.</li>
+  <li>Export PNG from Pixelmator with all layers visible.</li>
+  <li>Import PNG into Introjucer.</li>
+  <li>Make Components in Introjucer, align to blue boundary shapes.</li>
+  <li>Re-export PNG from Pixelmator with all layers disabled except the
+background and label names. Object such as slider wells and disabled states
+(for indicator lights and buttons) are not necessary to export, these are
+done in the Component classes.</li>
+  <li>Go back to Introjucer, reload background image.</li>
+  <li>Fill in Component parameters in Introjucer.</li>
 </ol>
 
 <p>That’s it! Now you have a fully-functional GUI for your plugin.</p>
 
-<h2 id="lcd_screens">LCD Screens</h2>
+<h2 id="lcd-screens">LCD Screens</h2>
 
-<p>LCD screens are a bit special because different plugins require different sizes. The screen is meant to be part of the background image, but making it is done with an Android application, since Android’s internal 9-slicing abilities make generating such images much more quickly than in Photoshop (at least for me and my limited Photoshop abilities).</p>
+<p>LCD screens are a bit special because different plugins require different
+sizes. The screen is meant to be part of the background image, but making it
+is done with an Android application, since Android’s internal 9-slicing
+abilities make generating such images much more quickly than in Photoshop (at
+least for me and my limited Photoshop abilities).</p>
 
-<p>There are two screens, one is intended for single-line displays and the other for multi-line displays. Both are included in the app’s main layout XML. Simply edit the main.xml file to make the LCD the desired height, then take a screenshot and crop it in an image editor. If you don’t have an Android device, the emulator will work just fine for this, however make sure that an MDPI image is used so that the screenshot aligns to be the same pixel dimensions as the desktop.</p>
+<p>There are two screens, one is intended for single-line displays and the other
+for multi-line displays. Both are included in the app’s main layout XML.
+Simply edit the main.xml file to make the LCD the desired height, then take a
+screenshot and crop it in an image editor. If you don’t have an Android
+device, the emulator will work just fine for this, however make sure that an
+MDPI image is used so that the screenshot aligns to be the same pixel
+dimensions as the desktop.</p>
+
 <hr />
+
 <p>Changelog:</p>
 
 <p>Version 1.4.2:</p>
-
 <ul>
-<li>Use relative include path for Base64.h</li>
-
-<li>Add missing license to source files</li>
+  <li>Use relative include path for Base64.h</li>
+  <li>Add missing license to source files</li>
 </ul>
 
 <p>Version 1.4.1:</p>
 <ul><li> Changing license to GPL2 to match Juce</li></ul>
+
 <p>Version 1.4.0:</p>
-
 <ul>
-<li>Started using semantic versioning</li>
-
-<li>Add TeragonPluginBase class</li>
-
-<li>Remove IDE files from VCS</li>
-
-<li>Demo app no longer needs fake runloop</li>
-
-<li>Update to PluginParameters 3.2</li>
+  <li>Started using semantic versioning</li>
+  <li>Add TeragonPluginBase class</li>
+  <li>Remove IDE files from VCS</li>
+  <li>Demo app no longer needs fake runloop</li>
+  <li>Update to PluginParameters 3.2</li>
 </ul>
 
-<p>Version 1.3: - Minor fix to prevent compilation error if PLUGINPARAMETERS_MULTITHREADED is not manually defined.</p>
+<p>Version 1.3:</p>
+<ul>
+  <li>Minor fix to prevent compilation error if
+PLUGINPARAMETERS_MULTITHREADED is not manually defined.</li>
+</ul>
 
 <p>Version 1.2:</p>
 <ul><li> Minor fix for preprocessor name change in PluginParameters API</li></ul>
+
 <p>Version 1.1:</p>
-
 <ul>
-<li>Update to PluginParameters 3.0</li>
-
-<li>Fix compiler errors on VS2013</li>
-
-<li>Fixes with PushButton state logic</li>
-
-<li>New component: ParameterLabel</li>
-
-<li>Improve Pixelmator template</li>
-
-<li>Improved documentation</li>
+  <li>Update to PluginParameters 3.0</li>
+  <li>Fix compiler errors on VS2013</li>
+  <li>Fixes with PushButton state logic</li>
+  <li>New component: ParameterLabel</li>
+  <li>Improve Pixelmator template</li>
+  <li>Improved documentation</li>
 </ul>
 
-<p>Version 1.0: widgets:</p>
+<p>Version 1.0:
+widgets:</p>
 
 <ul>
-<li>Large image knob</li>
-
-<li>Small image knob</li>
-
-<li>Vertical fader</li>
-
-<li>Push button</li>
-
-<li>Toggle button</li>
-
-<li>Indicator light</li>
-
-<li>Status bar for showing parameter state</li>
+  <li>Large image knob</li>
+  <li>Small image knob</li>
+  <li>Vertical fader</li>
+  <li>Push button</li>
+  <li>Toggle button</li>
+  <li>Indicator light</li>
+  <li>Status bar for showing parameter state</li>
 </ul>
 
-<p>Also there is basic usage documentation and Pixelmator templates for assisting in layout.</p>
+<p>Also there is basic usage documentation and Pixelmator templates for
+assisting in layout.</p>
+
+
             <!-- End content -->
           </div>
           <div id="sidebar">
             <ul class="sidemenu">
-              <li><a href="http://static.teragonaudio.com/TeragonGuiComponents.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
+              <li><a href="http://static.teragonaudio.com/downloads/TeragonGuiComponentsTeragonGuiComponents.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
               <li><a href="https://github.com/teragonaudio/TeragonGuiComponents/zipball/master">Source code</a></li>
               <li><a href="https://github.com/teragonaudio/TeragonGuiComponents">Project page</a></li>
             </ul>

@@ -56,318 +56,364 @@
             <!-- Start content -->
             <h1 id="pluginparameters">PluginParameters</h1>
 
-<p>PluginParameters is a simple library used to keep parameter information for an audio plugin, such as a VST or AudioUnit. The need for this arises from the fact that most plugins have a number of parameters they need to maintain, and this information needs to be sent to various parts of the plugin’s processing code. The VST or AudioUnit side of things also needs to query this information in a more structured manner, and this can lead to plugin code getting very messy with huge <code>switch</code> blocks to get/set the correct value.</p>
+<p>PluginParameters is a simple library used to keep parameter information for an
+audio plugin, such as a VST or AudioUnit. The need for this arises from the
+fact that most plugins have a number of parameters they need to maintain, and
+this information needs to be sent to various parts of the plugin’s processing
+code. The VST or AudioUnit side of things also needs to query this information
+in a more structured manner, and this can lead to plugin code getting very
+messy with huge <code>switch</code> blocks to get/set the correct value.</p>
 
 <h2 id="features">Features</h2>
 
 <ul>
-<li>Provides a parameter database which supports the following data types:
-<ul>
-<li>BlobParameter</li>
-
-<li>BooleanParameter</li>
-
-<li>DecibelParameter</li>
-
-<li>FloatParameter</li>
-
-<li>FrequencyParameter</li>
-
-<li>IntegerParameter</li>
-
-<li>StringParameter</li>
+  <li>Provides a parameter database which supports the following data types:
+    <ul>
+      <li>BlobParameter</li>
+      <li>BooleanParameter</li>
+      <li>DecibelParameter</li>
+      <li>FloatParameter</li>
+      <li>FrequencyParameter</li>
+      <li>IntegerParameter</li>
+      <li>StringParameter</li>
+    </ul>
+  </li>
+  <li>For all parameter types, you can get the raw value (ie, the thing you
+probably need in your code to do useful stuff), or a scaled value between
+0.0 - 1.0. This makes PluginParameters ideal for use in VST plugins, which
+need a 0.0 - 1.0 representation of all data.</li>
+  <li>The decibel parameter is represented internally as a linear value, which is
+more convenient for most audio processing work. Additionally, it is
+logarithmic, which is useful when fitting it to a knob or fader control.</li>
+  <li>The frequency parameter uses logarithmic scaling for its value, so it is
+easier to select higher frequencies. This is particularly convenient for
+filters where one MIDI step would otherwise mean a difference of several
+hundred hertz.</li>
+  <li>All parameters provide a minimum, maximum, and default value.</li>
+  <li>All parameter types also have a function to get the displayable value as a
+string.</li>
+  <li>Parameters have string unit suffixes for pretty-printing the value. For
+example, DecibelParameter automatically adds “dB” to the printed value, and
+FrequencyParameter adds “Hz” or “kHz”, depending on the frequency.</li>
+  <li>Parameters can have an unlimited number of observers, which will receive a
+callback when the parameter value is changed. Observers can be added or
+removed to a parameter at any time.</li>
+  <li>Lookup of parameters can be done either by index or by name, with either the
+<code>get()</code> method or the square brackets (ie, <code>parameters["frequency"]</code>).</li>
+  <li>Small! Just a few hundred lines of code, and only one CPP file to add to your
+project (tinythread.cpp, which is from a third-party library). Simply include
+<code>PluginParameters.h</code> and you’ve got the whole library at your fingertips.</li>
+  <li>Threadsafe! PluginParameters can be built to run in a multi-threaded
+environment ideal for audio plugins, with one high-priority audio thread and
+multiple low-priority threads for background tasks or GUI.</li>
+  <li>The multi-threaded implementation is based on lock-free queues, and is
+completely mutex-free for high performance in realtime audio applications.</li>
 </ul>
-</li>
 
-<li>For all parameter types, you can get the raw value (ie, the thing you probably need in your code to do useful stuff), or a scaled value between 0.0 - 1.0. This makes PluginParameters ideal for use in VST plugins, which need a 0.0 - 1.0 representation of all data.</li>
+<h2 id="usage-single-threaded">Usage (Single-Threaded)</h2>
 
-<li>The decibel parameter is represented internally as a linear value, which is more convenient for most audio processing work. Additionally, it is logarithmic, which is useful when fitting it to a knob or fader control.</li>
+<p><em>Note</em>: As of PluginParameters version 3.0, the multi-threaded implementation is
+the default. To use the single-threaded implementation, you will need to define
+the following preprocessor definition in your project:</p>
 
-<li>The frequency parameter uses logarithmic scaling for its value, so it is easier to select higher frequencies. This is particularly convenient for filters where one MIDI step would otherwise mean a difference of several hundred hertz.</li>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">#define PLUGINPARAMETERS_MULTITHREADED 0
+#include &quot;PluginParameters.h&quot;</code></pre></figure>
 
-<li>All parameters provide a minimum, maximum, and default value.</li>
+<p>Assuming that you’ve pointed your source to include <code>PluginParameters.h</code> and
+everything compiles fine, your next step is to make a <code>ParameterSet</code> and add
+some parameters to it. This should probably be done in your plugin’s
+constructor:</p>
 
-<li>All parameter types also have a function to get the displayable value as a string.</li>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">MyPlugin::MyPlugin() {
+  // Assumes that there is a ParameterSet member named &quot;parameters&quot; in
+  // the header file.
+  this-&gt;parameters.add(new BooleanParameter(&quot;Awesomeness&quot;, true));
+  this-&gt;parameters.add(new FrequencyParameter(&quot;Frequency&quot;, 20.0, 20000.0, 10000.0);
+  this-&gt;parameters.add(new DecibelParameter(&quot;Gain&quot;, -60.0, 3.0, 0.0));
+}</code></pre></figure>
 
-<li>Parameters have string unit suffixes for pretty-printing the value. For example, DecibelParameter automatically adds “dB” to the printed value, and FrequencyParameter adds “Hz” or “kHz”, depending on the frequency.</li>
+<p>For a VST plugin, a ton of boilerplate code regarding parameter values can be
+eliminated and replaced with the following:</p>
 
-<li>Parameters can have an unlimited number of observers, which will receive a callback when the parameter value is changed. Observers can be added or removed to a parameter at any time.</li>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">float MyPlugin::getParameter(VstInt32 index) {
+  return this-&gt;parameters[index]-&gt;getScaledValue();
+}
 
-<li>Lookup of parameters can be done either by index or by name, with either the <code>get()</code> method or the square brackets (ie, <code>parameters[&quot;frequency&quot;]</code>).</li>
+void MyPlugin::setParameter(VstInt32 index, float value) {
+  this-&gt;parameters[index]-&gt;setScaledValue(value);
+}
 
-<li>Small! Just a few hundred lines of code, and only one CPP file to add to your project (tinythread.cpp, which is from a third-party library). Simply include <code>PluginParameters.h</code> and you’ve got the whole library at your fingertips.</li>
+void MyPlugin::getParameterName (VstInt32 index, char* label) {
+  vst_strncpy(label, this-&gt;parameters[index]-&gt;getName().c_str(), kVstMaxParamStrLen);
+}
 
-<li>Threadsafe! PluginParameters can be built to run in a multi-threaded environment ideal for audio plugins, with one high-priority audio thread and multiple low-priority threads for background tasks or GUI.</li>
+void MyPlugin::getParameterDisplay(VstInt32 index, char* text) {
+  vst_strncpy(text, this-&gt;parameters[index]-&gt;getDisplayText().c_str(), kVstMaxParamStrLen);
+}</code></pre></figure>
 
-<li>The multi-threaded implementation is based on lock-free queues, and is completely mutex-free for high performance in realtime audio applications.</li>
-</ul>
+<p>When you actually want to use the parameter data in your code, it might look
+something like this:</p>
 
-<h2 id="usage_singlethreaded">Usage (Single-Threaded)</h2>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">void MyPlugin::processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames) {
+  if(this-&gt;parameters[&quot;Awesomeness&quot;]-&gt;getValue()) {
+    for(int i = 0; i &lt; sampleFrames; i++) {
+      *outputs[0][i] = *inputs[0][i] * this-&gt;parameters[&quot;Gain&quot;]-&gt;getValue();
+      *outputs[1][i] = *inputs[1][i] * this-&gt;parameters[&quot;Gain&quot;]-&gt;getValue();
+    }
+  }
+}</code></pre></figure>
 
-<p><em>Note</em>: As of PluginParameters version 3.0, the multi-threaded implementation is the default. To use the single-threaded implementation, you will need to define the following preprocessor definition in your project:</p>
-<div class='highlight'><pre><code class='cpp'><span class='cp'>#define PLUGINPARAMETERS_MULTITHREADED 0</span>
-<span class='cp'>#include &quot;PluginParameters.h&quot;</span>
-</code></pre></div>
-<p>Assuming that you’ve pointed your source to include <code>PluginParameters.h</code> and everything compiles fine, your next step is to make a <code>ParameterSet</code> and add some parameters to it. This should probably be done in your plugin’s constructor:</p>
-<div class='highlight'><pre><code class='cpp'><span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>MyPlugin</span><span class='p'>()</span> <span class='p'>{</span>
-  <span class='c1'>// Assumes that there is a ParameterSet member named &quot;parameters&quot; in</span>
-  <span class='c1'>// the header file.</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>BooleanParameter</span><span class='p'>(</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>,</span> <span class='nb'>true</span><span class='p'>));</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>FrequencyParameter</span><span class='p'>(</span><span class='s'>&quot;Frequency&quot;</span><span class='p'>,</span> <span class='mf'>20.0</span><span class='p'>,</span> <span class='mf'>20000.0</span><span class='p'>,</span> <span class='mf'>10000.0</span><span class='p'>);</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>DecibelParameter</span><span class='p'>(</span><span class='s'>&quot;Gain&quot;</span><span class='p'>,</span> <span class='o'>-</span><span class='mf'>60.0</span><span class='p'>,</span> <span class='mf'>3.0</span><span class='p'>,</span> <span class='mf'>0.0</span><span class='p'>));</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>For a VST plugin, a ton of boilerplate code regarding parameter values can be eliminated and replaced with the following:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>float</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameter</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>return</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getScaledValue</span><span class='p'>();</span>
-<span class='p'>}</span>
+<p>Note: The above example code may look a bit different than your actual
+implementation. It’s just to give you a general idea as to how the library
+should be used. For real-world examples of PluginParameters, check out the
+source code for any of the <a href="https://github.com/teragonaudio">Teragon Audio plugins</a>.</p>
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>setParameter</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>value</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>setScaledValue</span><span class='p'>(</span><span class='n'>value</span><span class='p'>);</span>
-<span class='p'>}</span>
+<h2 id="usage-multi-threaded">Usage (Multi-threaded)</h2>
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameterName</span> <span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>char</span><span class='o'>*</span> <span class='n'>label</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='n'>vst_strncpy</span><span class='p'>(</span><span class='n'>label</span><span class='p'>,</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getName</span><span class='p'>().</span><span class='n'>c_str</span><span class='p'>(),</span> <span class='n'>kVstMaxParamStrLen</span><span class='p'>);</span>
-<span class='p'>}</span>
-
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameterDisplay</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>char</span><span class='o'>*</span> <span class='n'>text</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='n'>vst_strncpy</span><span class='p'>(</span><span class='n'>text</span><span class='p'>,</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getDisplayText</span><span class='p'>().</span><span class='n'>c_str</span><span class='p'>(),</span> <span class='n'>kVstMaxParamStrLen</span><span class='p'>);</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>When you actually want to use the parameter data in your code, it might look something like this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>processReplacing</span> <span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span> <span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span><span class='o'>**</span> <span class='n'>outputs</span><span class='p'>,</span> <span class='n'>VstInt32</span> <span class='n'>sampleFrames</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>if</span><span class='p'>(</span><span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getValue</span><span class='p'>())</span> <span class='p'>{</span>
-    <span class='k'>for</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span><span class='p'>;</span> <span class='n'>i</span> <span class='o'>&lt;</span> <span class='n'>sampleFrames</span><span class='p'>;</span> <span class='n'>i</span><span class='o'>++</span><span class='p'>)</span> <span class='p'>{</span>
-      <span class='o'>*</span><span class='n'>outputs</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='o'>*</span><span class='n'>inputs</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>*</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='s'>&quot;Gain&quot;</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getValue</span><span class='p'>();</span>
-      <span class='o'>*</span><span class='n'>outputs</span><span class='p'>[</span><span class='mi'>1</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='o'>*</span><span class='n'>inputs</span><span class='p'>[</span><span class='mi'>1</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>*</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='s'>&quot;Gain&quot;</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getValue</span><span class='p'>();</span>
-    <span class='p'>}</span>
-  <span class='p'>}</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>Note: The above example code may look a bit different than your actual implementation. It’s just to give you a general idea as to how the library should be used. For real-world examples of PluginParameters, check out the source code for any of the <a href="https://github.com/teragonaudio">Teragon Audio plugins</a>.</p>
-
-<h2 id="usage_multithreaded">Usage (Multi-threaded)</h2>
-
-<p>If you intend on using PluginParameters in combination with a plugin GUI, then you will need to use the multi-threaded features of PluginParameters. Attempting to use the single-threaded version in a multi-threaded environment may result in priority inversion (and thus, occaisional stuttering on the audio thread), or race conditions caused by multiple objects attempting to get/set parameter values.</p>
+<p>If you intend on using PluginParameters in combination with a plugin GUI, then
+you will need to use the multi-threaded features of PluginParameters. Attempting
+to use the single-threaded version in a multi-threaded environment may result in
+priority inversion (and thus, occaisional stuttering on the audio thread), or
+race conditions caused by multiple objects attempting to get/set parameter
+values.</p>
 
 <p>The multi-threaded mode must be enabled at compile-time like so:</p>
-<div class='highlight'><pre><code class='cpp'><span class='cp'>#define PLUGINPARAMETERS_MULTITHREADED 1</span>
-<span class='cp'>#include &quot;PluginParameters.h&quot;</span>
-</code></pre></div>
-<p><em>Note</em>: As of PluginParameters version 3.0, the multi-threaded implementation is the default; it is not necessary to force this definition anymore. Simply including <code>PluginParameters.h</code> is enough.</p>
 
-<p>Some dependencies of the multi-threaded implementation require C++11 support, so you may need to enable this for your compiler as necessary. Likewise, you will need to add <code>tinythread.cpp</code> to the list of files compiled by your project.</p>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">#define PLUGINPARAMETERS_MULTITHREADED 1
+#include &quot;PluginParameters.h&quot;</code></pre></figure>
 
-<p>When a <code>ConcurrentParameterSet</code> (which should be used instead of the standard <code>PluginParameterSet</code>) is created by your plugin, it will create a new low-priority background thread for asynchronous parameter events. This thread will be automatically shut down and destroyed when the <code>ConcurrentParameterSet</code> is destroyed.</p>
+<p><em>Note</em>: As of PluginParameters version 3.0, the multi-threaded implementation is
+the default; it is not necessary to force this definition anymore. Simply
+including <code>PluginParameters.h</code> is enough.</p>
 
-<p>In multi-threaded mode, you may not directly modify parameter values. Instead, you must schedule changes via an event dispatcher. Therefore a full implementation would look something like this:</p>
+<p>Some dependencies of the multi-threaded implementation require C++11 support,
+so you may need to enable this for your compiler as necessary. Likewise, you
+will need to add <code>tinythread.cpp</code> to the list of files compiled by your
+project.</p>
+
+<p>When a <code>ConcurrentParameterSet</code> (which should be used instead of the standard
+<code>PluginParameterSet</code>) is created by your plugin, it will create a new
+low-priority background thread for asynchronous parameter events. This thread
+will be automatically shut down and destroyed when the <code>ConcurrentParameterSet</code>
+is destroyed.</p>
+
+<p>In multi-threaded mode, you may not directly modify parameter values. Instead,
+you must schedule changes via an event dispatcher. Therefore a full
+implementation would look something like this:</p>
 
 <p>In VST plugin’s audio processing code:</p>
-<div class='highlight'><pre><code class='cpp'><span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>MyPlugin</span><span class='p'>()</span> <span class='p'>{</span>
-  <span class='c1'>// Assumes that there is a ConcurrentParameterSet member named</span>
-  <span class='c1'>// &quot;parameters&quot; in the header file.</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>BooleanParameter</span><span class='p'>(</span><span class='s'>&quot;Awesomeness&quot;</span><span class='p'>,</span> <span class='nb'>true</span><span class='p'>));</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>FrequencyParameter</span><span class='p'>(</span><span class='s'>&quot;Frequency&quot;</span><span class='p'>,</span> <span class='mf'>20.0</span><span class='p'>,</span> <span class='mf'>20000.0</span><span class='p'>,</span> <span class='mf'>10000.0</span><span class='p'>);</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='k'>new</span> <span class='n'>DecibelParameter</span><span class='p'>(</span><span class='s'>&quot;Gain&quot;</span><span class='p'>,</span> <span class='o'>-</span><span class='mf'>60.0</span><span class='p'>,</span> <span class='mf'>3.0</span><span class='p'>,</span> <span class='mf'>0.0</span><span class='p'>));</span>
-<span class='p'>}</span>
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>process</span><span class='p'>(</span><span class='kt'>float</span><span class='o'>**</span> <span class='n'>inputs</span><span class='p'>,</span> <span class='kt'>float</span><span class='o'>**</span> <span class='n'>outputs</span><span class='p'>,</span> <span class='kt'>long</span> <span class='n'>blocksize</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>processRealtimeEvents</span><span class='p'>();</span>
-  <span class='c1'>// Other processing code follows...</span>
-<span class='p'>}</span>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">MyPlugin::MyPlugin() {
+  // Assumes that there is a ConcurrentParameterSet member named
+  // &quot;parameters&quot; in the header file.
+  this-&gt;parameters.add(new BooleanParameter(&quot;Awesomeness&quot;, true));
+  this-&gt;parameters.add(new FrequencyParameter(&quot;Frequency&quot;, 20.0, 20000.0, 10000.0);
+  this-&gt;parameters.add(new DecibelParameter(&quot;Gain&quot;, -60.0, 3.0, 0.0));
+}
 
-<span class='kt'>float</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameter</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>return</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getScaledValue</span><span class='p'>();</span>
-<span class='p'>}</span>
+void MyPlugin::process(float** inputs, float** outputs, long blocksize) {
+  this-&gt;parameters.processRealtimeEvents();
+  // Other processing code follows...
+}
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>setParameter</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>value</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>setScaled</span><span class='p'>(</span><span class='n'>index</span><span class='p'>,</span> <span class='n'>value</span><span class='p'>);</span>
-<span class='p'>}</span>
+float MyPlugin::getParameter(VstInt32 index) {
+  return this-&gt;parameters[index]-&gt;getScaledValue();
+}
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameterName</span> <span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>char</span><span class='o'>*</span> <span class='n'>label</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='n'>vst_strncpy</span><span class='p'>(</span><span class='n'>label</span><span class='p'>,</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getName</span><span class='p'>().</span><span class='n'>c_str</span><span class='p'>(),</span> <span class='n'>kVstMaxParamStrLen</span><span class='p'>);</span>
-<span class='p'>}</span>
+void MyPlugin::setParameter(VstInt32 index, float value) {
+  this-&gt;parameters.setScaled(index, value);
+}
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>getParameterDisplay</span><span class='p'>(</span><span class='n'>VstInt32</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>char</span><span class='o'>*</span> <span class='n'>text</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='n'>vst_strncpy</span><span class='p'>(</span><span class='n'>text</span><span class='p'>,</span> <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>[</span><span class='n'>index</span><span class='p'>]</span><span class='o'>-&gt;</span><span class='n'>getDisplayText</span><span class='p'>().</span><span class='n'>c_str</span><span class='p'>(),</span> <span class='n'>kVstMaxParamStrLen</span><span class='p'>);</span>
-<span class='p'>}</span>
+void MyPlugin::getParameterName (VstInt32 index, char* label) {
+  vst_strncpy(label, this-&gt;parameters[index]-&gt;getName().c_str(), kVstMaxParamStrLen);
+}
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>suspend</span><span class='p'>()</span> <span class='p'>{</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>pause</span><span class='p'>();</span>
-<span class='p'>}</span>
+void MyPlugin::getParameterDisplay(VstInt32 index, char* text) {
+  vst_strncpy(text, this-&gt;parameters[index]-&gt;getDisplayText().c_str(), kVstMaxParamStrLen);
+}
 
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>resume</span><span class='p'>()</span> <span class='p'>{</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>resume</span><span class='p'>();</span>
-<span class='p'>}</span>
-</code></pre></div>
+void MyPlugin::suspend() {
+  this-&gt;parameters.pause();
+}
+
+void MyPlugin::resume() {
+  this-&gt;parameters.resume();
+}</code></pre></figure>
+
 <p>In plugin’s GUI code:</p>
-<div class='highlight'><pre><code class='cpp'><span class='c1'>// This code will be highly implementation-specific, but basically let&#39;s</span>
-<span class='c1'>// assume that some GUI code is ready to set a parameter value after user</span>
-<span class='c1'>// interaction. However in this example we&#39;ll assume that the GUI also wants</span>
-<span class='c1'>// to be notified about updates to the parameter, so it therefore would</span>
-<span class='c1'>// implement PluginParameterObserver.</span>
-<span class='n'>MyGui</span><span class='o'>::</span><span class='n'>onValueUpdated</span><span class='p'>(</span><span class='kt'>int</span> <span class='n'>index</span><span class='p'>,</span> <span class='kt'>float</span> <span class='n'>newValue</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='c1'>// We must pass &quot;this&quot; as the last argument so we don&#39;t notify ourselves</span>
-  <span class='c1'>// when sending parameter changes to the audio thread.</span>
-  <span class='k'>this</span><span class='o'>-&gt;</span><span class='n'>parameters</span><span class='p'>.</span><span class='n'>set</span><span class='p'>(</span><span class='n'>index</span><span class='p'>,</span> <span class='n'>newValue</span><span class='p'>,</span> <span class='k'>this</span><span class='p'>);</span>
-<span class='p'>}</span>
 
-<span class='kt'>bool</span> <span class='n'>MyGui</span><span class='o'>::</span><span class='n'>isRealtimePriority</span><span class='p'>()</span> <span class='k'>const</span> <span class='p'>{</span>
-  <span class='k'>return</span> <span class='nb'>false</span><span class='p'>;</span>
-<span class='p'>}</span>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">// This code will be highly implementation-specific, but basically let&#39;s
+// assume that some GUI code is ready to set a parameter value after user
+// interaction. However in this example we&#39;ll assume that the GUI also wants
+// to be notified about updates to the parameter, so it therefore would
+// implement PluginParameterObserver.
+MyGui::onValueUpdated(int index, float newValue) {
+  // We must pass &quot;this&quot; as the last argument so we don&#39;t notify ourselves
+  // when sending parameter changes to the audio thread.
+  this-&gt;parameters.set(index, newValue, this);
+}
 
-<span class='kt'>void</span> <span class='n'>MyGui</span><span class='o'>::</span><span class='n'>onParameterUpdated</span><span class='p'>(</span><span class='k'>const</span> <span class='n'>PluginParameter</span><span class='o'>*</span> <span class='n'>parameter</span><span class='p'>)</span> <span class='p'>{</span>
-  <span class='c1'>// Update widget to reflect parameter&#39;s new value</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>You can also have parameter observers on the realtime thread. This can be useful to recalculate cached values based on parameter data (like filter coefficients, for example).</p>
+bool MyGui::isRealtimePriority() const {
+  return false;
+}
 
-<p>Note that <code>ConcurrentParameterSet</code> <em>cannot</em> fully guarantee that the asynchronous event thread will be ready to process events after the parameter set itself is finished being constructed. In other words, never do this:</p>
-<div class='highlight'><pre><code class='cpp'><span class='c1'>// Assumes a member of type ThreadsafePluginParameterSet*, and a</span>
-<span class='c1'>// PluginParameterObserver* named observer.</span>
-<span class='kt'>void</span> <span class='n'>MyPlugin</span><span class='o'>::</span><span class='n'>initialize</span><span class='p'>()</span> <span class='p'>{</span>
-  <span class='n'>parameters</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>ThreadsafePluginParameterSet</span><span class='p'>();</span>
-  <span class='n'>Parameter</span> <span class='o'>*</span><span class='n'>p</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>BooleanParameter</span><span class='p'>(</span><span class='s'>&quot;test&quot;</span><span class='p'>);</span>
-  <span class='n'>p</span><span class='o'>-&gt;</span><span class='n'>addObserver</span><span class='p'>(</span><span class='n'>observer</span><span class='p'>);</span>
-  <span class='n'>parameters</span><span class='p'>.</span><span class='n'>add</span><span class='p'>(</span><span class='n'>p</span><span class='p'>);</span>
-  <span class='n'>parameters</span><span class='p'>.</span><span class='n'>set</span><span class='p'>(</span><span class='s'>&quot;test&quot;</span><span class='p'>,</span> <span class='nb'>true</span><span class='p'>);</span> <span class='c1'>// BAD! Here we cannot guarantee that the</span>
-  <span class='c1'>// observer will be called. The easy fix is to simply call set() elsewhere</span>
-  <span class='c1'>// after this constructor exits.</span>
+void MyGui::onParameterUpdated(const PluginParameter* parameter) {
+  // Update widget to reflect parameter&#39;s new value
+}</code></pre></figure>
 
-  <span class='c1'>// Also never do this:</span>
-  <span class='n'>parameters</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>ConcurrentParameterSet</span><span class='p'>();</span>
-  <span class='k'>delete</span> <span class='n'>parameters</span><span class='p'>;</span>
-<span class='p'>}</span>
-</code></pre></div>
-<p>The reason that this code is bad is because the low-priority event thread may not be fully started when the call to <code>set()</code> has been made, and therefore the parameter change would not be correctly scheduled on that thread. The only way to guarantee this behavior would be to have a mutex within both <code>set()</code> and <code>processRealtimeEvents()</code>, which has performance consequences for the audio thread.</p>
+<p>You can also have parameter observers on the realtime thread. This can be
+useful to recalculate cached values based on parameter data (like filter
+coefficients, for example).</p>
 
-<p>That said, as long as you don’t attempt to schedule parameter changes or destroy the parameter set immediately after construction, <code>ConcurrentParameterSet</code> should be safe and reliable to use. Also it should be noted that all <code>Parameter</code> subclasses provide a constructor which allows you to set a default value, so it shouldn’t be necessary to schedule parameter changes immediately after constructing the parameter set.</p>
+<p>Note that <code>ConcurrentParameterSet</code> <em>cannot</em> fully guarantee that the
+asynchronous event thread will be ready to process events after the parameter
+set itself is finished being constructed. In other words, never do this:</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">// Assumes a member of type ThreadsafePluginParameterSet*, and a
+// PluginParameterObserver* named observer.
+void MyPlugin::initialize() {
+  parameters = new ThreadsafePluginParameterSet();
+  Parameter *p = new BooleanParameter(&quot;test&quot;);
+  p-&gt;addObserver(observer);
+  parameters.add(p);
+  parameters.set(&quot;test&quot;, true); // BAD! Here we cannot guarantee that the
+  // observer will be called. The easy fix is to simply call set() elsewhere
+  // after this constructor exits.
+
+  // Also never do this:
+  parameters = new ConcurrentParameterSet();
+  delete parameters;
+}</code></pre></figure>
+
+<p>The reason that this code is bad is because the low-priority event thread may
+not be fully started when the call to <code>set()</code> has been made, and therefore the
+parameter change would not be correctly scheduled on that thread. The only way
+to guarantee this behavior would be to have a mutex within both <code>set()</code> and
+<code>processRealtimeEvents()</code>, which has performance consequences for the audio
+thread.</p>
+
+<p>That said, as long as you don’t attempt to schedule parameter changes or destroy
+the parameter set immediately after construction, <code>ConcurrentParameterSet</code>
+should be safe and reliable to use. Also it should be noted that all <code>Parameter</code>
+subclasses provide a constructor which allows you to set a default value, so it
+shouldn’t be necessary to schedule parameter changes immediately after
+constructing the parameter set.</p>
 
 <h2 id="testing">Testing</h2>
 
-<p>PluginParameters comes with a small test suite which is used to develop the library as well as fix bugs. If you think you’ve found a bug in PluginParameters, then please build the test suites and run it before reporting a bug for your platform. The test suites are built using CMake, and generate two executables, <code>pluginparametertest</code> and <code>multithreadedtest</code>.</p>
+<p>PluginParameters comes with a small test suite which is used to develop the
+library as well as fix bugs. If you think you’ve found a bug in
+PluginParameters, then please build the test suites and run it before reporting
+a bug for your platform. The test suites are built using CMake, and generate two
+executables, <code>pluginparametertest</code> and <code>multithreadedtest</code>.</p>
 
-<p>PluginParameters is built with <a href="http://www.cmake.org">CMake</a> and should compile cleanly out of the box. Building on unix platforms (including Mac OSX) is simply a matter of running <code>cmake . ; make</code>. On Windows, one can run <code>cmake.exe -G &quot;Visual Studio
-12&quot;</code> to generate a Visual Studio project file which can build the project.</p>
+<p>PluginParameters is built with <a href="http://www.cmake.org">CMake</a> and should compile cleanly out of
+the box. Building on unix platforms (including Mac OSX) is simply a matter of
+running <code>cmake . ; make</code>. On Windows, one can run <code>cmake.exe -G "Visual Studio
+12"</code> to generate a Visual Studio project file which can build the project.</p>
 
 <h2 id="license">License</h2>
 
-<p>PluginParameters is licensed under the BSD licnese. See the file <code>LICENSE.txt</code> provided with the source code for more details. If built in multi-threaded mode, then code from <a href="http://tinythreadpp.bitsnbites.eu">TinyThread++</a> and <a href="https://github.com/cameron314/readerwriterqueue">readerwriterqueue</a> is used. Please see the respective license files for each of these libraries, which can be found in the <code>include</code> directory.</p>
+<p>PluginParameters is licensed under the BSD licnese. See the file <code>LICENSE.txt</code>
+provided with the source code for more details. If built in multi-threaded mode,
+then code from <a href="http://tinythreadpp.bitsnbites.eu">TinyThread++</a> and <a href="https://github.com/cameron314/readerwriterqueue">readerwriterqueue</a> is used. Please see
+the respective license files for each of these libraries, which can be found in
+the <code>include</code> directory.</p>
 
-<p>Finally, a big thanks to the authors of TinyThread++ and readerwriterqueue for making this library possible. Writing multi-threaded code is hard!</p>
+<p>Finally, a big thanks to the authors of TinyThread++ and readerwriterqueue for
+making this library possible. Writing multi-threaded code is hard!</p>
+
 <hr />
+
 <p>Changelog:</p>
 
-<p>Version 3.2: - Add pause/resume methods to ConcurrentParameterSet for processing events when playback is paused.</p>
-
+<p>Version 3.2:</p>
 <ul>
-<li>Parameters now may have string descriptions for help</li>
-
-<li>The “type” field has been removed from Parameter</li>
-
-<li>Parameter class now has public getters for unit &amp; precision</li>
+  <li>Add pause/resume methods to ConcurrentParameterSet for processing
+events when playback is paused.</li>
+  <li>Parameters now may have string descriptions for help</li>
+  <li>The “type” field has been removed from Parameter</li>
+  <li>Parameter class now has public getters for unit &amp; precision</li>
 </ul>
 
 <p>Version 3.1:</p>
 <ul><li> Compilation fixes for 64-bit Windows</li></ul>
+
 <p>Version 3.0:</p>
-
 <ul>
-<li>Renaming several classes to be less verbose, including:
-<ul>
-<li>ENABLE_MULTITHREADED -&gt; PLUGINPARAMETERS_MULTITHREADED</li>
-
-<li>ThreadsafePluginParameterSet -&gt; ConcurrentParameterSet</li>
-
-<li>PluginParameterSet -&gt; ParameterSet</li>
-
-<li>PluginParameter -&gt; Parameter</li>
-
-<li>PluginParameterObserver -&gt; ParameterObserver</li>
-</ul>
-</li>
-
-<li>Several bufixes in thread handling, much safer startup and shutdown procedures.</li>
-
-<li>Introduce BlobParameter class</li>
-
-<li>Small API cleanups and improvements</li>
-
-<li>Separate test suites for single/multithreaded code</li>
-
-<li>Both test suites now build on Windows</li>
-
-<li>Other windows bugfixes</li>
+  <li>Renaming several classes to be less verbose, including:
+    <ul>
+      <li>ENABLE_MULTITHREADED -&gt; PLUGINPARAMETERS_MULTITHREADED</li>
+      <li>ThreadsafePluginParameterSet -&gt; ConcurrentParameterSet</li>
+      <li>PluginParameterSet -&gt; ParameterSet</li>
+      <li>PluginParameter -&gt; Parameter</li>
+      <li>PluginParameterObserver -&gt; ParameterObserver</li>
+    </ul>
+  </li>
+  <li>Several bufixes in thread handling, much safer startup and
+shutdown procedures.</li>
+  <li>Introduce BlobParameter class</li>
+  <li>Small API cleanups and improvements</li>
+  <li>Separate test suites for single/multithreaded code</li>
+  <li>Both test suites now build on Windows</li>
+  <li>Other windows bugfixes</li>
 </ul>
 
 <p>Version 2.4:</p>
-
 <ul>
-<li>Compilation fixes on Mac OS X</li>
-
-<li>DecibelParameter is now logarithmic</li>
-
-<li>Fix documentation</li>
+  <li>Compilation fixes on Mac OS X</li>
+  <li>DecibelParameter is now logarithmic</li>
+  <li>Fix documentation</li>
 </ul>
 
-<p>Version 2.3: - Now threadsafe! See the README for how to use PluginParameters in a multithreaded environment.</p>
+<p>Version 2.3:</p>
+<ul>
+  <li>Now threadsafe! See the README for how to use PluginParameters
+in a multithreaded environment.</li>
+</ul>
 
 <p>Version 2.2:</p>
-
 <ul>
-<li>Adding parameter to set returns pointer to the parameter</li>
-
-<li>Fix some bugs in triggering observer callbacks</li>
-
-<li>Add VoidParameter type</li>
-
-<li>BooleanParameter sets internal value before calling super</li>
-
-<li>Add documentation for building test suite</li>
-
-<li>Fix heap corruption in removeObserver</li>
+  <li>Adding parameter to set returns pointer to the parameter</li>
+  <li>Fix some bugs in triggering observer callbacks</li>
+  <li>Add VoidParameter type</li>
+  <li>BooleanParameter sets internal value before calling super</li>
+  <li>Add documentation for building test suite</li>
+  <li>Fix heap corruption in removeObserver</li>
 </ul>
 
 <p>Version 2.1:</p>
-
 <ul>
-<li>Add StringParameter type</li>
-
-<li>Display precision can be set for parameters</li>
-
-<li>Display frequency in kHz when &gt;1000Hz</li>
-
-<li>Add ability to observe parameter changes</li>
-
-<li>Expose min/max value of parameters</li>
-
-<li>Improve test suite</li>
+  <li>Add StringParameter type</li>
+  <li>Display precision can be set for parameters</li>
+  <li>Display frequency in kHz when &gt;1000Hz</li>
+  <li>Add ability to observe parameter changes</li>
+  <li>Expose min/max value of parameters</li>
+  <li>Improve test suite</li>
 </ul>
 
 <p>Version 2.0:</p>
-
 <ul>
-<li>Rename DecibelParameter to FrequencyParameter</li>
-
-<li>Introduce real DecibelParameter type</li>
-
-<li>Much more efficient lookup of parameters</li>
-
-<li>Ability to lookup with [] operator</li>
-
-<li>Move all code to header files to make it easier to include in a project</li>
-
-<li>Add test suite</li>
-
-<li>Add documentation!</li>
+  <li>Rename DecibelParameter to FrequencyParameter</li>
+  <li>Introduce real DecibelParameter type</li>
+  <li>Much more efficient lookup of parameters</li>
+  <li>Ability to lookup with [] operator</li>
+  <li>Move all code to header files to make it easier to include in a project</li>
+  <li>Add test suite</li>
+  <li>Add documentation!</li>
 </ul>
 
-<p>Version 1.0: - Bugfixes</p>
+<p>Version 1.0:</p>
+<ul>
+  <li>Bugfixes</li>
+</ul>
+
+
             <!-- End content -->
           </div>
           <div id="sidebar">
             <ul class="sidemenu">
-              <li><a href="http://static.teragonaudio.com/PluginParameters.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
+              <li><a href="http://static.teragonaudio.com/downloads/PluginParametersPluginParameters.zip" class="downloadbutton"><b>Download</b></a><p></p></li>
               <li><a href="https://github.com/teragonaudio/PluginParameters/zipball/master">Source code</a></li>
               <li><a href="https://github.com/teragonaudio/PluginParameters">Project page</a></li>
             </ul>
